@@ -1,4 +1,4 @@
-@extends('v2.layouts.layout_etc')
+@extends('layouts.master')
 
 @section('title', 'DBET Wallet')
 
