@@ -33,15 +33,12 @@
 <hr>
 <div class="row mt40">
     <div class="col-12 text-center">
-        QR CODE Image
-    </div>
-</div>
-<div class="row mt40">
-    <div class="col-12 text-center">
         <div class="card" >
             <img src="..." class="card-img-top" alt="QR Code">
             <div class="card-body text-left">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Address
+                    <span class="pull-right">1</span>
+                </h5>
                 <p class="card-text">0x234ljdsf330fsdjlfkjl3jildijfi3il2j3i4kdjfij3</p>
                 
             </div>
