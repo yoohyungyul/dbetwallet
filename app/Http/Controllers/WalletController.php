@@ -8,5 +8,7 @@ use App\Http\Requests;
 
 class WalletController extends Controller
 {
-    //
+    public function getWallet() {
+        return view('wallet.wallet');
+    }
 }

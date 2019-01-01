@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/wallet', 'WalletController@getWallet');
+Route::get('/history', 'WalletController@getHistory');
+Route::get('/send', 'WalletController@getSend');
+
+
+
