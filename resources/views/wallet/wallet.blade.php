@@ -25,8 +25,9 @@
 </div>
 <div class="row  mt20">
     <div class="col-12 text-right">
+        
+        <span style="float: right;display: inline-block;background:#ff00ff;padding:0 10px 0 10px">DBET</span>
         <span style="float: right;">100,000,000</span>
-        <span style="float: right;display: inline-block;background:#ff00ff">DBET</span>
     </div>
 </div>
 
