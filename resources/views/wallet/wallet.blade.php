@@ -40,7 +40,7 @@
     <div class="col-12 text-center">
         <div class="card" >
             <img src="..." class="card-img-top" alt="QR Code">
-            <div class="card-body">
+            <div class="card-body text-left">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">0x234ljdsf330fsdjlfkjl3jildijfi3il2j3i4kdjfij3</p>
                 
