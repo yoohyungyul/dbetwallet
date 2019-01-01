@@ -24,13 +24,10 @@
     </div>
 </div>
 <div class="row  mt20">
-    <div class="col-8 text-right">
-        <span>100,000,000</span>
+    <div class="col-12 text-right">
+        <span style="float: right;">100,000,000</span>
+        <span style="float: right;display: inline-block;background:#ff00ff">DBET</span>
     </div>
-    <div class="col-4">
-        DBET
-    </div>
-
 </div>
 
 
