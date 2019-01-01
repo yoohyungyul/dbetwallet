@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt30">
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
                 <a class="nav-link active" href="#">Wallet</a>
