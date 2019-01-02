@@ -15,7 +15,10 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        echo uniqid('php_',true);
+
+        
+
+        echo uniqid('chainplus_',true);
 
         // $name = "chaninplus";
         // $value = "0923";
