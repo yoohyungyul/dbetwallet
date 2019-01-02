@@ -25,7 +25,21 @@
 </div>
 <div class="row mt20">
     <div class="col-12 ">
-       보내기
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Wallet Address</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Wallet Address">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Amount</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Amount">
+                </div>
+                <button type="submit" class="btn btn-primary">SEND</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
