@@ -38,20 +38,9 @@
             <tbody>
                 <tr>
                 <th scope="row">1</th>
-                <td>Mark</td>
+                <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
                 <td>Otto</td>
                 <td>@mdo</td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
                 </tr>
             </tbody>
         </table>
