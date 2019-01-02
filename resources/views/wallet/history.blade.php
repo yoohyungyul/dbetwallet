@@ -29,16 +29,14 @@
         <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word;">
             <thead>
                 <tr>
-                <th scope="col" width="10%">#</th>
-                <th scope="col" width="60%">First</th>
-                <th scope="col" width="20%">Last</th>
-                <th scope="col" width="10%">Handle</th>
+                <th scope="col" width="60%">Txid</th>
+                <th scope="col" width="20%">Date</th>
+                <th scope="col" width="20%">Value</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                <th scope="row">1</th>
-                <td style="overflow:hidden;text-overflow;ellipsis;width:50%">0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
+                <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
                 <td>Otto</td>
                 <td>@mdo</td>
                 </tr>
