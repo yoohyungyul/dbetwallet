@@ -28,6 +28,8 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory() {
 
+        echo Cookie::get('chaninplus');
+
         return view('wallet.history');
     }
 
