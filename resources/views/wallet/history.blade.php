@@ -29,10 +29,10 @@
         <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word;">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col" width="10%">#</th>
+                <th scope="col" width="60%">First</th>
+                <th scope="col" width="20%">Last</th>
+                <th scope="col" width="10%">Handle</th>
                 </tr>
             </thead>
             <tbody>
