@@ -26,16 +26,14 @@
 <div class="row mt20">
     <div class="col-12 ">
 
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Morbi leo risus</li>
-            <li class="list-group-item">Porta ac consectetur ac</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                sdfsdf
+            </div>
+        </div>
         
     </div>
-    <div class="col-12">
+    <!-- <div class="col-12">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
@@ -55,7 +53,7 @@
                 </li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 </div>
 
 
