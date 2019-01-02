@@ -28,25 +28,47 @@
 <div class="row mt40">
     <div class="col-12 ">
         <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Txid</th>
-                        <th scope="col">수량</th>
-                        <th scope="col">상세보기</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>0xjfoekjdijfkjiefjildjkjfiefkdf</td>
-                        <td>1.000000</td>
-                        <td><button type="button" class="btn">보기</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Txid</th>
+                <th scope="col">수량</th>
+                <th scope="col">상세보기</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">1</th>
+                <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
+                <td>1.000000</td>
+                <td><button type="button" class="btn">보기</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
+
 
 
 @endsection
