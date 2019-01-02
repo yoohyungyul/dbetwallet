@@ -15,7 +15,7 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        echo $_SERVER['HTTP_USER_AGENT'];
+        echo uniqid('php_',true);
 
         // $name = "chaninplus";
         // $value = "0923";
