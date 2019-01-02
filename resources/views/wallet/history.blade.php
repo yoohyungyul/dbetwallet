@@ -27,9 +27,15 @@
 <hr>
 <div class="row mt40">
     <div class="col-12 ">
-        <div class="card" style="width: 18rem;">
+        <div class="card" >
             <div class="card-body">
-                <p class="card-text">0x234ljdsf330fsdjlfkjl3jildijfi3il2j3i4kdjfij3</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
             </div>
         </div>
     </div>
