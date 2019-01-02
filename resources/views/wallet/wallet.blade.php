@@ -30,14 +30,14 @@
         <div class="card" >
             <img src="..." class="card-img-top" alt="QR Code">
             <div class="card-body text-left">
+                <span style="float: right;">복사</span>
                 <h5 class="card-title">Address
-                    <span style="float: right;">1</span>
+                    
                 </h5>
                 <p class="card-text">0x234ljdsf330fsdjlfkjl3jildijfi3il2j3i4kdjfij3</p>
                 
             </div>
         </div>
-        
     </div>
 </div>
 
