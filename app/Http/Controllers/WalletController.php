@@ -18,7 +18,7 @@ class WalletController extends Controller
 
         
 
-        echo uniqid('chainplus_',true);
+        // echo uniqid('chainplus_',true);
 
         // $name = "chaninplus";
         // $value = "0923";
@@ -44,3 +44,7 @@ class WalletController extends Controller
         return view('wallet.send');
     }
 }
+
+
+// chainplus_5c2c60134e86b9.78143218
+// 33자리
