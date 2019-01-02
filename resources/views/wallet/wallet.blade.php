@@ -23,7 +23,7 @@
        </div>
     </div>
 </div>
-<div class="row">
+<div class="row mt20">
     <div class="col-12 text-center">
         <div class="card text-center" style="display: block">
             <img src="/img/qrcode.png" class="card-img-top pt20" alt="QR Code">

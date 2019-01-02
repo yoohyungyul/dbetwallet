@@ -23,7 +23,7 @@
        </div>
     </div>
 </div>
-<div class="row">
+<div class="row mt20">
     <div class="col-12 ">
        보내기
     </div>
