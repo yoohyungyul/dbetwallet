@@ -27,9 +27,7 @@
 <hr>
 <div class="row mt40">
     <div class="col-12 ">
-        <div class="card" >
-            <div class="card-body">
-                <table class="table">
+        <table class="table">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
@@ -59,8 +57,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
     </div>
 </div>
 
