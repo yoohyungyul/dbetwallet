@@ -8,6 +8,12 @@ use App\Http\Requests;
 
 class WalletController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     // 지갑 
     public function getWallet() {
         return view('wallet.wallet');
