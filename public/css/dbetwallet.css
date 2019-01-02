@@ -1,5 +1,6 @@
 
 body {    background-color: #f8f9fa!important;}
+.card-img-top {    width:50%!important;}
 
 /*공통여백*/
 .mt10 { margin-top:10px; }
