@@ -29,12 +29,12 @@
             <div class="panel-body">
                 <form>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Wallet Address</label>
-                    <input type="email" class="form-control input-lg" id="exampleFormControlInput1" placeholder="Wallet Address">
+                    <label for="addressFormControlInput">Wallet Address</label>
+                    <input type="text" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Amount</label>
-                    <input type="email" class="form-control input-lg" id="exampleFormControlInput1" placeholder="Amount">
+                    <label for="amountFormControlInput">Amount</label>
+                    <input type="text" class="form-control input-lg" id="amountFormControlInput" placeholder="Amount">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">SEND</button>
                 </form>
