@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::auth();
 
+Route::get('/', 'WalletController@getWallet');
 Route::get('/home', 'HomeController@index');
 Route::get('/wallet', 'WalletController@getWallet');
 Route::get('/history', 'WalletController@getHistory');
