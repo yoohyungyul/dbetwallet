@@ -17,7 +17,7 @@
                 <a class="nav-item nav-link "   href="/send" >Send</a>
             </div>
         </nav>
-        <div class="tab-content pt20" >
+        <div class="tab-content " style="background:#fff;display: inline-block;width:100%;height:50px;padding-top:15px;border-left:1px solid #dee2e6">
             <span style="float: right;display: inline-block;padding:0 10px 0 10px">DBET</span>
             <span style="float: right;">100,000,000</span>
        </div>
