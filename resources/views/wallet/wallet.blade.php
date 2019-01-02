@@ -30,7 +30,7 @@
         <div class="card text-center" style="display: block">
             <img src="/img/qrcode.png" class="card-img-top pt20" alt="QR Code">
             <div class="card-body text-left">
-                <span style="float: right;"><i class="fa fa-files-o"></i></span>
+                <span style="float: right;"><i class="far fa-copy"></i></span>
                 <h5 class="card-title">Address
                     
                 </h5>

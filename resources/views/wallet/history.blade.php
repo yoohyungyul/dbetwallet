@@ -28,9 +28,8 @@
 <div class="row mt40">
     <div class="col-12 ">
         <div class="card" style="width: 18rem;">
-            
             <div class="card-body">
-                sdfsdfs
+                <p class="card-text">0x234ljdsf330fsdjlfkjl3jildijfi3il2j3i4kdjfij3</p>
             </div>
         </div>
     </div>
