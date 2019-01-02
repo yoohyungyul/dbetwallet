@@ -38,7 +38,7 @@
             <tbody>
                 <tr>
                 <th scope="row">1</th>
-                <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
+                <td style="overflow:hidden;text-overflow;ellipsis;">0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
                 <td>Otto</td>
                 <td>@mdo</td>
                 </tr>
