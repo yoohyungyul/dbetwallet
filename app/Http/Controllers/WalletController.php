@@ -16,7 +16,9 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory() {
 
-        return view('wallet.history');
+        echo "1";
+
+        // return view('wallet.history');
     }
 
     // 보내기
