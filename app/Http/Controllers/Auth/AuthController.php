@@ -55,6 +55,15 @@ class AuthController extends Controller
         ]);
     }
 
+
+    public function postRegister(Request $request)
+    {
+        echo "1";
+        exit;
+    }
+
+
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -64,8 +73,7 @@ class AuthController extends Controller
     protected function create(array $data)
     {
 
-        echo "11";
-        exit;
+        // 쿠키 생성 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
