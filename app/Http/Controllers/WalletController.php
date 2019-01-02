@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Cookie;
 
 class WalletController extends Controller
 {
@@ -13,6 +14,14 @@ class WalletController extends Controller
 
     // 지갑 
     public function getWallet() {
+
+        $name = "chaninplus";
+        $value = "0923";
+        $minutes = 216000;
+
+        Cookie::queue($name, $value, $minutes);
+
+        
         return view('wallet.wallet');
     }
 
