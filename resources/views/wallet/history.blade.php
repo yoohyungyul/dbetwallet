@@ -26,7 +26,7 @@
 <div class="row mt20">
     <div class="col-12 ">
 
-        <table class="table table-hover">
+        <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word;">
             <thead>
                 <tr>
                 <th scope="col">#</th>
