@@ -31,8 +31,8 @@
         <div class="panel with-nav-tabs panel-default safetab">
             
             <div class="panel-body">
-                <table class="table" style="width:100%">
-                    <thead class="thead-dark">
+                <table class="table  table-hover" >
+                    <thead >
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Txid</th>
