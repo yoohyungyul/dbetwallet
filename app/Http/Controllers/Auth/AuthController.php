@@ -58,8 +58,20 @@ class AuthController extends Controller
 
     public function postRegister(Request $request)
     {
+        $validator = $this->validator($request->all());
+
         echo "1";
         exit;
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::login($this->create($request->all()));
+
+        return redirect($this->redirectPath());
     }
 
 
@@ -72,6 +84,8 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        echo "2";
+        exit;
 
         // 쿠키 생성 
         return User::create([
