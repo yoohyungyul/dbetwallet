@@ -27,8 +27,8 @@
 <hr>
 <div class="row mt40">
     <div class="col-12 ">
-        <table class="table">
-            <thead>
+        <table class="table" style="width:100%">
+            <thead class="thead-dark">
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Txid</th>
