@@ -15,11 +15,13 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        $name = "chaninplus";
-        $value = "0923";
-        $minutes = 216000;
+        echo $_SERVER['HTTP_USER_AGENT'];
 
-        Cookie::queue($name, $value, $minutes);
+        // $name = "chaninplus";
+        // $value = "0923";
+        // $minutes = 216000;
+
+        // Cookie::queue($name, $value, $minutes);
 
         
         return view('wallet.wallet');
@@ -28,7 +30,7 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory() {
 
-        echo Cookie::get('chaninplus');
+        // echo Cookie::get('chaninplus');
 
         return view('wallet.history');
     }
