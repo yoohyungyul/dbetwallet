@@ -27,24 +27,32 @@
 <hr>
 <div class="row mt40">
     <div class="col-12 ">
-        <table class="table" style="width:100%">
-            <thead class="thead-dark">
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Txid</th>
-                <th scope="col">수량</th>
-                <th scope="col">상세보기</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
-                <td>1.000000</td>
-                <td><button type="button" class="btn">보기</button></td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div class="panel with-nav-tabs panel-default safetab">
+            
+            <div class="panel-body">
+                <table class="table" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Txid</th>
+                        <th scope="col">수량</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
+                        <td>1.000000</td>
+                        <td><button type="button" class="btn">보기</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        
     </div>
     <div class="col-12">
         <nav aria-label="Page navigation example">
