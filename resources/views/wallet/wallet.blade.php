@@ -27,7 +27,7 @@
 <hr>
 <div class="row mt40">
     <div class="col-12 text-center">
-        <div class="card text-left" >
+        <div class="card text-center" >
             <img src="/img/qrcode.png" class="card-img-top pt20" alt="QR Code">
             <div class="card-body text-left">
                 <span style="float: right;">복사</span>
