@@ -23,35 +23,16 @@
        </div>
     </div>
 </div>
-
-<hr>
 <div class="row mt40">
     <div class="col-12 ">
 
-        <div class="panel with-nav-tabs panel-default safetab">
-            
-            <div class="panel-body">
-                <table class="table  table-hover" >
-                    <thead >
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Txid</th>
-                        <th scope="col">수량</th>
-                        <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">1</th>
-                        <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
-                        <td>1.000000</td>
-                        <td><button type="button" class="btn">보기</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
         
     </div>
     <div class="col-12">

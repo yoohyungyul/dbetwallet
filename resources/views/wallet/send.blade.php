@@ -23,8 +23,6 @@
        </div>
     </div>
 </div>
-
-<hr>
 <div class="row mt40">
     <div class="col-12 ">
        보내기
