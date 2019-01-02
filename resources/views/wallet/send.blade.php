@@ -36,7 +36,7 @@
                     <label for="exampleFormControlInput1">Amount</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Amount">
                 </div>
-                <button type="submit" class="btn btn-primary">SEND</button>
+                <button type="submit" class="btn btn-primary btn-block">SEND</button>
                 </form>
             </div>
         </div>
