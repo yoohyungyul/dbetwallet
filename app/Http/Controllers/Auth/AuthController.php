@@ -63,6 +63,9 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+
+        echo "11";
+        exit;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -71,9 +74,4 @@ class AuthController extends Controller
         ]);
     }
 
-    public function postRegister(Request $request)
-	{
-        echo "dd";
-        exit;
-    }
 }
