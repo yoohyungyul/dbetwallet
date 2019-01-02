@@ -70,4 +70,10 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function postRegister(Request $request)
+	{
+        echo "dd";
+        exit;
+    }
 }
