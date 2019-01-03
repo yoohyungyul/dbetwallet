@@ -20,13 +20,10 @@ class Controller extends BaseController
 
         // 기존 접속 기록이 있으면
         if(Cookie::get('chaninplus')) {
-            $UserData = $user = User::where('wallet_code', '=', Cookie::get('chaninplus'))->first();
-        
-            echo "1";
-                return $UserData;
+            $UserData = User::where('wallet_code', '=', Cookie::get('chaninplus'))->first();
+            return $UserData;
         // 없으면 
         } else {
-            echo "2";
             return "";
         }
         
