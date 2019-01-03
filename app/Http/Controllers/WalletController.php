@@ -15,8 +15,8 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        echo time()+60*60*24*365;
         
+        echo Cookie::get('chaninplus');
 
         // echo uniqid('chainplus_',true);
 

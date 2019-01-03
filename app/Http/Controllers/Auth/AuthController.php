@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Cookie;
 
 class AuthController extends Controller
 {
@@ -65,14 +66,19 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        echo "2";
-        exit;
+        
 
         // 쿠키 생성 
+        $name = "chaninplus";
+        $value = uniqid('chainplus_',true);
+        $minutes = time()+60*60*24*365;;
+
+        Cookie::queue($name, $value, $minutes);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'wallet_code' => $data['wallet_code'],
+            'wallet_code' => $value,
             'password' => bcrypt($data['password']),
         ]);
     }
