@@ -22,9 +22,11 @@ class Controller extends BaseController
         if(Cookie::get('chaninplus')) {
             $UserData = $user = User::where('wallet_code', '=', Cookie::get('chaninplus'))->first();
         
-            return $UserData;
+            echo "1";
+                return $UserData;
         // 없으면 
         } else {
+            echo "2";
             return "";
         }
         
