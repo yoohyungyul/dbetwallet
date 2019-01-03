@@ -18,15 +18,15 @@ class Controller extends BaseController
 
     public function isCookie() {
 
+        $UserData = [];
+
         // 기존 접속 기록이 있으면
         if(Cookie::get('chaninplus')) {
             $UserData = User::where('wallet_code',  Cookie::get('chaninplus'))->first();
+        }
 
-            echo Cookie::get('chaninplus');
-            return $UserData;
-        // 없으면 
-        } else {
-            return "";
+        if(!$UserData) {
+            
         }
         
         
