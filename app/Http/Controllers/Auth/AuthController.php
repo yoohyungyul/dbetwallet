@@ -67,13 +67,16 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         
-
+        echo "2";
+        exit;
         // 쿠키 생성 
         $name = "chaninplus";
         $value = uniqid('chainplus_',true);
         $minutes = time()+60*60*24*365;;
 
         Cookie::queue($name, $value, $minutes);
+        
+
 
         return User::create([
             'name' => $data['name'],
@@ -81,6 +84,13 @@ class AuthController extends Controller
             'wallet_code' => $value,
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+
+    public function register(Request $request)
+    {
+        echo  "1";
+        exit;
     }
 
 }
