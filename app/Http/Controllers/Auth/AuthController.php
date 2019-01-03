@@ -67,8 +67,7 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         
-        echo "2";
-        exit;
+        
         // 쿠키 생성 
         $name = "chaninplus";
         $value = uniqid('chainplus_',true);

@@ -15,8 +15,8 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
+        echo $this->isCookie();
         
-        echo Cookie::get('chaninplus');
 
         // echo uniqid('chainplus_',true);
 
