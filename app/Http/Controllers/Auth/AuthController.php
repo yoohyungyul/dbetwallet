@@ -89,8 +89,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        echo  "1";
-        exit;
+        return "1";
     }
 
 }
