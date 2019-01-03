@@ -8,6 +8,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Cookie;
+use DB;
+use App\User;
 
 class Controller extends BaseController
 {
@@ -15,7 +17,17 @@ class Controller extends BaseController
 
 
     public function isCookie() {
-        return Cookie::get('chaninplus');
+
+        // 기존 접속 기록이 있으면
+        if(Cookie::get('chaninplus')) {
+            $UserData = $user = User::where('wallet_code', '=', Cookie::get('chaninplus'))->first();
+        
+            return $UserData;
+        // 없으면 
+        } else {
+            return "";
+        }
+        
         
     }
 }
