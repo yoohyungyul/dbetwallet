@@ -41,7 +41,8 @@ class jsonRPCClient
 			
 			if(isset($formatted->error))
 			{
-				throw new RPCException($formatted->error->message, $formatted->error->code);
+                print_R($formatted->error);
+				// throw new RPCException($formatted->error->message, $formatted->error->code);
 			}
 			else
 			{
