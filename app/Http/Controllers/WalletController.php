@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\jsonRPCClient;
 
 class WalletController extends Controller
 {
@@ -15,7 +15,13 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        print_R($this->isCookie());
+        // $client = new jsonRPCClient($currency->address, $currency->port);
+		// 		$result = $client->request('personal_newAccount', [$user_password]);
+		// 		$address = $result->result;
+        echo "1";
+        exit;
+
+        // print_R($this->isCookie());
         
 
         // echo uniqid('chainplus_',true);
