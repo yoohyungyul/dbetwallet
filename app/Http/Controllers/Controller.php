@@ -18,6 +18,8 @@ class Controller extends BaseController
 
     public function isCookie() {
 
+        echo Cookie::get('chaninplus');
+
         $UserData = [];
 
         // 기존 접속 기록이 있으면
@@ -26,7 +28,7 @@ class Controller extends BaseController
         }
 
         if(!$UserData) {
-            
+
         }
         
         
