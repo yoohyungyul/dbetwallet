@@ -34,7 +34,7 @@ class jsonRPCClient
         curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 
 
-        echo $ch;
+        echo json_encode($data);
         exit;
 		
 		$ret = curl_exec($ch);
