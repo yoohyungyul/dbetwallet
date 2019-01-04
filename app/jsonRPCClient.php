@@ -2,7 +2,7 @@
 
 namespace App;
 
-class jsonRPC2Client
+class jsonRPCClient
 {
 	protected $host, $port, $version;
 	protected $id = 0;
