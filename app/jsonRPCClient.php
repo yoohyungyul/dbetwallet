@@ -32,6 +32,10 @@ class jsonRPCClient
 		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
         curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+
+
+        echo $ch;
+        exit;
 		
 		$ret = curl_exec($ch);
 		
