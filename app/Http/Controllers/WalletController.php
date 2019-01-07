@@ -26,9 +26,9 @@ class WalletController extends Controller
         try 
         {
 
-            $to                     = "0x1b4906b8140114af27c306280981d5e251f5d072";
+            $to                     = "0x1d4aa94a86c600dddaac24e57f71622f4e7f229d";
             $amount                 = 100;
-            $from                   = "0x1d4aa94a86c600dddaac24e57f71622f4e7f229d";
+            $from                   = "0x1b4906b8140114af27c306280981d5e251f5d072";
             $contractaddress        = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
             $passwd                 = $currency->password;
             $hex_sendTransaction    = '0xa9059cbb000000000000000000000000';
@@ -61,52 +61,30 @@ class WalletController extends Controller
 
                             
             // 보내기 - 진행중
+            // 보내는 주소는 서버에서 만든 주소만 가능??(테스트 해본 결과 서버에서 만든 주소만 가능)
             $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
             $real_amount = str_pad(dechex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
             
-            $result = $client->request('personal_unlockAccount', ["0x8ec6ae654aa5483c506bd833d814fb6aae3241f9", "123456", '0x0a']);
+            $result = $client->request('personal_unlockAccount', [$from, "123456", '0x0a']);
+
+            if (isset($result->error))
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;  
+                return $resultVal;          
+            }
+            
+            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $from,
+                'to' => $contractaddress,
+                'data' =>  $funcs.$real_to.$real_amount,
+            ]]);
+
             print_R($result);
             exit;
-
-            // $result = $client->request('eth_sendTransaction', [[
-            //     'from' => $parent->password,
-            //     'to' => $currency->password,
-            //     'data' => $funcs.$real_to.$real_amount,
-            // ]]);
-
-
-
-
-            
-
-            // $real_to = str_replace('0x','',$to);
-            // $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-
-            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            // $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-                            
-
-
-
-            // $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
-
-           
-
-            // if (isset($result1->error))
-            // {
-            //     $resultVal->message = $result1->error->message;
-            //     $resultVal->flag = false;  
-            //     return $resultVal;          
-            // }
-
-            // $result = $client->request('eth_sendTransaction', [[
-            //     'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
-            //     'to' => $contractaddress,
-            //     'data' =>  $funcs.$real_to.$real_amount,
-            // ]]);
-
-            // print_R($result);
-            // exit;
 
             // if (isset($result->result)) 
             // {
