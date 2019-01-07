@@ -54,7 +54,7 @@ class WalletController extends Controller
             
             $result = $client->request('personal_unlockAccount', [$contractaddress, $passwd, '0x0a']);
 
-            echo "11";
+
             exit;
             // $result = $client->request('eth_sendTransaction', [[
             //     'from' => $parent->password,
@@ -139,4 +139,9 @@ curl --data  '{"method":"personal_newAccount","params":["123456"],"id":0,"jsonrp
 
 
 curl --data  '{"jsonrpc":"2.0","id":0,"method":"personal_newAccount","params":"123456"}' -H "Content-Type: application/json" -X POST 54.180.124.202:9101
+
+
+curl --data '{"method":"personal_unlockAccount","params":["0x84f508c8726ec7dd1bb57f4de0c2fa70203fe283",")CFs=6~8mMzCxuPHkE+<j5rYV5/:E7NE",null],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:9101
+curl --data '{"method":"personal_unlockAccount","params":["0x928531c958dd5524c94231253a21e5bc413efd1a","MelBITOrc@Msr-WalAddr#00000#$%",null],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:9101
+curl --data '{"jsonrpc":"2.0","id":0,"method":"personal_unlockAccount","params":["0x099606ECb05d7E94F88EFa700225880297dD55eF","123456","0x0a"]}' -H "Content-Type: application/json" -X POST localhost:9101
 */
