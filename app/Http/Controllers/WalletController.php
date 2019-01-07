@@ -91,7 +91,8 @@ class WalletController extends Controller
                 'data' =>  $funcs.$real_to.$real_amount,
             ]]);
 
-          
+            print_R($result);
+            exit;
 
             if (isset($result->result)) 
             {
@@ -110,7 +111,7 @@ class WalletController extends Controller
                 
             }
         
-        return $resultVal;
+        //return $resultVal;
 
         
     }
