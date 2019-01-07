@@ -35,7 +35,6 @@ class jsonRPCClient
 
 
         echo json_encode($data);
-        exit;
 		
 		$ret = curl_exec($ch);
 		
