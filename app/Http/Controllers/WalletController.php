@@ -55,8 +55,7 @@ class WalletController extends Controller
                                         "to" => $contractaddress, 
                                         "data" => $hex_getbalance . str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
 
-            
-            print_R($result);
+            echo hexdec($result->result)/pow(10,8);
             exit;               
 
 
