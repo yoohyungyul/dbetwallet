@@ -15,8 +15,10 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
+        $params = array('123456');
+
         $client = new jsonRPCClient("172.31.20.32", "9101");
-    	$result = $client->request('personal_newAccount', "123456");
+    	$result = $client->request('personal_newAccount', $params);
     		
         print_R($result);
         exit;
@@ -61,4 +63,9 @@ curl --data '{"method":"eth_accounts","params":[],"id":1,"jsonrpc":"2.0"}' -H "C
 
 curl --data '{"method":"personal_newAccount","params":["123456"],"id":2,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST 54.180.124.202:9101
 curl --data '{"method":"personal_newAccount","params":["MelonBIT@Master-Wallet#000001"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:9101
+
+curl --data  '{"method":"personal_newAccount","params":["123456"],"id":0,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST 54.180.124.202:9101
+
+
+curl --data  '{"jsonrpc":"2.0","id":0,"method":"personal_newAccount","params":"123456"}' -H "Content-Type: application/json" -X POST 54.180.124.202:9101
 */
