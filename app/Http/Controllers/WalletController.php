@@ -51,10 +51,17 @@ class WalletController extends Controller
     
 
             // 잔액 조회 - 완료 
-            $result = $client->request('eth_call', [[ 
-             "to" => $contractaddress, 
-             "data" => $hex_getbalance . str_replace("0x","","0x1B4906B8140114aF27c306280981d5e251f5D072") ]]);
-            echo hexdec($result->result)/pow(10,8);
+
+            // 이더 조회
+            $result = $client->request('eth_getBalance', [$address, 'latest']);
+            echo hexdec($result->result)/pow(10,$this->eth_digit);
+            exit;
+
+            // 토큰 조회
+            // $result = $client->request('eth_call', [[ 
+            //  "to" => $contractaddress, 
+            //  "data" => $hex_getbalance . str_replace("0x","","0x1B4906B8140114aF27c306280981d5e251f5D072") ]]);
+            // echo hexdec($result->result)/pow(10,8);
                
 
 
