@@ -53,7 +53,7 @@ class WalletController extends Controller
             // 잔액 조회 - 완료 
 
             // 이더 조회
-            $result = $client->request('eth_getBalance', [$address, 'latest']);
+            $result = $client->request('eth_getBalance', ["0x1B4906B8140114aF27c306280981d5e251f5D072", 'latest']);
             echo hexdec($result->result)/pow(10,$this->eth_digit);
             exit;
 
