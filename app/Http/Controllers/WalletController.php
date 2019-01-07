@@ -25,7 +25,7 @@ class WalletController extends Controller
         $client = new jsonRPCClient($currency->ip, $currency->port);
     	$result = $client->request('personal_newAccount', $params);
         
-        print_R($this->isCookie());
+        print_R($result);
         
 
         // echo uniqid('chainplus_',true);
