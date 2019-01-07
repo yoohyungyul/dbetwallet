@@ -53,7 +53,7 @@ class WalletController extends Controller
 
             $result = $client->request('eth_call', [[ 
                                         "to" => $contractaddress, 
-                                        "data" => $hex_getbalance . str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
+                                        "data" => $hex_getbalance . str_replace("0x","","0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC") ]]);
 
             echo hexdec($result->result)/pow(10,8);
             exit;               
