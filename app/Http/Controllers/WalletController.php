@@ -70,7 +70,7 @@ class WalletController extends Controller
 
             $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
 
-            
+            print_R($result1);
 
             // if (isset($result1->error))
             // {
