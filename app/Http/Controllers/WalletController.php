@@ -51,10 +51,10 @@ class WalletController extends Controller
     
 
             // 잔액 조회 - 완료 
-            // $result = $client->request('eth_call', [[ 
-            //  "to" => $contractaddress, 
-            //  "data" => $hex_getbalance . str_replace("0x","","0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC") ]]);
-            // echo hexdec($result->result)/pow(10,8);
+            $result = $client->request('eth_call', [[ 
+             "to" => $contractaddress, 
+             "data" => $hex_getbalance . str_replace("0x","","0x1B4906B8140114aF27c306280981d5e251f5D072") ]]);
+            echo hexdec($result->result)/pow(10,8);
                
 
 
@@ -62,29 +62,29 @@ class WalletController extends Controller
                             
             // 보내기 - 진행중
             // 보내는 주소는 서버에서 만든 주소만 가능??(테스트 해본 결과 서버에서 만든 주소만 가능)
-            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad(dechex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            // $real_amount = str_pad(dechex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
             
-            $result = $client->request('personal_unlockAccount', [$from, "123456", '0x0a']);
+            // $result = $client->request('personal_unlockAccount', [$from, "123456", '0x0a']);
 
-            if (isset($result->error))
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;  
-                return $resultVal;          
-            }
+            // if (isset($result->error))
+            // {
+            //     $resultVal->message = $result1->error->message;
+            //     $resultVal->flag = false;  
+            //     return $resultVal;          
+            // }
             
-            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            // $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
             
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $from,
-                'to' => $contractaddress,
-                'data' =>  $funcs.$real_to.$real_amount,
-            ]]);
+            // $result = $client->request('eth_sendTransaction', [[
+            //     'from' => $from,
+            //     'to' => $contractaddress,
+            //     'data' =>  $funcs.$real_to.$real_amount,
+            // ]]);
 
-            print_R($result);
-            exit;
+            // print_R($result);
+            // exit;
 
             // if (isset($result->result)) 
             // {
