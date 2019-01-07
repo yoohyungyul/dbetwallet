@@ -20,7 +20,7 @@ class WalletController extends Controller
 
         $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
 
-        print_R($currency);
+        // print_R($currency);
 
 
 
