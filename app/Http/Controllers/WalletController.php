@@ -46,12 +46,14 @@ class WalletController extends Controller
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
 
-            exit;
+            
 
             $real_to = str_replace('0x','',$to);
             $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
             $result1 = $client->request('personal_unlockAccount', [$from, $passwd, '0x0a']);
+
+            exit;
 
             if (isset($result1->error))
             {
