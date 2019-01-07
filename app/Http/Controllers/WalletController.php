@@ -65,8 +65,14 @@ class WalletController extends Controller
 
             
 
-            $real_to = str_replace('0x','',$to);
-            $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            // $real_to = str_replace('0x','',$to);
+            // $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+
+            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                            
+
+
 
             $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
 
@@ -82,7 +88,7 @@ class WalletController extends Controller
             $result = $client->request('eth_sendTransaction', [[
                 'from' => $from,
                 'to' => $contractaddress,
-                'data' => $hex_sendTransaction . $real_to . $real_amount,
+                'data' =>  $funcs.$real_to.$real_amount,
             ]]);
 
             exit;
