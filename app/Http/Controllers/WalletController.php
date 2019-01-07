@@ -23,50 +23,50 @@ class WalletController extends Controller
             'flag' => false
         ];  
 
-
-        // 주소 생성 테스트
-        
-        // $params = array($currency->password);
-        // $client = new jsonRPCClient($currency->ip, $currency->port);
-    	// $result = $client->request('personal_newAccount', $params);
-        
-        // 보내기 테스트
-        // 보내는 주소 , 패스워드, 받는 사람 주소 , 갯수
-        
         try 
         {
 
-            $to = "0x1d4aa94a86c600dddaac24e57f71622f4e7f229d";
-            $amount = 100;
-            $from = "0x007bb2cb9e1e9b7a4afb55332ddbd78e7b1611ec";
-            $contractaddress = "0x099606ecb05d7e94f88efa700225880297dd55ef";
-            $passwd = $currency->password;
-            $hex_sendTransaction        = '0xa9059cbb000000000000000000000000';
-            $hex_getbalance           = '0x70a08231000000000000000000000000';
-            $funcs = "0xa9059cbb";
+            $to                     = "0x1b4906b8140114af27c306280981d5e251f5d072";
+            $amount                 = 100;
+            $from                   = "0x1d4aa94a86c600dddaac24e57f71622f4e7f229d";
+            $contractaddress        = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
+            $passwd                 = $currency->password;
+            $hex_sendTransaction    = '0xa9059cbb000000000000000000000000';
+            $hex_getbalance         = '0x70a08231000000000000000000000000';
+            $funcs                  = "0xa9059cbb";
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
 
+
+             // 주소 생성 테스트 - 완료
+        
+            // $params = array($currency->password);
+            // $client = new jsonRPCClient($currency->ip, $currency->port);
+            // $result = $client->request('personal_newAccount', $params);
+        
+
+
+
     
 
-
-            $result = $client->request('eth_call', [[ 
-                                        "to" => $contractaddress, 
-                                        "data" => $hex_getbalance . str_replace("0x","","0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC") ]]);
-
-            echo hexdec($result->result)/pow(10,8);
-            exit;               
+            // 잔액 조회 - 완료 
+            // $result = $client->request('eth_call', [[ 
+            //  "to" => $contractaddress, 
+            //  "data" => $hex_getbalance . str_replace("0x","","0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC") ]]);
+            // echo hexdec($result->result)/pow(10,8);
+               
 
 
 
                             
-            // 보내기
-
-            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            // $real_amount = str_pad(dechex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            // 보내기 - 진행중
+            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad(dechex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
             
-            // $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
+            $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
+            print_R($result);
+            exit;
 
             // $result = $client->request('eth_sendTransaction', [[
             //     'from' => $parent->password,
@@ -119,11 +119,11 @@ class WalletController extends Controller
             // }
         } 
         catch(\Exception $e) 
-            {
-                // $resultVal->message = "RPC Server Error";
-                // $resultVal->flag = false;
-                
-            }
+        {
+            // $resultVal->message = "RPC Server Error";
+            // $resultVal->flag = false;
+            
+        }
         
         //return $resultVal;
 
