@@ -36,8 +36,8 @@ class WalletController extends Controller
         try 
         {
 
-            $to = "0xe01c3f87166D035EF915116FD27B48Ae7D3543D7";
-            $amount = 3000;
+            $to = "0x1d4aa94a86c600dddaac24e57f71622f4e7f229d";
+            $amount = 100;
             $from = "0x007bb2cb9e1e9b7a4afb55332ddbd78e7b1611ec";
             $contractaddress = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
             $passwd = $currency->password;
@@ -65,12 +65,12 @@ class WalletController extends Controller
 
             
 
-            // $real_to = str_replace('0x','',$to);
-            // $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            $real_to = str_replace('0x','',$to);
+            $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
             $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
 
-            print_R($result1);
+           
 
             // if (isset($result1->error))
             // {
@@ -79,21 +79,21 @@ class WalletController extends Controller
             //     return $resultVal;          
             // }
 
-            // $result = $client->request('eth_sendTransaction', [[
-            //     'from' => $from,
-            //     'to' => $contractaddress,
-            //     'data' => $hex_sendTransaction . $real_to . $real_amount,
-            // ]]);
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $from,
+                'to' => $contractaddress,
+                'data' => $hex_sendTransaction . $real_to . $real_amount,
+            ]]);
 
-            // if (isset($result->result)) 
-            // {
-            //     $resultVal->message = $result->result;
-            //     $resultVal->flag = true;
-            // } 
-            // else if (isset($result->error)) 
-            // {
-            //     $resultVal->message = $result->error->message;
-            // }
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+            }
         } 
         catch(\Exception $e) 
             {
@@ -102,7 +102,7 @@ class WalletController extends Controller
                 
             }
         
-        //return $resultVal;
+        return $resultVal;
 
         
     }
