@@ -34,45 +34,48 @@ class WalletController extends Controller
         // 보내는 주소 , 패스워드, 받는 사람 주소 , 갯수
         
         try 
+        {
+
+            $to = "0xe01c3f87166D035EF915116FD27B48Ae7D3543D7";
+            $amount = 3000;
+            $from = "0x007bb2cb9e1e9b7a4afb55332ddbd78e7b1611ec";
+            $contractaddress = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
+            $passwd = $currency->password;
+            $hex_sendTransaction = '0xa9059cbb000000000000000000000000';
+
+            $client = new jsonRPCClient($currency->ip, $currency->port);
+
+
+            exit;
+
+            $real_to = str_replace('0x','',$to);
+            $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+
+            $result1 = $client->request('personal_unlockAccount', [$from, $passwd, '0x0a']);
+
+            if (isset($result1->error))
             {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;  
+                return $resultVal;          
+            }
 
-                $to = "0xe01c3f87166D035EF915116FD27B48Ae7D3543D7";
-                $amount = 3000;
-                $from = "0x007bb2cb9e1e9b7a4afb55332ddbd78e7b1611ec";
-                $contractaddress = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
-                $passwd = $currency->password;
-                $hex_sendTransaction = '0xa9059cbb000000000000000000000000';
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $from,
+                'to' => $contractaddress,
+                'data' => $hex_sendTransaction . $real_to . $real_amount,
+            ]]);
 
-                $client = new jsonRPCClient($currency->ip, $currency->port);
-
-                $real_to = str_replace('0x','',$to);
-                $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-
-                $result1 = $client->request('personal_unlockAccount', [$from, $passwd, '0x0a']);
-
-                if (isset($result1->error))
-                {
-                    $resultVal->message = $result1->error->message;
-                    $resultVal->flag = false;  
-                    return $resultVal;          
-                }
-
-                $result = $client->request('eth_sendTransaction', [[
-                    'from' => $from,
-                    'to' => $contractaddress,
-                    'data' => $hex_sendTransaction . $real_to . $real_amount,
-                ]]);
-
-                if (isset($result->result)) 
-                {
-                    $resultVal->message = $result->result;
-                    $resultVal->flag = true;
-                } 
-                else if (isset($result->error)) 
-                {
-                    $resultVal->message = $result->error->message;
-                }
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
             } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+            }
+        } 
         catch(\Exception $e) 
             {
                 $resultVal->message = "RPC Server Error";
