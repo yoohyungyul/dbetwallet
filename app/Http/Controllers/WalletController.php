@@ -72,18 +72,20 @@ class WalletController extends Controller
 
            
 
-            // if (isset($result1->error))
-            // {
-            //     $resultVal->message = $result1->error->message;
-            //     $resultVal->flag = false;  
-            //     return $resultVal;          
-            // }
+            if (isset($result1->error))
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;  
+                return $resultVal;          
+            }
 
             $result = $client->request('eth_sendTransaction', [[
                 'from' => $from,
                 'to' => $contractaddress,
                 'data' => $hex_sendTransaction . $real_to . $real_amount,
             ]]);
+
+            exit;
 
             if (isset($result->result)) 
             {
