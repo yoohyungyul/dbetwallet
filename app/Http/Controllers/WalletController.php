@@ -15,13 +15,11 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        $params = array('123456');
+        // $params = array('123456');
 
-        $client = new jsonRPCClient("172.31.20.32", "9101");
-    	$result = $client->request('personal_newAccount', $params);
+        // $client = new jsonRPCClient("172.31.20.32", "9101");
+    	// $result = $client->request('personal_newAccount', $params);
     		
-        print_R($result);
-        exit;
 
         // print_R($this->isCookie());
         
