@@ -42,41 +42,59 @@ class WalletController extends Controller
             $contractaddress = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
             $passwd = $currency->password;
             $hex_sendTransaction = '0xa9059cbb000000000000000000000000';
+            $funcs = "0xa9059cbb";
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
+
+                            
+            
+
+            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            
+            $result = $client->request('personal_unlockAccount', [$contractaddress, $passwd, '0x0a']);
+
+            exit;
+            // $result = $client->request('eth_sendTransaction', [[
+            //     'from' => $parent->password,
+            //     'to' => $currency->password,
+            //     'data' => $funcs.$real_to.$real_amount,
+            // ]]);
+
+
 
 
             
 
-            $real_to = str_replace('0x','',$to);
-            $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            // $real_to = str_replace('0x','',$to);
+            // $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
-            $result1 = $client->request('personal_unlockAccount', [$from, $passwd, '0x0a']);
+            // $result1 = $client->request('personal_unlockAccount', [$from, $passwd, '0x0a']);
 
-            exit;
+            
 
-            if (isset($result1->error))
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;  
-                return $resultVal;          
-            }
+            // if (isset($result1->error))
+            // {
+            //     $resultVal->message = $result1->error->message;
+            //     $resultVal->flag = false;  
+            //     return $resultVal;          
+            // }
 
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $from,
-                'to' => $contractaddress,
-                'data' => $hex_sendTransaction . $real_to . $real_amount,
-            ]]);
+            // $result = $client->request('eth_sendTransaction', [[
+            //     'from' => $from,
+            //     'to' => $contractaddress,
+            //     'data' => $hex_sendTransaction . $real_to . $real_amount,
+            // ]]);
 
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-            }
+            // if (isset($result->result)) 
+            // {
+            //     $resultVal->message = $result->result;
+            //     $resultVal->flag = true;
+            // } 
+            // else if (isset($result->error)) 
+            // {
+            //     $resultVal->message = $result->error->message;
+            // }
         } 
         catch(\Exception $e) 
             {
