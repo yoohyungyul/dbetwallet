@@ -39,7 +39,7 @@ class WalletController extends Controller
             $to = "0x1d4aa94a86c600dddaac24e57f71622f4e7f229d";
             $amount = 100;
             $from = "0x007bb2cb9e1e9b7a4afb55332ddbd78e7b1611ec";
-            $contractaddress = "0x099606ECb05d7E94F88EFa700225880297dD55eF";
+            $contractaddress = "0x099606ecb05d7e94f88efa700225880297dd55ef";
             $passwd = $currency->password;
             $hex_sendTransaction = '0xa9059cbb000000000000000000000000';
             $funcs = "0xa9059cbb";
