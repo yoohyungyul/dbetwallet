@@ -41,13 +41,28 @@ class WalletController extends Controller
             $from = "0x007bb2cb9e1e9b7a4afb55332ddbd78e7b1611ec";
             $contractaddress = "0x099606ecb05d7e94f88efa700225880297dd55ef";
             $passwd = $currency->password;
-            $hex_sendTransaction = '0xa9059cbb000000000000000000000000';
+            $hex_sendTransaction        = '0xa9059cbb000000000000000000000000';
+            $hex_getbalance           = '0x70a08231000000000000000000000000';
             $funcs = "0xa9059cbb";
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
-                            
+
+    
+
+
+            $result = $client->request('eth_call', [[ 
+                                        "to" => $contractaddress, 
+                                        "data" => $hex_getbalance . str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
+
             
+            print_R($result);
+            exit;               
+
+
+
+                            
+            // 보내기
 
             // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
             // $real_amount = str_pad(dechex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
@@ -68,46 +83,46 @@ class WalletController extends Controller
             // $real_to = str_replace('0x','',$to);
             // $real_amount = str_pad(dechex($amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
-            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            // $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
                             
 
 
 
-            $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
+            // $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
 
            
 
-            if (isset($result1->error))
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;  
-                return $resultVal;          
-            }
+            // if (isset($result1->error))
+            // {
+            //     $resultVal->message = $result1->error->message;
+            //     $resultVal->flag = false;  
+            //     return $resultVal;          
+            // }
 
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
-                'to' => $contractaddress,
-                'data' =>  $funcs.$real_to.$real_amount,
-            ]]);
+            // $result = $client->request('eth_sendTransaction', [[
+            //     'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
+            //     'to' => $contractaddress,
+            //     'data' =>  $funcs.$real_to.$real_amount,
+            // ]]);
 
-            print_R($result);
-            exit;
+            // print_R($result);
+            // exit;
 
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-            }
+            // if (isset($result->result)) 
+            // {
+            //     $resultVal->message = $result->result;
+            //     $resultVal->flag = true;
+            // } 
+            // else if (isset($result->error)) 
+            // {
+            //     $resultVal->message = $result->error->message;
+            // }
         } 
         catch(\Exception $e) 
             {
-                $resultVal->message = "RPC Server Error";
-                $resultVal->flag = false;
+                // $resultVal->message = "RPC Server Error";
+                // $resultVal->flag = false;
                 
             }
         
