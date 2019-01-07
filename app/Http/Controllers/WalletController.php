@@ -20,20 +20,12 @@ class WalletController extends Controller
 
         $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
 
-        echo $currency->address;
+        $params = array($currency->password);
 
-        // print_R($currency);
-
-
-
-
-        // $params = array('123456');
-
-        // $client = new jsonRPCClient("172.31.20.32", "9101");
-    	// $result = $client->request('personal_newAccount', $params);
-    		
-
-        // print_R($this->isCookie());
+        $client = new jsonRPCClient($currency->ip, $currency->port);
+    	$result = $client->request('personal_newAccount', $params);
+        
+        print_R($this->isCookie());
         
 
         // echo uniqid('chainplus_',true);
