@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\jsonRPCClient;
+use App\Currency;
 
 class WalletController extends Controller
 {
@@ -14,6 +15,15 @@ class WalletController extends Controller
 
     // 지갑 
     public function getWallet() {
+
+
+
+        $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
+
+        print_R($currency);
+
+
+
 
         // $params = array('123456');
 
