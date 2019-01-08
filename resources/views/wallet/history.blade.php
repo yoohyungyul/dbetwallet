@@ -58,8 +58,6 @@
                 @for ($i=$paging->paging_start; $i<=$paging->paging_end; $i++)
                 <li class="page-item"><a class="page-link" href="{{ url('history') }}?page={{ $i }}">{{ $i+1 }}</a></li>
                 @endfor
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
                 <a class="page-link" href="{{ url('history') }}?page={{ $paging->next }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
