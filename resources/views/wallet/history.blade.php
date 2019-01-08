@@ -46,6 +46,7 @@
         </table>
        
     </div>
+    @if($list)
     <div class="col-12">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -67,6 +68,7 @@
             </ul>
         </nav>
     </div>
+    @endif
 </div>
 
 
