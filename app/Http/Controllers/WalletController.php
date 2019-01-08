@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\jsonRPCClient;
 use App\Currency;
 use App\TransactionHistory;
+use Cookie;
 
 class WalletController extends Controller
 {
