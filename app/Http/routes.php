@@ -21,7 +21,7 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($
 
     // Route::auth();
     Route::get('login', 'Auth\AuthController@getLogin');
-    Route::post('login', 'Auth\AuthController@postLogin');
+    // Route::post('login', 'Auth\AuthController@postLogin');
 
     // Route::post('login', ['middleware' => 'GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:5,1', 'uses' => 'Auth\AuthController@postLogin']);
 
