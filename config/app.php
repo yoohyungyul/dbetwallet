@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
+        GrahamCampbell\Throttle\ThrottleServiceProvider::class,
 
     ],
 
@@ -204,6 +205,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
+        'Throttle' => GrahamCampbell\Throttle\Facades\Throttle::class,
 
     ],
 
