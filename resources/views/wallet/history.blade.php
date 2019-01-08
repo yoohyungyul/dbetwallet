@@ -29,17 +29,19 @@
         <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word;">
             <thead>
                 <tr>
-                <th scope="col" width="60%">Txid</th>
-                <th scope="col" width="20%">Date</th>
-                <th scope="col" width="20%">Value</th>
+                <th scope="col" width="20%">DATE</th>
+                <th scope="col" width="40%">ADDRESS</th>
+                <th scope="col" width="20%">AMOUNT</th>
+                <th scope="col" width="20%">BALANCE</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($list as $item)
                 <tr>
-                <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
                 </tr>
                 @endforeach
             </tbody>
