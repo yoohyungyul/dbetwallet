@@ -18,11 +18,11 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
+        // 쿠키 삭제
+        // Cookie::queue(Cookie::forget('chaninplus'));
 
-        Cookie::queue(Cookie::forget('chaninplus'));
 
-
-        echo Cookie::get('chaninplus');
+        
         return view('wallet.wallet');
 
         $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
