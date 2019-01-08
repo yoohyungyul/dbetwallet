@@ -124,9 +124,21 @@ class WalletController extends Controller
 
         $UserData = $this->isCookie();
 
-        echo $UserData->id;
+        echo env('CURRENCY_ID');
 
-        exit;
+        // 회원 정보가 있을 경우
+        if($UserData) {
+
+            // $transactions = TransactionHistory::where('currency_id', '=', $currency_id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
+
+
+            return view('wallet.history');
+
+        // 없을 경우 로그인 창으로 
+        } else {
+
+        }
+
 
         // $transactions = TransactionHistory::where('currency_id', '=', $currency_id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
         // }
@@ -152,7 +164,7 @@ class WalletController extends Controller
 
         
 
-        return view('wallet.history');
+        
     }
 
     // 보내기
