@@ -124,7 +124,7 @@ class WalletController extends Controller
 
         $UserData = $this->isCookie();
 
-        print_R($UserData);
+        echo $UserData->id;
 
         exit;
 
