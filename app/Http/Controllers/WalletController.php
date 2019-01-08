@@ -130,8 +130,8 @@ class WalletController extends Controller
 
             $page = Input::get('page');
             if(!$page) $page = 1;
-            echo $page;
-            // $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
+           
+            $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
 
 
             return view('wallet.history');
