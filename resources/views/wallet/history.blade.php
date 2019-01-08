@@ -35,13 +35,26 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($list as $item)
                 <tr>
                 <td>0xaaed4eb400d7ab2f237bf9c3eda2e3e8173f0c6a</td>
                 <td>Otto</td>
                 <td>@mdo</td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
+        <div class="dataTables_paginate paging_full_numbers">
+                    <a href="{{ url('admin/safeaddress') }}/{{ $paging->start }}" class="first paginate_button paginate_button_disabled">First</a>
+                    <a href="{{ url('admin/safeaddress') }}/{{ $paging->prev }}" class="previous paginate_button paginate_button_disabled">Previous</a>
+                    <span>
+@for ($i=$paging->paging_start; $i<=$paging->paging_end; $i++)
+                        <a href="{{ url('admin/safeaddress') }}/{{ $i }}" class="{{ ($i==$paging->page)?'paginate_active':'paginate_button' }}">{{ $i+1 }}</a>
+@endfor
+                    </span>
+                    <a href="{{ url('admin/safeaddress') }}/list/{{ $paging->next }}" class="next paginate_button">Next</a>
+                    <a href="{{ url('admin/safeaddress') }}/list/{{ $paging->end }}" class="last paginate_button">Last</a>
+                </div>
         
     </div>
     <div class="col-12">
