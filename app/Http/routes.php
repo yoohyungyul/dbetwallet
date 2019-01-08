@@ -13,17 +13,17 @@
 
 
 
-// Route::auth();
+Route::auth();
 
 
 Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($router)
 {
 
-    Route::get('login', 'Auth\AuthController@getLogin');
+    // Route::get('login', 'Auth\AuthController@getLogin');
     // Route::post('login', ['middleware' => 'GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:5,1', 'uses' => 'Auth\AuthController@postLogin']);
 
-	Route::get('logout', 'Auth\AuthController@getLogout');
-	Route::get('register', 'Auth\AuthController@getRegister');
+	// Route::get('logout', 'Auth\AuthController@getLogout');
+	// Route::get('register', 'Auth\AuthController@getRegister');
 	// Route::post('register',  ['middleware' => 'GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:5,1', 'uses' => 'Auth\AuthController@postRegister']);
     
     
