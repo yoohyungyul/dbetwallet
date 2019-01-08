@@ -86,6 +86,16 @@ class AuthController extends Controller
     }
 
 
+    public function postLogin(Request $request) {
+
+        echo "1";
+        exit;
+    }
+
+
+    
+
+
     
 
 
