@@ -19,7 +19,7 @@ class WalletController extends Controller
     public function getWallet() {
 
 
-        Cookie::forget('chaninplus');
+        Cookie::queue(Cookie::forget('chaninplus'));
 
 
         echo Cookie::get('chaninplus');
