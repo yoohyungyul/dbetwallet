@@ -36,12 +36,12 @@ class MyCurrency
     {
         
 
-        if(Auth::check()){
-            echo "1";
-        } else {
-            echo "2";
+        // if(Auth::check()){
+        //     echo "1";
+        // } else {
+        //     echo "2";
             
-        }
+        // }
 
         // $UserData = [];
 
