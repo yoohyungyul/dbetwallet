@@ -34,8 +34,22 @@ class MyCurrency
 
     public function handle($request, Closure $next)
     {
-        echo "1";
-        exit;
+        
+
+        // $UserData = [];
+
+        // 기존 접속 기록이 있으면
+        // if(Cookie::get('chaninplus')) {
+        //     $UserData = User::where('wallet_code',  Cookie::get('chaninplus'))->first();
+        // }
+
+        // return $UserData;
+
+
+
+
+
+
         return $next($request);  
     }
 }
