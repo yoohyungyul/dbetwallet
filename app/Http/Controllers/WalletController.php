@@ -130,42 +130,64 @@ class WalletController extends Controller
 
             $page = Input::get('page');
             if(!$page) $page = 1;
-           
+
+
+            $total = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->get()->count();
+            if ($page > floor($total / 20)) 
+            {
+                $page = floor($total / 20);
+            }
+
             $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
 
 
-            return view('wallet.history');
+
+            $transactions_dict = [];        
+            $i = $page * 20;    
+            foreach ($transactions as $transaction) 
+            {
+                $i++;
+               
+                $transactions_dict[] = (object) [
+                    'index' => $i,
+                    'data' => $transaction
+                ];
+            }
+
+            $paging = (object) [
+                'start' => 0,
+                'end' => floor($total / 20),
+                'paging_start' => floor($page / 10)*10,
+                'paging_end' => floor($page / 10)*10 + 9,
+                'prev' => $page - 10,
+                'next' => $page + 10,
+                'page' => $page
+            ];
+
+            if ($paging->paging_end > $paging->end) 
+            {
+                $paging->paging_end = $paging->end;
+            }
+
+            if ($paging->prev < 0) 
+            {
+                $paging->prev = 0;
+            }
+
+            if ($paging->next > $paging->end) 
+            {
+                $paging->next = $paging->end;
+            }
+            
+            return view('wallet.safe.history', [
+                'list' => $transactions_dict,
+                'paging' => $paging,
+            ]);
 
         // 없을 경우 로그인 창으로 
         } else {
 
         }
-
-
-        // $transactions = TransactionHistory::where('currency_id', '=', $currency_id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
-        // }
-
-        // $transactions_dict = [];        
-        // $i = $page * 20;    
-        // foreach ($transactions as $transaction) 
-        // {
-        //     $i++;
-        //     //$user = User::where('id', '=', $transaction->user_id)->first();
-		// 	$count = $transaction->safe_count;//SafeWithdrawal::where('address', '=', $transaction->address)->count();
-		// 	//$count += Withdrawal::where('message', '=', $transaction->address)->count();
-		// 	$user_dict = (object) [
-		// 		'id' => $transaction->user_id,
-		// 		'name' => $transaction->name
-        //     ];			
-        //     $transactions_dict[] = (object) [
-		// 		'index' => $i,
-		// 		'data' => $transaction,
-		// 		'user' => $user_dict,
-		// 		'count' => $count,
-        //     ];
-
-        
-
         
     }
 
