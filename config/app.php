@@ -155,7 +155,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        PragmaRX\Google2FALaravel\ServiceProvider::class,
 
     ],
 
@@ -202,8 +201,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
 
     ],
 
