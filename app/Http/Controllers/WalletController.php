@@ -16,7 +16,7 @@ class WalletController extends Controller
 
 
     // 지갑 
-    public function getWallet() {
+    public function getWallet() {   
 
         // 쿠키 삭제
         // Cookie::queue(Cookie::forget('chaninplus'));
