@@ -179,7 +179,7 @@ class WalletController extends Controller
                 $paging->next = $paging->end;
             }
             
-            return view('wallet.safe.history', [
+            return view('wallet.history', [
                 'list' => $transactions_dict,
                 'paging' => $paging,
             ]);
