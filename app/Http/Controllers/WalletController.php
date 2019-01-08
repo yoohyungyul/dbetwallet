@@ -124,7 +124,7 @@ class WalletController extends Controller
 
         $UserData = $this->isCookie();
 
-        echo env('CURRENCY_ID');
+        echo env('CURRENCY_ID', '1');
 
         // 회원 정보가 있을 경우
         if($UserData) {
