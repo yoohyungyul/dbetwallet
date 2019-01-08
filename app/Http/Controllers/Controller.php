@@ -27,9 +27,7 @@ class Controller extends BaseController
             $UserData = User::where('wallet_code',  Cookie::get('chaninplus'))->first();
         }
 
-        if(!$UserData) {
-
-        }
+        return $UserData;
         
         
     }

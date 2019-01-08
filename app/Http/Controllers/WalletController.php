@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\jsonRPCClient;
 use App\Currency;
+use App\TransactionHistory;
 
 class WalletController extends Controller
 {
@@ -15,6 +16,9 @@ class WalletController extends Controller
 
     // 지갑 
     public function getWallet() {
+
+        // echo Cookie::get('chaninplus');
+        return view('wallet.wallet');
 
         $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
 
@@ -53,9 +57,9 @@ class WalletController extends Controller
             // 잔액 조회 - 완료 
 
             // 이더 조회
-            $result = $client->request('eth_getBalance', ["0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC", 'latest']);
-            echo hexdec($result->result)/pow(10,8);
-            exit;
+            // $result = $client->request('eth_getBalance', ["0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC", 'latest']);
+            // echo hexdec($result->result)/pow(10,8);
+            
 
             // 토큰 조회
             // $result = $client->request('eth_call', [[ 
@@ -81,7 +85,7 @@ class WalletController extends Controller
             //     return $resultVal;          
             // }
             
-            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT); 
             // $real_amount = str_pad(dechex( $amount * pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
             
             // $result = $client->request('eth_sendTransaction', [[
@@ -118,7 +122,35 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory() {
 
-        // echo Cookie::get('chaninplus');
+        $UserData = $this->isCookie();
+
+        print_R($UserData);
+
+        exit;
+
+        // $transactions = TransactionHistory::where('currency_id', '=', $currency_id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
+        // }
+
+        // $transactions_dict = [];        
+        // $i = $page * 20;    
+        // foreach ($transactions as $transaction) 
+        // {
+        //     $i++;
+        //     //$user = User::where('id', '=', $transaction->user_id)->first();
+		// 	$count = $transaction->safe_count;//SafeWithdrawal::where('address', '=', $transaction->address)->count();
+		// 	//$count += Withdrawal::where('message', '=', $transaction->address)->count();
+		// 	$user_dict = (object) [
+		// 		'id' => $transaction->user_id,
+		// 		'name' => $transaction->name
+        //     ];			
+        //     $transactions_dict[] = (object) [
+		// 		'index' => $i,
+		// 		'data' => $transaction,
+		// 		'user' => $user_dict,
+		// 		'count' => $count,
+        //     ];
+
+        
 
         return view('wallet.history');
     }
@@ -130,9 +162,6 @@ class WalletController extends Controller
     }
 }
 
-
-// chainplus_5c2c60134e86b9.78143218
-// 33자리
 
 /*
 curl --data '{"method":"eth_accounts","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST 54.180.124.202:9101
