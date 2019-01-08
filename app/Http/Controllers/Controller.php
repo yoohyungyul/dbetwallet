@@ -18,7 +18,6 @@ class Controller extends BaseController
 
     public function isCookie() {
 
-        echo Cookie::get('chaninplus');
 
         $UserData = [];
 
