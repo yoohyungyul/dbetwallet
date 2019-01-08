@@ -44,33 +44,24 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="dataTables_paginate paging_full_numbers">
-                    <a href="{{ url('admin/safeaddress') }}/{{ $paging->start }}" class="first paginate_button paginate_button_disabled">First</a>
-                    <a href="{{ url('admin/safeaddress') }}/{{ $paging->prev }}" class="previous paginate_button paginate_button_disabled">Previous</a>
-                    <span>
-@for ($i=$paging->paging_start; $i<=$paging->paging_end; $i++)
-                        <a href="{{ url('admin/safeaddress') }}/{{ $i }}" class="{{ ($i==$paging->page)?'paginate_active':'paginate_button' }}">{{ $i+1 }}</a>
-@endfor
-                    </span>
-                    <a href="{{ url('admin/safeaddress') }}/list/{{ $paging->next }}" class="next paginate_button">Next</a>
-                    <a href="{{ url('admin/safeaddress') }}/list/{{ $paging->end }}" class="last paginate_button">Last</a>
-                </div>
-        
+       
     </div>
     <div class="col-12">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
+                <a class="page-link" href="{{ url('history') }}?page={{ $paging->prev }}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                 </a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                @for ($i=$paging->paging_start; $i<=$paging->paging_end; $i++)
+                <li class="page-item"><a class="page-link" href="{{ url('history') }}?page={{ $i }}">{{ $i+1 }}</a></li>
+                @endfor
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
+                <a class="page-link" href="{{ url('history') }}?page={{ $paging->next }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                 </a>
