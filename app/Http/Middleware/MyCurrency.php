@@ -36,6 +36,13 @@ class MyCurrency
     {
         
 
+        if(Auth::check()){
+            echo "1";
+        } else {
+            echo "2";
+            
+        }
+
         // $UserData = [];
 
         // 기존 접속 기록이 있으면
