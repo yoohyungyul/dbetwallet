@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\jsonRPCClient;
 use App\Currency;
@@ -122,14 +122,16 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory() {
 
+        // 쿠키 체크
         $UserData = $this->isCookie();
-
-        echo env('CURRENCY_ID', '1');
 
         // 회원 정보가 있을 경우
         if($UserData) {
 
-            // $transactions = TransactionHistory::where('currency_id', '=', $currency_id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
+            $page = Input::get('page');
+            if(!$page) $page = 1;
+            echo $page;
+            // $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
 
 
             return view('wallet.history');
