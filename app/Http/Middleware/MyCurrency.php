@@ -31,9 +31,11 @@ class MyCurrency
     }
 
 
-    
+
     public function handle($request, Closure $next)
     {
+        echo "1";
+        exit;
         return $next($request);  
     }
 }
