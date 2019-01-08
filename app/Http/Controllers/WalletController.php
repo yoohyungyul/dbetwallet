@@ -22,7 +22,7 @@ class WalletController extends Controller
         Cookie::forget('chaninplus');
 
 
-        // echo Cookie::get('chaninplus');
+        echo Cookie::get('chaninplus');
         return view('wallet.wallet');
 
         $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
