@@ -6,6 +6,7 @@ use Closure;
 
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
+use Cookie;
 
 class MyCurrency
 {
@@ -34,6 +35,17 @@ class MyCurrency
 
     public function handle($request, Closure $next)
     {
+        // 쿠키 체크 있으면
+        if(Cookie::get('chaninplus')) {
+
+            // otp 확인
+            
+
+        // 없으면 회원가입창으로 
+        } else {
+            return redirect("/register");
+
+        }
         
 
         // if(Auth::check()){

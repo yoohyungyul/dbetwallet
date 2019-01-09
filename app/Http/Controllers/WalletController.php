@@ -15,7 +15,9 @@ class WalletController extends Controller
    
     
 
-       
+    public function getRegister() {
+        return "1";
+    }
 
 
 
