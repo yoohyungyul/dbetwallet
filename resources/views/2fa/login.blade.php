@@ -42,6 +42,9 @@
                                     <i class="fa fa-btn fa-user"></i> Login
                                 </button>
                             </div>
+                            <div class="col-md-12 text-right">
+                                <a href="/register">Register</a>
+                            </div>
                         </div>
                     </form>
                 </div>
