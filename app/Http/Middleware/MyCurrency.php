@@ -41,10 +41,10 @@ class MyCurrency
         // Cookie::queue(Cookie::forget('chaninplus'));
 
 
-        $cookie = Cookie::forget('chaninplus');
+        // $cookie = Cookie::forget('chaninplus');
 
-        echo Cookie::get('chaninplus');
-        exit;
+        // echo Cookie::get('chaninplus');
+        // exit;
 
 
         // 쿠키 체크 있으면
