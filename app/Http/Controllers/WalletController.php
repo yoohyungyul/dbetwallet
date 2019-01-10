@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
@@ -17,14 +19,17 @@ class WalletController extends Controller
    
     
     // 지갑 
-    public function getWallet() {   
+    public function getWallet() {
 
-
-
-
+        $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         
-        return view('wallet.wallet');
+        return view('wallet.wallet',[
+            'wallet' => $walletData,
+            'balance' => $balanceData
+
+        ]);
 
         
 
