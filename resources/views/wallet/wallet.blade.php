@@ -52,7 +52,7 @@ var clipboard = new Clipboard('#clipboard2');
 
 clipboard.on('success', function(e) {
     $('#wallet_address2').blur();
-    alert_msg('', 'cliped!!', { position:"right", className: "success" });
+    alert('cliped');
 });
 </script>
 @endsection
