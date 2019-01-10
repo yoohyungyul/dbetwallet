@@ -27,7 +27,7 @@
     <div class="col-12 ">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form action="/send" method="POST" onsubmit="return wait_btn();">
+                <form action="/send" method="POST" onsubmit="return write_btn();">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="addressFormControlInput">Wallet Address</label>
@@ -55,15 +55,13 @@
 @section('script')
 <script>
     
-    function wait_btn() {
+    function write_btn() {
 	
-        var btn = $('#'+name);
+        var btn = $('#withdrawal_btn');
         btn.attr('disabled','disabled');
         setTimeout(function() {
         btn.removeAttr('disabled');
         }, 1000);
-
-        return false;
 
 
         if($('#address').val() == '') {
