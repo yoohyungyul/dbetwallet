@@ -42,6 +42,9 @@ class MyCurrency
             $userDB = User::where('wallet_code',cookie::get('chaninplus'))->first();
 
             Auth::login($userDB);
+
+
+            echo Auth::user()->name;
 				
             exit;
 
