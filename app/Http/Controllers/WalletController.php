@@ -42,6 +42,8 @@ class WalletController extends Controller
     public function getHistory() {
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
         
         $page = Input::get('page');
         if(!$page) $page = 1;
@@ -97,6 +99,7 @@ class WalletController extends Controller
         
         return view('wallet.history', [
             'currency' => $currencyData,
+            'balance' => $balanceData,
             'list' => $transactions_dict,
             'paging' => $paging,
         ]);
