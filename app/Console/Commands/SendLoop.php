@@ -62,14 +62,14 @@ class SendLoop extends Command
 
 
               // 이더 조회
-            $result = $client->request('eth_getBalance', ["0x1B4906B8140114aF27c306280981d5e251f5D072", 'latest']);
+            $result = $client->request('eth_getBalance', ["0xFb0c595FfA2Ce40dbB4003F8C5Ad490cB1049c44", 'latest']);
             echo "이더 : ".hexdec($result->result)/pow(10,8);
             
 
             // 토큰 조회
             $result = $client->request('eth_call', [[ 
              "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-             "data" => "0x70a08231000000000000000000000000". str_replace("0x","","0x1B4906B8140114aF27c306280981d5e251f5D072") ]]);
+             "data" => "0x70a08231000000000000000000000000". str_replace("0x","","0xFb0c595FfA2Ce40dbB4003F8C5Ad490cB1049c44") ]]);
             echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
 
