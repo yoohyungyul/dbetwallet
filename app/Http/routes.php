@@ -16,6 +16,7 @@ Route::get('/', 'HomeController@index');
 Route::auth();
 
 Route::get('/2fa/login', 'Google2FAController@getLogin');
+Route::post('/2fa/login', 'Google2FAController@postLogin');
 
 Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($router)
 {
