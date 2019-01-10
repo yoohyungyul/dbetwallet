@@ -79,31 +79,45 @@ class Google2FAController extends Controller
         }
         
         if ($session_id == Auth::user()->id) {
-            $user = Auth::user();
-            $user->google2fa_secret = $session_key;
-            $user->save();
+
+            try {
+                DB::beginTransaction();
+
+                $user = Auth::user();
+                $user->google2fa_secret = $session_key;
+                $user->save();
 
 
-            $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+                $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
-            // 지갑 생성
-            $params = array($currency->password);
-            $client = new jsonRPCClient($currency->ip, $currency->port);
-            $result = $client->request('personal_newAccount', $params);
-            $address = $result->result;
+                // 지갑 생성
+                $params = array($currency->password);
+                $client = new jsonRPCClient($currency->ip, $currency->port);
+                $result = $client->request('personal_newAccount', $params);
+                $address = $result->result;
 
 
-            $users_wallet = new Users_wallet;
-            $users_wallet->user_id = Auth::user()->id;
-            $users_wallet->currency_id = env('CURRENCY_ID', '1');
-            $users_wallet->address = $address;
-            $users_wallet->push();
+                $users_wallet = new Users_wallet;
+                $users_wallet->user_id = Auth::user()->id;
+                $users_wallet->currency_id = env('CURRENCY_ID', '1');
+                $users_wallet->address = $address;
+                $users_wallet->push();
+        
+                // balance 생성
+                $balance = new Balance;
+                $balance->user_id = Auth::user()->id;
+                $balance->currency_id = env('CURRENCY_ID', '1');
+                $balance->push();
+                
+            } catch (\Exception $e) {
+                DB::rollback();
     
-            // balance 생성
-            $balance = new Balance;
-            $balance->user_id = Auth::user()->id;
-            $balance->currency_id = env('CURRENCY_ID', '1');
-            $balance->push();
+                return back()->withErrors('Oops, database error is occurred!');
+    
+               
+            } finally {
+                DB::commit();
+            }
             
             return redirect('wallet')->with('message', trans('google2fa.success'));;
         }
