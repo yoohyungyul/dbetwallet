@@ -39,14 +39,17 @@ class MyCurrency
         // 쿠키 체크 있으면
         if(Cookie::get('chaninplus')) {
 
+            // 쿠키로 회원 정보 가져오기
             $userDB = User::where('wallet_code',cookie::get('chaninplus'))->first();
 
+            // 세션 생성
             Auth::login($userDB);
 
-
-            echo Auth::user()->name;
-				
-            exit;
+            // otp 설정이 되여 있는지 확인
+            if(!Auth::user()->google2fa_secret) {
+                echo "설정하기";
+                exit;
+            }
 
             // otp 확인
             
