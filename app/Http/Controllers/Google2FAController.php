@@ -100,10 +100,10 @@ class Google2FAController extends Controller
             $users_wallet->push();
     
             // balance 생성
-             $balance = new Balance;
+            $balance = new Balance;
             $balance->user_id = Auth::user()->id;
             $balance->currency_id = env('CURRENCY_ID', '1');
-            $users_wallet->push();
+            $balance->push();
             
             return redirect('wallet')->with('message', trans('google2fa.success'));;
         }
