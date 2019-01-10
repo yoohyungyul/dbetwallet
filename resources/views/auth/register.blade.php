@@ -49,7 +49,7 @@
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 text-right">
                                 <a href="/2fa/login">OTP Login</a>
                             </div>
                         </div>
