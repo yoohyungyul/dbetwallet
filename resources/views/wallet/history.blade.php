@@ -38,13 +38,9 @@
             <tbody>
                 @foreach ($list as $data)
                 <tr>
-                    <td>{{$data->created_at}}</td>
+                    <td>{{$data}}</td>
                     <td>
-                        @if($data->type == 1)
-                            Send to
-                        @else
-                            Received at 
-                        @endif
+                        
                     </td>
                     <td>3</td>
                     <td>4</td>
