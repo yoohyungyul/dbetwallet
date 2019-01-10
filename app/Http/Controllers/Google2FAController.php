@@ -12,6 +12,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use \ParagonIE\ConstantTime\Base32;
 
+use App\Currency;
+use App\jsonRPCClient;
+use App\Balance;
+use App\Users_wallet;
+
+
+
 class Google2FAController extends Controller
 {
     use ValidatesRequests;
@@ -75,6 +82,28 @@ class Google2FAController extends Controller
             $user = Auth::user();
             $user->google2fa_secret = $session_key;
             $user->save();
+
+
+            $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+
+            // 지갑 생성
+            $params = array($currency->password);
+            $client = new jsonRPCClient($currency->ip, $currency->port);
+            $result = $client->request('personal_newAccount', $params);
+            $address = $result->result;
+
+
+            $users_wallet = new Users_wallet;
+            $users_wallet->user_id = Auth::user()->id;
+            $users_wallet->currency_id = env('CURRENCY_ID', '1');
+            $users_wallet->address = $address;
+            $users_wallet->push();
+    
+            // balance 생성
+             $balance = new Balance;
+            $balance->user_id = Auth::user()->id;
+            $balance->currency_id = env('CURRENCY_ID', '1');
+            $users_wallet->push();
             
             return redirect('wallet')->with('message', trans('google2fa.success'));;
         }

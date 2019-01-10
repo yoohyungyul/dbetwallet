@@ -8,10 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Cookie;
-use App\Currency;
-use App\jsonRPCClient;
-use App\Balance;
-use App\Users_wallet;
+
 
 class AuthController extends Controller
 {
@@ -72,19 +69,7 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         
-        $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
-
-        // 지갑 생성
-        $params = array($currency->password);
-        $client = new jsonRPCClient($currency->ip, $currency->port);
-        $result = $client->request('personal_newAccount', $params);
-        $address = $result->result;
-        echo $address;
-        exit;
-        
-
-        // balance 생성
-
+       
         
         // // 쿠키 생성 
         $name = "chaninplus";
