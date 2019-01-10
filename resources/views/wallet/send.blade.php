@@ -63,6 +63,8 @@
         btn.removeAttr('disabled');
         }, 1000);
 
+        return false;
+
 
         if($('#address').val() == '') {
             $('#address').val('');
