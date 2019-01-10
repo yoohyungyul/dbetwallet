@@ -38,7 +38,7 @@ class MyCurrency
     public function handle($request, Closure $next)
     {
 
-        Cookie::forget('chaninplus');
+        Cookie::queue(Cookie::forget('chaninplus'));
 
         echo Cookie::get('chaninplus');
         exit;
