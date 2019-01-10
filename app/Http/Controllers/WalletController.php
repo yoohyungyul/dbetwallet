@@ -124,10 +124,11 @@ class WalletController extends Controller
     // 보내기 처리
     public function postSend(Request $request) {
 
-        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $balance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         
 
-        if ($balanceData->balance < $request->amount) {
+        if ($balance->balance < $request->amount) {
             return back()->withErrors('Balance is not enough!');
         }
 
@@ -142,25 +143,46 @@ class WalletController extends Controller
             return back()->withErrors($validator);
         }
 
-
+        /*
         $key = Auth::user()->id . ':' . $request->totp;
 
         if(Cache::has($key)) {
-            echo 'This is the OTP code already used.';
-            exit;
-            // return back()->withErrors('This is the OTP code already used.');
+           return back()->withErrors('This is the OTP code already used.');
         }
 
         if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
-            echo 'OTP code mismatch.';
-            exit;
-            // return back()->withErrors('OTP code mismatch.');
+          
+            return back()->withErrors('OTP code mismatch.');
+        }
+        */
+
+
+        try {
+            DB::beginTransaction();
+
+            // 거래 내역 등록
+            $transaction_history = new TransactionHistory;
+            $transaction_history->user_id = Auth::user()->id;
+            $transaction_history->currency_id = env('CURRENCY_ID', '1');
+            $transaction_history->amount = $request->amount;
+            $transaction_history->address_from = $walletData->address;
+            $transaction_history->address_to = $request->address;
+            $transaction_history->push();
+         
+
+            $balance->balance -= $request->amount;
+            $balance->push();
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return back()->withErrors('Oops, database error is occurred!');
+        } finally {
+            DB::commit();
         }
 
+        return redirect('/history' . $currency_id)->with('message', 'send has been completed');
+    
 
-
-
-        return "1";
     }
 }
 
