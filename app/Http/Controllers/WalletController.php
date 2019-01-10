@@ -184,7 +184,7 @@ class WalletController extends Controller
             DB::commit();
         }
 
-        return redirect('/history' . $currency_id)->with('message', 'send has been completed');
+        return redirect('/history' )->with('message', 'send has been completed');
     
 
     }

@@ -52,7 +52,10 @@
                             pending
                         @else
                             confirmed
+                            <br>
+                            <a href="">View transaction details</a>
                         @endif
+                        
 
                     </td>
                     <td>{{ number_format(  $item->data->amount, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
