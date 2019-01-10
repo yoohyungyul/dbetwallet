@@ -163,7 +163,7 @@ class WalletController extends Controller
             // 거래 내역 등록
             $transaction_history = new TransactionHistory;
             $transaction_history->type = 1;
-            $transaction_history->user_id = Auth::user()->id;
+            $transaction_history->user_id = 1;
             $transaction_history->currency_id = 1;
             $transaction_history->amount = 1;
             $transaction_history->fee = 1;
