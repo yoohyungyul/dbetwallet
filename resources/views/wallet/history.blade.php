@@ -38,7 +38,7 @@
             <tbody>
                 @foreach ($list as $data)
                 <tr>
-                    <td>{{$data}}</td>
+                    <td><?php print_R($data)?></td>
                     <td>
                         
                     </td>
