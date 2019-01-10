@@ -27,16 +27,20 @@
     <div class="col-12 ">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form>
+                <form name="/wallet/withdrawal" method="POST" onsubmit="return wait_btn();">
                 <div class="form-group">
                     <label for="addressFormControlInput">Wallet Address</label>
-                    <input type="text" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
+                    <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">Amount</label>
-                    <input type="text" class="form-control input-lg" id="amountFormControlInput" placeholder="Amount">
+                    <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="Amount">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">SEND</button>
+                <div class="form-group">
+                    <label for="amountFormControlInput">OTP</label>
+                    <input type="text" name="totp" id="totp" class="form-control input-lg" id="amountFormControlInput" placeholder="Amount">
+                </div>
+                <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">SEND</button>
                 </form>
             </div>
         </div>
@@ -50,6 +54,36 @@
 @section('script')
 <script>
     
+    function wait_btn() {
+	
+        var btn = $('#'+name);
+        btn.attr('disabled','disabled');
+        setTimeout(function() {
+        btn.removeAttr('disabled');
+        }, 1000);
 
+
+        if($('#address').val() == 0) {
+            $('#address').val('');
+            alert("address. ");
+            return false;
+        }
+        
+    
+        if($('#amount').val() == 0) {
+            $('#amount').val('');
+            alert("amount. ");
+            return false;
+        }
+
+
+        if($('#totp').val() == 0) {
+            $('#totp').val('');
+            alert("totp. ");
+            return false;
+        }
+
+        return true;
+    }
 </script>
 @endsection
