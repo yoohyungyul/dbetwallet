@@ -63,7 +63,7 @@ function make_qrcode() {
     if($('#wallet_address').html() != '0') {
         $('#deposit_qrcode').html('');
         $('#deposit_qrcode').qrcode({
-            'size' : 280,
+            'size' : 250,
             'text' : $('#wallet_address').html(),
             'render' : 'image',
         });
