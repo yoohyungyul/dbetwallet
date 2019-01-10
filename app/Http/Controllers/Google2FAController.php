@@ -134,6 +134,6 @@ class Google2FAController extends Controller
     }
 
     public function getLogin() {
-        return "1";
+        return view('2fa/login');
     }
 }
