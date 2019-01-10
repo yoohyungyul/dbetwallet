@@ -111,7 +111,15 @@ class WalletController extends Controller
     // 보내기
     public function getSend() { 
 
-        return view('wallet.send');
+        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
+
+        return view('wallet.send',[
+            'currency' => $currencyData,
+            'balance' => $balanceData
+
+        ]);
     }
 }
 
