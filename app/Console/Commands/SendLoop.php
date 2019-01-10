@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Cache;
 use DB;
 
+use App\TransactionHistory;
+
 
 
 use Illuminate\Console\Command;
@@ -42,7 +44,10 @@ class SendLoop extends Command
      */
     public function handle()
     {
-        echo "1";
+        $history = TransactionHistory::where('txid','')->orderBy('id','asc')->get();
+
+        echo count($history);
+        
     }
 
 }
