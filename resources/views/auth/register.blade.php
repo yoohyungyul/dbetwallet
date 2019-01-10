@@ -50,9 +50,9 @@
                                 </button>
                             </div>
                             <div class="col-5 text-right">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
-                                </button>
+                                <a class="btn btn-primary">
+                                    <i class="fa fa-btn fa-user"></i> OTP Login
+                                </a>
                             </div>
                         </div>
                     </form>
