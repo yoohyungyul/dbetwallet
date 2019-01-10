@@ -143,7 +143,7 @@ class WalletController extends Controller
             return back()->withErrors($validator);
         }
 
-        /*
+     
         $key = Auth::user()->id . ':' . $request->totp;
 
         if(Cache::has($key)) {
@@ -154,7 +154,7 @@ class WalletController extends Controller
           
             return back()->withErrors('OTP code mismatch.');
         }
-        */
+      
 
 
         try {

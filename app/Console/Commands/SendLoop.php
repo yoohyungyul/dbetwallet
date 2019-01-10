@@ -6,6 +6,7 @@ use Cache;
 use DB;
 
 use App\TransactionHistory;
+use App\Currency;
 
 
 
@@ -44,11 +45,15 @@ class SendLoop extends Command
      */
     public function handle()
     {
+        $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+
+        echo $currency->id;
+
         $history = TransactionHistory::where('txid','')->orderBy('id','asc')->get();
 
         foreach($history as $data) {
 
-            echo $data->id;
+          //  echo $data->id;
 
         }
 
