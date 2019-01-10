@@ -12,6 +12,7 @@ use App\Currency;
 use App\Balance;
 use App\Users_wallet;
 use App\TransactionHistory;
+use Validator;
 
 
 class WalletController extends Controller
@@ -32,10 +33,6 @@ class WalletController extends Controller
             'balance' => $balanceData
 
         ]);
-
-        
-
-        
     }
 
     // 거래 내역
@@ -123,9 +120,18 @@ class WalletController extends Controller
     }
 
     // 보내기 처리
-    public function postSend() {
+    public function postSend(Request $request) {
+
+        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
         
-        echo "1";
+
+        if ($balance->balance < $request->amount) {
+            return back()->withErrors('Balance is not enough!');
+        }
+
+
+        return "1";
     }
 }
 

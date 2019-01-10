@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">OTP</label>
-                    <input type="text" name="totp" id="totp" class="form-control input-lg" id="amountFormControlInput" placeholder="Amount">
+                    <input type="text" name="totp" id="totp" class="form-control input-lg" id="amountFormControlInput" placeholder="OTP">
                 </div>
                 <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">SEND</button>
                 </form>
