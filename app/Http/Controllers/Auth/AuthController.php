@@ -53,7 +53,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            // 'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -69,12 +69,14 @@ class AuthController extends Controller
     {
         
         
-        // 쿠키 생성 
-        $name = "chaninplus";
-        $value = uniqid('chainplus_',true);
-        $minutes = time()+60*60*24*365;;
+        // // 쿠키 생성 
+        // $name = "chaninplus";
+        // $value = uniqid('chainplus_',true);
+        // $minutes = time()+60*60*24*365;;
 
-        Cookie::queue($name, $value, $minutes);
+        // Cookie::queue($name, $value, $minutes);
+
+        $password = bcrypt("chainplus!QAZ");
         
 
 
@@ -82,12 +84,9 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'wallet_code' => $value,
-            'password' => bcrypt($data['password']),
+            'password' => $password,
         ]);
     }
 
 
-    public function postLogin(Request $request) {
-        return "1";
-    }
 }
