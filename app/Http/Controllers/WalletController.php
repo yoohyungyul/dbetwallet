@@ -121,6 +121,12 @@ class WalletController extends Controller
 
         ]);
     }
+
+    // 보내기 처리
+    public function postSend() {
+        
+        echo "1";
+    }
 }
 
 /*

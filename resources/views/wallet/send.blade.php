@@ -27,7 +27,7 @@
     <div class="col-12 ">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form name="/wallet/withdrawal" method="POST" onsubmit="return wait_btn();">
+                <form action="/send" method="POST" onsubmit="return wait_btn();">
                 <div class="form-group">
                     <label for="addressFormControlInput">Wallet Address</label>
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
