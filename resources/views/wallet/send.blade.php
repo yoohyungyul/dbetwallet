@@ -8,6 +8,9 @@
 @endsection
 
 @section('content')
+
+
+{!! session()->get('error') !!}
 <div class="row  mt20">
     <div class="col-12">
        <nav>
@@ -39,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">OTP</label>
-                    <input type="text" name="totp" id="totp" class="form-control input-lg" id="amountFormControlInput" placeholder="OTP" maxlangth="6">
+                    <input type="text" name="totp" id="totp" class="form-control input-lg" id="amountFormControlInput" placeholder="OTP" maxlength="6">
                 </div>
                 <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">SEND</button>
                 </form>
