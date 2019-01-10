@@ -123,11 +123,21 @@ class WalletController extends Controller
     public function postSend(Request $request) {
 
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
-
         
 
         if ($balanceData->balance < $request->amount) {
             return back()->withErrors('Balance is not enough!');
+        }
+
+
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required',
+            'address' => 'required',
+            'totp' => 'required|digits:6',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
         }
 
 
