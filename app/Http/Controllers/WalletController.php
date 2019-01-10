@@ -169,7 +169,7 @@ class WalletController extends Controller
             $transaction_history->amount = $request->amount;
             $transaction_history->address_from = $walletData->address;
             $transaction_history->address_to = $request->address;
-            $transaction_history->push();
+            // $transaction_history->push();
          
 
             // $balance->balance -= $request->amount;
@@ -185,7 +185,8 @@ class WalletController extends Controller
             DB::commit();
         }
 
-        return redirect('/history' . $currency_id)->with('message', 'send has been completed');
+        return "..";
+        // return redirect('/history' . $currency_id)->with('message', 'send has been completed');
     
 
     }
