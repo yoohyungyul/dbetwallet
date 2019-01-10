@@ -13,6 +13,8 @@ use App\Balance;
 use App\Users_wallet;
 use App\TransactionHistory;
 use Validator;
+use Cache;
+use Google2FA;
 
 
 class WalletController extends Controller
