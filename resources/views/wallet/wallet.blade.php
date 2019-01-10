@@ -32,7 +32,7 @@
                 <h5 class="card-title">Address
                     
                 </h5>
-                <p class="card-text">0x234ljdsf330fsdjlfkjl3jildijfi3il2j3i4kdjfij3</p>
+                <p class="card-text">{{ $wallet->address}}</p>
                 
             </div>
         </div>
