@@ -38,7 +38,7 @@
             <tbody>
                 @foreach ($list as $data)
                 <tr>
-                    <td><?php print_R($data)?></td>
+                    <td><{{$data->currency_id}}</td>
                     <td>
                         
                     </td>
