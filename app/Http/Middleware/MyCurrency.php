@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
 use Cookie;
+use App\User;
 
 class MyCurrency
 {
@@ -37,6 +38,12 @@ class MyCurrency
     {
         // 쿠키 체크 있으면
         if(Cookie::get('chaninplus')) {
+
+            $userDB = User::where('wallet_code',cookie::get('chaninplus'))->first();
+
+            Auth::login($userDB);
+				
+            exit;
 
             // otp 확인
             
