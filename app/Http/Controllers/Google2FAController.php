@@ -148,16 +148,20 @@ class Google2FAController extends Controller
             $key = $userData->id . ':' . $request->totp;
 
             if(Cache::has($key)) {
-                return back()->withErrors('This is the OTP code already used.');
+                echo 'This is the OTP code already used.';
+                // return back()->withErrors('This is the OTP code already used.');
             }
 
             if(!Google2FA::verifyKey($userData->google2fa_secret, $request->totp)) {
-            
-                return back()->withErrors('OTP code mismatch.');
+                echo 'OTP code mismatch.';
+                // return back()->withErrors('OTP code mismatch.');
             }
 
         } else {
-            return back()->withErrors('일치하는 이메일이 없습니다.');
+            echo '일치하는 이메일이 없습니다.';
+            // return back()->withErrors('일치하는 이메일이 없습니다.');
         }
+
+        exit;
     }
 }
