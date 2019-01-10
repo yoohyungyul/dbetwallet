@@ -43,7 +43,7 @@ class MyCurrency
 
         // 없으면 회원가입창으로 
         } else {
-            return redirect("/register");
+            return redirect("/reg");
 
         }
         
