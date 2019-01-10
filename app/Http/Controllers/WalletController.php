@@ -40,6 +40,8 @@ class WalletController extends Controller
 
     // 거래 내역
     public function getHistory() {
+
+        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         
         $page = Input::get('page');
         if(!$page) $page = 1;
@@ -94,6 +96,7 @@ class WalletController extends Controller
 
         
         return view('wallet.history', [
+            'currency' => $currencyData,
             'list' => $transactions_dict,
             'paging' => $paging,
         ]);

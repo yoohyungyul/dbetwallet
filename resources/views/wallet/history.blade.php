@@ -40,10 +40,23 @@
                 <tr>
                     <td>{{ $item->data->created_at }}</td>
                     <td>
-                        
+                        @if($item->data->type == "1")
+                            Send to<br>
+                            {{$item->data->address_to}}
+                        @else
+                            Received at<br>
+                            {{$item->data->address_from}}
+                        @endif
+
+                        @if($item->data->state == "0")
+                            pending
+                        @else
+                            confirmed
+                        @endif
+
                     </td>
-                    <td>3</td>
-                    <td>4</td>
+                    <td>{{ number_format(  $item->data->amount, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
+                    <td>{{ number_format(  $item->data->balance, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
                 </tr>
                 @endforeach
             </tbody>
