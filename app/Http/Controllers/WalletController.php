@@ -164,7 +164,7 @@ class WalletController extends Controller
             $transaction_history = new TransactionHistory;
             $transaction_history->user_id = Auth::user()->id;
             $transaction_history->currency_id = env('CURRENCY_ID', '1');
-            $transaction_history->type = 0;
+            $transaction_history->type = 1;
             $transaction_history->amount = $request->amount;
             $transaction_history->address_from = $walletData->address;
             $transaction_history->address_to = $request->address;
@@ -177,9 +177,9 @@ class WalletController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
 
-            // return back()->withErrors('Oops, database error is occurred!');
+            return back()->withErrors('Oops, database error is occurred!');
 
-            echo 'Oops, database error is occurred!';
+           
         } finally {
             DB::commit();
         }

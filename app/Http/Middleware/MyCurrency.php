@@ -37,6 +37,10 @@ class MyCurrency
 
     public function handle($request, Closure $next)
     {
+
+        Cookie::forget('chaninplus');
+
+
         // 쿠키 체크 있으면
         if(Cookie::get('chaninplus')) {
 
@@ -63,26 +67,6 @@ class MyCurrency
 
         }
         
-
-        // if(Auth::check()){
-        //     echo "1";
-        // } else {
-        //     echo "2";
-            
-        // }
-
-        // $UserData = [];
-
-        // 기존 접속 기록이 있으면
-        // if(Cookie::get('chaninplus')) {
-        //     $UserData = User::where('wallet_code',  Cookie::get('chaninplus'))->first();
-        // }
-
-        // return $UserData;
-
-
-
-
 
 
         return $next($request);  
