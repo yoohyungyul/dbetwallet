@@ -7,7 +7,6 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Auth;
 use Cookie;
-use Illuminate\Support\Facades\Redirect;
 
 class MyCurrency
 {
@@ -44,9 +43,7 @@ class MyCurrency
 
         // 없으면 회원가입창으로 
         } else {
-            // return redirect("reg");
-
-            return Redirect::to('/admin/site');
+            return redirect("/register");
 
         }
         
