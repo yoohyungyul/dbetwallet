@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use \ParagonIE\ConstantTime\Base32;
 
+use App\User;
 use App\Currency;
 use App\jsonRPCClient;
 use App\Balance;
@@ -139,6 +140,24 @@ class Google2FAController extends Controller
     }
 
     public function postLogin(Request $request) {
-        return "11";
+
+        $userData = User::where('email',$request->email)->first();
+
+        if($userData) {
+
+            $key = $userData->id . ':' . $request->totp;
+
+            if(Cache::has($key)) {
+                return back()->withErrors('This is the OTP code already used.');
+            }
+
+            if(!Google2FA::verifyKey($userData->google2fa_secret, $request->totp)) {
+            
+                return back()->withErrors('OTP code mismatch.');
+            }
+
+        } else {
+            return back()->withErrors('일치하는 이메일이 없습니다.');
+        }
     }
 }
