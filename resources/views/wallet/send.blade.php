@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">Amount</label>
-                    <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="Amount">
+                    <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="0">
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">OTP</label>
@@ -72,6 +72,12 @@
         
     
         if($('#amount').val() == '') {
+            $('#amount').val('');
+            alert("amount. ");
+            return false;
+        }
+
+        if($('#amount').val() == '0') {
             $('#amount').val('');
             alert("amount. ");
             return false;
