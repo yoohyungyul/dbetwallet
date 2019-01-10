@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" >
-                <div class="panel-body mt70" style="border:1px solid #ff00ff">
+                <div class="panel-body mt70" >
                     <form  role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -49,7 +49,7 @@
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>
                             </div>
-                            <div class="col-md-12t">
+                            <div class="col-md-12">
                                 <a href="/2fa/login">OTP Login</a>
                             </div>
                         </div>
