@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Cache;
 use Auth;
 use Session;
@@ -108,7 +109,7 @@ class Google2FAController extends Controller
                 $balance->user_id = Auth::user()->id;
                 $balance->currency_id = env('CURRENCY_ID', '1');
                 $balance->push();
-                
+
             } catch (\Exception $e) {
                 DB::rollback();
     
