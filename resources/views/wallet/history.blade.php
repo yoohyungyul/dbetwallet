@@ -36,9 +36,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($list as $data)
+                @foreach ($list as $item)
                 <tr>
-                    <td><{{$data->currency_id}}</td>
+                    <td>{{ $item->data->created_at }}</td>
                     <td>
                         
                     </td>
