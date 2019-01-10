@@ -46,8 +46,12 @@ class SendLoop extends Command
     {
         $history = TransactionHistory::where('txid','')->orderBy('id','asc')->get();
 
-        echo count($history);
-        
+        foreach($history as $data) {
+
+            echo $data->id;
+
+        }
+
     }
 
 }
