@@ -46,7 +46,7 @@ class MyCurrency
                 $userDB = User::where('wallet_code',cookie::get('chaninplus'))->first();
 
                 // 세션 생성
-                Auth::login($userDB);
+                if(!Auth::check()) Auth::login($userDB);
 
                 // otp 설정이 되여 있는지 확인
                 if(!Auth::user()->google2fa_secret) {
