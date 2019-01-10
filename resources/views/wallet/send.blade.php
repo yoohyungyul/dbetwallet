@@ -65,27 +65,27 @@
 
 
         if($('#address').val() == '') {
-            $('#address').val('');
+            $('#address').focus();
             alert("address. ");
             return false;
         }
         
     
         if($('#amount').val() == '') {
-            $('#amount').val('');
+            $('#amount').focus();
             alert("amount. ");
             return false;
         }
 
         if($('#amount').val() == '0') {
-            $('#amount').val('');
+            $('#amount').focus();
             alert("amount. ");
             return false;
         }
 
 
         if($('#totp').val() == '') {
-            $('#totp').val('');
+            $('#totp').focus();
             alert("totp. ");
             return false;
         }
