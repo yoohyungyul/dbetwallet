@@ -40,7 +40,7 @@ class Google2FAController extends Controller
     public function storeTwoFactor(Request $request)
     {
         if (Auth::user()->google2fa_secret) {
-            return redirect('mypage');
+            return redirect('wallet');
         }
         
         $session_id = Session::get('2fa:store:id', null);
@@ -76,7 +76,7 @@ class Google2FAController extends Controller
             $user->google2fa_secret = $session_key;
             $user->save();
             
-            return redirect('mypage')->with('message', trans('google2fa.success'));;
+            return redirect('wallet')->with('message', trans('google2fa.success'));;
         }
         
         return back()->withErrors([trans('google2fa.error_unknown')]);
