@@ -28,6 +28,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <form action="/send" method="POST" onsubmit="return wait_btn();">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="addressFormControlInput">Wallet Address</label>
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
@@ -63,21 +64,21 @@
         }, 1000);
 
 
-        if($('#address').val() == 0) {
+        if($('#address').val() == '') {
             $('#address').val('');
             alert("address. ");
             return false;
         }
         
     
-        if($('#amount').val() == 0) {
+        if($('#amount').val() == '') {
             $('#amount').val('');
             alert("amount. ");
             return false;
         }
 
 
-        if($('#totp').val() == 0) {
+        if($('#totp').val() == '') {
             $('#totp').val('');
             alert("totp. ");
             return false;
