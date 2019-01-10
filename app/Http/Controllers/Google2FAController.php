@@ -132,4 +132,8 @@ class Google2FAController extends Controller
 
         return Base32::encodeUpper($randomBytes);
     }
+
+    public function getLogin() {
+        return "1";
+    }
 }

@@ -50,9 +50,9 @@
                                 </button>
                             </div>
                             <div class="col-5 text-right">
-                                <a class="btn btn-primary">
+                                <button type="button" onclick="location.href='/2fa/login'" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> OTP Login
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </form>
