@@ -175,7 +175,10 @@ class WalletController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
 
-            return back()->withErrors('Oops, database error is occurred!');
+            // return back()->withErrors('Oops, database error is occurred!');
+
+            echo 'Oops, database error is occurred!';
+            exit;
         } finally {
             DB::commit();
         }
