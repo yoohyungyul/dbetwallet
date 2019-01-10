@@ -26,13 +26,13 @@
 <div class="row mt20">
     <div class="col-12 text-center">
         <div class="card text-center" style="display: block">
-            <img src="/img/qrcode.png" class="card-img-top pt20" alt="QR Code">
+            <div id="deposit_qrcode"></div>
             <div class="card-body text-left">
-                <span style="float: right;"  id="clipboard2"  data-clipboard-target="#wallet_address2"><i class="far fa-copy" ></i></span>
+                <span style="float: right;"  id="clipboard2"  data-clipboard-target="#wallet_address"><i class="far fa-copy" ></i></span>
                 <h5 class="card-title">Address
                     
                 </h5>
-                <p class="card-text" id="wallet_address2">{{ $wallet->address}}</p>
+                <p class="card-text" id="wallet_address">{{ $wallet->address}}</p>
                 
             </div>
         </div>
@@ -44,15 +44,30 @@
 
 
 @section('script')
-
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
 <script src="/clipboard/dist/clipboard.min.js"></script>
 <script>
     
 var clipboard = new Clipboard('#clipboard2');
 
 clipboard.on('success', function(e) {
-    $('#wallet_address2').blur();
+    $('#wallet_address').blur();
     alert('cliped');
 });
+
+make_qrcode();
+
+function make_qrcode() {
+    if($('#wallet_address').html() != '0') {
+        $('#deposit_qrcode').html('');
+        $('#deposit_qrcode').qrcode({
+            'size' : 280,
+            'text' : $('#wallet_address').html(),
+            'render' : 'image',
+        });
+    } 
+}
+
+
 </script>
 @endsection
