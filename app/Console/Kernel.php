@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+
+        \App\Console\Commands\SendLoop::class,
     ];
 
     /**
