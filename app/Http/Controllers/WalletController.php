@@ -14,13 +14,6 @@ class WalletController extends Controller
 {
    
     
-
-    public function getRegister() {
-        return view('auth.register');
-    }
-
-
-
     // 지갑 
     public function getWallet() {   
 
