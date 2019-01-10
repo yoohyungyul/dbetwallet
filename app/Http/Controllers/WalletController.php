@@ -126,7 +126,7 @@ class WalletController extends Controller
 
         
 
-        if ($balance->balance < $request->amount) {
+        if ($balanceData->balance < $request->amount) {
             return back()->withErrors('Balance is not enough!');
         }
 
