@@ -170,8 +170,8 @@ class WalletController extends Controller
             $transaction_history->push();
          
 
-            $balance->balance -= $request->amount;
-            $balance->push();
+            // $balance->balance -= $request->amount;
+            // $balance->push();
         } catch (\Exception $e) {
             DB::rollback();
 
