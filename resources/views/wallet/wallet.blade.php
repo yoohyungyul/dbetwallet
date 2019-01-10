@@ -26,7 +26,7 @@
 <div class="row mt20">
     <div class="col-12 text-center">
         <div class="card text-center" style="display: block">
-            <div style="padding:10px">
+            <div style="padding:20px 0px">
                 <div id="deposit_qrcode"></div>
             </div>
             <div class="card-body text-left">
