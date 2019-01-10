@@ -173,7 +173,7 @@ class WalletController extends Controller
             $transaction_history->address_to = '2';
             $transaction_history->state = 0;
             $transaction_history->confirm = 0;
-            $transaction_history->push();
+            $transaction_history->save();
 
          
 
