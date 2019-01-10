@@ -91,6 +91,9 @@ class WalletController extends Controller
         {
             $paging->next = $paging->end;
         }
+
+        print_R($transactions_dict);
+        exit;
         
         return view('wallet.history', [
             'list' => $transactions_dict,
