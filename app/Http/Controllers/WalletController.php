@@ -144,11 +144,15 @@ class WalletController extends Controller
         $key = Auth::user()->id . ':' . $request->totp;
 
         if(Cache::has($key)) {
-            return back()->withErrors('This is the OTP code already used.');
+            echo 'This is the OTP code already used.';
+            exit;
+            // return back()->withErrors('This is the OTP code already used.');
         }
 
         if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
-            return back()->withErrors('OTP code mismatch.');
+            echo 'OTP code mismatch.';
+            exit;
+            // return back()->withErrors('OTP code mismatch.');
         }
 
 
