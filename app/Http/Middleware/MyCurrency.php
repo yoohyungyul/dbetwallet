@@ -40,6 +40,9 @@ class MyCurrency
 
         Cookie::forget('chaninplus');
 
+        echo Cookie::get('chaninplus');
+        exit;
+
 
         // 쿠키 체크 있으면
         if(Cookie::get('chaninplus')) {
