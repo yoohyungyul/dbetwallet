@@ -18,6 +18,7 @@ use App\Currency;
 use App\jsonRPCClient;
 use App\Balance;
 use App\Users_wallet;
+use Cookie;
 
 
 
@@ -141,25 +142,34 @@ class Google2FAController extends Controller
 
     public function postLogin(Request $request) {
 
-        $userData = User::where('email',$request->email)->first();
+        $user = User::where('email',$request->email)->first();
 
-        if($userData) {
+        if($user) {
 
-            $key = $userData->id . ':' . $request->totp;
+            $key = $user->id . ':' . $request->totp;
 
             if(Cache::has($key)) {
-                echo 'This is the OTP code already used.';
-                // return back()->withErrors('This is the OTP code already used.');
+                return back()->withErrors('This is the OTP code already used.');
             }
 
-            if(!Google2FA::verifyKey($userData->google2fa_secret, $request->totp)) {
-                echo 'OTP code mismatch.';
-                // return back()->withErrors('OTP code mismatch.');
+            if(!Google2FA::verifyKey($user->google2fa_secret, $request->totp)) {
+                return back()->withErrors('OTP code mismatch.');
             }
+
+
+            $name = "chaninplus";
+            $value = $user->wallet_code;
+            $minutes = time()+60*60*24*365;;
+
+            Cookie::queue($name, $value, $minutes);
+
+
+            return redirect('wallet');
+
+
 
         } else {
-            echo '일치하는 이메일이 없습니다.';
-            // return back()->withErrors('일치하는 이메일이 없습니다.');
+            return back()->withErrors('일치하는 이메일이 없습니다.');
         }
 
         exit;
