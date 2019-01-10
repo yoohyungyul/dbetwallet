@@ -28,11 +28,11 @@
         <div class="card text-center" style="display: block">
             <img src="/img/qrcode.png" class="card-img-top pt20" alt="QR Code">
             <div class="card-body text-left">
-                <span style="float: right;"><i class="far fa-copy"></i></span>
+                <span style="float: right;"  id="clipboard2"  data-clipboard-target="#wallet_address2"><i class="far fa-copy" ></i></span>
                 <h5 class="card-title">Address
                     
                 </h5>
-                <p class="card-text">{{ $wallet->address}}</p>
+                <p class="card-text" id="wallet_address2">{{ $wallet->address}}</p>
                 
             </div>
         </div>
@@ -44,8 +44,15 @@
 
 
 @section('script')
+
+<script src="/clipboard/dist/clipboard.min.js"></script>
 <script>
     
+var clipboard = new Clipboard('#clipboard2');
 
+clipboard.on('success', function(e) {
+    $('#wallet_address2').blur();
+    alert_msg('', 'cliped!!', { position:"right", className: "success" });
+});
 </script>
 @endsection
