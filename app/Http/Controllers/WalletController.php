@@ -165,11 +165,13 @@ class WalletController extends Controller
             $transaction_history->type = 1;
             $transaction_history->user_id = Auth::user()->id;
             $transaction_history->currency_id = env('CURRENCY_ID', '1');
-            $transaction_history->txid = "1111";
+
             $transaction_history->amount = $request->amount;
             $transaction_history->address_from = $walletData->address;
             $transaction_history->address_to = $request->address;
-            // $transaction_history->push();
+            $transaction_history->push();
+
+            print_R($transaction_history);
          
 
             // $balance->balance -= $request->amount;
