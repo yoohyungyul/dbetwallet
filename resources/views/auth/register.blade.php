@@ -44,12 +44,12 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>
                             </div>
-                            <div class="col-md-6 text-right">
+                            <div class="col-md-4 text-right">
                                 <button type="button" onclick="location.href='/2fa/login'" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> OTP Login
                                 </button>
