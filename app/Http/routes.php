@@ -27,7 +27,7 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($
 
 	// Route::get('logout', 'Auth\AuthController@getLogout');
 	Route::get('register','WalletController@getRegister');
-	Route::post('register','WalletController@postRegister');
+	// Route::post('register','WalletController@postRegister');
     
     
     
