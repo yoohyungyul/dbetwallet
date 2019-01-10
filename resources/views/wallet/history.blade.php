@@ -36,10 +36,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($list as $item)
+                @foreach ($list as $data)
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
+                    <td>{{$data->created_at}}</td>
+                    <td>
+                        @if($data->type == 1)
+                            Send to
+                        @else
+                            Received at 
+                        @endif
+                    </td>
                     <td>3</td>
                     <td>4</td>
                 </tr>
