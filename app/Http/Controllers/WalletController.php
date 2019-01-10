@@ -157,11 +157,7 @@ class WalletController extends Controller
         */
 
 
-        try {
-            DB::beginTransaction();
-
-            // 거래 내역 등록
-            $transaction_history = new TransactionHistory;
+        $transaction_history = new TransactionHistory;
             $transaction_history->type = 1;
             $transaction_history->user_id = 1;
             $transaction_history->currency_id = 1;
@@ -173,7 +169,16 @@ class WalletController extends Controller
             $transaction_history->address_to = '2';
             $transaction_history->state = 0;
             $transaction_history->confirm = 0;
-            $transaction_history->save();
+            $transaction_history->push();
+
+            exit;
+
+
+        try {
+            DB::beginTransaction();
+
+            // 거래 내역 등록
+            
 
          
 
