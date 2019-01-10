@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Auth;
 use Cookie;
 use App\User;
+Use Request;
 
 class MyCurrency
 {
