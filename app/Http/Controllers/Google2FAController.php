@@ -20,6 +20,7 @@ use App\Users_wallet;
 
 
 
+
 class Google2FAController extends Controller
 {
     use ValidatesRequests;

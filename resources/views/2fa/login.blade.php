@@ -15,6 +15,18 @@
                 <div class="panel-body mt70">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/2fa/login') }}">
                         {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-4 control-label">E-Mail Address</label>
+
+                            <div class="col-6">
+                                <input id="email" type="email" class="form-control" name="email">
+
+                               
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-4 control-label">OTP CODE</label>
 
