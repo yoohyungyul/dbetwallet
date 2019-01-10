@@ -78,8 +78,7 @@ class AuthController extends Controller
         $params = array($currency->password);
         $client = new jsonRPCClient($currency->ip, $currency->port);
         $result = $client->request('personal_newAccount', $params);
-
-        print_R($result);
+        $address = $result->result;
 
         exit;
         
