@@ -12,9 +12,7 @@
 */
 
 
-
-Route::get('register','WalletController@getRegister');
-Route::post('register','WalletController@postRegister');
+Route::auth();
 
 
 Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($router)
