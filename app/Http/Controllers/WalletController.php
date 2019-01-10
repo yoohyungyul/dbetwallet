@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\jsonRPCClient;
 use App\Currency;
+use App\Balance;
+use App\Users_wallet;
 use App\TransactionHistory;
-use Cookie;
+
 
 class WalletController extends Controller
 {
@@ -17,14 +19,90 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {   
 
-        // 쿠키 삭제
-        // Cookie::queue(Cookie::forget('chaninplus'));
+
+
 
 
         
         return view('wallet.wallet');
 
-        $currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
+        
+
+        
+    }
+
+    // 거래 내역
+    public function getHistory() {
+        
+        $page = Input::get('page');
+        if(!$page) $page = 1;
+
+
+        $total = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->get()->count();
+        if ($page > floor($total / 20)) 
+        {
+            $page = floor($total / 20);
+        }
+
+        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
+
+
+
+        $transactions_dict = [];        
+        $i = $page * 20;    
+        foreach ($transactions as $transaction) 
+        {
+            $i++;
+            
+            $transactions_dict[] = (object) [
+                'index' => $i,
+                'data' => $transaction
+            ];
+        }
+
+        $paging = (object) [
+            'start' => 0,
+            'end' => floor($total / 20),
+            'paging_start' => floor($page / 10)*10,
+            'paging_end' => floor($page / 10)*10 + 9,
+            'prev' => $page - 10,
+            'next' => $page + 10,
+            'page' => $page
+        ];
+
+        if ($paging->paging_end > $paging->end) 
+        {
+            $paging->paging_end = $paging->end;
+        }
+
+        if ($paging->prev < 0) 
+        {
+            $paging->prev = 0;
+        }
+
+        if ($paging->next > $paging->end) 
+        {
+            $paging->next = $paging->end;
+        }
+        
+        return view('wallet.history', [
+            'list' => $transactions_dict,
+            'paging' => $paging,
+        ]);
+
+        
+        
+    }
+
+    // 보내기
+    public function getSend() { 
+
+        return view('wallet.send');
+    }
+}
+
+/*
+$currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
 
         $resultVal = (object) [
             'message' => "",
@@ -120,81 +198,7 @@ class WalletController extends Controller
         
         //return $resultVal;
 
-        
-    }
 
-    // 거래 내역
-    public function getHistory() {
-        
-        $page = Input::get('page');
-        if(!$page) $page = 1;
-
-
-        $total = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->get()->count();
-        if ($page > floor($total / 20)) 
-        {
-            $page = floor($total / 20);
-        }
-
-        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
-
-
-
-        $transactions_dict = [];        
-        $i = $page * 20;    
-        foreach ($transactions as $transaction) 
-        {
-            $i++;
-            
-            $transactions_dict[] = (object) [
-                'index' => $i,
-                'data' => $transaction
-            ];
-        }
-
-        $paging = (object) [
-            'start' => 0,
-            'end' => floor($total / 20),
-            'paging_start' => floor($page / 10)*10,
-            'paging_end' => floor($page / 10)*10 + 9,
-            'prev' => $page - 10,
-            'next' => $page + 10,
-            'page' => $page
-        ];
-
-        if ($paging->paging_end > $paging->end) 
-        {
-            $paging->paging_end = $paging->end;
-        }
-
-        if ($paging->prev < 0) 
-        {
-            $paging->prev = 0;
-        }
-
-        if ($paging->next > $paging->end) 
-        {
-            $paging->next = $paging->end;
-        }
-        
-        return view('wallet.history', [
-            'list' => $transactions_dict,
-            'paging' => $paging,
-        ]);
-
-        
-        
-    }
-
-    // 보내기
-    public function getSend() { 
-
-        return view('wallet.send');
-    }
-}
-
-
-/*
 curl --data '{"method":"eth_accounts","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST 54.180.124.202:9101
 
 
