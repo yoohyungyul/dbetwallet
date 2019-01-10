@@ -70,11 +70,11 @@ class AuthController extends Controller
         
         
         // // 쿠키 생성 
-        // $name = "chaninplus";
-        // $value = uniqid('chainplus_',true);
-        // $minutes = time()+60*60*24*365;;
+        $name = "chaninplus";
+        $value = uniqid('chainplus_',true);
+        $minutes = time()+60*60*24*365;;
 
-        // Cookie::queue($name, $value, $minutes);
+        Cookie::queue($name, $value, $minutes);
 
         $password = bcrypt("chainplus!QAZ");
         
