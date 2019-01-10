@@ -42,7 +42,7 @@ class SendLoop extends Command
      */
     public function handle()
     {
-        
+        echo "1";
     }
 
 }
