@@ -59,18 +59,19 @@ class SendLoop extends Command
             $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
+            $result = $client->request('personal_unlockAccount', ["0xe01c3f87166D035EF915116FD27B48Ae7D3543D7", "123456", '0x0a']);
+            print_R($result);
 
-
-              // 이더 조회
-            $result = $client->request('eth_getBalance', ["0xe01c3f87166D035EF915116FD27B48Ae7D3543D7", 'latest']);
-            echo "이더 : ".hexdec($result->result)/pow(10,8);
+            //   // 이더 조회
+            // $result = $client->request('eth_getBalance', ["0xe01c3f87166D035EF915116FD27B48Ae7D3543D7", 'latest']);
+            // echo "이더 : ".hexdec($result->result)/pow(10,8);
             
 
-            // 토큰 조회
-            $result = $client->request('eth_call', [[ 
-             "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-             "data" => "0x70a08231000000000000000000000000". str_replace("0x","","0xe01c3f87166D035EF915116FD27B48Ae7D3543D7") ]]);
-            echo "토큰 : ".hexdec($result->result)/pow(10,8);
+            // // 토큰 조회
+            // $result = $client->request('eth_call', [[ 
+            //  "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+            //  "data" => "0x70a08231000000000000000000000000". str_replace("0x","","0xe01c3f87166D035EF915116FD27B48Ae7D3543D7") ]]);
+            // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
 
             
