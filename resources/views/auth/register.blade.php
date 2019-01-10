@@ -11,8 +11,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-body mt70">
+            <div class="panel panel-default" style="border:1px solid #ff00ff">
+                <!-- <div class="panel-body mt70">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
