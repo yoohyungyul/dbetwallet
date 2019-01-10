@@ -7,7 +7,7 @@ function nextWin()
 {location = "/wallet"}
 </script> 
 </head> 
-<body onLoad="setTimeout('nextWin()', 1000)"> <!--1000 이 1초 입니다.-->
-바로 이동한 원하는 사이트로 이동함
+<body onLoad="setTimeout('nextWin()', 3000)"> <!--1000 이 1초 입니다.-->
+로딩 이미지
 </body>
 </html>
