@@ -26,7 +26,9 @@
 <div class="row mt20">
     <div class="col-12 text-center">
         <div class="card text-center" style="display: block">
-            <div id="deposit_qrcode"></div>
+            <div style="padding:10px">
+                <div id="deposit_qrcode"></div>
+            </div>
             <div class="card-body text-left">
                 <span style="float: right;"  id="clipboard2"  data-clipboard-target="#wallet_address"><i class="far fa-copy" ></i></span>
                 <h5 class="card-title">Address
