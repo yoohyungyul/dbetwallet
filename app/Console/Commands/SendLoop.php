@@ -52,7 +52,7 @@ class SendLoop extends Command
 
         foreach($history as $data) {
 
-            try {
+            // try {
 
                 $client = new jsonRPCClient($currency->ip, $currency->port);
                 
@@ -68,18 +68,20 @@ class SendLoop extends Command
                     'data' => $funcs.$real_to.$real_amount,
                 ]]);
 
-            } catch(\Exception $e) {
-                $result = (object) [
-                    'result' => '',
-                ];
-            }
+                print_R($result);
 
-            if ($result->result != '') {
+            // } catch(\Exception $e) {
+                // $result = (object) [
+                //     'result' => '',
+                // ];
+            // }
 
-                echo  $result->result;
-            } else {
-                echo " RPC Error!";
-            }
+            // if ($result->result != '') {
+
+            //     echo  $result->result;
+            // } else {
+            //     echo " RPC Error!";
+            // }
 
             
 
