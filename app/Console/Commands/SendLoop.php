@@ -49,7 +49,7 @@ class SendLoop extends Command
 
         $history = TransactionHistory::where('txid','')->where('state','0')->orderBy('id','asc')->get();
 
-        echo "이더 : ".hexdec("0x5af3107a4000")/pow(10,8);
+        echo "이더 : ".hexdec("0x640b5eece000")/pow(10,8);
         
         exit;
 
@@ -70,7 +70,7 @@ class SendLoop extends Command
             $result = $client->request('eth_getBalance', ["0x0D3183F579F6f5b28C60B09bD20A696bC80BF15b", 'latest']);
             echo "이더 : ".hexdec($result->result)/pow(10,8);
 
-            // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x0D3183F579F6f5b28C60B09bD20A696bC80BF15b", "latest"],"id":1}' -H "Content-Type: application/json" -X POST localhost:9101
+            // curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x1B4906B8140114aF27c306280981d5e251f5D072", "latest"],"id":1}' -H "Content-Type: application/json" -X POST localhost:9101
             
 
             // // 토큰 조회
