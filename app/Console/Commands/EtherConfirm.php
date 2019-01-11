@@ -63,8 +63,8 @@ class EtherConfirm extends Command {
                 print_R($result);
 
                 if ($result->result != '' && $s->result->status != '0') {
-                    echo "1";
-                //     if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
+    
+                    if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
 
                 //         $current_block = $result->result->blockNumber;
                         
@@ -89,9 +89,9 @@ class EtherConfirm extends Command {
                 //             $history->save();
                 //         }
 
-                //     } else {
-                //         echo " No Block Number!";
-                //     }
+                    } else {
+                        echo " No Block Number!";
+                    }
                 } else {
                     echo " RPC Error!";
                 }
