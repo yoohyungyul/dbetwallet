@@ -115,6 +115,8 @@ class SendLoop extends Command
 
         }
 
+        echo "[" . date('Ymd h:i:s') . "] Work End\n";
+
     }
 
 }
