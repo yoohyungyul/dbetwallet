@@ -10,14 +10,14 @@ use App\TransactionHistory;
 use App\Currency;
 use App\jsonRPCClient;
 
-class EtherConfirm extends Command {
+class WalletConfirm extends Command {
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ether:confirm';
+    protected $signature = 'wallet:confirm';
 
     /**
      * The console command description.
@@ -55,7 +55,7 @@ class EtherConfirm extends Command {
         foreach ($history as $history) {
            
            
-
+            try {
                
                 $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                 $result = $client->request('eth_getTransactionByHash', [$history->txid]);
@@ -81,8 +81,12 @@ class EtherConfirm extends Command {
 
                             $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
                             $history->state = 1;
-
                             $history->save();
+
+                            // 받는 사람 주소를 조회 후 있으면 등록 
+                            // 히스토리 등록
+                            // 발란스 수정
+
                             
                         } else {
                             echo " send Pending!";
@@ -98,13 +102,14 @@ class EtherConfirm extends Command {
                 } else {
                     echo " RPC Error!";
                 }
-                                
-
-
+            
+            } catch(\Exception $e) {
+                echo " No RPC!";
+            }
 
             echo "\n";
         }
-        echo "[" . date('Ymd h:i:s') . "] Work End";
+        echo "[" . date('Ymd h:i:s') . "] Work End\n";
     }
 
     public function base64pwd_encode($data) 
