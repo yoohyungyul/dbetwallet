@@ -27,7 +27,7 @@
     <div class="col-12 ">
         <div style="width:100%; overflow:auto">
 
-            <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word; width='100%'">
+            <table class="table table-hover" style="word-wrap: break-word; width='100%'">
                 <thead>
                     <tr>
                     <th scope="col" width="20%">DATE</th>
