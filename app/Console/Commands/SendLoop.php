@@ -52,13 +52,16 @@ class SendLoop extends Command
 
         $funcs = "0xa9059cbb";
 
+        $client = new jsonRPCClient($currency->ip, $currency->port);
+
         echo "[" . date('Ymd h:i:s') . "] Work Start\n";
+
 
         foreach($history as $data) {
 
             // try {
 
-            $client = new jsonRPCClient($currency->ip, $currency->port);
+            
 
 
             // // 이더 조회
