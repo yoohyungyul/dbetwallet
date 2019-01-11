@@ -67,6 +67,8 @@ class EtherConfirm extends Command {
                     if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
 
                         $current_block = $result->result->blockNumber;
+
+                        echo $current_block;
                         
                         $result2 = $client->request('eth_blockNumber');
                 //         if ($result2->result != '') {
