@@ -18,7 +18,7 @@ function nextWin()
 <body onLoad="setTimeout('nextWin()', 3000)"> <!--1000 이 1초 입니다.-->
 <div class="layer">
 
-    <span class="content">Layer Contents</span>
+    <span class="content">로딩...</span>
 
     <span class="blank"></span>
 
