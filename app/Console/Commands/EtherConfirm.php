@@ -68,12 +68,14 @@ class EtherConfirm extends Command {
 
                         $current_block = $result->result->blockNumber;
 
-                        echo $current_block;
+                       
                         
                         $result2 = $client->request('eth_blockNumber');
-                //         if ($result2->result != '') {
-                //             $current_block = $result2->result;
-                //         }
+                        if ($result2->result != '') {
+                            $current_block = $result2->result;
+                        }
+
+                        echo $current_block ;
                         
                 //         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $token->confirm) {
                 //             echo " send Complete!";
