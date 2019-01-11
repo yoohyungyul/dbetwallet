@@ -54,7 +54,7 @@ class EtherConfirm extends Command {
         $history = TransactionHistory::where('txid','!=','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
         foreach ($history as $history) {
            
-            try {
+           
 
                
                 $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
@@ -95,10 +95,6 @@ class EtherConfirm extends Command {
                                 
 
 
-            } catch(\Exception $e) {
-
-                echo " No RPC! ";
-            }
 
             echo "\n";
         }
