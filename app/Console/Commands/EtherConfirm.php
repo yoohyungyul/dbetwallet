@@ -46,7 +46,7 @@ class EtherConfirm extends Command {
           
             // 보내기 루프 
             $history = TransactionHistory::where('txid','!=','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
-            foreach ($withdrawals as $withdrawal) {
+            foreach ($history as $history) {
 
                 echo "1";
             }
