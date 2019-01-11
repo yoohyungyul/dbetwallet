@@ -103,6 +103,8 @@ class SendLoop extends Command
             //     echo " RPC Error!";
             // }
 
+            sleep(10);
+
             
 
         }
