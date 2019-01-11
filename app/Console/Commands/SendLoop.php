@@ -49,17 +49,6 @@ class SendLoop extends Command
 
         $history = TransactionHistory::where('txid','')->where('state','0')->orderBy('id','asc')->get();
 
-        $client = new jsonRPCClient($currency->ip, $currency->port);
-
-        $result = $client->request('eth_getBalance', ["0x1b4906b8140114af27c306280981d5e251f5d072", 'latest']);
-        echo "이더 : ".hexdec($result->result)/pow(10,16);
-
-        
-        exit;
-
-        // echo "이더 : ".hexdec("0x640b5eece000")/pow(10,8);
-        
-        // exit;
 
         foreach($history as $data) {
 
@@ -69,6 +58,8 @@ class SendLoop extends Command
 
             $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
             $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+
+            echo "1";
 
 
             // $result = $client->request('personal_unlockAccount', ["0xe01c3f87166D035EF915116FD27B48Ae7D3543D7", "123456", '0x0a']);
@@ -89,7 +80,7 @@ class SendLoop extends Command
 
 
             
-            $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
+            // $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
             // $result = $client->request('eth_sendTransaction', [[
             //     'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
             //     'to' => "0x099606ECb05d7E94F88EFa700225880297dD55eF",
