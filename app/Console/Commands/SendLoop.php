@@ -53,7 +53,7 @@ class SendLoop extends Command
 
         $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
 
-        echo $result;
+        print_R($result);
         exit;
 
         // echo "이더 : ".hexdec("0x640b5eece000")/pow(10,8);
