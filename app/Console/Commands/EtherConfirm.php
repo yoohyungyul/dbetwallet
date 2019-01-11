@@ -53,43 +53,45 @@ class EtherConfirm extends Command {
         // 보내기 루프 
         $history = TransactionHistory::where('txid','!=','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
         foreach ($history as $history) {
-
+           
             try {
-                $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
-                $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
-                if ($result->result != '' && $s->result->status != '0') {
-                    if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
+                echo $history->txid;
+                // $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
+                // $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
-                        $current_block = $result->result->blockNumber;
+                // if ($result->result != '' && $s->result->status != '0') {
+                //     if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
+
+                //         $current_block = $result->result->blockNumber;
                         
-                        $result2 = $client->request('eth_blockNumber');
-                        if ($result2->result != '') {
-                            $current_block = $result2->result;
-                        }
+                //         $result2 = $client->request('eth_blockNumber');
+                //         if ($result2->result != '') {
+                //             $current_block = $result2->result;
+                //         }
                         
-                        if(hexdec($current_block) - hexdec($result->result->blockNumber) > $token->confirm) {
-                            echo " send Complete!";
+                //         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $token->confirm) {
+                //             echo " send Complete!";
 
-                            $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
-                            $history->state = 1;
+                //             $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
+                //             $history->state = 1;
 
-                            $history->save();
+                //             $history->save();
                             
-                        } else {
-                            echo " send Pending!";
+                //         } else {
+                //             echo " send Pending!";
                             
-                            $history->history = hexdec($current_block) - hexdec($result->result->blockNumber);
+                //             $history->history = hexdec($current_block) - hexdec($result->result->blockNumber);
 
-                            $history->save();
-                        }
+                //             $history->save();
+                //         }
 
-                    } else {
-                        echo " No Block Number!";
-                    }
-                } else {
-                    echo " RPC Error!";
-                }
+                //     } else {
+                //         echo " No Block Number!";
+                //     }
+                // } else {
+                //     echo " RPC Error!";
+                // }
                                 
 
 
