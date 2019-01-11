@@ -75,23 +75,22 @@ class EtherConfirm extends Command {
                             $current_block = $result2->result;
                         }
 
-                        echo $current_block ;
                         
-                //         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $token->confirm) {
-                //             echo " send Complete!";
+                        if(hexdec($current_block) - hexdec($result->result->blockNumber) > $history->confirm) {
+                            echo " send Complete!";
 
-                //             $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
-                //             $history->state = 1;
+                            $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
+                            $history->state = 1;
 
-                //             $history->save();
+                            $history->save();
                             
-                //         } else {
-                //             echo " send Pending!";
+                        } else {
+                            echo " send Pending!";
                             
-                //             $history->history = hexdec($current_block) - hexdec($result->result->blockNumber);
+                            $history->history = hexdec($current_block) - hexdec($result->result->blockNumber);
 
-                //             $history->save();
-                //         }
+                            $history->save();
+                        }
 
                     } else {
                         echo " No Block Number!";
