@@ -25,45 +25,47 @@
 </div>
 <div class="row mt20">
     <div class="col-12 ">
+        <div style="width:100%; overflow:auto">
 
-        <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word;">
-            <thead>
-                <tr>
-                <th scope="col" width="20%">DATE</th>
-                <th scope="col" width="40%">ADDRESS</th>
-                <th scope="col" width="20%">AMOUNT</th>
-                <th scope="col" width="20%">BALANCE</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($list as $item)
-                <tr>
-                    <td>{{ $item->data->created_at }}</td>
-                    <td>
-                        @if($item->data->type == "1")
-                            Send to<br>
-                            {{$item->data->address_to}}
-                        @else
-                            Received at<br>
-                            {{$item->data->address_from}}
-                        @endif
+            <table class="table table-hover" style="table-layout: fixed;word-wrap: break-word; width='100%'">
+                <thead>
+                    <tr>
+                    <th scope="col" width="20%">DATE</th>
+                    <th scope="col" width="40%">ADDRESS</th>
+                    <th scope="col" width="20%">AMOUNT</th>
+                    <th scope="col" width="20%">BALANCE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($list as $item)
+                    <tr>
+                        <td>{{ $item->data->created_at }}</td>
+                        <td>
+                            @if($item->data->type == "1")
+                                Send to<br>
+                                {{$item->data->address_to}}
+                            @else
+                                Received at<br>
+                                {{$item->data->address_from}}
+                            @endif
 
-                        @if($item->data->state == "0")
-                            pending
-                        @else
-                            confirmed
-                            <br>
-                            <a href="">View transaction details</a>
-                        @endif
-                        
+                            @if($item->data->state == "0")
+                                pending
+                            @else
+                                confirmed
+                                <br>
+                                <a href="">View transaction details</a>
+                            @endif
+                            
 
-                    </td>
-                    <td>{{ number_format(  $item->data->amount, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
-                    <td>{{ number_format(  $item->data->balance, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        </td>
+                        <td>{{ number_format(  $item->data->amount, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
+                        <td>{{ number_format(  $item->data->balance, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
        
     </div>
     @if($list)
