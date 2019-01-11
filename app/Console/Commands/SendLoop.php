@@ -51,6 +51,8 @@ class SendLoop extends Command
 
         $funcs = "0xa9059cbb";
 
+        echo "[" . date('Ymd h:i:s') . "] Work Start\n";
+
         foreach($history as $data) {
 
             // try {
@@ -70,42 +72,46 @@ class SendLoop extends Command
 
 
             
-            
+            try {
 
-            $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-            $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
-            
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $currency->address,
-                'to' => $currency->contract,
-                'data' => $funcs.$real_to.$real_amount,
-            ]]);
+                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+                
+                $result = $client->request('eth_sendTransaction', [[
+                    'from' => $currency->address,
+                    'to' => $currency->contract,
+                    'data' => $funcs.$real_to.$real_amount,
+                ]]);
+            } catch(\Exception $e) {
+                $result = (object) [
+                    'result' => '',
+                ];
+            }
 
-            print_R($result);
+            if ($result->result != '') {
+                try {
+                    DB::beginTransaction();
+                    
+                    $data->txid = $result->result;
+                    $data->push();
+                    
+                   
+                    echo " Update Complete!";
+                } catch (\Exception $e) {
+                    DB::rollback();
+
+                    echo " Update Failed!";
+                } finally {
+                    DB::commit();
+                }
+            } else {
+                echo " RPC Error!";
+            }
 
             echo "\n";
-
-
-
-            // } catch(\Exception $e) {
-                // $result = (object) [
-                //     'result' => '',
-                // ];
-            // }
-
-            // if ($result->result != '') {
-
-            //     echo  $result->result;
-            // } else {
-            //     echo " RPC Error!";
-            // }
-
-            sleep(10);
-
-            
 
         }
 
@@ -113,7 +119,13 @@ class SendLoop extends Command
 
 }
 
+
+
 /*
+
+
+0x0e70b6f918f22adb1d7693bf33e7d3df46be2be4fd33843a56fbbb9809e5fc69
+
 
 
 // $result = $client->request('personal_unlockAccount', ["0xe01c3f87166D035EF915116FD27B48Ae7D3543D7", "123456", '0x0a']);
