@@ -51,9 +51,10 @@ class SendLoop extends Command
 
         $client = new jsonRPCClient($currency->ip, $currency->port);
 
-        $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
+        $result = $client->request('eth_getBalance', ["0x1b4906b8140114af27c306280981d5e251f5d072", 'latest']);
+        echo "이더 : ".hexdec($result->result)/pow(10,8);
 
-        print_R($result);
+        
         exit;
 
         // echo "이더 : ".hexdec("0x640b5eece000")/pow(10,8);
