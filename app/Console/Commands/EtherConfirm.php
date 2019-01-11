@@ -104,6 +104,7 @@ class EtherConfirm extends Command {
 
             echo "\n";
         }
+        echo "[" . date('Ymd h:i:s') . "] Work End";
     }
 
     public function base64pwd_encode($data) 
