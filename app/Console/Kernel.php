@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         // Commands\Inspire::class,
 
         \App\Console\Commands\SendLoop::class,
+        \App\Console\Commands\EtherConfirm::class,
     ];
 
     /**

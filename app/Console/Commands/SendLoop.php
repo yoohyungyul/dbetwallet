@@ -47,7 +47,8 @@ class SendLoop extends Command
     {
         $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
-        $history = TransactionHistory::where('txid','')->where('state','0')->orderBy('id','asc')->get();
+        // 보낸 목록
+        $history = TransactionHistory::where('txid','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
         $funcs = "0xa9059cbb";
 
