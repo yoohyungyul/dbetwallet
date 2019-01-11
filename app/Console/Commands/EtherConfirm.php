@@ -60,7 +60,7 @@ class EtherConfirm extends Command {
                 $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                 $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
-                echo "11";
+                print_R($result);
 
                 // if ($result->result != '' && $s->result->status != '0') {
                 //     if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
