@@ -54,41 +54,25 @@ class SendLoop extends Command
 
             // try {
 
-                $client = new jsonRPCClient($currency->ip, $currency->port);
-                
-                $funcs = "0xa9059cbb";
-
-                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-
-                echo $funcs.$real_to.$real_amount."<br>";
-
-                $real_to = str_replace('0x','',$data->address_to);
-                $real_amount = str_pad($client->dec2hex($data->amount * pow(10,8)), 64, '0', STR_PAD_LEFT);
-
-                echo "0xa9059cbb000000000000000000000000" . $real_to . $real_amount;
-                exit;
+            $client = new jsonRPCClient($currency->ip, $currency->port);
             
+            $funcs = "0xa9059cbb";
+
+            $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-                $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
-                
-                // $result = $client->request('eth_sendTransaction', [[
-                //     'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
-                //     'to' => "0x099606ECb05d7E94F88EFa700225880297dD55eF",
-                //     'data' => $funcs.$real_to.$real_amount,
-                // ]]);
+            $result = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
+            
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
+                'to' => "0x099606ECb05d7E94F88EFa700225880297dD55eF",
+                'data' => $funcs.$real_to.$real_amount,
+            ]]);
 
+            print_R($result);
 
-                $result = $client->request('eth_sendTransaction', [[
-                    'from' => "0x1b4906b8140114af27c306280981d5e251f5d072",
-                    'to' => "0x099606ECb05d7E94F88EFa700225880297dD55eF",
-                    'data' => "0xa9059cbb000000000000000000000000" . $real_to . $real_amount,
-                ]]);
-
-
-
-                print_R($result);
+            
 
             // } catch(\Exception $e) {
                 // $result = (object) [
