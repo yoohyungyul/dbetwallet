@@ -59,7 +59,7 @@ class SendLoop extends Command
                 $funcs = "0xa9059cbb";
 
                 $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                $real_amount = str_pad($client->dec2hex((10)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
                 $result1 = $client->request('personal_unlockAccount', ["0x1b4906b8140114af27c306280981d5e251f5d072", "123456", '0x0a']);
                 $result = $client->request('eth_sendTransaction', [[
