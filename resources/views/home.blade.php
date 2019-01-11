@@ -14,7 +14,7 @@ function nextWin()
   width:300px;
   height:300px;
   background:#000;
-  margin:-50px 0 0 -50px;
+  margin:-300px 0 0 -300px;
   color:#fff;
 }
 </style>
