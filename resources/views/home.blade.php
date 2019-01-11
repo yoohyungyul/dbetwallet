@@ -11,14 +11,15 @@ function nextWin()
   position:absolute;
   top:50%;
   left:50%;
-  width:100px;
-  height:100px;
-  background:#f00;
+  width:300px;
+  height:300px;
+  background:#000;
   margin:-50px 0 0 -50px;
+  color:#fff;
 }
 </style>
 </head> 
 <body onLoad="setTimeout('nextWin()', 3000)"> <!--1000 이 1초 입니다.-->
-<div class="layer">Layer Contents</div>
+<div class="layer">로딩 이미지...</div>
 </body>
 </html>
