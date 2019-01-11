@@ -7,19 +7,21 @@ function nextWin()
 {location = "/wallet"}
 </script> 
 <style>
-.layer{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:300px;
-  height:300px;
-  background:#000;
-  margin:-150px 0 0 -150px;
-  color:#fff;
-}
+
+.layer{position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center}
+
+.layer .content{display: inline-block; background: #f00; vertical-align: middle}
+
+.layer .blank{display: inline-block; width: 0; height: 100%; vertical-align: middle}
 </style>
 </head> 
 <body onLoad="setTimeout('nextWin()', 3000)"> <!--1000 이 1초 입니다.-->
-<div class="layer">로딩 이미지...</div>
+<div class="layer">
+
+    <span class="content">Layer Contents</span>
+
+    <span class="blank"></span>
+
+</div>
 </body>
 </html>
