@@ -58,11 +58,16 @@ class SendLoop extends Command
                 
                 $funcs = "0xa9059cbb";
 
-                // $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                // $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+
+                echo $funcs.$real_to.$real_amount."<br>";
 
                 $real_to = str_replace('0x','',$data->address_to);
                 $real_amount = str_pad($client->dec2hex($data->amount * pow(10,8)), 64, '0', STR_PAD_LEFT);
+
+                echo "0xa9059cbb000000000000000000000000" . $real_to . $real_amount;
+                exit;
             
 
 
