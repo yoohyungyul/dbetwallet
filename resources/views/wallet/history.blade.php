@@ -30,8 +30,8 @@
             <table class="table table-hover" style="word-wrap: break-word; width='100%'">
                 <thead>
                     <tr>
-                    <th scope="col" width="20%">DATE</th>
-                    <th scope="col" width="40%">ADDRESS</th>
+                    <th scope="col" width="30%">DATE</th>
+                    <th scope="col" width="30%">ADDRESS</th>
                     <th scope="col" width="20%">AMOUNT</th>
                     <th scope="col" width="20%">BALANCE</th>
                     </tr>
