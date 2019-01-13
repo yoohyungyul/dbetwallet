@@ -90,8 +90,8 @@ class WalletConfirm extends Command {
                                 // $history->save();
 
                                 // 받는 사람 주소를 조회 후 있으면 등록 
-                                $to_userid = Users_wallet::where('address',$history->address->to)->value('user_id');
-                                echo $to_userid;
+                                // $to_userid = Users_wallet::where('address',$history->address->to)->value('user_id');
+                                // echo $to_userid;
                                 exit;
                                 if($to_userid) {
                                     // 받는 사람 발란스 가져오기
