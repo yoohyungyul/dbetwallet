@@ -57,7 +57,7 @@ class WalletConfirm extends Command {
         foreach ($history as $history) {
            
            
-            try {
+            // try {
                
                 $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                 $result = $client->request('eth_getTransactionByHash', [$history->txid]);
@@ -81,8 +81,8 @@ class WalletConfirm extends Command {
                         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $history->confirm) {
 
 
-                            try {
-                                DB::beginTransaction();
+                            // try {
+                            //     DB::beginTransaction();
                             
 
                                 $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
@@ -117,15 +117,15 @@ class WalletConfirm extends Command {
                                     echo "No User Address";
                                 }
 
-                            } catch (\Exception $e) {
-                                DB::rollback();
+                            // } catch (\Exception $e) {
+                            //     DB::rollback();
 
-                                echo " DB Error ";
-                            } finally {
-                                DB::commit();
+                            //     echo " DB Error ";
+                            // } finally {
+                            //     DB::commit();
 
-                                echo " send Complete!";
-                            }
+                            //     echo " send Complete!";
+                            // }
 
                             
                         } else {
@@ -144,9 +144,9 @@ class WalletConfirm extends Command {
                     echo " RPC Error!";
                 }
             
-            } catch(\Exception $e) {
-                echo " No RPC!";
-            }
+            // } catch(\Exception $e) {
+            //     echo " No RPC!";
+            // }
 
             echo "\n";
         }
