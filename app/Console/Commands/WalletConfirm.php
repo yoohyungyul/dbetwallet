@@ -85,12 +85,14 @@ class WalletConfirm extends Command {
                             //     DB::beginTransaction();
                             
 
-                                $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
-                                $history->state = 1;
-                                $history->save();
+                                // $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
+                                // $history->state = 1;
+                                // $history->save();
 
                                 // 받는 사람 주소를 조회 후 있으면 등록 
                                 $to_userid = Users_wallet::where('address',$history->address->to)->value('user_id');
+                                echo $to_userid;
+                                exit;
                                 if($to_userid) {
                                     // 받는 사람 발란스 가져오기
                                     $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',env('CURRENCY_ID', '1'))->first();
