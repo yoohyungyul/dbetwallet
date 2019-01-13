@@ -95,9 +95,11 @@ class SendLoop extends Command
                 ];
             }
 
-            print_R($result);
-            exit;
+            echo $result->result;
 
+            $data->txid = $result->result;
+            $data->push();
+            exit;
 
 
             // if ($result->result != '') {
