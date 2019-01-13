@@ -95,31 +95,26 @@ class SendLoop extends Command
                 ];
             }
 
-            print_R($result);
-            exit;
-
-
-            // if ($result->result != '') {
-            //     try {
-            //         DB::beginTransaction();
+            if ($result->result != '') {
+                try {
+                    DB::beginTransaction();
                     
-            //         $data->txid = $result->result;
-            //         $data->push();
+                    $data->txid = $result->result;
+                    $data->push();
                     
                    
-            //         echo " Update Complete!";
-            //     } catch (\Exception $e) {
-            //         DB::rollback();
+                    echo " Update Complete!";
+                } catch (\Exception $e) {
+                    DB::rollback();
 
-            //         echo " Update Failed!";
-            //     } finally {
-            //         DB::commit();
-            //     }
-            // } else {
-            //     echo " RPC Error!";
-            // }
-            
-            echo "--";
+                    echo " Update Failed!";
+                } finally {
+                    DB::commit();
+                }
+            } else {
+                echo " RPC Error!";
+            }
+
             echo "\n";
 
         }
