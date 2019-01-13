@@ -57,7 +57,7 @@ class WalletConfirm extends Command {
         foreach ($history as $history) {
            
            
-            // try {
+            try {
                
                 $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                 $result = $client->request('eth_getTransactionByHash', [$history->txid]);
@@ -81,8 +81,8 @@ class WalletConfirm extends Command {
                         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $history->confirm) {
 
 
-                            // try {
-                            //     DB::beginTransaction();
+                            try {
+                                DB::beginTransaction();
                             
 
                                 $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
@@ -90,7 +90,7 @@ class WalletConfirm extends Command {
                                 $history->save();
 
                                 // 받는 사람 주소를 조회 후 있으면 등록 
-                                $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
+                                $to_userid = Users_wallet::where('address',$history->address->to)->value('user_id');
                                 if($to_userid) {
                                     // 받는 사람 발란스 가져오기
                                     $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',env('CURRENCY_ID', '1'))->first();
@@ -117,15 +117,15 @@ class WalletConfirm extends Command {
                                     echo "No User Address";
                                 }
 
-                            // } catch (\Exception $e) {
-                            //     DB::rollback();
+                            } catch (\Exception $e) {
+                                DB::rollback();
 
-                            //     echo " DB Error ";
-                            // } finally {
-                            //     DB::commit();
+                                echo " DB Error ";
+                            } finally {
+                                DB::commit();
 
-                            //     echo " send Complete!";
-                            // }
+                                echo " send Complete!";
+                            }
 
                             
                         } else {
@@ -144,9 +144,9 @@ class WalletConfirm extends Command {
                     echo " RPC Error!";
                 }
             
-            // } catch(\Exception $e) {
-            //     echo " No RPC!";
-            // }
+            } catch(\Exception $e) {
+                echo " No RPC!";
+            }
 
             echo "\n";
         }
