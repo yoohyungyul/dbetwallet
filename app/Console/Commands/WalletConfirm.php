@@ -81,8 +81,8 @@ class WalletConfirm extends Command {
                         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $history->confirm) {
 
 
-                            try {
-                                DB::beginTransaction();
+                            // try {
+                            //     DB::beginTransaction();
                             
 
                                 $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
@@ -117,15 +117,18 @@ class WalletConfirm extends Command {
                                     echo "No User Address";
                                 }
 
-                            } catch (\Exception $e) {
-                                DB::rollback();
 
-                                echo " DB Error ";
-                            } finally {
-                                DB::commit();
+                                exit;
 
-                                echo " send Complete!";
-                            }
+                            // } catch (\Exception $e) {
+                            //     DB::rollback();
+
+                            //     echo " DB Error ";
+                            // } finally {
+                            //     DB::commit();
+
+                            //     echo " send Complete!";
+                            // }
 
                             
                         } else {
