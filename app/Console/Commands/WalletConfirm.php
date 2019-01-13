@@ -57,7 +57,7 @@ class WalletConfirm extends Command {
         foreach ($history as $history) {
            
            
-            try {
+            // try {
                
                 $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                 $result = $client->request('eth_getTransactionByHash', [$history->txid]);
@@ -147,11 +147,11 @@ class WalletConfirm extends Command {
                     echo " RPC Error!";
                 }
             
-            } catch(\Exception $e) {
-                echo " No RPC!";
-            }
+            // } catch(\Exception $e) {
+            //     echo " No RPC!";
+            // }
 
-            echo "\n";
+            // echo "\n";
         }
         echo "[" . date('Ymd h:i:s') . "] Work End\n";
     }
