@@ -59,63 +59,49 @@ class SendLoop extends Command
 
         foreach($history as $data) {
 
+            echo $data->address_to."\n";
+
+            
             // try {
 
-            
+            //     $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+            //     $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-            // // 이더 조회
-            // $result = $client->request('eth_getBalance', ["0x1b4906b8140114af27c306280981d5e251f5d072", 'latest']);
-            // echo "이더 : ".hexdec($result->result)."\n";
-
-            // // // 토큰 조회
-            // $result = $client->request('eth_call', [[ 
-            // "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-            // "data" => "0x70a08231000000000000000000000000". str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
-            // echo "토큰 : ".hexdec($result->result)."\n";
-
-
-            
-            try {
-
-                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-
-
-                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+            //     $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
                 
-                $result = $client->request('eth_sendTransaction', [[
-                    'from' => $currency->address,
-                    'to' => $currency->contract,
-                    'data' => $funcs.$real_to.$real_amount,
-                ]]);
-            } catch(\Exception $e) {
-                $result = (object) [
-                    'result' => '',
-                ];
-            }
+            //     $result = $client->request('eth_sendTransaction', [[
+            //         'from' => $currency->address,
+            //         'to' => $currency->contract,
+            //         'data' => $funcs.$real_to.$real_amount,
+            //     ]]);
+            // } catch(\Exception $e) {
+            //     $result = (object) [
+            //         'result' => '',
+            //     ];
+            // }
 
-            if ($result->result != '') {
-                try {
-                    DB::beginTransaction();
+            // if ($result->result != '') {
+            //     try {
+            //         DB::beginTransaction();
                     
-                    $data->txid = $result->result;
-                    $data->push();
+            //         $data->txid = $result->result;
+            //         $data->push();
                     
                    
-                    echo " Update Complete!";
-                } catch (\Exception $e) {
-                    DB::rollback();
+            //         echo " Update Complete!";
+            //     } catch (\Exception $e) {
+            //         DB::rollback();
 
-                    echo " Update Failed!";
-                } finally {
-                    DB::commit();
-                }
-            } else {
-                echo " RPC Error!";
-            }
+            //         echo " Update Failed!";
+            //     } finally {
+            //         DB::commit();
+            //     }
+            // } else {
+            //     echo " RPC Error!";
+            // }
 
-            echo "\n";
+            // echo "\n";
 
         }
 
@@ -167,3 +153,20 @@ class SendLoop extends Command
 //  echo $data->id;
 
 */
+
+
+            // try {
+
+            
+
+
+            // // 이더 조회
+            // $result = $client->request('eth_getBalance', ["0x1b4906b8140114af27c306280981d5e251f5d072", 'latest']);
+            // echo "이더 : ".hexdec($result->result)."\n";
+
+            // // // 토큰 조회
+            // $result = $client->request('eth_call', [[ 
+            // "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+            // "data" => "0x70a08231000000000000000000000000". str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
+            // echo "토큰 : ".hexdec($result->result)."\n";
+
