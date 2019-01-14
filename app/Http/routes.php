@@ -34,7 +34,7 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($
 
 
     
-    
+    Route::get('/', 'WalletController@getWallet');
     Route::get('/home', 'WalletController@getWallet');
     Route::get('/wallet', 'WalletController@getWallet');
     Route::get('/history', 'WalletController@getHistory');
