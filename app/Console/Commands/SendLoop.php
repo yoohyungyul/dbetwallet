@@ -74,7 +74,7 @@ class SendLoop extends Command
                 $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+                $result1 = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
                 
                 $result = $client->request('eth_sendTransaction', [[
                     'from' => $currency->address,
@@ -87,7 +87,7 @@ class SendLoop extends Command
                 ];
             }
 
-            echo $result->result."/n";
+            print_R($result);
 
             if ($result->result != '') {
                 try {
