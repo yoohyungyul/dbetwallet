@@ -62,8 +62,8 @@ class WalletConfirm extends Command {
                 $txid = $history->txid;
                 $txid = "0xr23esdffdf";
                
-                $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
-                $result = $client->request('eth_getTransactionByHash', [$history->txid]);
+                $s = $client->request('eth_getTransactionReceipt', [$txid]);
+                $result = $client->request('eth_getTransactionByHash', [$txid]);
 
                 print_R($s);
                 print_R($result);
