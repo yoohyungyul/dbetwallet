@@ -66,55 +66,50 @@ class SendLoop extends Command
 
             $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
 
-            print_R($result);
+    
             
-            // $result = $client->request('eth_sendTransaction', [[
-            //     'from' => $currency->address,
-            //     'to' => $currency->contract,
-            //     'data' => $funcs.$real_to.$real_amount,
-            // ]]);
+            try {
 
-            
-            // try {
-
-            //     $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-            //     $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-            //     $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
                 
-            //     $result = $client->request('eth_sendTransaction', [[
-            //         'from' => $currency->address,
-            //         'to' => $currency->contract,
-            //         'data' => $funcs.$real_to.$real_amount,
-            //     ]]);
-            // } catch(\Exception $e) {
-            //     $result = (object) [
-            //         'result' => '',
-            //     ];
-            // }
+                $result = $client->request('eth_sendTransaction', [[
+                    'from' => $currency->address,
+                    'to' => $currency->contract,
+                    'data' => $funcs.$real_to.$real_amount,
+                ]]);
+            } catch(\Exception $e) {
+                $result = (object) [
+                    'result' => '',
+                ];
+            }
 
-            // if ($result->result != '') {
-            //     try {
-            //         DB::beginTransaction();
+            echo $result->result."/n";
+
+            if ($result->result != '') {
+                try {
+                    DB::beginTransaction();
                     
-            //         $data->txid = $result->result;
-            //         $data->push();
+                    $data->txid = $result->result;
+                    $data->push();
                     
                    
-            //         echo " Update Complete!";
-            //     } catch (\Exception $e) {
-            //         DB::rollback();
+                    echo " Update Complete!";
+                } catch (\Exception $e) {
+                    DB::rollback();
 
-            //         echo " Update Failed!";
-            //     } finally {
-            //         DB::commit();
-            //     }
-            // } else {
-            //     echo " RPC Error!";
-            // }
+                    echo " Update Failed!";
+                } finally {
+                    DB::commit();
+                }
+            } else {
+                echo " RPC Error!";
+            }
 
-            // echo "\n";
+            echo "\n";
 
         }
 
