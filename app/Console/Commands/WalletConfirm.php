@@ -58,100 +58,92 @@ class WalletConfirm extends Command {
            
            
             try {
-
-                $txid = $history->txid;
-                $txid = "0xr23esdffdf";
                
-                $s = $client->request('eth_getTransactionReceipt', [$txid]);
-                $result = $client->request('eth_getTransactionByHash', [$txid]);
+                $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
+                $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
-                print_R($s);
-                print_R($result);
-
-                if(is_object($result)) {
-                    echo "\n";
-                    echo "---1---";
-                }
+                // print_R($result);
 
                 // if ($result->result != '' && $s->result->status != '0') {
+                if(is_object($result)) {
     
-                //     if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
+                    if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
 
-                //         $current_block = $result->result->blockNumber;
+                        $current_block = $result->result->blockNumber;
 
                        
                         
-                //         $result2 = $client->request('eth_blockNumber');
-                //         if ($result2->result != '') {
-                //             $current_block = $result2->result;
-                //         }
+                        $result2 = $client->request('eth_blockNumber');
+                        if ($result2->result != '') {
+                            $current_block = $result2->result;
+                        }
 
                         
-                //         if(hexdec($current_block) - hexdec($result->result->blockNumber) > $history->confirm) {
+                        if(hexdec($current_block) - hexdec($result->result->blockNumber) > $history->confirm) {
 
 
-                //             try {
-                //                 DB::beginTransaction();
+                            try {
+                                DB::beginTransaction();
                             
 
-                //                 $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
-                //                 $history->state = 1;
-                //                 $history->save();
+                                $history->confirm = hexdec($current_block) - hexdec($result->result->blockNumber);
+                                $history->state = 1;
+                                $history->save();
 
-                //                 // 받는 사람 주소를 조회 후 있으면 등록 
-                //                 $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
-                //                 if($to_userid) {
-                //                     // 받는 사람 발란스 가져오기
-                //                     $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',env('CURRENCY_ID', '1'))->first();
+                                // 받는 사람 주소를 조회 후 있으면 등록 
+                                $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
+                                if($to_userid) {
+                                    // 받는 사람 발란스 가져오기
+                                    $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',env('CURRENCY_ID', '1'))->first();
 
-                //                     // 발란스 업데이트
-                //                     $to_user_balance->balance += $history->amount;
-                //                     $to_user_balance->save();
+                                    // 발란스 업데이트
+                                    $to_user_balance->balance += $history->amount;
+                                    $to_user_balance->save();
                                     
-                //                     // 히스트로 등록
-                //                     $transaction_history = new TransactionHistory;
-                //                     $transaction_history->type = 2;
-                //                     $transaction_history->user_id = $to_userid;
-                //                     $transaction_history->currency_id = env('CURRENCY_ID', '1');
-                //                     $transaction_history->amount = $history->amount;
-                //                     $transaction_history->balance = $to_user_balance->balance;
-                //                     $transaction_history->txid = $history->txid;
-                //                     $transaction_history->address_from = $history->address_from;
-                //                     $transaction_history->address_to = $history->address_to;
-                //                     $transaction_history->state = $history->state;
-                //                     $transaction_history->confirm = $history->confirm;
-                //                     $transaction_history->push();
+                                    // 히스트로 등록
+                                    $transaction_history = new TransactionHistory;
+                                    $transaction_history->type = 2;
+                                    $transaction_history->user_id = $to_userid;
+                                    $transaction_history->currency_id = env('CURRENCY_ID', '1');
+                                    $transaction_history->amount = $history->amount;
+                                    $transaction_history->balance = $to_user_balance->balance;
+                                    $transaction_history->txid = $history->txid;
+                                    $transaction_history->address_from = $history->address_from;
+                                    $transaction_history->address_to = $history->address_to;
+                                    $transaction_history->state = $history->state;
+                                    $transaction_history->confirm = $history->confirm;
+                                    $transaction_history->push();
 
-                //                 } else {
-                //                     echo "No User Address";
-                //                 }
+                                } else {
+                                    echo "No User Address";
+                                }
 
-                //             } catch (\Exception $e) {
-                //                 DB::rollback();
+                            } catch (\Exception $e) {
+                                DB::rollback();
 
-                //                 echo " DB Error ";
-                //             } finally {
-                //                 DB::commit();
+                                echo " DB Error ";
+                            } finally {
+                                DB::commit();
 
-                //                 echo " send Complete!";
-                //             }
+                                echo " send Complete!";
+                            }
 
                             
-                //         } else {
+                        } else {
                             
                             
-                //             $history->history = hexdec($current_block) - hexdec($result->result->blockNumber);
-                //             $history->save();
+                            $history->history = hexdec($current_block) - hexdec($result->result->blockNumber);
+                            $history->save();
 
-                //             echo " send Pending!";
-                //         }
+                            echo " send Pending!";
+                        }
 
-                //     } else {
-                //         echo " No Block Number!";
-                //     }
-                // } else {
-                //     echo " RPC Error!";
-                // }
+                    } else {
+                        echo " No Block Number!";
+                    }
+                } else {
+                    echo " RPC Error!";
+                }
             
             } catch(\Exception $e) {
                 echo " No RPC!";
