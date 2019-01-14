@@ -59,7 +59,7 @@ class SendLoop extends Command
 
         foreach($history as $data) {
 
-            echo $data->address_to."\n";
+            print_R($client);
 
             
             // try {
