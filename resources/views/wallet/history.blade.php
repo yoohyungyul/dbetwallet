@@ -50,7 +50,8 @@
                             @endif
 
                             @if($item->data->state == "0")
-                                pending
+                                <span class="btn btn-secondary btn-sm">pending</span>
+                                
                             @else
                                 <span class="btn btn-success btn-sm">confirmed</span>
                                 <br>
