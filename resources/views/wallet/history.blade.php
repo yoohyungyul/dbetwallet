@@ -53,6 +53,7 @@
                                 <span class="btn btn-secondary btn-sm">pending</span>
                                 
                             @else
+                            <span class="btn btn-secondary btn-sm">pending</span>
                                 <span class="btn btn-success btn-sm">confirmed</span>
                                 <br>
                                 <a href="https://etherscan.io/tx/{{$item->data->txid}}" target="_blank">View transaction details</a>
