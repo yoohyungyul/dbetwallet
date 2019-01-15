@@ -18,7 +18,7 @@
                                                 <h3>안드로이드</h3>
                                                 <p>플레이스토어에서 검색하세요.</p>
                                                 <div>
-                                                    <img src="/img/otp_img2.jpg" alt="플레이스토어" style="width:100%">
+                                                    <img src="/img/otp_img2.jpg" alt="플레이스토어">
                                                 </div>
                                                 <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=ko" target="_blank" class="btn btn-success btn-sm">플레이스토어 OTP</a>
                                             </div>
@@ -28,7 +28,7 @@
                                                 <h3>아이폰</h3>
                                                 <p>앱스토어에서 검색하세요.</p>
                                                 <div>
-                                                    <img src="/img/otp_img.jpg" alt="앱스토어" style="width:100%">
+                                                    <img src="/img/otp_img.jpg" alt="앱스토어">
                                                 </div>
                                                 <a href="https://itunes.apple.com/kr/app/google-authenticator/id388497605?mt=8" target="_blank" class="btn btn-info btn-sm">앱스토어 OTP</a>
                                             </div>
@@ -38,11 +38,11 @@
                                 <div class="my-5 col-md-12">
                                     <div class="row">
                                         <div class="col-md-6 text-center">
-                                            <img src="/img/googleotp01.jpg" class="img-responsive">
+                                            <img src="/img/googleotp01.jpg" class="img-responsive" style="width:100%">
                                             <p class="mt-3">Google OTP 앱 신규 사용자</p>
                                         </div>
                                         <div class="col-md-6 text-center">
-                                            <img src="/img/googleotp02.jpg" class="img-responsive">
+                                            <img src="/img/googleotp02.jpg" class="img-responsive" style="width:100%">
                                             <p class="mt-3">Google OTP 앱 기존 사용자</p>
                                         </div>
                                     </div>
