@@ -61,7 +61,7 @@
                             <hr/>
                             @foreach ($errors->all() as $error)
 
-  <div>{{ $error }}</div>
+  <div>error : {{ $error }}</div>
 
 @endforeach
                             <form class="form-horizontal text-center" role="form" method="POST" action="{{ url('') }}/2fa/enable">
