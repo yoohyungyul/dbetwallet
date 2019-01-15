@@ -15,6 +15,7 @@ use App\TransactionHistory;
 use Validator;
 use Cache;
 use Google2FA;
+use Carbon\Carbon;
 
 
 class WalletController extends Controller
@@ -39,6 +40,10 @@ class WalletController extends Controller
 
     // 거래 내역
     public function getHistory() {
+
+
+        echo $dt = Carbon::now();
+        exit;
 
 
 
