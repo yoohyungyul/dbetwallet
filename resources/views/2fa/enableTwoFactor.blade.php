@@ -60,10 +60,8 @@
                             <p><code>{{ env('APP_DOMAIN') }} ({{ Auth::user()->email }})</code></p>
                             <hr/>
                             @foreach ($errors->all() as $error)
-
-  <div>error : {{ $error }}</div>
-
-@endforeach
+                            <div class="text-center">error : {{ $error }}</div>
+                            @endforeach
                             <form class="form-horizontal text-center" role="form" method="POST" action="{{ url('') }}/2fa/enable">
                                 {!! csrf_field() !!}
                                 <!--            <div class="form-group{{ $errors->has('totp') ? ' has-error' : '' }}">

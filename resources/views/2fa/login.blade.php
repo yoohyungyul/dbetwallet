@@ -16,6 +16,10 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/2fa/login') }}">
                         {{ csrf_field() }}
 
+                        @foreach ($errors->all() as $error)
+                        <div class="text-center">error : {{ $error }}</div>
+                        @endforeach
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
