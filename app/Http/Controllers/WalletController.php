@@ -41,8 +41,6 @@ class WalletController extends Controller
     public function getHistory() {
 
 
-        echo date('Ymd h:i:s');
-        exit;
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
