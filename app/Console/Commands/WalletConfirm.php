@@ -45,9 +45,7 @@ class WalletConfirm extends Command {
     public function handle() {
 
 
-        $is_running = Cache::get('wallet_confirm_running', false);
-		if(!$is_running) {
-            Cache::forever('wallet_safe_running', true);
+        while (true) {
 
             echo "\n[" . date('Ymd h:i:s') . "] Work Start\n";
             
@@ -155,7 +153,7 @@ class WalletConfirm extends Command {
             }
             echo "[" . date('Ymd h:i:s') . "] Work End\n";
 
-            Cache::forever('wallet_confirm_running', false);
+            sleep(10);
         }
     }
 
