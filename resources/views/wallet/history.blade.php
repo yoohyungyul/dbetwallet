@@ -54,7 +54,7 @@
                             @else
                                 confirmed
                                 <br>
-                                <a href="">View transaction details</a>
+                                <a href="https://etherscan.io/tx/{{$item->data->txid}}">View transaction details</a>
                             @endif
                             
 
