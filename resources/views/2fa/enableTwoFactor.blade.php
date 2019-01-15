@@ -18,7 +18,7 @@
                                                 <h3>안드로이드</h3>
                                                 <p>플레이스토어에서 검색하세요.</p>
                                                 <div>
-                                                    <img src="/img/otp_img2.jpg" alt="플레이스토어">
+                                                    <img src="/img/otp_img2.jpg" alt="플레이스토어" style="width:100%">
                                                 </div>
                                                 <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=ko" target="_blank" class="btn btn-success btn-sm">플레이스토어 OTP</a>
                                             </div>
@@ -28,7 +28,7 @@
                                                 <h3>아이폰</h3>
                                                 <p>앱스토어에서 검색하세요.</p>
                                                 <div>
-                                                    <img src="/img/otp_img.jpg" alt="앱스토어">
+                                                    <img src="/img/otp_img.jpg" alt="앱스토어" style="width:100%">
                                                 </div>
                                                 <a href="https://itunes.apple.com/kr/app/google-authenticator/id388497605?mt=8" target="_blank" class="btn btn-info btn-sm">앱스토어 OTP</a>
                                             </div>
