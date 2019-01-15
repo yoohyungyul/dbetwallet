@@ -57,7 +57,7 @@
                             <p>If your mobile app does not support QR code, please enter this code manually: <code>{{ $secret }}</code></p>
                             <hr/>
                             <p>Enter the code displayed on the OTP after scanning the QR code.</p>
-                            <p><code>{{ env('APP_DOMAIN') }} ({{ Auth::user()->name }})</code></p>
+                            <p><code>{{ env('APP_DOMAIN') }} ({{ Auth::user()->email }})</code></p>
                             <hr/>
                             <form class="form-horizontal text-center" role="form" method="POST" action="{{ url('') }}/2fa/enable">
                                 {!! csrf_field() !!}
