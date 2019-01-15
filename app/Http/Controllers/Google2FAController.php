@@ -68,7 +68,7 @@ class Google2FAController extends Controller
         }
         
         if(Cache::has(Auth::user()->id . ':' . $request->totp)) {
-            return back()->withErrors([trans('google2fa.error_used')]);
+            return back()->withErrors('This is the OTP code already used.');
         }
         
         $verify = false;
@@ -79,7 +79,7 @@ class Google2FAController extends Controller
         }
 
         if(!$verify) {
-            return back()->withErrors([trans('google2fa.error_not_valid')]);
+            return back()->withErrors('OTP code mismatch.');
         }
         
         if ($session_id == Auth::user()->id) {
@@ -123,10 +123,10 @@ class Google2FAController extends Controller
                 DB::commit();
             }
             
-            return redirect('wallet')->with('message', trans('google2fa.success'));;
+            return redirect('wallet')->with('message', '2-step verification has been applied.');;
         }
         
-        return back()->withErrors([trans('google2fa.error_unknown')]);
+        return back()->withErrors('Unknown error.');
     }
 
     private function generateSecret()
@@ -169,7 +169,7 @@ class Google2FAController extends Controller
 
 
         } else {
-            return back()->withErrors('일치하는 이메일이 없습니다.');
+            return back()->withErrors('No matching emails.');
         }
 
         exit;
