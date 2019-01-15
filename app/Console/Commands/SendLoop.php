@@ -45,62 +45,68 @@ class SendLoop extends Command
      */
     public function handle()
     {
-        $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
-        // 보낸 목록
-        $history = TransactionHistory::where('txid','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
+        while (true) {
 
-        $funcs = "0xa9059cbb";
+            echo "[" . date('Ymd h:i:s') . "] Work Start\n";
+            $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
-        $client = new jsonRPCClient($currency->ip, $currency->port);
+            // 보낸 목록
+            $history = TransactionHistory::where('txid','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
-        echo "[" . date('Ymd h:i:s') . "] Work Start\n";
+            $funcs = "0xa9059cbb";
 
+            $client = new jsonRPCClient($currency->ip, $currency->port);
 
-        foreach($history as $data) {
-
-    
-            $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-
-
-            $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
             
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $currency->address,
-                'to' => $currency->contract,
-                'data' => $funcs.$real_to.$real_amount,
-            ]]);
 
-            // print_R($result);
-            if(is_object($result)) {
 
-                if ($result->result != '') {
-                    try {
-                        DB::beginTransaction();
+            foreach($history as $data) {
+
+        
+                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+
+
+                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+                
+                $result = $client->request('eth_sendTransaction', [[
+                    'from' => $currency->address,
+                    'to' => $currency->contract,
+                    'data' => $funcs.$real_to.$real_amount,
+                ]]);
+
+                // print_R($result);
+                if(is_object($result)) {
+
+                    if ($result->result != '') {
+                        try {
+                            DB::beginTransaction();
+                            
+                            $data->txid = $result->result;
+                            $data->push();
+                            
                         
-                        $data->txid = $result->result;
-                        $data->push();
-                        
-                    
-                        echo " Update Complete!";
-                    } catch (\Exception $e) {
-                        DB::rollback();
+                            echo " Update Complete!";
+                        } catch (\Exception $e) {
+                            DB::rollback();
 
-                        echo " Update Failed!";
-                    } finally {
-                        DB::commit();
-                    }
-                } 
-            } else {
-                echo " RPC Error!";
+                            echo " Update Failed!";
+                        } finally {
+                            DB::commit();
+                        }
+                    } 
+                } else {
+                    echo " RPC Error!";
+                }
+
+                echo "\n";
+
             }
 
-            echo "\n";
-
+            echo "[" . date('Ymd h:i:s') . "] Work End\n";
+            sleep(30);
         }
-
-        echo "[" . date('Ymd h:i:s') . "] Work End\n";
 
     }
 
