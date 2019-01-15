@@ -52,7 +52,7 @@
                             @if($item->data->state == "0")
                                 pending
                             @else
-                                <span class="btn btn-success">confirmed</span>
+                                <span class="btn btn-success btn-xs">confirmed</span>
                                 <br>
                                 <a href="https://etherscan.io/tx/{{$item->data->txid}}" target="_blank">View transaction details</a>
                             @endif
