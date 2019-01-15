@@ -37,3 +37,9 @@ body {    background-color: #f8f9fa!important;}
 .pl30 { padding-left:30px; }
 .pl40 { padding-left:40px; }
 .pl50 { padding-left:50px; }
+
+.btn-sm {
+padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;}
