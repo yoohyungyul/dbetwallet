@@ -32,6 +32,9 @@
             <div class="panel-body">
                 <form action="/send" method="POST" onsubmit="return write_btn();">
                 {{ csrf_field() }}
+                @foreach ($errors->all() as $error)
+                <div class="text-center">error : {{ $error }}</div>
+                @endforeach
                 <div class="form-group">
                     <label for="addressFormControlInput">Wallet Address</label>
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
