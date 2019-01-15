@@ -7,7 +7,7 @@
 			<div class="row" style="min-height:710px;">
 			   <div class="col-lg-12" style="margin-top: 30px;">
 					<div class="panel panel-info">
-						<div class="panel-body text-center">
+						<div class="panel-body text-center" style="margin-bottom:30px">
                             <div class="h3"><span class="text-muted mr-3">1단계.</span><span class="text-primary">OTP앱 다운로드</span></div>
                             <p>시간 동기 (Time OTP)방식을 사용하는 OTP 인증 앱을 스마트폰에 다운로드합니다.</p>
                             <div class="row">
@@ -86,6 +86,7 @@
                                 @endif
 
                             </form>
+                            <hr/>
                         </div>
                     </div>
                 </div>
