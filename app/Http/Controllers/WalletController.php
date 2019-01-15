@@ -42,7 +42,7 @@ class WalletController extends Controller
     public function getHistory() {
 
 
-        echo $dt = Carbon::now();
+        echo date('l jS \of F Y h:i:s A');
         exit;
 
 
