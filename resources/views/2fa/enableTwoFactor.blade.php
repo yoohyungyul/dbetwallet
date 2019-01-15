@@ -2,8 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid">
-	<div class="row">
+
 		<div class="container">	
 			<div class="row" style="min-height:710px;">
 		
@@ -138,6 +137,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection
