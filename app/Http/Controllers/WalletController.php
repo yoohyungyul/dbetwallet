@@ -94,6 +94,11 @@ class WalletController extends Controller
             'totp' => 'required|digits:6',
         ]);
 
+
+        $isAddress = Users_wallet::where('address',$request->address)->count();
+        echo $isAddress;
+        exit;
+
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
@@ -109,8 +114,10 @@ class WalletController extends Controller
           
             return back()->withErrors('OTP code mismatch.');
         }
-      
 
+        
+      
+        
 
         try {
             DB::beginTransaction();
