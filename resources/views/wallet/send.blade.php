@@ -46,7 +46,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control text-right" id="amountFormControlInput" name="amount" maxlength="26" placeholder="0" autocomplete="off">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" style="height: 45px; padding: 6px;" onclick="allBalance();">Total</button>
+                            <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                         </span>
                     </div>
 
