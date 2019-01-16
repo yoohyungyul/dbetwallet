@@ -7,13 +7,13 @@
 
         <title>@yield('title')</title>
 
-        <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/all.css"  crossorigin="anonymous">
         <link rel="stylesheet" href="/css/dbetwallet.css?{{date('Ymdis')}}" media="screen">
 
         <script src="/js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="/js/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="/js/popper.min.js"  crossorigin="anonymous"></script>
+        <script src="/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
         @yield('style')
 
