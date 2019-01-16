@@ -61,7 +61,8 @@ class WalletController extends Controller
 
         $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->orderBy('state')->orderBy('created_at','desc')->skip($page * $page_per)->take($page_per)->get();
 
-
+        echo count($transactions);
+        exit;
 
         $transactions_dict = [];        
         $i = $page * $page_per;    
