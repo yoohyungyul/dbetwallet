@@ -69,13 +69,14 @@
         </div>
        
     </div>
-    @if($list)
+    
+</div>
+
+<div class="row mt20">
     <div class="col-12 text-center">
         {!! $list->render() !!} 
     </div>
-    @endif
 </div>
-
 
 
 @endsection
