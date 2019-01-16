@@ -99,27 +99,27 @@
 
         if($('#address').val() == '') {
             $('#address').focus();
-            alert("address. ");
+            alert("Please enter your address. ");
             return false;
         }
         
     
         if($('#amount').val() == '') {
             $('#amount').focus();
-            alert("amount. ");
+            alert("Please enter your amount. ");
             return false;
         }
 
         if($('#amount').val() == '0') {
             $('#amount').focus();
-            alert("amount. ");
+            alert("Please enter your amount. ");
             return false;
         }
 
 
         if($('#totp').val() == '') {
             $('#totp').focus();
-            alert("totp. ");
+            alert("Please enter your otp. ");
             return false;
         }
 
