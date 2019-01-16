@@ -95,6 +95,7 @@ class WalletController extends Controller
         ]);
 
 
+        echo $request->address;
         $isAddress = Users_wallet::where('address',$request->address)->count();
         echo $isAddress;
         exit;
