@@ -43,7 +43,7 @@ class WalletController extends Controller
 
 
 
-        $page_per = 20;
+
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
@@ -54,18 +54,17 @@ class WalletController extends Controller
 
 
         $total = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->get()->count();
-        if ($page > floor($total / $page_per)) 
+        if ($page > floor($total / 20)) 
         {
-            $page = floor($total / $page_per);
+            $page = floor($total / 20);
         }
 
-        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->orderBy('state')->orderBy('created_at','desc')->skip($page * $page_per)->take($page_per)->get();
+        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
 
         echo count($transactions);
-        exit;
 
         $transactions_dict = [];        
-        $i = $page * $page_per;    
+        $i = $page * 20;    
         foreach ($transactions as $transaction) 
         {
             $i++;
@@ -78,7 +77,7 @@ class WalletController extends Controller
 
         $paging = (object) [
             'start' => 0,
-            'end' => floor($total / $page_per),
+            'end' => floor($total / 20),
             'paging_start' => floor($page / 10)*10,
             'paging_end' => floor($page / 10)*10 + 9,
             'prev' => $page - 10,
