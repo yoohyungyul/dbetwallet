@@ -41,71 +41,21 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory() {
 
-
-
-
-
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
-        
-        $page = Input::get('page');
-        if(!$page) $page = 1;
 
+        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))
+            ->where('user_id',Auth::user()->id)
+            ->orderBy('state')->orderBy('created_at','desc')->paginate(10);
 
-        $total = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->get()->count();
-        if ($page > floor($total / 10)) 
-        {
-            $page = floor($total / 10);
-        }
-
-        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 10)->take(10)->get();
-
-        echo count($transactions);
-
-        $transactions_dict = [];        
-        $i = $page * 20;    
-        foreach ($transactions as $transaction) 
-        {
-            $i++;
-            
-            $transactions_dict[] = (object) [
-                'index' => $i,
-                'data' => $transaction
-            ];
-        }
-
-        $paging = (object) [
-            'start' => 0,
-            'end' => floor($total / 20),
-            'paging_start' => floor($page / 10)*10,
-            'paging_end' => floor($page / 10)*10 + 9,
-            'prev' => $page - 10,
-            'next' => $page + 10,
-            'page' => $page
-        ];
-
-        if ($paging->paging_end > $paging->end) 
-        {
-            $paging->paging_end = $paging->end;
-        }
-
-        if ($paging->prev < 0) 
-        {
-            $paging->prev = 0;
-        }
-
-        if ($paging->next > $paging->end) 
-        {
-            $paging->next = $paging->end;
-        }
+        exit;
 
         
         return view('wallet.history', [
             'currency' => $currencyData,
             'balance' => $balanceData,
-            'list' => $transactions_dict,
-            'paging' => $paging,
+            'list' => $transactions,
         ]);
 
         
