@@ -95,7 +95,7 @@ class Google2FAController extends Controller
                 $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
                 // 지갑 생성
-                $params = array($currency->password);
+                $params = array($currency->reg_password);
                 $client = new jsonRPCClient($currency->ip, $currency->port);
                 $result = $client->request('personal_newAccount', $params);
                 $address = $result->result;
