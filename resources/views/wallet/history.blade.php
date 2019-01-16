@@ -74,7 +74,7 @@
 
 <div class="row mt20">
     <div class="col-12 text-center">
-        {!! $list->render() !!} 
+        {!! $list->links() !!} 
     </div>
 </div>
 
