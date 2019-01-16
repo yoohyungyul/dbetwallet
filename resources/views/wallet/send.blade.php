@@ -41,7 +41,17 @@
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">Amount</label>
-                    <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="0">
+                    <!-- <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="0"> -->
+
+                    <div class="input-group">
+                        <input type="text" class="form-control text-right" id="withdrawal_amount" name="amount" maxlength="26" placeholder="출금할 금액을 입력하세요." autocomplete="off">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button" style="height: 45px; padding: 6px;" onclick="allBalance();">전액</button>
+                        </span>
+                    </div>
+
+
+
                 </div>
                 <div class="form-group">
                     <label for="amountFormControlInput">OTP</label>
