@@ -93,16 +93,14 @@ class WalletController extends Controller
             'address' => 'required',
             'totp' => 'required|digits:6',
         ]);
-
-
-        echo $request->address;
-        $isAddress = Users_wallet::where('address',$request->address)->count();
-        echo $isAddress;
-        exit;
+        
 
         if ($validator->fails()) {
             return back()->withErrors($validator);
         }
+
+        $isAddress = Users_wallet::where('address',$request->address)->count();
+        if(!$isAddress) return back()->withErrors('Invalid address.');
 
      
         $key = Auth::user()->id . ':' . $request->totp;
