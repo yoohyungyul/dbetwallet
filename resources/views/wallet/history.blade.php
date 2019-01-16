@@ -39,29 +39,29 @@
                 <tbody>
                     @foreach ($list as $item)
                     <tr>
-                        <td>{{ $item->data->created_at }}</td>
+                        <td>{{ $item->created_at }}</td>
                         <td>
-                            @if($item->data->type == "1")
+                            @if($item->type == "1")
                                 Send to<br>
-                                {{$item->data->address_to}}
+                                {{$item->address_to}}
                             @else
                                 Received at<br>
-                                {{$item->data->address_from}}
+                                {{$item->address_from}}
                             @endif
 
-                            @if($item->data->state == "0")
+                            @if($item->state == "0")
                                 <span class="btn btn-secondary btn-sm">pending</span>
                                 
                             @else
                                 <span class="btn btn-success btn-sm">confirmed</span>
                                 <br>
-                                <a href="https://etherscan.io/tx/{{$item->data->txid}}" target="_blank">View transaction details</a>
+                                <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">View transaction details</a>
                             @endif
                             
 
                         </td>
-                        <td>{{ number_format(  $item->data->amount, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
-                        <td>{{ number_format(  $item->data->balance, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
+                        <td>{{ number_format(  $item->amount, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
+                        <td>{{ number_format(  $item->balance, $currency->fixed, ".", ",") }}{{ $currency->unit }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -71,25 +71,7 @@
     </div>
     @if($list)
     <div class="col-12">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item">
-                <a class="page-link" href="{{ url('history') }}?page={{ $paging->prev }}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                </li>
-                @for ($i=$paging->paging_start; $i<=$paging->paging_end; $i++)
-                <li class="page-item"><a class="page-link" href="{{ url('history') }}?page={{ $i }}">{{ $i+1 }}</a></li>
-                @endfor
-                <li class="page-item">
-                <a class="page-link" href="{{ url('history') }}?page={{ $paging->next }}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </li>
-            </ul>
-        </nav>
+        {!! $list->render() !!} 
     </div>
     @endif
 </div>

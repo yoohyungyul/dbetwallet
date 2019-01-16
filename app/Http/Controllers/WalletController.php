@@ -49,7 +49,7 @@ class WalletController extends Controller
             ->where('user_id',Auth::user()->id)
             ->orderBy('state')->orderBy('created_at','desc')->paginate(10);
 
-        exit;
+        
 
         
         return view('wallet.history', [
