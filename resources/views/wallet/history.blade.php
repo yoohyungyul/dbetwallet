@@ -70,7 +70,7 @@
        
     </div>
     @if($list)
-    <div class="col-12">
+    <div class="col-12 text-center">
         {!! $list->render() !!} 
     </div>
     @endif
