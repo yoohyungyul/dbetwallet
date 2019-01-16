@@ -8,7 +8,7 @@
         <title>@yield('title')</title>
 
         <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/all.css"  crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"  crossorigin="anonymous">
         <link rel="stylesheet" href="/css/dbetwallet.css?{{date('Ymdis')}}" media="screen">
 
         <script src="/js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
