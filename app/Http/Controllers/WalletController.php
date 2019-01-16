@@ -54,12 +54,12 @@ class WalletController extends Controller
 
 
         $total = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->get()->count();
-        if ($page > floor($total / 20)) 
+        if ($page > floor($total / 10)) 
         {
-            $page = floor($total / 20);
+            $page = floor($total / 10);
         }
 
-        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 20)->take(20)->get();
+        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))->where('user_id',Auth::user()->id)->orderBy('state')->orderBy('created_at','desc')->skip($page * 10)->take(10)->get();
 
         echo count($transactions);
 
