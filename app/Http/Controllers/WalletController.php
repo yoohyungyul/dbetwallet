@@ -43,7 +43,7 @@ class WalletController extends Controller
 
 
 
-        $page_per = 10;
+        $page_per = 20;
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
