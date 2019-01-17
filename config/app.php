@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
         GrahamCampbell\Throttle\ThrottleServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -206,7 +207,7 @@ return [
 
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
         'Throttle' => GrahamCampbell\Throttle\Facades\Throttle::class,
-
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];
