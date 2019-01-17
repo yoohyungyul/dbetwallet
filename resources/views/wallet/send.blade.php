@@ -26,12 +26,15 @@
        </div>
     </div>
 
-    {{ URL::asset('/qr_login/jsqrcode-combined.min.js') }}
 </div>
 <div class="row mt20">
     <div class="col-12 ">
         <div class="panel panel-default">
             <div class="panel-body">
+
+            <div id="reader" class="center-block" style="width:300px;height:250px">
+
+
                 <form action="/send" method="POST" onsubmit="return write_btn();">
                 {{ csrf_field() }}
                 @foreach ($errors->all() as $error)
@@ -88,6 +91,11 @@
 
 
 @section('script')
+
+<script type="text/javascript" src="{{ URL::asset('/qr_login/jsqrcode-combined.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('/qr_login/html5-qrcode.min.js') }}"></script>
+
+
 <script>
     
     function write_btn() {
@@ -131,5 +139,32 @@
     function allBalance() {
         $('#amountFormControlInput').val('{{ $balance->balance }}');
     }
+
+$('#reader').html5_qrcode(function(data){
+    $('#message').html('<span class="text-success send-true">Scanning now....</span>');
+    if (data!='') {
+                $.ajax({
+                type: "POST",
+                cache: false,
+                url : "{{action('QrLoginController@checkUser')}}",
+                data: {"_token": "{{ csrf_token() }}",data:data},
+                    success: function(data) {
+                        console.log(data);
+                        if (data==1) {
+                        //location.reload()
+                        $(location).attr('href', '{{url('/')}}');
+                        }else{
+                        return confirm('There is no user with this qr code'); 
+                        }
+                        // 
+                    }
+                })
+    }else{return confirm('There is no  data');}
+},
+function(error){
+    $('#message').html('Scaning now ....'  );
+}, function(videoError){
+    $('#message').html('<span class="text-danger camera_problem"> there was a problem with your camera </span>');
+});
 </script>
 @endsection
