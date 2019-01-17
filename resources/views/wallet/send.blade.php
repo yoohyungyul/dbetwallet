@@ -32,6 +32,12 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
+
+                <div class="row">
+            <div id="message" class="text-center">
+            </div>
+          </div>
+
             <div id="reader" class="center-block" style="width:300px;height:250px">
 
 
