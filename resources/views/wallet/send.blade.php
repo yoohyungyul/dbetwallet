@@ -146,7 +146,7 @@ $('#reader').html5_qrcode(function(data){
                 $.ajax({
                 type: "POST",
                 cache: false,
-                url : "{{action('QrLoginController@checkUser')}}",
+                url : "",
                 data: {"_token": "{{ csrf_token() }}",data:data},
                     success: function(data) {
                         console.log(data);
