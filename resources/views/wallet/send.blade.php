@@ -25,6 +25,8 @@
             <span style="float: right;">{{ number_format(  $balance->balance, $currency->fixed, ".", ",") }}{{ $currency->unit }}</span>
        </div>
     </div>
+
+    {{ URL::asset('/qr_login/jsqrcode-combined.min.js') }}
 </div>
 <div class="row mt20">
     <div class="col-12 ">
