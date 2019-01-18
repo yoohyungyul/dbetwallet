@@ -134,7 +134,7 @@
          // window.name = "부모창 이름"; 
         window.name = "sendForm";
             // window.open("open할 window", "자식창 이름", "팝업창 옵션");
-        openWin = window.open("/instascan","qrForm", "width=570, height=350, resizable = no, scrollbars = no");    
+        openWin = window.open("/instascan","qrForm", "resizable = no, scrollbars = no");    
         
 
 

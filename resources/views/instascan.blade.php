@@ -13,7 +13,10 @@
             }
         );
         scanner.addListener('scan', function (content) {
-            alert(content);
+            // alert(content);
+           opener.document.getElementById("address").value = content;
+
+
         });
         Instascan.Camera.getCameras().then( cameras => {
             if (cameras.length > 0) {
