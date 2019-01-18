@@ -47,7 +47,7 @@
                     <div class="input-group">
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button" onclick="fnQrCode();"><i class="far fa-qrcode" ></i></button>
+                            <button class="btn btn-primary" type="button" onclick="fnQrCode();"><i class="fa fa-qrcode" ></i></button>
                         </span>
                     </div>
 
