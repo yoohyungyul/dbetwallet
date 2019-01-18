@@ -130,7 +130,7 @@
     }
 
     function fnQrCode() {
-        alert("ddd");
+        window.open("/instascan");
     }
 
 
