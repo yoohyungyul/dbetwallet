@@ -93,6 +93,14 @@
 </div>
 
 
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="Modal" class="modal fade">
+  <div class="modal-dialog">
+	  <div class="modal-content">
+	  </div>
+  </div>
+</div>
+
+
 @endsection
 
 
@@ -140,6 +148,17 @@
     
     function allBalance() {
         $('#amountFormControlInput').val('{{ $balance->balance }}');
+    }
+
+
+    function fnQrCode(uid) {
+        url = '/instascan';
+
+        
+        $("#Modal .modal-content").load(url, function() { 
+            $("#Modal").modal("show"); 
+        });
+
     }
 
 </script>
