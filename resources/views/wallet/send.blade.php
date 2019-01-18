@@ -32,11 +32,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
-
-                <div class="row">
-            <div id="message" class="text-center">
-            </div>
-          </div>
+            <button class="btn" type="button" onclick="fnQrCode()">전송</button>
 
             <div id="reader" class="center-block" style="width:300px;height:250px">
 
