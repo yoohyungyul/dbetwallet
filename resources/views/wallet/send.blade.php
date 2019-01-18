@@ -36,7 +36,7 @@
 
 
 
-                <form action="/send" method="POST" onsubmit="return write_btn();">
+                <form action="/send" name="sendForm" method="POST" onsubmit="return write_btn();">
                 {{ csrf_field() }}
                 @foreach ($errors->all() as $error)
                 <div class="text-center">error : {{ $error }}</div>
@@ -130,7 +130,14 @@
     }
 
     function fnQrCode() {
-        window.open("/instascan");
+
+         // window.name = "부모창 이름"; 
+        window.name = "sendForm";
+            // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+        openWin = window.open("/instascan","qrForm", "width=570, height=350, resizable = no, scrollbars = no");    
+        
+
+
     }
 
 
