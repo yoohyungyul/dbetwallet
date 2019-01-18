@@ -78,13 +78,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal with Dynamic Content</h4>
-            </div>
-            <div class="modal-body">
-
-            </div>
+            <div class="modal-body"></div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -95,7 +89,7 @@
 
 
 @section('script')
-<script type="text/javascript" src="/js/instascan.min.js"></script>
+
 <script>
     
     function write_btn() {
