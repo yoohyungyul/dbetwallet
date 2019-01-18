@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"  crossorigin="anonymous">
         <link rel="stylesheet" href="/css/dbetwallet.css?{{date('Ymdis')}}" media="screen">
 
-        <script src="/js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="/js/popper.min.js"  crossorigin="anonymous"></script>
-        <script src="/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         @yield('style')
 
