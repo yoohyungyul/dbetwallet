@@ -132,13 +132,13 @@
 
     function fnQrCode() {
 
-        alert("dd");
-        // url = '/instascan';
+
+        url = '/instascan';
 
         
-        // $("#Modal .modal-content").load(url, function() { 
-        //     $("#Modal").modal("show"); 
-        // });
+        $("#Modal .modal-content").load(url, function() { 
+            $("#Modal").modal("show"); 
+        });
 
     }
 
