@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Instascan</title>
-    <script type="text/javascript" src="https://doublebet.net/js/test.js"></script>
+    <script type="text/javascript" src="/js/test.js"></script>
   </head>
   <body>
     <video id="preview" style="width:100%;height:100%;"></video>
