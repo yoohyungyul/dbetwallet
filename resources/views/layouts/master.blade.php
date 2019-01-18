@@ -7,7 +7,8 @@
 
         <title>@yield('title')</title>
 
-        <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"  crossorigin="anonymous">
         <link rel="stylesheet" href="/css/dbetwallet.css?{{date('Ymdis')}}" media="screen">
 

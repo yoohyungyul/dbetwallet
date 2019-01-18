@@ -10,9 +10,7 @@
 @section('content')
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <div class="row  mt20">
     <div class="col-12">
        <nav>
@@ -34,7 +32,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
-                <button type="button" class="btn btn-success openBtn">Open Modal</button>
+              
 
 
 
@@ -74,17 +72,7 @@
 </div>
 
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 @endsection
 
 
@@ -134,12 +122,6 @@
         $('#amountFormControlInput').val('{{ $balance->balance }}');
     }
 
-
-    $('.openBtn').on('click',function(){
-        $('.modal-body').load('/instascan',function(){
-            $('#myModal').modal({show:true});
-        });
-    });
 
 </script>
 @endsection
