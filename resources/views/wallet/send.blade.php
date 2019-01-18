@@ -32,7 +32,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
-                <button type="button" class="btn btn-primary" onclick="fnQrCode()">
+                <button type="button" class="btn btn-primary" onclick="fnQrCode()" data-toggle="modal" >
   Launch demo modal
 </button>
 
