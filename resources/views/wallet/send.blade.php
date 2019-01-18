@@ -148,12 +148,14 @@
 
 
     function fnQrCode() {
-        url = '/instascan';
+
+        alert("dd");
+        // url = '/instascan';
 
         
-        $("#Modal .modal-content").load(url, function() { 
-            $("#Modal").modal("show"); 
-        });
+        // $("#Modal .modal-content").load(url, function() { 
+        //     $("#Modal").modal("show"); 
+        // });
 
     }
 
