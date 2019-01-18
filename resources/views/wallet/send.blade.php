@@ -98,10 +98,6 @@
 
 @section('script')
 
-<script type="text/javascript" src="{{ URL::asset('/qr_login/jsqrcode-combined.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('/qr_login/html5-qrcode.min.js') }}"></script>
-
-
 <script>
     
     function write_btn() {
@@ -146,31 +142,5 @@
         $('#amountFormControlInput').val('{{ $balance->balance }}');
     }
 
-$('#reader').html5_qrcode(function(data){
-    $('#message').html('<span class="text-success send-true">Scanning now....</span>');
-    if (data!='') {
-                $.ajax({
-                type: "POST",
-                cache: false,
-                url : "",
-                data: {"_token": "{{ csrf_token() }}",data:data},
-                    success: function(data) {
-                        console.log(data);
-                        if (data==1) {
-                        //location.reload()
-                        $(location).attr('href', '{{url('/')}}');
-                        }else{
-                        return confirm('There is no user with this qr code'); 
-                        }
-                        // 
-                    }
-                })
-    }else{return confirm('There is no  data');}
-},
-function(error){
-    $('#message').html('Scaning now ....'  );
-}, function(videoError){
-    $('#message').html('<span class="text-danger camera_problem"> there was a problem with your camera </span>');
-});
 </script>
 @endsection
