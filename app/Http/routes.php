@@ -19,7 +19,7 @@ Route::get('/2fa/login', 'Google2FAController@getLogin');
 Route::post('/2fa/login', 'Google2FAController@postLogin');
 
 
-Route::post('/instascan', 'HomeController@instascan');
+Route::get('/instascan', 'HomeController@instascan');
 
 
 Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($router)
