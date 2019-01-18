@@ -43,8 +43,7 @@
                 @endforeach
                 <div class="form-group">
                     <label for="addressFormControlInput">Wallet Address</label>
-                    <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
-
+                    
                     <div class="input-group">
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
                         <span class="input-group-btn">
