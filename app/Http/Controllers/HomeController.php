@@ -30,6 +30,6 @@ class HomeController extends Controller
     public function instascan() {
 
 
-        return "1";
+        return view('instascan');
     }
 }
