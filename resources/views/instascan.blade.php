@@ -15,6 +15,7 @@
         scanner.addListener('scan', function (content) {
             // alert(content);
            opener.document.getElementById("address").value = content;
+           self.close();
 
 
         });
