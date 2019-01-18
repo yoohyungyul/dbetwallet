@@ -151,7 +151,7 @@
     }
 
 
-    function fnQrCode(uid) {
+    function fnQrCode() {
         url = '/instascan';
 
         
