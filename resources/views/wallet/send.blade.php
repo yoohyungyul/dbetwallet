@@ -32,9 +32,8 @@
         <div class="panel panel-default">
             <div class="panel-body">
 
-            <button class="btn" type="button" onclick="fnQrCode()">전송</button>
+                <button class="btn" type="button" onclick="fnQrCode()">전송</button>
 
-            <div id="reader" class="center-block" style="width:300px;height:250px">
 
 
                 <form action="/send" method="POST" onsubmit="return write_btn();">
@@ -66,24 +65,8 @@
                 </div>
                 <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">SEND</button>
                 </form>
-
-
-                
-
-
-                <!--input type=text size=16 placeholder="Tracking Code" class=qrcode-text><label class=qrcode-text-btn><input type=file accept="image/*" capture=environment onchange="openQRCamera(this);" tabindex=-1></label> 
-                <input type=button value="Go" disabled>
-
-                <style>
-                body, input {font-size:14pt}
-                input, label {vertical-align:middle}
-                .qrcode-text {padding-right:1.7em; margin-right:0}
-                .qrcode-text-btn {display:inline-block; background:url(//dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg) 50% 50% no-repeat; height:1em; width:1.7em; margin-left:-1.7em; cursor:pointer}
-                .qrcode-text-btn > input[type=file] {position:absolute; overflow:hidden; width:1px; height:1px; opacity:0}
-                </style-->
-
-
             </div>
+           
         </div>
     </div>
 </div>
