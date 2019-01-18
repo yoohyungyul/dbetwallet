@@ -95,7 +95,7 @@
 
 
 @section('script')
-
+<script type="text/javascript" src="/js/instascan.min.js"></script>
 <script>
     
     function write_btn() {

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/js/instascan.min.js"></script>
+
 <div class="modal-body">	
     <video id="preview" style="width:100%;height:100%;"></video>
 </div>
