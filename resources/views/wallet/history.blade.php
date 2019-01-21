@@ -72,7 +72,7 @@
     
 </div>
 
-<div class="row mt20">
+<div class="row mt20 mb20">
     <div class="col-12 text-center">
         {!! $list->render() !!} 
     </div>
