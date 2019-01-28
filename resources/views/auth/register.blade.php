@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6">
-                                {!! Captcha::img('inverse') !!}
+                                {!! Captcha::img() !!}
                                 
                             </div>
                             <div class="col-md-6">
