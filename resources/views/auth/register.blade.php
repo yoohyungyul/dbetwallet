@@ -46,6 +46,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 {!! Captcha::img() !!}
+                                <input type="text" class="form-control" name="captcha">
                             </div>
                             
                         </div>
