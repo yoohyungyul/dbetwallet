@@ -28,16 +28,6 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($
     Route::get('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@enableTwoFactor']);
     Route::post('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@storeTwoFactor']);
 
-    
-
-    // Route::auth();
-    // Route::get('login', 'Auth\AuthController@getLogin');
-    // Route::post('login', 'Auth\AuthController@postLogin');
-
-    // Route::post('login', ['middleware' => 'GrahamCampbell\Throttle\Http\Middleware\ThrottleMiddleware:5,1', 'uses' => 'Auth\AuthController@postLogin']);
-
-
-    
     Route::get('/', 'WalletController@getWallet');
     Route::get('/home', 'WalletController@getWallet');
     Route::get('/wallet', 'WalletController@getWallet');
