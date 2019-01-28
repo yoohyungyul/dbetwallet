@@ -50,7 +50,7 @@
                                 <div class="captcha">
                                     <span>{!! captcha_img() !!}</span>
                                     <button class="btn btn-success btn-refresh">Refresh</button>
-                                    <input type="text" id="captcha" class="form-control" placeholder="Enter Captcha"/>
+                                    <input type="text" id="captcha" name="captcha" class="form-control" placeholder="Enter Captcha"/>
                                 @if ($errors->has('captcha'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('captcha') }}</strong>
