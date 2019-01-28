@@ -45,7 +45,7 @@
 
                         <div class="form-group">
                             <div class="col-6">
-                                {!! Captcha::create()!!}
+                                {!! Captcha::img() !!}
                                 
                             </div>
                             <div class="col-6">
