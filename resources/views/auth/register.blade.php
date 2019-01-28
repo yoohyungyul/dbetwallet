@@ -51,13 +51,14 @@
                                     <span>{!! captcha_img() !!}</span>
                                     <button class="btn btn-success btn-refresh">Refresh</button>
                                     <input type="text" id="captcha" name="captcha" class="form-control" placeholder="Enter Captcha"/>
-                                @if ($errors->has('captcha'))
+                                    @if ($errors->has('captcha'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('captcha') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
                             </div>
                         </div>
+                        <hr>
 
                         
 
