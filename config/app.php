@@ -158,7 +158,7 @@ return [
         PragmaRX\Google2FALaravel\ServiceProvider::class,
         GrahamCampbell\Throttle\ThrottleServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-    //    Mews\Captcha\CaptchaServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -209,7 +209,7 @@ return [
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
         'Throttle' => GrahamCampbell\Throttle\Facades\Throttle::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-    //    'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];
