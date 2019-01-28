@@ -2,7 +2,7 @@
 
 return [
 
-    'characters' => '2346789abcdefghjmnpqrtuxyzABCDEFGHJMNPQRTUXYZ',
+    'characters' => '2346789ABCDEFGHJMNPQRTUXYZ',
 
     'default'   => [
         'length'    => 5,
