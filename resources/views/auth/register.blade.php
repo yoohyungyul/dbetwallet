@@ -43,15 +43,20 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-6">
-                                {!! Captcha::img() !!}
-                                
+                        <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Captcha</label>
+
+                            <div class="col-md-12">
+                                <div class="captcha">
+                                    <span>{!! captcha_img() !!}</span>
+                                    <button class="btn btn-success btn-refresh">Refresh</button>
+                                    <input type="text" id="captcha" class="form-control" placeholder="Enter Captcha"/>
+                                @if ($errors->has('captcha'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('captcha') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="captcha">
-                            </div>
-                            
                         </div>
 
                         
