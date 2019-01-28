@@ -10,7 +10,8 @@
         "pragmarx/google2fa-laravel": "~0.2.0",
         "graham-campbell/throttle": "^5.3",
         "bacon/bacon-qr-code": "~1.0",
-        "simplesoftwareio/simple-qrcode": "~1"
+        "simplesoftwareio/simple-qrcode": "~1",
+        "mews/captcha": "^2.2"	
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
