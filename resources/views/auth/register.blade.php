@@ -44,11 +44,11 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 {!! Captcha::img() !!}
                                 
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-6">
                                 <input type="text" class="form-control" name="captcha">
                             </div>
                             
