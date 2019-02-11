@@ -55,12 +55,21 @@ class MyCurrency
                 // 쿠키로 회원 정보 가져오기
                 $userDB = User::where('wallet_code',cookie::get('chaninplus'))->first();
 
-                // 세션 생성
-                if(!Auth::check()) Auth::login($userDB);
+                // 회원 정보가 있을 경우 
+                if($userDB) {
+                    // 세션 생성
+                    if(!Auth::check()) Auth::login($userDB);
 
-                // otp 설정이 되여 있는지 확인
-                if(!Auth::user()->google2fa_secret) {
-                    return redirect("/2fa/enable");
+                    // otp 설정이 되여 있는지 확인
+                    if(!Auth::user()->google2fa_secret) {
+                        return redirect("/2fa/enable");
+                    }
+                
+                // 없을 경우
+                } else {
+                    // 쿠키 초기화 하고 회원등록 화면으로 이동
+                    Session::forget('chaninplus');
+                    return redirect("/register");
                 }
             }
 
