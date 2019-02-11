@@ -159,7 +159,7 @@ class Google2FAController extends Controller
 
             $name = "chaninplus";
             $value = $user->wallet_code;
-            $minutes = time()+60*60*24*365;;
+            $minutes = time()+60*60*24*365;
 
             Cookie::queue($name, $value, $minutes);
 
