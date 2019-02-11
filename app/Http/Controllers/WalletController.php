@@ -87,6 +87,10 @@ class WalletController extends Controller
             return back()->withErrors('Balance is not enough!');
         }
 
+        if(Auth::user()->withdraw_flag){
+			return back()->withErrors('You are subject to withdrawal restrictions.');
+		}
+
 
         $validator = Validator::make($request->all(), [
             'amount' => 'required',
