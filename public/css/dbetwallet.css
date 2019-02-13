@@ -92,3 +92,11 @@ ul.pagination li.disabled {
     border: 1px solid #ddd;
     margin: 4px;
 }
+
+.bg-primary {
+    background-color: #936ace!important;
+
+    /* 936ace 
+        a563f5
+    */
+}
