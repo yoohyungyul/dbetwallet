@@ -24,7 +24,7 @@
 
     <body>
         
-        <nav class="navbar navbar-dark bg-primary"><a class="navbar-brand" href="/wallet">DBET Wallet</a></nav>
+        <nav class="navbar navbar-dark bg-primary"><a class="navbar-brand" href="/wallet" style="color:#FFF">DBET Wallet</a></nav>
     
         <div class="container">
             @yield('content')
