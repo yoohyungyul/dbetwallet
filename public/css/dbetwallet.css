@@ -101,6 +101,12 @@ ul.pagination li.disabled {
     */
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: #a563f5!important;
+    border-color: #a563f5!important;
+}
+
 
 a {
     color: #a563f5!important;
