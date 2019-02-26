@@ -25,9 +25,24 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+
+
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+                    // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => $currencyData->contract, 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cee3997b11e9a815c7307abc3") ]]);
+        echo hexdec($result->result)/pow(10,8);
+
+        exit;
+
+
+
+        
+
+        
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
