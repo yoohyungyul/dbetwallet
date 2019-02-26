@@ -29,14 +29,14 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
 
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
-                    // 토큰 조회
-        $result = $client->request('eth_call', [[ 
-            "to" => $currencyData->contract, 
-            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cee3997b11e9a815c7307abc3") ]]);
-        echo hexdec($result->result)/pow(10,8);
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        //             // 토큰 조회
+        // $result = $client->request('eth_call', [[ 
+        //     "to" => $currencyData->contract, 
+        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cee3997b11e9a815c7307abc3") ]]);
+        // echo hexdec($result->result)/pow(10,8);
 
-        exit;
+        // exit;
 
 
 
