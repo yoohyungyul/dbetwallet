@@ -25,8 +25,7 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        echo env('CURRENCY_ID', '1');
-        exit;
+        
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
