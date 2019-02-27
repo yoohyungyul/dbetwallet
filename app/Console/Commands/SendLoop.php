@@ -46,6 +46,9 @@ class SendLoop extends Command
     public function handle()
     {
 
+
+        echo env('CURRENCY_ID', '1');
+        exit;
         while (true) {
 
             echo "[" . date('Ymd h:i:s') . "] Work Start\n";
