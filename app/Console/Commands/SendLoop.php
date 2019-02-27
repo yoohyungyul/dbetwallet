@@ -28,6 +28,14 @@ class SendLoop extends Command
      */
     protected $description = '보내기 루프 실행 .';
 
+
+    protected $hex_getbalance           = '0x70a08231000000000000000000000000';
+    protected $hex_sendTransaction      = '0xa9059cbb000000000000000000000000';
+    protected $hex_approved             = '0x095ea7b3000000000000000000000000';
+    protected $hex_transferFrom         = '0x23b872dd000000000000000000000000';
+
+    
+
     /**
      * Create a new command instance.
      *
@@ -54,9 +62,8 @@ class SendLoop extends Command
             // 보낸 목록
             $history = TransactionHistory::where('txid','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
-            $funcs = "0xa9059cbb";
-
-            $from  = '0x23b872dd000000000000000000000000';
+            // $funcs = "0xa9059cbb";
+            // $from  = '0x23b872dd000000000000000000000000';
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
@@ -64,6 +71,9 @@ class SendLoop extends Command
 
 
             foreach($history as $data) {
+
+                // 이걸 먼저 해서
+                // orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
                 $real_from = str_replace('0x','',$data->address_from);
                 // $real_from = str_pad(str_replace('0x','',$data->address_from), 64, '0', STR_PAD_LEFT);
@@ -73,18 +83,18 @@ class SendLoop extends Command
 
                 $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
                 
-                // $result = $client->request('eth_sendTransaction', [[
-                //     'from' => $currency->address,
-                //     'to' => $currency->contract,
-                //     'data' => $funcs.$real_to.$real_amount,
-                // ]]);
-
-
                 $result = $client->request('eth_sendTransaction', [[
                     'from' => $currency->address,
                     'to' => $currency->contract,
-                    'data' => $from . $real_from . $real_to . $real_amount,
+                    'data' => $this->hex_sendTransaction.$real_to.$real_amount,
                 ]]);
+
+
+                // $result = $client->request('eth_sendTransaction', [[
+                //     'from' => $currency->address,
+                //     'to' => $currency->contract,
+                //     'data' => $from . $real_from . $real_to . $real_amount,
+                // ]]);
 
 
 
