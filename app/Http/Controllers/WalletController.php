@@ -29,18 +29,18 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
 
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        $result = $client->request('eth_getBalance', ["0xd00caff16b310ef3ba4b23911d83763ad766584a", 'latest']);
-        echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
+        // $result = $client->request('eth_getBalance', ["0xd00caff16b310ef3ba4b23911d83763ad766584a", 'latest']);
+        // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
         
-        // 토큰 조회
-        $result = $client->request('eth_call', [[ 
-            "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xd00caff16b310ef3ba4b23911d83763ad766584a") ]]);
-        echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // // 토큰 조회
+        // $result = $client->request('eth_call', [[ 
+        //     "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xd00caff16b310ef3ba4b23911d83763ad766584a") ]]);
+        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
-        exit;
+        // exit;
 
 
 
