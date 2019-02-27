@@ -73,18 +73,18 @@ class SendLoop extends Command
 
                 $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
                 
-                $result = $client->request('eth_sendTransaction', [[
-                    'from' => $currency->address,
-                    'to' => $currency->contract,
-                    'data' => $funcs.$real_to.$real_amount,
-                ]]);
-
-
                 // $result = $client->request('eth_sendTransaction', [[
                 //     'from' => $currency->address,
                 //     'to' => $currency->contract,
-                //     'data' => $from . $real_from . $real_to . $real_amount,
+                //     'data' => $funcs.$real_to.$real_amount,
                 // ]]);
+
+
+                $result = $client->request('eth_sendTransaction', [[
+                    'from' => $currency->address,
+                    'to' => $currency->contract,
+                    'data' => $from . $real_from . $real_to . $real_amount,
+                ]]);
 
 
 
