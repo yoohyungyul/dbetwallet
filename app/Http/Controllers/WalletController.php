@@ -34,13 +34,13 @@ class WalletController extends Controller
         // $result = $client->request('eth_getBalance', ["0xd00caff16b310ef3ba4b23911d83763ad766584a", 'latest']);
         // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
         
-        // // 토큰 조회
-        // $result = $client->request('eth_call', [[ 
-        //     "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xd00caff16b310ef3ba4b23911d83763ad766584a") ]]);
-        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => "0xa9101720Da24B197589C8eaAF622e813DbF4f8c5", 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x27792556cf93bad33bdaf3e930bf854d082a8126") ]]);
+        echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
-        // exit;
+        exit;
 
 
 
