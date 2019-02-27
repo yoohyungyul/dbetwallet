@@ -124,8 +124,8 @@ class WalletController extends Controller
             return back()->withErrors($validator);
         }
 
-        $isAddress = Users_wallet::where('address',$request->address)->count();
-        if(!$isAddress) return back()->withErrors('Invalid address.');
+        // $isAddress = Users_wallet::where('address',$request->address)->count();
+        // if(!$isAddress) return back()->withErrors('Invalid address.');
 
      
         $key = Auth::user()->id . ':' . $request->totp;
