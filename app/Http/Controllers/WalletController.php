@@ -34,7 +34,7 @@ class WalletController extends Controller
         $result = $client->request('eth_getBalance', ["0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3", 'latest']);
         echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
         
-        토큰 조회
+        // 토큰 조회
         $result = $client->request('eth_call', [[ 
             "to" => "0xa9101720Da24B197589C8eaAF622e813DbF4f8c5", 
             "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3") ]]);
