@@ -65,7 +65,8 @@ class SendLoop extends Command
 
             foreach($history as $data) {
 
-                $real_from = str_replace('0x','',$data->address_from);
+                // $real_from = str_replace('0x','',$data->address_from);
+                $real_from = str_pad(str_replace('0x','',$data->address_from), 64, '0', STR_PAD_LEFT);
                 $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
                 $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
