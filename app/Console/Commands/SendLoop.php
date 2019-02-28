@@ -29,10 +29,10 @@ class SendLoop extends Command
     protected $description = '보내기 루프 실행 .';
 
 
-    protected $hex_getbalance           = '0x70a08231000000000000000000000000';
+    protected $hex_getbalance           = '0x70a08231';
     protected $hex_sendTransaction      = '0xa9059cbb';
-    protected $hex_approved             = '0x095ea7b3000000000000000000000000';
-    protected $hex_transferFrom         = '0x23b872dd000000000000000000000000';
+    protected $hex_approved             = '0x095ea7b3';
+    protected $hex_transferFrom         = '0x23b872dd';
 
     
 
@@ -65,7 +65,7 @@ class SendLoop extends Command
             // $funcs = "0xa9059cbb";
             // $from  = '0x23b872dd000000000000000000000000';
 
-            $client = new jsonRPCClient($currency->ip, $currency->port);
+            // $client = new jsonRPCClient($currency->ip, $currency->port);
 
             
             
@@ -75,19 +75,24 @@ class SendLoop extends Command
                 // 이걸 먼저 해서
                 // orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
-                $real_from = str_replace('0x','',$data->address_from);
+                // $real_from = str_replace('0x','',$data->address_from);
                 // $real_from = str_pad(str_replace('0x','',$data->address_from), 64, '0', STR_PAD_LEFT);
-                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                // $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                // $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+                // $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+
+
+                $result = $this->approve($data->address_from, $currency->password, $currency->address, $currency);
+
+
                 
-                $result = $client->request('eth_sendTransaction', [[
-                    'from' => $currency->address,
-                    'to' => $currency->contract,
-                    'data' => $this->hex_sendTransaction.$real_to.$real_amount,
-                ]]);
+                // $result = $client->request('eth_sendTransaction', [[
+                //     'from' => $currency->address,
+                //     'to' => $currency->contract,
+                //     'data' => $this->hex_sendTransaction.$real_to.$real_amount,
+                // ]]);
 
 
                 // $result = $client->request('eth_sendTransaction', [[
@@ -133,7 +138,7 @@ class SendLoop extends Command
 
     }
 
-    function approve($spender, $passwd, $sender)
+    function transferfrom($sender_addr, $sender_pwd, $from, $to, $amount)
     {
         $resultVal = (object) [
             'message' => "",
@@ -142,25 +147,25 @@ class SendLoop extends Command
 
         try 
         {
-            $client = new jsonORCRPCClient($this->rpcserver_ip, $this->rpcserver_port); 
+            $client = new jsonORCRPCClient($this->rpcserver_ip, $this->rpcserver_port);         
 
-            //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
-            $real_to = str_replace('0x','',$sender);
-            $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$this->orc_digit) * 10000000), 64, '0', STR_PAD_LEFT);
+            //$real_from = str_pad(str_replace('0x','',$from), 64, '0', STR_PAD_LEFT);
+            $real_from = str_replace('0x','',$from);
+            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad($this->dec2hex($amount*pow(10,$this->orc_digit)), 64, '0', STR_PAD_LEFT);
             
-            $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
-            //print_r($result);
+            $result = $client->request('personal_unlockAccount', [$sender_addr, $sender_pwd, '0x0a']);
             if (isset($result1->error)) 
             {
                 $resultVal->message = $result1->error->message;
                 $resultVal->flag = false;
                 return $resultVal; 
-            }            
+            } 
 
             $result = $client->request('eth_sendTransaction', [[
-                'from' => $spender,
-                'to' => $sender,
-                'data' => $this->hex_approved . $real_to . $real_amount,
+                'from' => $sender_addr,
+                'to' => $this->orc_contractaddress,
+                'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
             ]]);
 
             //print_r($result);
@@ -181,7 +186,63 @@ class SendLoop extends Command
             $resultVal->flag = false;
         }
 
-        return $resultVal;        
+        return $resultVal;               
+    }
+
+
+
+    function approve($spender, $passwd, $sender,$currency)
+    {
+
+        echo "1";
+        exit;
+        // $resultVal = (object) [
+        //     'message' => "",
+        //     'flag' => false
+        // ];  
+
+        // try 
+        // {
+        //     $client = new jsonORCRPCClient($this->rpcserver_ip, $this->rpcserver_port); 
+
+        //     $real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
+        //     $real_to = str_replace('0x','',$sender);
+        //     $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$this->orc_digit) * 10000000), 64, '0', STR_PAD_LEFT);
+            
+        //     $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
+        //     print_r($result);
+        //     if (isset($result1->error)) 
+        //     {
+        //         $resultVal->message = $result1->error->message;
+        //         $resultVal->flag = false;
+        //         return $resultVal; 
+        //     }            
+
+        //     $result = $client->request('eth_sendTransaction', [[
+        //         'from' => $spender,
+        //         'to' => $sender,
+        //         'data' => $this->hex_approved . $real_to . $real_amount,
+        //     ]]);
+
+        //     print_r($result);
+        //     if (isset($result->result)) 
+        //     {
+        //         $resultVal->message = $result->result;
+        //         $resultVal->flag = true;
+        //     } 
+        //     else if (isset($result->error)) 
+        //     {
+        //         $resultVal->message = $result->error->message;
+        //         $resultVal->flag = false;
+        //     }           
+        // }
+        // catch(\Exception $e) 
+        // {
+        //     $resultVal->message = "RPC Server Error";
+        //     $resultVal->flag = false;
+        // }
+
+        // return $resultVal;        
     }
 
 }
