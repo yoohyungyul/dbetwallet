@@ -194,7 +194,7 @@ class SendLoop extends Command
     function approve($spender, $passwd, $sender,$currency)
     {
 
-        echo "1";
+        echo $currency->address;
         exit;
         // $resultVal = (object) [
         //     'message' => "",
