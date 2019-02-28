@@ -217,7 +217,7 @@ class SendLoop extends Command
             return $resultVal; 
         }       
         
-        return $resultVal ;
+        // return $resultVal;
         
         
 
