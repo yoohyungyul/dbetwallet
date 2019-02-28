@@ -219,17 +219,19 @@ class SendLoop extends Command
             return $resultVal; 
         }       
         
-        return $resultVal;
+        
         
         
 
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $spender,
-        //     'to' => $sender,
-        //     'data' => $this->hex_approved . $real_to . $real_amount,
-        // ]]);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $spender,
+            'to' => $sender,
+            'data' => $this->hex_approved . $real_to . $real_amount,
+        ]]);
 
-        // // print_r($result);
+        print_r($result);
+
+        
         // if (isset($result->result)) 
         // {
         //     $resultVal->message = $result->result;
