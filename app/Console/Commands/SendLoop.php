@@ -225,13 +225,13 @@ class SendLoop extends Command
 
         $result = $client->request('eth_sendTransaction', [[
             'from' => $spender,
-            'to' => $sender,
+            'to' => $currency->address,
             'data' => $this->hex_approved . $real_to . $real_amount,
         ]]);
 
         print_r($result);
 
-        
+
         // if (isset($result->result)) 
         // {
         //     $resultVal->message = $result->result;
