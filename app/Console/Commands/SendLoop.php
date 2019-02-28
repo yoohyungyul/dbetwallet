@@ -212,6 +212,7 @@ class SendLoop extends Command
 
         echo $real_amount1."\n";
         echo $real_amount2."\n";
+        exit;
 
             
         
