@@ -88,6 +88,8 @@ class SendLoop extends Command
 
                 print_R($result);
 
+                exit;
+
 
                 
                 // $result = $client->request('eth_sendTransaction', [[
@@ -217,7 +219,7 @@ class SendLoop extends Command
             return $resultVal; 
         }       
         
-        // return $resultVal;
+        return $resultVal;
         
         
 
