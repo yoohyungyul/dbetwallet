@@ -207,8 +207,9 @@ class SendLoop extends Command
 
 
         $real_to = str_replace('0x','',$currency->address);
-        $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-
+        // $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex($amount * pow(10,$currency->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+            
         
         $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
 
