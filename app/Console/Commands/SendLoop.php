@@ -68,8 +68,7 @@ class SendLoop extends Command
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
             
-            echo $this->hex_sendTransaction;
-            exit;
+            
 
             foreach($history as $data) {
 
