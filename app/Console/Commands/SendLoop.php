@@ -203,7 +203,7 @@ class SendLoop extends Command
         $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
         
-        $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
+        $result1 = $client->request('personal_unlockAccount', [$spender, "12312313", '0x0a']);
         print_r($result1);
         // if (isset($result1->error)) 
         // {
