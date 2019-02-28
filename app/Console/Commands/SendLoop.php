@@ -202,11 +202,9 @@ class SendLoop extends Command
         $real_to = str_replace('0x','',$spender);
         $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
-        echo $amount;
-        exit;
         
-        // $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
-        // print_r($result);
+        $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
+        print_r($result);
         // if (isset($result1->error)) 
         // {
         //     $resultVal->message = $result1->error->message;
@@ -230,7 +228,8 @@ class SendLoop extends Command
         // {
         //     $resultVal->message = $result->error->message;
         //     $resultVal->flag = false;
-        // }           
+        // }         
+    }  
        
 
 }
