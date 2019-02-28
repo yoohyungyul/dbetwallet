@@ -204,7 +204,7 @@ class SendLoop extends Command
 
         try 
         {
-            $client = new jsonORCRPCClient($currency->ip, $currency->port); 
+            $client = new jsonRPCClient($currency->ip, $currency->port); 
 
   
             $real_to = str_replace('0x','',$spender);
