@@ -239,7 +239,7 @@ class SendLoop extends Command
         }
         catch(\Exception $e) 
         {
-            $resultVal->message = $e;
+            $resultVal->message = "RPC Server Error";
             $resultVal->flag = false;
         }
 
