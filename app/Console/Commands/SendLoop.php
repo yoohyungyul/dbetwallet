@@ -196,55 +196,39 @@ class SendLoop extends Command
     function approve($spender, $amount ,$currency)
     {
 
+        $client = new jsonRPCClient($currency->ip, $currency->port); 
 
-        $resultVal = (object) [
-            'message' => "",
-            'flag' => false
-        ];  
 
-        try 
-        {
-            $client = new jsonRPCClient($currency->ip, $currency->port); 
+        $real_to = str_replace('0x','',$spender);
+        $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+        
+        $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
+        print_r($result);
+        // if (isset($result1->error)) 
+        // {
+        //     $resultVal->message = $result1->error->message;
+        //     $resultVal->flag = false;
+        //     return $resultVal; 
+        // }            
 
-  
-            $real_to = str_replace('0x','',$spender);
-            $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-            
-            $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
-            // print_r($result);
-            if (isset($result1->error)) 
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;
-                return $resultVal; 
-            }            
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $spender,
+        //     'to' => $sender,
+        //     'data' => $this->hex_approved . $real_to . $real_amount,
+        // ]]);
 
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $spender,
-                'to' => $sender,
-                'data' => $this->hex_approved . $real_to . $real_amount,
-            ]]);
-
-            // print_r($result);
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-                $resultVal->flag = false;
-            }           
-        }
-        catch(\Exception $e) 
-        {
-            $resultVal->message = "RPC Server Error";
-            $resultVal->flag = false;
-        }
-
-        return $resultVal;        
-    }
+        // // print_r($result);
+        // if (isset($result->result)) 
+        // {
+        //     $resultVal->message = $result->result;
+        //     $resultVal->flag = true;
+        // } 
+        // else if (isset($result->error)) 
+        // {
+        //     $resultVal->message = $result->error->message;
+        //     $resultVal->flag = false;
+        // }           
+       
 
 }
 
