@@ -84,7 +84,9 @@ class SendLoop extends Command
                 // $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
 
 
-                $result = $this->approve($data->address_from, $currency->password, $currency->address, $currency);
+                $result = $this->approve($data->address_from, $data->amount , $currency);
+
+                print_R($result);
 
 
                 
@@ -191,58 +193,57 @@ class SendLoop extends Command
 
 
 
-    function approve($spender, $passwd, $sender,$currency)
+    function approve($spender, $amount ,$currency)
     {
 
-        echo $currency->address;
-        exit;
-        // $resultVal = (object) [
-        //     'message' => "",
-        //     'flag' => false
-        // ];  
 
-        // try 
-        // {
-        //     $client = new jsonORCRPCClient($this->rpcserver_ip, $this->rpcserver_port); 
+        $resultVal = (object) [
+            'message' => "",
+            'flag' => false
+        ];  
 
-        //     $real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
-        //     $real_to = str_replace('0x','',$sender);
-        //     $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$this->orc_digit) * 10000000), 64, '0', STR_PAD_LEFT);
+        try 
+        {
+            $client = new jsonORCRPCClient($currency->ip, $currency->port); 
+
+  
+            $real_to = str_replace('0x','',$spender);
+            $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
             
-        //     $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
-        //     print_r($result);
-        //     if (isset($result1->error)) 
-        //     {
-        //         $resultVal->message = $result1->error->message;
-        //         $resultVal->flag = false;
-        //         return $resultVal; 
-        //     }            
+            $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
+            // print_r($result);
+            if (isset($result1->error)) 
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;
+                return $resultVal; 
+            }            
 
-        //     $result = $client->request('eth_sendTransaction', [[
-        //         'from' => $spender,
-        //         'to' => $sender,
-        //         'data' => $this->hex_approved . $real_to . $real_amount,
-        //     ]]);
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $spender,
+                'to' => $sender,
+                'data' => $this->hex_approved . $real_to . $real_amount,
+            ]]);
 
-        //     print_r($result);
-        //     if (isset($result->result)) 
-        //     {
-        //         $resultVal->message = $result->result;
-        //         $resultVal->flag = true;
-        //     } 
-        //     else if (isset($result->error)) 
-        //     {
-        //         $resultVal->message = $result->error->message;
-        //         $resultVal->flag = false;
-        //     }           
-        // }
-        // catch(\Exception $e) 
-        // {
-        //     $resultVal->message = "RPC Server Error";
-        //     $resultVal->flag = false;
-        // }
+            // print_r($result);
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+                $resultVal->flag = false;
+            }           
+        }
+        catch(\Exception $e) 
+        {
+            $resultVal->message = "RPC Server Error";
+            $resultVal->flag = false;
+        }
 
-        // return $resultVal;        
+        return $resultVal;        
     }
 
 }
