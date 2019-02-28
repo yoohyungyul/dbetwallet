@@ -30,8 +30,8 @@ class SendLoop extends Command
 
 
     protected $hex_getbalance           = '0x70a08231';
-    protected $hex_sendTransaction      = '0xa9059cbb';
-    protected $hex_approved             = '0x095ea7b3';
+    protected $hex_sendTransaction      = '0xa9059cbb000000000000000000000000';
+    protected $hex_approved             = '0x095ea7b3000000000000000000000000';
     protected $hex_transferFrom         = '0x23b872dd';
 
     
