@@ -210,9 +210,7 @@ class SendLoop extends Command
         $real_amount1 = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
         $real_amount2 = str_pad($client->dec2hex($amount * pow(10,$currency->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
 
-        echo $real_amount1."\n";
-        echo $real_amount2."\n";
-        exit;
+        
 
             
         
