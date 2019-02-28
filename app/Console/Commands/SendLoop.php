@@ -68,7 +68,8 @@ class SendLoop extends Command
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
             
-
+            echo $this->hex_sendTransaction;
+            exit;
 
             foreach($history as $data) {
 
@@ -131,6 +132,57 @@ class SendLoop extends Command
             sleep(60);
         }
 
+    }
+
+    function approve($spender, $passwd, $sender)
+    {
+        $resultVal = (object) [
+            'message' => "",
+            'flag' => false
+        ];  
+
+        try 
+        {
+            $client = new jsonORCRPCClient($this->rpcserver_ip, $this->rpcserver_port); 
+
+            //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
+            $real_to = str_replace('0x','',$sender);
+            $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$this->orc_digit) * 10000000), 64, '0', STR_PAD_LEFT);
+            
+            $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
+            //print_r($result);
+            if (isset($result1->error)) 
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;
+                return $resultVal; 
+            }            
+
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $spender,
+                'to' => $sender,
+                'data' => $this->hex_approved . $real_to . $real_amount,
+            ]]);
+
+            //print_r($result);
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+                $resultVal->flag = false;
+            }           
+        }
+        catch(\Exception $e) 
+        {
+            $resultVal->message = "RPC Server Error";
+            $resultVal->flag = false;
+        }
+
+        return $resultVal;        
     }
 
 }
