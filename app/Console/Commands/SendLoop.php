@@ -204,7 +204,7 @@ class SendLoop extends Command
 
         
         $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
-        print_r($result);
+        print_r($result1);
         // if (isset($result1->error)) 
         // {
         //     $resultVal->message = $result1->error->message;
