@@ -24,6 +24,7 @@ class WalletController extends Controller
 
     public function test() {
 
+        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
