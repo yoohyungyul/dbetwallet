@@ -65,7 +65,7 @@ class SendLoop extends Command
             $funcs = "0xa9059cbb";
             // $from  = '0x23b872dd000000000000000000000000';
 
-            // $client = new jsonRPCClient($currency->ip, $currency->port);
+            $client = new jsonRPCClient($currency->ip, $currency->port);
 
             
             
