@@ -62,7 +62,7 @@ class SendLoop extends Command
             // 보낸 목록
             $history = TransactionHistory::where('txid','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
-            // $funcs = "0xa9059cbb";
+            $funcs = "0xa9059cbb";
             // $from  = '0x23b872dd000000000000000000000000';
 
             // $client = new jsonRPCClient($currency->ip, $currency->port);
@@ -84,19 +84,19 @@ class SendLoop extends Command
                 // $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
 
 
-                $result = $this->approve($data->address_from, $data->amount , $currency);
+                // $result = $this->approve($data->address_from, $data->amount , $currency);
 
-                print_R($result);
+                // print_R($result);
 
-                exit;
+                // exit;
 
 
                 
-                // $result = $client->request('eth_sendTransaction', [[
-                //     'from' => $currency->address,
-                //     'to' => $currency->contract,
-                //     'data' => $this->hex_sendTransaction.$real_to.$real_amount,
-                // ]]);
+                $result = $client->request('eth_sendTransaction', [[
+                    'from' => $currency->address,
+                    'to' => $currency->contract,
+                    'data' => $funcs.$real_to.$real_amount,
+                ]]);
 
 
                 // $result = $client->request('eth_sendTransaction', [[
