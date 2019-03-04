@@ -60,7 +60,7 @@ class SendLoop extends Command
             $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
             // 보낸 목록
-            $history = TransactionHistory::where('txid','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
+            $history = TransactionHistory::where('txid','')->where('type','1')->where('currncy_id',env('CURRENCY_ID', '1'))->where('state','0')->orderBy('id','asc')->get();
 
             $funcs = "0xa9059cbb";
             // $from  = '0x23b872dd000000000000000000000000';
