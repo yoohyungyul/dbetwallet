@@ -21,6 +21,25 @@ use Carbon\Carbon;
 class WalletController extends Controller
 {
    
+
+    public function test() {
+
+
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+        // $result = $client->request('eth_getBalance', ["0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3", 'latest']);
+        // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
+        
+        // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => "0xa9101720Da24B197589C8eaAF622e813DbF4f8c5", 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x08df3c7eca32fc68504c2f4f19fb65c4922edf39") ]]);
+        echo "토큰 : ".hexdec($result->result)/pow(10,8);
+
+        exit;
+
+
+    }
     
     // 지갑 
     public function getWallet() {
@@ -296,3 +315,4 @@ curl --data '{"jsonrpc":"2.0","id":0,"method":"personal_unlockAccount","params":
 
 [{"from":"0x1b4906b8140114af27c306280981d5e251f5d072","to":"0x099606ecb05d7e94f88efa700225880297dd55ef","data":"0xa9059cbb0000000000000000000000001d4aa94a86c600dddaac24e57f71622f4e7f229d00000000000000000000000000000000000000000000000000000002540be400"}]}
 */
+
