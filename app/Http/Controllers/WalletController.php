@@ -24,7 +24,7 @@ class WalletController extends Controller
 
     public function test() {
 
-        // $funcs = "0xa9059cbb";
+        $funcs = "0xa9059cbb";
 
         $currencyData = Currency::where('id', '=', 1)->first();
 
