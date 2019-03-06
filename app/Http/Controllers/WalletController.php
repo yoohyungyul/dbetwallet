@@ -24,29 +24,29 @@ class WalletController extends Controller
 
     public function test() {
 
-        // $funcs = "0xa9059cbb";
+        $funcs = "0xa9059cbb";
 
         $currencyData = Currency::where('id', '=', 1)->first();
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        // $real_to = str_pad(str_replace('0x','',"0x72331af3cd59ab4394f80fade2cec007c892a836"), 64, '0', STR_PAD_LEFT);
-        // $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        $real_to = str_pad(str_replace('0x','',"0xe01c3f87166D035EF915116FD27B48Ae7D3543D7"), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
 
 
 
         
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $currencyData->address,
-        //     'to' => $currencyData->contract,
-        //     'data' => $funcs.$real_to.$real_amount,
-        // ]]);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $currencyData->address,
+            'to' => $currencyData->contract,
+            'data' => $funcs.$real_to.$real_amount,
+        ]]);
 
 
-        // print_R($result);
+        print_R($result);
 
 
 
@@ -58,10 +58,10 @@ class WalletController extends Controller
 
 
         // // 토큰 조회
-        $result = $client->request('eth_call', [[ 
-            "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x72331af3cd59ab4394f80fade2cec007c892a836") ]]);
-        echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // $result = $client->request('eth_call', [[ 
+        //     "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xe01c3f87166D035EF915116FD27B48Ae7D3543D7") ]]);
+        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         exit;
 
@@ -341,5 +341,9 @@ curl --data '{"jsonrpc":"2.0","id":0,"method":"personal_unlockAccount","params":
 [{"from":"0x84f508c8726ec7dd1bb57f4de0c2fa70203fe283","to":"0x6c86228d240c22d4f4744654026326895351b2ec","data":"0xa9059cbb00000000000000000000000056274a0bef07821a4f3e111438dfbdc7feb898b10000000000000000000000000000000000000000000000000000000000000316"}],"id":7,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:9101
 
 [{"from":"0x1b4906b8140114af27c306280981d5e251f5d072","to":"0x099606ecb05d7e94f88efa700225880297dd55ef","data":"0xa9059cbb0000000000000000000000001d4aa94a86c600dddaac24e57f71622f4e7f229d00000000000000000000000000000000000000000000000000000002540be400"}]}
+
+
+
+curl --data '{"method":"eth_call","params":[{"to":"0x099606ECb05d7E94F88EFa700225880297dD55eF","data":"0x70a082310000000000000000000000004b873bc095dc0d4cEe3997b11e9a815C7307aBC3"}],"id":7,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:9101
 */
 
