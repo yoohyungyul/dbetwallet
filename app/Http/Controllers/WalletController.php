@@ -30,26 +30,30 @@ class WalletController extends Controller
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        $real_to = str_pad(str_replace('0x','',"0xe01c3f87166D035EF915116FD27B48Ae7D3543D7"), 64, '0', STR_PAD_LEFT);
-        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        // 거래 등록
+        // $real_to = str_pad(str_replace('0x','',"0xe01c3f87166D035EF915116FD27B48Ae7D3543D7"), 64, '0', STR_PAD_LEFT);
+        // $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $currencyData->address,
+        //     'to' => $currencyData->contract,
+        //     'data' => $funcs.$real_to.$real_amount,
+        // ]]);
 
 
-        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        // print_R($result);
 
-
-
-        
-        $result = $client->request('eth_sendTransaction', [[
-            'from' => $currencyData->address,
-            'to' => $currencyData->contract,
-            'data' => $funcs.$real_to.$real_amount,
-        ]]);
-
+        // 거래 조회
+        $txid = "0x0c4acb4fb4c5e0dcd995050d7e389267abaac3a4f18e109d627cb490ccfc81da";
+        $s = $client->request('eth_getTransactionReceipt', [$txid]);
+        $result = $client->request('eth_getTransactionByHash', [$txid]);
 
         print_R($result);
 
 
 
+
+        // 잔액 조회
         // $result = $client->request('eth_getBalance', ["0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3", 'latest']);
         // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
         
@@ -73,6 +77,7 @@ class WalletController extends Controller
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+
 
 
         // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
