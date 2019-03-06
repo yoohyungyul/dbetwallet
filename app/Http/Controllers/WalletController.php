@@ -32,7 +32,7 @@ class WalletController extends Controller
         $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-        $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
 
 
         // $result = $this->approve($data->address_from, $data->amount , $currency);
