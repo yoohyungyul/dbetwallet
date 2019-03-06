@@ -30,38 +30,38 @@ class WalletController extends Controller
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        // $real_to = str_pad(str_replace('0x','',"0x1b4906b8140114af27c306280981d5e251f5d072"), 64, '0', STR_PAD_LEFT);
-        // $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        $real_to = str_pad(str_replace('0x','',"0x72331af3cd59ab4394f80fade2cec007c892a836"), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
 
 
 
         
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $currencyData->address,
-        //     'to' => $currencyData->contract,
-        //     'data' => $funcs.$real_to.$real_amount,
-        // ]]);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $currencyData->address,
+            'to' => $currencyData->contract,
+            'data' => $funcs.$real_to.$real_amount,
+        ]]);
 
 
-        // print_R($result);
+        print_R($result);
 
 
 
         // $result = $client->request('eth_getBalance', ["0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3", 'latest']);
         // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
         
-        echo "contact : 0x099606ECb05d7E94F88EFa700225880297dD55eF <br>";
-        echo "address : 0x72331af3cd59ab4394f80fade2cec007c892a836 <br>";
+        // echo "contact : 0x099606ECb05d7E94F88EFa700225880297dD55eF <br>";
+        // echo "address : 0x72331af3cd59ab4394f80fade2cec007c892a836 <br>";
 
 
-        // 토큰 조회
-        $result = $client->request('eth_call', [[ 
-            "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x72331af3cd59ab4394f80fade2cec007c892a836") ]]);
-        echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // // 토큰 조회
+        // $result = $client->request('eth_call', [[ 
+        //     "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x72331af3cd59ab4394f80fade2cec007c892a836") ]]);
+        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         exit;
 
