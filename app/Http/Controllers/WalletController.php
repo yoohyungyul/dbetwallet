@@ -44,7 +44,7 @@ class WalletController extends Controller
         // print_R($result);
 
         // 거래 조회
-        $txid = "0x0c4acb4fb4c5e0dcd995050d7e389267abaac3a4f18e109d627cb490ccfc81da";
+        $txid = "0x12ed175eaabd25edbddc48b2d910b950e47acb9a838cff95f681b180e37104ff";
         $s = $client->request('eth_getTransactionReceipt', [$txid]);
         $result = $client->request('eth_getTransactionByHash', [$txid]);
 
