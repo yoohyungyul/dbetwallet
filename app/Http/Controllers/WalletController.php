@@ -24,6 +24,8 @@ class WalletController extends Controller
 
     public function test() {
 
+        $funcs = "0xa9059cbb";
+
         $currencyData = Currency::where('id', '=', 1)->first();
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
@@ -43,11 +45,11 @@ class WalletController extends Controller
 
 
         
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $currency->address,
-        //     'to' => $currency->contract,
-        //     'data' => $funcs.$real_to.$real_amount,
-        // ]]);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $currencyData->address,
+            'to' => $currencyData->contract,
+            'data' => $funcs.$real_to.$real_amount,
+        ]]);
 
 
         print_R($result);
