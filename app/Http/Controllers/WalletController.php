@@ -24,9 +24,35 @@ class WalletController extends Controller
 
     public function test() {
 
-        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        $currencyData = Currency::where('id', '=', 1)->first();
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+        $real_to = str_pad(str_replace('0x','',"0x1b4906b8140114af27c306280981d5e251f5d072"), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+
+
+        $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
+
+
+        // $result = $this->approve($data->address_from, $data->amount , $currency);
+
+        // print_R($result);
+
+        // exit;
+
+
+        
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $currency->address,
+        //     'to' => $currency->contract,
+        //     'data' => $funcs.$real_to.$real_amount,
+        // ]]);
+
+
+        print_R($result);
+
+
 
         // $result = $client->request('eth_getBalance', ["0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3", 'latest']);
         // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
@@ -35,10 +61,10 @@ class WalletController extends Controller
 
 
         // 토큰 조회
-        $result = $client->request('eth_call', [[ 
-            "to" => "0xa9101720Da24B197589C8eaAF622e813DbF4f8c5", 
-            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x08df3c7eca32fc68504c2f4f19fb65c4922edf39") ]]);
-        echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // $result = $client->request('eth_call', [[ 
+        //     "to" => "0xa9101720Da24B197589C8eaAF622e813DbF4f8c5", 
+        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x08df3c7eca32fc68504c2f4f19fb65c4922edf39") ]]);
+        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         exit;
 
