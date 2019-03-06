@@ -60,7 +60,7 @@ class WalletController extends Controller
         // 토큰 조회
         $result = $client->request('eth_call', [[ 
             "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-            "data" => "0x70a08231" . str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x1b4906b8140114af27c306280981d5e251f5d072") ]]);
         echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         exit;
