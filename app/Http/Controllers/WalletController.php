@@ -47,10 +47,10 @@ class WalletController extends Controller
 
 
 
-        $result = $client->request('eth_blockNumber');
-      $max = hexdec($result->result);
-        echo $max;
-        exit;
+        // $result = $client->request('eth_blockNumber');
+        // $max = hexdec($result->result);
+        // echo $max;
+        // exit;
         
 
         // 싱크 조회
@@ -89,15 +89,15 @@ class WalletController extends Controller
         // $result = $client->request('eth_getBalance', ["0x4b873bc095dc0d4cEe3997b11e9a815C7307aBC3", 'latest']);
         // echo "이더 : ".hexdec($result->result)/pow(10,18)."<br>";
         
-        // echo "contact : 0x099606ECb05d7E94F88EFa700225880297dD55eF <br>";
-        // echo "address : 0x72331af3cd59ab4394f80fade2cec007c892a836 <br>";
+        echo "contact : 0x099606ECb05d7E94F88EFa700225880297dD55eF <br>";
+        echo "address : 0x72331af3cd59ab4394f80fade2cec007c892a836 <br>";
 
 
-        // // 토큰 조회
-        // $result = $client->request('eth_call', [[ 
-        //     "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xe01c3f87166D035EF915116FD27B48Ae7D3543D7") ]]);
-        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xe01c3f87166D035EF915116FD27B48Ae7D3543D7") ]]);
+        echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         exit;
 
