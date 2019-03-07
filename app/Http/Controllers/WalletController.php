@@ -31,10 +31,6 @@ class WalletController extends Controller
         $amount = "1000";
         
 
-
-        // 
-
-
         $currencyData = Currency::where('id', '=', 1)->first();
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
@@ -46,14 +42,14 @@ class WalletController extends Controller
 
         $result1 = $client->request('personal_unlockAccount', [$spender, $currencyData->reg_password, '0x0a']);
 
-        print_R($result1);
+        // print_R($result1);
 
-        // if (isset($result1->error)) 
-        // {
-        //     $resultVal->message = $result1->error->message;
-        //     $resultVal->flag = false;
-        //     return $resultVal; 
-        // }   
+        if (isset($result1->error)) 
+        {
+            $resultVal->message = $result1->error->message;
+            $resultVal->flag = false;
+            return $resultVal; 
+        }   
 
         // $result = $client->request('eth_sendTransaction', [[
         //     'from' => $spender,
