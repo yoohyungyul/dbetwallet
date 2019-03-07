@@ -63,8 +63,8 @@ class WalletConfirm extends Command {
                     $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
                   
-                    if ($result->result != '' && $s->result->status != '0') {
-                    // if(is_object($result)) {
+                    // if ($result->result != '' && $s->result->status != '0') {
+                    if(is_object($result)) {
         
                         if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
 
