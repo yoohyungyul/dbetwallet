@@ -62,7 +62,8 @@ class WalletConfirm extends Command {
                     $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                     $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
-                    // print_R($result);
+                    print_R($result);
+                    exit;
 
                     // if ($result->result != '' && $s->result->status != '0') {
                     if(is_object($result)) {
@@ -146,7 +147,7 @@ class WalletConfirm extends Command {
                     }
                 
                 } catch(\Exception $e) {
-                    echo $e;
+                    echo " No RPC!";
                 }
 
                 echo "\n";
