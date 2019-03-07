@@ -68,17 +68,15 @@ class WalletController extends Controller
         
 
         // 거래 등록
-        // $real_to = str_pad(str_replace('0x','',"0xe01c3f87166D035EF915116FD27B48Ae7D3543D7"), 64, '0', STR_PAD_LEFT);
-        // $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $currencyData->address,
-        //     'to' => $currencyData->contract,
-        //     'data' => $funcs.$real_to.$real_amount,
-        // ]]);
-
-
-        // print_R($result);
+        $real_to = str_pad(str_replace('0x','',"0xe01c3f87166D035EF915116FD27B48Ae7D3543D7"), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $currencyData->address,
+            'to' => $currencyData->contract,
+            'data' => $funcs.$real_to.$real_amount,
+        ]]);
+        print_R($result);
 
 
 
