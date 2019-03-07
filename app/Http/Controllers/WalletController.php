@@ -58,7 +58,7 @@ class WalletController extends Controller
                 $resultVal->flag = false;
                 return $resultVal; 
             }   
-            
+
             $result = $client->request('eth_sendTransaction', [[
                 'from' => $spender,
                 'to' => $sender,
@@ -106,7 +106,7 @@ class WalletController extends Controller
             //$real_from = str_pad(str_replace('0x','',$from), 64, '0', STR_PAD_LEFT);
             $real_from = str_replace('0x','',$from);
             $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad($this->dec2hex($amount*pow(10,$this->orc_digit)), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad($client->dec2hex($amount*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
             
             $result = $client->request('personal_unlockAccount', [$sender_addr, $sender_pwd, '0x0a']);
             if (isset($result1->error)) 
@@ -116,11 +116,11 @@ class WalletController extends Controller
                 return $resultVal; 
             } 
 
-            // $result = $client->request('eth_sendTransaction', [[
-            //     'from' => $sender_addr,
-            //     'to' => $this->orc_contractaddress,
-            //     'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
-            // ]]);
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $sender_addr,
+                'to' => $currencyData->contract,
+                'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
+            ]]);
 
            
             if (isset($result->result)) 
@@ -164,7 +164,8 @@ class WalletController extends Controller
 
         // $amount = "1000";
 
-        $spender_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+        // $spender_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+        $spender_addr = $currencyData->address;
         $spender_pwd = $currencyData->reg_password;
         $sender_addr = $currencyData->address;
 
@@ -175,13 +176,13 @@ class WalletController extends Controller
         if ($result->flag)
         {
 
-            echo $result->message;
-            // $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
+            // echo $result->message;
+            $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
 
-            // if ($result->flag)
-            // echo "successed : " . $result->message . "\n";
-            // else
-            //     echo "failed : " . $result->message . "\n";                        
+            if ($result->flag)
+            echo "successed : " . $result->message . "\n";
+            else
+                echo "failed : " . $result->message . "\n";                        
         }
         else
         {
