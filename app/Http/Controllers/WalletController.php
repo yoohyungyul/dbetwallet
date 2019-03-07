@@ -25,6 +25,7 @@ class WalletController extends Controller
     public function test() {
 
         $funcs = "0xa9059cbb";
+        $hex_approved = "0x095ea7b3";
 
         $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
 
@@ -51,13 +52,13 @@ class WalletController extends Controller
             return $resultVal; 
         }   
 
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $spender,
-        //     'to' => $currency->address,
-        //     'data' => $this->hex_approved . $real_to . $real_amount,
-        // ]]);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $spender,
+            'to' => $currencyData->address,
+            'data' => $hex_approved . $real_to . $real_amount,
+        ]]);
 
-        // print_r($result);
+        print_r($result);
 
 
 
