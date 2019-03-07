@@ -31,10 +31,10 @@ class WalletController extends Controller
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
 
-        $result = $client->request('eth_blockNumber');
-      $max = hexdec($result->result);
-        echo $max;
-        exit;
+    //     $result = $client->request('eth_blockNumber');
+    //   $max = hexdec($result->result);
+    //     echo $max;
+    //     exit;
         
 
         $result = $client->request('eth_syncing');
