@@ -24,15 +24,22 @@ class WalletController extends Controller
 
     public function test() {
 
+        
+        
+
+        $currencyData = Currency::where('id', '=', 1)->first();
+
+
         $funcs = "0xa9059cbb";
         $hex_approved = "0x095ea7b3";
 
         $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
 
-        $amount = "1000";
-        
+        $spender = $currencyData->address;
 
-        $currencyData = Currency::where('id', '=', 1)->first();
+        $amount = "1000";
+
+
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
