@@ -162,12 +162,16 @@ class WalletController extends Controller
 
         // $spender = $currencyData->address;
 
-        // $amount = "1000";
+        $amount = "1000";
 
         // $spender_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
         $spender_addr = $currencyData->address;
         $spender_pwd = $currencyData->reg_password;
         $sender_addr = $currencyData->address;
+
+        $sender_pwd = $currencyData->reg_password;
+
+        $receiver_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
 
         
 
