@@ -65,7 +65,8 @@ class WalletController extends Controller
                 'data' => $this->hex_approved . $real_to . $real_amount,
             ]]);
 
-            print_R($result);
+            //print_R($result);
+            exit;
 
             $resultVal->message = "--";
             $resultVal->flag = true;
