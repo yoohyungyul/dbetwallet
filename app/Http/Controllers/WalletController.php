@@ -47,7 +47,7 @@ class WalletController extends Controller
 
 
             $resultVal->message = "--";
-                $resultVal->flag = false;
+            $resultVal->flag = true;
 
 
             
