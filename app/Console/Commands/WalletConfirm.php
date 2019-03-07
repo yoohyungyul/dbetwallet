@@ -146,7 +146,7 @@ class WalletConfirm extends Command {
                     }
                 
                 } catch(\Exception $e) {
-                    echo " No RPC!";
+                    echo $e;
                 }
 
                 echo "\n";
