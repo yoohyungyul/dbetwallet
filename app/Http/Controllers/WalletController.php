@@ -30,27 +30,27 @@ class WalletController extends Controller
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        print_R($client);
-        exit;
+        // print_R($client);
+        // exit;
 
 
         // 거래 조회
-        $txid = "0xa222d31b2ead8ddfbf1fc871bad53022261c1703b7c1542d10f5fe797d9ce07a";
-        $s = $client->request('eth_getTransactionReceipt', [$txid]);
-        $result = $client->request('eth_getTransactionByHash', [$txid]);
+        // $txid = "0xa222d31b2ead8ddfbf1fc871bad53022261c1703b7c1542d10f5fe797d9ce07a";
+        // $s = $client->request('eth_getTransactionReceipt', [$txid]);
+        // $result = $client->request('eth_getTransactionByHash', [$txid]);
 
         // echo "blockNumber : ".$result->result->blockNumber."<br>";
-        print_R($result);
+        // print_R($result);
 
+        // exit;
+
+
+
+
+        $result = $client->request('eth_blockNumber');
+      $max = hexdec($result->result);
+        echo $max;
         exit;
-
-
-
-
-    //     $result = $client->request('eth_blockNumber');
-    //   $max = hexdec($result->result);
-    //     echo $max;
-    //     exit;
         
 
         // 싱크 조회
