@@ -26,13 +26,13 @@ class WalletController extends Controller
 
         $funcs = "0xa9059cbb";
 
-        $spender = "0x1b4906b8140114af27c306280981d5e251f5d072";
+        $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
 
         $amount = "1000";
         
 
 
-        // 0x72331af3cd59ab4394f80fade2cec007c892a836
+        // 
 
 
         $currencyData = Currency::where('id', '=', 1)->first();
