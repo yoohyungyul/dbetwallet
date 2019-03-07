@@ -57,7 +57,9 @@ class WalletController extends Controller
                 $resultVal->message = $result1->error->message;
                 $resultVal->flag = false;
                 return $resultVal; 
-            }     
+            }   
+            
+            exit;
             
             $result = $client->request('eth_sendTransaction', [[
                 'from' => $spender,
@@ -66,7 +68,7 @@ class WalletController extends Controller
             ]]);
 
             //print_R($result);
-            exit;
+            
 
             $resultVal->message = "--";
             $resultVal->flag = true;
