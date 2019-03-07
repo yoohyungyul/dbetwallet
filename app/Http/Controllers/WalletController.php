@@ -26,9 +26,45 @@ class WalletController extends Controller
 
         $funcs = "0xa9059cbb";
 
+        $spender = "0x1b4906b8140114af27c306280981d5e251f5d072";
+        
+
+
+        // 0x72331af3cd59ab4394f80fade2cec007c892a836
+
+
         $currencyData = Currency::where('id', '=', 1)->first();
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+        $real_to = str_replace('0x','',$currencyData->address);
+        $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        // $real_amount2 = str_pad($client->dec2hex($amount * pow(10,$currency->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+
+
+        $result1 = $client->request('personal_unlockAccount', [$spender, $currencyData->reg_password, '0x0a']);
+
+        print_R($result1);
+
+        // if (isset($result1->error)) 
+        // {
+        //     $resultVal->message = $result1->error->message;
+        //     $resultVal->flag = false;
+        //     return $resultVal; 
+        // }   
+
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $spender,
+        //     'to' => $currency->address,
+        //     'data' => $this->hex_approved . $real_to . $real_amount,
+        // ]]);
+
+        // print_r($result);
+
+
+
+
+        // from 거래 테스트
 
         // print_R($client);
         // exit;
