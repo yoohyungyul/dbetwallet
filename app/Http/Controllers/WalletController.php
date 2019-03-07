@@ -68,24 +68,17 @@ class WalletController extends Controller
                 'data' => $this->hex_approved . $real_to . $real_amount,
             ]]);
 
-            $resultVal->message = "--";
-            $resultVal->flag = true;
-
-
-
-
-
-            // //print_r($result);
-            // if (isset($result->result)) 
-            // {
-            //     $resultVal->message = $result->result;
-            //     $resultVal->flag = true;
-            // } 
-            // else if (isset($result->error)) 
-            // {
-            //     $resultVal->message = $result->error->message;
-            //     $resultVal->flag = false;
-            // }           
+            //print_r($result);
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+                $resultVal->flag = false;
+            }           
         }
         catch(\Exception $e) 
         {
