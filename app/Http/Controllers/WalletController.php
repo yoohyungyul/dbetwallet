@@ -108,7 +108,7 @@ class WalletController extends Controller
             $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
             $real_amount = str_pad($client->dec2hex($amount*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
             
-            $result = $client->request('personal_unlockAccount', [$sender_addr, $sender_pwd, '0x0a']);
+            $result = $client->request('personal_unlockAccount', [$sender_addr, $currencyData->reg_password, '0x0a']);
             if (isset($result1->error)) 
             {
                 $resultVal->message = $result1->error->message;
