@@ -53,7 +53,7 @@ class WalletConfirm extends Command {
             $client = new jsonRPCClient($currency->ip, $currency->port);
             
             // 보내기 루프 
-            $history = TransactionHistory::where('txid','!=','')->where('type','1')->where('state','0')->orderBy('id','asc')->get();
+            $history = TransactionHistory::where('txid','!=','')->where('currency_id',env('CURRENCY_ID', '1'))->where('type','1')->where('state','0')->orderBy('id','asc')->get();
             foreach ($history as $history) {
             
             
