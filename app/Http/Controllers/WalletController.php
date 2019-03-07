@@ -34,12 +34,14 @@ class WalletController extends Controller
         // $result = $client->request('eth_blockNumber');
         $result = $client->request('eth_syncing');
 
+        print_R($result);
+
         echo hexdec($result->result->currentBlock)."<br>";
         echo hexdec($result->result->highestBlock)."<br>";
         echo hexdec($result->result->startingBlock)."<br>";
         
         
-        print_R($result);
+        
 
         // $max = hexdec($result->result);
         // echo $max;
