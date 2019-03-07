@@ -20,6 +20,129 @@ use Carbon\Carbon;
 
 class WalletController extends Controller
 {
+
+
+    protected $funcs                      = "0xa9059cbb";
+    protected $hex_approved               = "0x095ea7b3";
+    protected $hex_transferFrom           = '0x23b872dd';
+    // $hex_transferFrom           = '0x23b872dd000000000000000000000000';
+
+
+
+
+    function orc_approve($spender, $passwd, $sender)
+    {
+
+        $currencyData = Currency::where('id', '=', 1)->first();
+
+
+        $resultVal = (object) [
+            'message' => "",
+            'flag' => false
+        ];  
+
+        try 
+        {
+            $client = new jsonRPCClient($currencyData->ip, $currencyData->port); 
+
+            //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
+            $real_to = str_replace('0x','',$sender);
+            $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$this->orc_digit) * 10000000), 64, '0', STR_PAD_LEFT);
+            
+            $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
+            //print_r($result);
+            if (isset($result1->error)) 
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;
+                return $resultVal; 
+            }            
+
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $spender,
+                'to' => $sender,
+                'data' => $this->hex_approved . $real_to . $real_amount,
+            ]]);
+
+            //print_r($result);
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+                $resultVal->flag = false;
+            }           
+        }
+        catch(\Exception $e) 
+        {
+            $resultVal->message = "RPC Server Error";
+            $resultVal->flag = false;
+        }
+
+        return $resultVal;        
+    }
+
+
+
+
+    function orc_transferfrom($sender_addr, $sender_pwd, $from, $to, $amount)
+    {
+
+        $currencyData = Currency::where('id', '=', 1)->first();
+
+
+        $resultVal = (object) [
+            'message' => "",
+            'flag' => false
+        ];  
+
+        try 
+        {
+            $client = new jsonRPCClient($currencyData->ip, $currencyData->port);         
+
+            //$real_from = str_pad(str_replace('0x','',$from), 64, '0', STR_PAD_LEFT);
+            $real_from = str_replace('0x','',$from);
+            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+            $real_amount = str_pad($this->dec2hex($amount*pow(10,$this->orc_digit)), 64, '0', STR_PAD_LEFT);
+            
+            $result = $client->request('personal_unlockAccount', [$sender_addr, $sender_pwd, '0x0a']);
+            if (isset($result1->error)) 
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;
+                return $resultVal; 
+            } 
+
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $sender_addr,
+                'to' => $this->orc_contractaddress,
+                'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
+            ]]);
+
+            //print_r($result);
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+                $resultVal->flag = false;
+            }           
+        }
+        catch(\Exception $e) 
+        {
+            $resultVal->message = "RPC Server Error";
+            $resultVal->flag = false;
+        }
+
+        return $resultVal;               
+    }
+
    
 
     public function test() {
@@ -30,43 +153,114 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', 1)->first();
 
 
-        $funcs = "0xa9059cbb";
-        $hex_approved = "0x095ea7b3";
+       
 
-        $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+
+
+        // $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
         
 
-        $spender = $currencyData->address;
+        // $spender = $currencyData->address;
 
-        $amount = "1000";
+        // $amount = "1000";
 
-
-
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
-
-        $real_to = str_replace('0x','',$currencyData->address);
-        $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-        // $real_amount2 = str_pad($client->dec2hex($amount * pow(10,$currency->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+        $spender_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+        $spender_pwd = $currencyData->reg_password;
+        $sender_addr = $currencyData->address;
 
 
-        $result1 = $client->request('personal_unlockAccount', [$spender, $currencyData->reg_password, '0x0a']);
-
-        // print_R($result1);
-
-        if (isset($result1->error)) 
+        $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
+        if ($result->flag)
         {
-            $resultVal->message = $result1->error->message;
-            $resultVal->flag = false;
-            return $resultVal; 
-        }   
 
-        $result = $client->request('eth_sendTransaction222', [[
-            'from' => $spender,
-            'to' => $currencyData->address,
-            'data' => $hex_approved . $real_to . $real_amount,
-        ]]);
+            echo "1";
+            // $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
 
-        print_r($result);
+            // if ($result->flag)
+            // echo "successed : " . $result->message . "\n";
+            // else
+            //     echo "failed : " . $result->message . "\n";                        
+        }
+        else
+        {
+            echo "error : " . $result->message . "\n";
+        }
+
+
+
+
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+        // $real_to = str_replace('0x','',$currencyData->address);
+        // $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        // // $real_amount2 = str_pad($client->dec2hex($amount * pow(10,$currency->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+
+
+        // $result1 = $client->request('personal_unlockAccount', [$spender, $currencyData->reg_password, '0x0a']);
+
+        // // print_R($result1);
+
+        // if (isset($result1->error)) 
+        // {
+        //     $resultVal->message = $result1->error->message;
+        //     $resultVal->flag = false;
+        //     return $resultVal; 
+        // }   
+
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $spender,
+        //     'to' => $currencyData->address,
+        //     'data' => $hex_approved . $real_to . $real_amount,
+        // ]]);
+
+        // // print_r($result);
+
+        // // 성공하면
+
+        // $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
+
+
+        // function orc_transferfrom($sender_addr, $sender_pwd, $from, $to, $amount)
+    
+
+
+
+
+
+
+        // $real_from = str_replace('0x','',$from);
+        // $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
+        // $real_amount = str_pad($this->dec2hex($amount*pow(10,$this->orc_digit)), 64, '0', STR_PAD_LEFT);
+        
+        // $result = $client->request('personal_unlockAccount', [$sender_addr, $sender_pwd, '0x0a']);
+        // if (isset($result1->error)) 
+        // {
+        //     $resultVal->message = $result1->error->message;
+        //     $resultVal->flag = false;
+        //     return $resultVal; 
+        // } 
+
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $sender_addr,
+        //     'to' => $this->orc_contractaddress,
+        //     'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
+        // ]]);
+
+        // //print_r($result);
+        // if (isset($result->result)) 
+        // {
+        //     $resultVal->message = $result->result;
+        //     $resultVal->flag = true;
+        // } 
+        // else if (isset($result->error)) 
+        // {
+        //     $resultVal->message = $result->error->message;
+        //     $resultVal->flag = false;
+        // }   
+
+
+
+
 
 
 
