@@ -62,11 +62,9 @@ class WalletConfirm extends Command {
                     $s = $client->request('eth_getTransactionReceipt', [$history->txid]);
                     $result = $client->request('eth_getTransactionByHash', [$history->txid]);
 
-                    echo is_object($result);
-                    exit;
-
-                    // if ($result->result != '' && $s->result->status != '0') {
-                    if(is_object($result)) {
+                  
+                    if ($result->result != '' && $s->result->status != '0') {
+                    // if(is_object($result)) {
         
                         if ($result->result->blockNumber != null && $result->result->blockNumber != '') {
 
