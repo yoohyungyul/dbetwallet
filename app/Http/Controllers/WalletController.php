@@ -30,6 +30,9 @@ class WalletController extends Controller
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
+        print_R($client);
+        exit;
+
 
         // 거래 조회
         $txid = "0xa222d31b2ead8ddfbf1fc871bad53022261c1703b7c1542d10f5fe797d9ce07a";
