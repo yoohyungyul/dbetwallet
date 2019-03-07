@@ -59,6 +59,8 @@ class WalletController extends Controller
                 return $resultVal; 
             }     
             
+
+            print_R($result1);
             
             $resultVal->message = "--";
             $resultVal->flag = true;
