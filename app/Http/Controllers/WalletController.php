@@ -34,6 +34,7 @@ class WalletController extends Controller
         $hex_approved = "0x095ea7b3";
 
         $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+        
 
         $spender = $currencyData->address;
 
@@ -59,7 +60,7 @@ class WalletController extends Controller
             return $resultVal; 
         }   
 
-        $result = $client->request('eth_sendTransaction', [[
+        $result = $client->request('eth_sendTransaction222', [[
             'from' => $spender,
             'to' => $currencyData->address,
             'data' => $hex_approved . $real_to . $real_amount,
