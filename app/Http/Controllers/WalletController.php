@@ -172,8 +172,7 @@ class WalletController extends Controller
         $spender_pwd = $currencyData->reg_password;
         $sender_addr = $currencyData->address;
 
-
-        exit;
+        
 
 
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
