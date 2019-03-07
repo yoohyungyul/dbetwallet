@@ -32,7 +32,7 @@ class WalletController extends Controller
 
 
         // 거래 조회
-        $txid = "0xe068793f403b4d5469e34276adb2ec8426a60097324230d41aadf11e15078716";
+        $txid = "0xa222d31b2ead8ddfbf1fc871bad53022261c1703b7c1542d10f5fe797d9ce07a";
         $s = $client->request('eth_getTransactionReceipt', [$txid]);
         $result = $client->request('eth_getTransactionByHash', [$txid]);
 
