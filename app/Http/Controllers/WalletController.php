@@ -32,14 +32,14 @@ class WalletController extends Controller
 
 
                 // 거래 조회
-        $txid = "0x12ed175eaabd25edbddc48b2d910b950e47acb9a838cff95f681b180e37104ff";
-        $s = $client->request('eth_getTransactionReceipt', [$txid]);
-        $result = $client->request('eth_getTransactionByHash', [$txid]);
+        // $txid = "0x12ed175eaabd25edbddc48b2d910b950e47acb9a838cff95f681b180e37104ff";
+        // $s = $client->request('eth_getTransactionReceipt', [$txid]);
+        // $result = $client->request('eth_getTransactionByHash', [$txid]);
 
-        echo "blockNumber : ".$result->result->blockNumber."<br>";
-        print_R($result);
+        // echo "blockNumber : ".$result->result->blockNumber."<br>";
+        // print_R($result);
 
-        exit;
+        // exit;
 
 
 
