@@ -126,9 +126,7 @@ class WalletController extends Controller
             //     'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
             // ]]);
 
-            print_r($result);
-
-            exit;
+           
             if (isset($result->result)) 
             {
                 $resultVal->message = $result->result;
