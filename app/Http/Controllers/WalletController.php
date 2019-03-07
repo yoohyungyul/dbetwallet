@@ -46,14 +46,19 @@ class WalletController extends Controller
             $client = new jsonRPCClient($currencyData->ip, $currencyData->port); 
 
 
+            
+
+
+            //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
+            $real_to = str_replace('0x','',$sender);
+            $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+
+
             $resultVal->message = "--";
             $resultVal->flag = true;
 
 
 
-            // //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
-            // $real_to = str_replace('0x','',$sender);
-            // $real_amount = str_pad($this->dec2hex($this->orc_totalbalance * pow(10,$this->orc_digit) * 10000000), 64, '0', STR_PAD_LEFT);
             
             // $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
             // //print_r($result);
