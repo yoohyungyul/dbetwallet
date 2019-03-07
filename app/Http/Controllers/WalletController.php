@@ -36,7 +36,7 @@ class WalletController extends Controller
         $s = $client->request('eth_getTransactionReceipt', [$txid]);
         $result = $client->request('eth_getTransactionByHash', [$txid]);
 
-        echo "blockNumber : ".$result->result->blockNumber."<br>";
+        // echo "blockNumber : ".$result->result->blockNumber."<br>";
         print_R($result);
 
         exit;
