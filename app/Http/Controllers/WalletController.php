@@ -27,6 +27,8 @@ class WalletController extends Controller
         $funcs = "0xa9059cbb";
 
         $spender = "0x1b4906b8140114af27c306280981d5e251f5d072";
+
+        $amount = "1000";
         
 
 
