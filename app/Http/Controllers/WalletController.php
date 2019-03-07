@@ -59,8 +59,6 @@ class WalletController extends Controller
                 return $resultVal; 
             }   
             
-            exit;
-            
             $result = $client->request('eth_sendTransaction', [[
                 'from' => $spender,
                 'to' => $sender,
