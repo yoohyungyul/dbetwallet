@@ -157,7 +157,7 @@ class Google2FAController extends Controller
             }
 
 
-            $name = "chaninplus";
+            $name = "chainplus";
             $value = $user->wallet_code;
             $minutes = time()+60*60*24*365;
 
