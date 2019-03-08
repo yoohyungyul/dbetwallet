@@ -68,7 +68,7 @@ class MyCurrency
                 // 없을 경우
                 } else {
                     // 쿠키 초기화 하고 회원등록 화면으로 이동
-                    Session::forget('chaninplus');
+                    Cookie::forget('chaninplus');
                     return redirect("/register");
                 }
             }
