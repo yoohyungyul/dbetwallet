@@ -152,24 +152,6 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', '=', 1)->first();
 
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);         
-
-
-
-        // 거래 등록
-        $real_to = str_pad(str_replace('0x','',"0x4b873bc095dc0d4cee3997b11e9a815c7307abc3"), 64, '0', STR_PAD_LEFT);
-        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
-        $result = $client->request('eth_sendTransaction', [[
-            'from' => $currencyData->address,
-            'to' => $currencyData->contract,
-            'data' => $this->funcs.$real_to.$real_amount,
-        ]]);
-        print_R($result);
-
-        exit;
-
-        
 
 
        
@@ -181,10 +163,10 @@ class WalletController extends Controller
 
         // $spender = $currencyData->address;
 
-        /*
+    
         $amount = "1000";
 
-        $spender_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+        $spender_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
         // $spender_addr = $currencyData->address;
         $spender_pwd = $currencyData->reg_password;
         $sender_addr = $currencyData->address;
@@ -193,12 +175,8 @@ class WalletController extends Controller
 
         $receiver_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
 
-        
-
-
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
-        print_R($result);
-        exit;
+
         if ($result->flag)
         {
 
@@ -214,9 +192,6 @@ class WalletController extends Controller
         {
             echo "error : " . $result->message . "\n";
         }
-
-        */
-
 
 
 
@@ -333,7 +308,25 @@ class WalletController extends Controller
         
         
 
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);         
+
+
+
+        // // 거래 등록
+        // $real_to = str_pad(str_replace('0x','',"0x4b873bc095dc0d4cee3997b11e9a815c7307abc3"), 64, '0', STR_PAD_LEFT);
+        // $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $currencyData->address,
+        //     'to' => $currencyData->contract,
+        //     'data' => $this->funcs.$real_to.$real_amount,
+        // ]]);
+        // print_R($result);
+
+        // exit;
+
         
+
 
 
 
