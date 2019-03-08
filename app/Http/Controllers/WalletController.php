@@ -358,6 +358,8 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
+        exit;
+
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
