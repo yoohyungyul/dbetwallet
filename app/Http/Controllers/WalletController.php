@@ -359,11 +359,11 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
         
-        // $test = Cookie::forget('chainplus');
+        Cookie::forget('chainplus');
         // echo $test;
         
-        // echo Cookie::get('chainplus')."_";
-        // exit;
+        echo Cookie::get('chainplus')."_";
+        exit;
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
