@@ -15,6 +15,7 @@ use App\TransactionHistory;
 use Validator;
 use Cache;
 use Session;
+use Cookie;
 use Google2FA;
 use Carbon\Carbon;
 
