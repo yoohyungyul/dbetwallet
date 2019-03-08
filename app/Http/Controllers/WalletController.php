@@ -362,7 +362,7 @@ class WalletController extends Controller
         
         Cookie::forget('chaninplus');
        
-        echo Cookie::get('chaninplus')."_";
+        echo Cookie::get('chaninplus1')."_";
         exit;
 
 
