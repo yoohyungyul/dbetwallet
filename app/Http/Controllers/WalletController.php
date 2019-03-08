@@ -360,8 +360,10 @@ class WalletController extends Controller
     public function getWallet() {
 
 
-
-        Cookie::queue('chaninplus', null, -1);
+        Cookie::queue(
+            Cookie::forget('chaninplus')
+        );
+       
         echo Cookie::get('chaninplus')."_";
         exit;
 
@@ -369,11 +371,7 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
-        if(!$walletData) {
-            Cookie::forget('chaninplus');
-            return redirect("/register");
 
-        }
 
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
