@@ -363,16 +363,11 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
-        echo env('CURRENCY_ID', '1')."<br>";
-        echo Cookie::get('chaninplus');
-        // print_R($walletData);
-        
-        exit;
-        // if(!$walletData) {
-        //     Session::forget('chaninplus');
-        //     return redirect("/register");
+        if(!$walletData) {
+            Cookie::forget('chaninplus');
+            return redirect("/register");
 
-        // }
+        }
 
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
