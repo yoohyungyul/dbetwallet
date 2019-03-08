@@ -179,23 +179,22 @@ class WalletController extends Controller
 
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
-        /*
+
         if ($result->flag)
         {
 
-            // echo $result->message;
-            $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
+            echo $result->message;
+            // $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
 
-            if ($result->flag)
-            echo "successed : " . $result->message . "\n";
-            else
-                echo "failed : " . $result->message . "\n";                        
+            // if ($result->flag)
+            // echo "successed : " . $result->message . "\n";
+            // else
+            //     echo "failed : " . $result->message . "\n";                        
         }
         else
         {
             echo "error : " . $result->message . "\n";
         }
-        */
 
 
 
