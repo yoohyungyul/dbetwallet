@@ -359,7 +359,8 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        Cookie::forget('chaninplus');
+
+        Cookie::queue('chaninplus', '', time()+60*60*24*365);
         echo Cookie::get('chaninplus');
         exit;
 
