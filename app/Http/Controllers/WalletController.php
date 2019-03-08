@@ -23,8 +23,8 @@ class WalletController extends Controller
 
     protected $orc_totalbalance           = 1000000000;
     protected $funcs                      = "0xa9059cbb";
-    protected $hex_approved               = "0x095ea7b3000000000000000000000000";
-    protected $hex_transferFrom           = '0x23b872dd000000000000000000000000';
+    protected $hex_approved               = "0x095ea7b3";
+    protected $hex_transferFrom           = "0x23b872dd";
     // $hex_transferFrom           = '0x23b872dd000000000000000000000000';
 
 
@@ -173,7 +173,7 @@ class WalletController extends Controller
 
         $sender_pwd = $currencyData->reg_password;
 
-        $receiver_addr = "0x72331af3cd59ab4394f80fade2cec007c892a836";
+        $receiver_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
 
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
