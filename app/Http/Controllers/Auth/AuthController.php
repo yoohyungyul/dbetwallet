@@ -71,9 +71,8 @@ class AuthController extends Controller
     {
         
        
-        
         // // 쿠키 생성 
-        $name = "chaninplus";
+        $name = "chainplus";
         $value = uniqid('chainplus_',true);
         $minutes = time()+60*60*24*365;;
 

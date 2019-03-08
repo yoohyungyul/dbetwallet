@@ -48,12 +48,12 @@ class MyCurrency
 
 
         // 쿠키 체크 있으면
-        if(Cookie::get('chaninplus')) {
+        if(Cookie::get('chainplus')) {
 
 
             if(!Request::is("2fa/*") ){
                 // 쿠키로 회원 정보 가져오기
-                $userDB = User::where('wallet_code',cookie::get('chaninplus'))->first();
+                $userDB = User::where('wallet_code',cookie::get('chainplus'))->first();
 
                 // 회원 정보가 있을 경우 
                 if($userDB) {
@@ -68,7 +68,7 @@ class MyCurrency
                 // 없을 경우
                 } else {
                     // 쿠키 초기화 하고 회원등록 화면으로 이동
-                    Cookie::forget('chaninplus');
+                    Cookie::forget('chainplus');
                     return redirect("/register");
                 }
             }

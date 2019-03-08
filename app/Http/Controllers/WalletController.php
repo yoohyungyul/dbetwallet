@@ -359,10 +359,10 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
         
-        $test = Cookie::forget('chaninplus');
+        $test = Cookie::forget('chainplus');
         echo $test;
         
-        echo Cookie::get('chaninplus')."_";
+        echo Cookie::get('chainplus')."_";
         exit;
 
 
