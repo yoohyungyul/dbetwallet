@@ -371,8 +371,8 @@ class WalletController extends Controller
 
 
         if(!$walletData) {
-            echo "!";
-            exit;
+            Auth::logout();
+            return redirect("/register");
         }
 
 
