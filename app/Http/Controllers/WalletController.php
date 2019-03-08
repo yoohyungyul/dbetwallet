@@ -359,13 +359,13 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
 
-        echo Cookie::get('chaninplus')."_";
-        Cookie::queue(
-            Cookie::forget('chaninplus')
-        );
+        // echo Cookie::get('chaninplus')."_";
+        // Cookie::queue(
+        //     Cookie::forget('chaninplus')
+        // );
        
-        echo Cookie::get('chaninplus')."_";
-        exit;
+        // echo Cookie::get('chaninplus')."_";
+        // exit;
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
