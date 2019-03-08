@@ -68,7 +68,7 @@ class MyCurrency
                 // 없을 경우
                 } else {
                     // 쿠키 초기화 하고 회원등록 화면으로 이동
-                    Cookie::forget('chainplus');
+                    Auth::logout();
                     return redirect("/register");
                 }
             }
@@ -78,6 +78,7 @@ class MyCurrency
 
         // 없으면 회원가입창으로 
         } else {
+            Auth::logout();
             return redirect("/register");
 
         }
