@@ -386,7 +386,7 @@ class WalletController extends Controller
 
         if(!$walletData) {
             Session::forget('chaninplus');
-            return redirect("/");
+            return redirect("/register");
 
         }
 
