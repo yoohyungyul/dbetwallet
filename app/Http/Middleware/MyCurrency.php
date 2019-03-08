@@ -43,8 +43,8 @@ class MyCurrency
 
         // $cookie = Cookie::forget('chaninplus');
 
-        echo Cookie::get('chainplus');
-        exit;
+        // echo Cookie::get('chainplus');
+        // exit;
 
 
         // 쿠키 체크 있으면
