@@ -363,7 +363,8 @@ class WalletController extends Controller
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         print_R($walletData);
-
+        
+        exit;
         // if(!$walletData) {
         //     Session::forget('chaninplus');
         //     return redirect("/register");
