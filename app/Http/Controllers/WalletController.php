@@ -360,6 +360,10 @@ class WalletController extends Controller
     public function getWallet() {
 
 
+        echo Cookie::get('chaninplus');
+        exit;
+
+
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
