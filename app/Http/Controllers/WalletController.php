@@ -177,6 +177,7 @@ class WalletController extends Controller
 
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
+        /*
         if ($result->flag)
         {
 
@@ -192,6 +193,7 @@ class WalletController extends Controller
         {
             echo "error : " . $result->message . "\n";
         }
+        */
 
 
 
@@ -379,6 +381,14 @@ class WalletController extends Controller
 
         
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
+
+        if(!$walletData) {
+            Session::forget('chaninplus');
+            return redirect("/");
+
+        }
+
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         
