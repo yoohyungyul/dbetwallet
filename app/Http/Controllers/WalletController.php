@@ -300,6 +300,8 @@ class WalletController extends Controller
         
 
         // 싱크 조회
+
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
         $result = $client->request('eth_syncing');
 
         print_R($result);
