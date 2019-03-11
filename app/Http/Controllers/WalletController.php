@@ -166,35 +166,35 @@ class WalletController extends Controller
         // $spender = $currencyData->address;
 
     
-        $amount = "1000";
+        // $amount = "1000";
 
-        $spender_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
-        // $spender_addr = $currencyData->address;
-        $spender_pwd = $currencyData->reg_password;
-        $sender_addr = $currencyData->address;
+        // $spender_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
+        // // $spender_addr = $currencyData->address;
+        // $spender_pwd = $currencyData->reg_password;
+        // $sender_addr = $currencyData->address;
 
-        $sender_pwd = $currencyData->reg_password;
+        // $sender_pwd = $currencyData->reg_password;
 
-        $receiver_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
+        // $receiver_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
 
-        $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
+        // $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
 
-        if ($result->flag)
-        {
+        // if ($result->flag)
+        // {
 
-            echo $result->message;
-            // $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
+        //     echo $result->message;
+        //     $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
 
-            // if ($result->flag)
-            // echo "successed : " . $result->message . "\n";
-            // else
-            //     echo "failed : " . $result->message . "\n";                        
-        }
-        else
-        {
-            echo "error : " . $result->message . "\n";
-        }
+        //     if ($result->flag)
+        //     echo "successed : " . $result->message . "\n";
+        //     else
+        //         echo "failed : " . $result->message . "\n";                        
+        // }
+        // else
+        // {
+        //     echo "error : " . $result->message . "\n";
+        // }
 
 
 
