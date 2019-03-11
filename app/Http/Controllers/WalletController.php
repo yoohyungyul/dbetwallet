@@ -300,13 +300,13 @@ class WalletController extends Controller
         
 
         // 싱크 조회
-        // $result = $client->request('eth_syncing');
+        $result = $client->request('eth_syncing');
 
-        // print_R($result);
+        print_R($result);
 
-        // echo hexdec($result->result->currentBlock)."<br>";
-        // echo hexdec($result->result->highestBlock)."<br>";
-        // echo hexdec($result->result->startingBlock)."<br>";
+        echo hexdec($result->result->currentBlock)."<br>";
+        echo hexdec($result->result->highestBlock)."<br>";
+        echo hexdec($result->result->startingBlock)."<br>";
         
         
         
