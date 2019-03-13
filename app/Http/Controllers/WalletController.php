@@ -162,7 +162,7 @@ class WalletController extends Controller
 
         // 보내는 사람 주소
         $spender_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
-        $spender_pwd = $currencyData->reg_password;
+        $spender_pwd = "123456";
 
         // 보내줄 사람 주소
         $sender_addr = $currencyData->address;
