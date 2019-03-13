@@ -53,30 +53,31 @@ class WalletController extends Controller
             $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
 
             $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
-            //print_r($result);
-            if (isset($result1->error)) 
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;
-                return $resultVal; 
-            }   
+            print_r($result);
+            exit;
+            // if (isset($result1->error)) 
+            // {
+            //     $resultVal->message = $result1->error->message;
+            //     $resultVal->flag = false;
+            //     return $resultVal; 
+            // }   
 
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $spender,
-                'to' => $sender,
-                'data' => $this->hex_approved . $real_to . $real_amount,
-            ]]);
+            // $result = $client->request('eth_sendTransaction', [[
+            //     'from' => $spender,
+            //     'to' => $sender,
+            //     'data' => $this->hex_approved . $real_to . $real_amount,
+            // ]]);
 
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-                $resultVal->flag = false;
-            }           
+            // if (isset($result->result)) 
+            // {
+            //     $resultVal->message = $result->result;
+            //     $resultVal->flag = true;
+            // } 
+            // else if (isset($result->error)) 
+            // {
+            //     $resultVal->message = $result->error->message;
+            //     $resultVal->flag = false;
+            // }           
         }
         catch(\Exception $e) 
         {
