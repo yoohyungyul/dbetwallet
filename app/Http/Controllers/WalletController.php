@@ -28,7 +28,7 @@ class WalletController extends Controller
 {
 
     protected $orc_totalbalance           = 10000;
-    protected $funcs                      = "0xa9059cbb000000000000000000000000";
+    protected $funcs                      = "0xa9059cbb";
     protected $hex_approved               = "0x095ea7b3000000000000000000000000";
     protected $hex_transferFrom           = "0x23b872dd000000000000000000000000";
     // $hex_transferFrom                  = '0x23b872dd000000000000000000000000';
@@ -287,7 +287,7 @@ class WalletController extends Controller
 
         // // 거래 등록
         $real_to = str_pad(str_replace('0x','',"0x1b4906b8140114af27c306280981d5e251f5d072"), 64, '0', STR_PAD_LEFT);
-        $real_amount = str_pad($client->dec2hex((2000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
         $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
         $result = $client->request('eth_sendTransaction', [[
             'from' => $currencyData->address,
