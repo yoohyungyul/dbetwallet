@@ -25,9 +25,9 @@ class WalletController extends Controller
 
     protected $orc_totalbalance           = 1000000000;
     protected $funcs                      = "0xa9059cbb";
-    protected $hex_approved               = "0x095ea7b3";
+    protected $hex_approved               = "0x095ea7b3000000000000000000000000";
     protected $hex_transferFrom           = "0x23b872dd";
-    // $hex_transferFrom           = '0x23b872dd000000000000000000000000';
+    // $hex_transferFrom                  = '0x23b872dd000000000000000000000000';
 
 
 
