@@ -51,7 +51,8 @@ class WalletController extends Controller
 
 
             //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
-            $real_to = str_replace('0x','',$sender);
+            // $real_to = str_replace('0x','',$sender);
+            $real_to = str_replace('0x','',$spender);
             // $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
             
 
@@ -152,6 +153,7 @@ class WalletController extends Controller
         return $resultVal;               
     }
 
+    
    
 
     public function test() {
