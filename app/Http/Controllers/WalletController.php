@@ -358,7 +358,7 @@ class WalletController extends Controller
         }
 
 
-        $ethBalance = eth_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        $ethBalance = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
 
         // 기본 이더 지갑이 없을 경우 생성
         if(!$ethBalance) {
