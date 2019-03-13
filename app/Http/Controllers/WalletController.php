@@ -54,6 +54,8 @@ class WalletController extends Controller
 
        
             $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
+
+            exit;
       
             if (isset($result1->error)) 
             {
