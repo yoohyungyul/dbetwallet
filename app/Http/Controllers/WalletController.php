@@ -64,22 +64,22 @@ class WalletController extends Controller
                 return $resultVal; 
             }   
 
-            // $result = $client->request('eth_sendTransaction', [[
-            //     'from' => $spender,
-            //     'to' => $sender,
-            //     'data' => $this->hex_approved . $real_to . $real_amount,
-            // ]]);
+            $result = $client->request('eth_sendTransaction', [[
+                'from' => $spender,
+                'to' => $sender,
+                'data' => $this->hex_approved . $real_to . $real_amount,
+            ]]);
 
-            // if (isset($result->result)) 
-            // {
-            //     $resultVal->message = $result->result;
-            //     $resultVal->flag = true;
-            // } 
-            // else if (isset($result->error)) 
-            // {
-            //     $resultVal->message = $result->error->message;
-            //     $resultVal->flag = false;
-            // }           
+            if (isset($result->result)) 
+            {
+                $resultVal->message = $result->result;
+                $resultVal->flag = true;
+            } 
+            else if (isset($result->error)) 
+            {
+                $resultVal->message = $result->error->message;
+                $resultVal->flag = false;
+            }           
         }
         catch(\Exception $e) 
         {
