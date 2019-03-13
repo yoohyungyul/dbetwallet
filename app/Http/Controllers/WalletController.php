@@ -54,14 +54,13 @@ class WalletController extends Controller
 
        
             $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
-            print_r($result);
-            exit;
-            // if (isset($result1->error)) 
-            // {
-            //     $resultVal->message = $result1->error->message;
-            //     $resultVal->flag = false;
-            //     return $resultVal; 
-            // }   
+      
+            if (isset($result1->error)) 
+            {
+                $resultVal->message = $result1->error->message;
+                $resultVal->flag = false;
+                return $resultVal; 
+            }   
 
             // $result = $client->request('eth_sendTransaction', [[
             //     'from' => $spender,
@@ -172,24 +171,27 @@ class WalletController extends Controller
 
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
-
-        if ($result->flag)
-        {
-
-            // echo $result->message;
-            $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
-
-            if ($result->flag)
-            echo "successed : " . $result->message . "\n";
-            else
-                echo "failed : " . $result->message . "\n";                        
-        }
-        else
-        {
-            echo "error : " . $result->message . "\n";
-        }
-
+        print_R($result);
         exit;
+
+
+        // if ($result->flag)
+        // {
+
+        //     echo $result->message;
+        //     $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
+
+        //     if ($result->flag)
+        //     echo "successed : " . $result->message . "\n";
+        //     else
+        //         echo "failed : " . $result->message . "\n";                        
+        // }
+        // else
+        // {
+        //     echo "error : " . $result->message . "\n";
+        // }
+
+        // exit;
 
 
         // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
