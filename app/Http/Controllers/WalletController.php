@@ -346,20 +346,35 @@ class WalletController extends Controller
     // 지갑 
     public function getWallet() {
         
-        // Cookie::forget('chainplus');
-        // // echo $test;
-        
-        // echo Cookie::get('chainplus')."_";
-        // exit;
-
-
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
+        
 
 
         if(!$walletData) {
             Auth::logout();
             return redirect("/register");
+        }
+
+
+        $ethBalance = eth_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+
+        // 기본 이더 지갑이 없을 경우 생성
+        if(!$ethBalance) {
+
+            // 기본으로 이더리움 생성
+            $users_wallet = new Users_wallet;
+            $users_wallet->user_id = Auth::user()->id;
+            $users_wallet->currency_id = 3;
+            $users_wallet->address = $walletData->address;
+            $users_wallet->push();
+
+            // 기본으로 이더리움 발란스 생성
+            $balance = new Balance;
+            $balance->user_id = Auth::user()->id;
+            $balance->currency_id = 3;
+            $balance->push();
         }
 
 
@@ -369,7 +384,8 @@ class WalletController extends Controller
         return view('wallet.wallet',[
             'currency' => $currencyData,
             'wallet' => $walletData,
-            'balance' => $balanceData
+            'balance' => $balanceData,
+            'ethBalance' => $ethBalance
 
         ]);
     }
