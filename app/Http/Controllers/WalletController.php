@@ -274,17 +274,17 @@ class WalletController extends Controller
 
 
         // // 거래 등록
-        $real_to = str_pad(str_replace('0x','',"0x1b4906b8140114af27c306280981d5e251f5d072"), 64, '0', STR_PAD_LEFT);
-        $real_amount = str_pad($client->dec2hex((2000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
-        $result = $client->request('eth_sendTransaction', [[
-            'from' => $currencyData->address,
-            'to' => $currencyData->contract,
-            'data' => $this->funcs.$real_to.$real_amount,
-        ]]);
-        print_R($result);
+        // $real_to = str_pad(str_replace('0x','',"0x1b4906b8140114af27c306280981d5e251f5d072"), 64, '0', STR_PAD_LEFT);
+        // $real_amount = str_pad($client->dec2hex((2000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        // $result = $client->request('eth_sendTransaction', [[
+        //     'from' => $currencyData->address,
+        //     'to' => $currencyData->contract,
+        //     'data' => $this->funcs.$real_to.$real_amount,
+        // ]]);
+        // print_R($result);
 
-        exit;
+        // exit;
 
 
 
@@ -345,11 +345,11 @@ class WalletController extends Controller
         // echo "address : 0x72331af3cd59ab4394f80fade2cec007c892a836 <br>";
 
 
-        // // 토큰 조회
-        // $result = $client->request('eth_call', [[ 
-        //     "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
-        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x72331af3cd59ab4394f80fade2cec007c892a836") ]]);
-        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => "0x099606ECb05d7E94F88EFa700225880297dD55eF", 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0xd00caff16b310ef3ba4b23911d83763ad766584a") ]]);
+        echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         return "";
 
