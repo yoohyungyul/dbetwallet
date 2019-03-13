@@ -27,13 +27,11 @@ use Carbon\Carbon;
 class WalletController extends Controller
 {
 
-    protected $orc_totalbalance           = 1000000000;
+    protected $orc_totalbalance           = 10000;
     protected $funcs                      = "0xa9059cbb";
     protected $hex_approved               = "0x095ea7b3000000000000000000000000";
     protected $hex_transferFrom           = "0x23b872dd000000000000000000000000";
     // $hex_transferFrom                  = '0x23b872dd000000000000000000000000';
-
-
 
 
     function orc_approve($spender, $passwd, $sender)
@@ -54,8 +52,11 @@ class WalletController extends Controller
 
             //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
             $real_to = str_replace('0x','',$sender);
-            $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+            // $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
+            
 
+            $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+            
        
             $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
      
