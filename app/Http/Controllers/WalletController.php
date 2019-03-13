@@ -52,8 +52,7 @@ class WalletController extends Controller
             $real_to = str_replace('0x','',$sender);
             $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
 
-            echo "!";
-            exit;
+       
             $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
             print_r($result);
             exit;
@@ -161,7 +160,7 @@ class WalletController extends Controller
         $amount = "1000";
 
         // 보내는 사람 주소
-        $spender_addr = "0xa025a2f3c4d44fc007e50ebaa997d0c7237df3f7";
+        $spender_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
         $spender_pwd = $currencyData->reg_password;
 
         // 보내줄 사람 주소
