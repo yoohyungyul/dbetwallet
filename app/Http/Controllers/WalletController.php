@@ -154,47 +154,43 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', '=', 1)->first();
 
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
-
-       
-
-
-
-        // $spender = "0x72331af3cd59ab4394f80fade2cec007c892a836";
-        
-
-        // $spender = $currencyData->address;
-
     
-        // $amount = "1000";
+        $amount = "1000";
 
-        // $spender_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
-        // // $spender_addr = $currencyData->address;
-        // $spender_pwd = $currencyData->reg_password;
-        // $sender_addr = $currencyData->address;
+        // 보내는 사람 주소
+        $spender_addr = "0xa025a2f3c4d44fc007e50ebaa997d0c7237df3f7";
+        $spender_pwd = $currencyData->reg_password;
 
-        // $sender_pwd = $currencyData->reg_password;
+        // 보내줄 사람 주소
+        $sender_addr = $currencyData->address;
+        $sender_pwd = $currencyData->reg_password;
 
-        // $receiver_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
+        // 받을 사람 주소
+        $receiver_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
 
-        // $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
+        $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
 
-        // if ($result->flag)
-        // {
+        if ($result->flag)
+        {
 
-        //     echo $result->message;
-        //     $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
+            // echo $result->message;
+            $result = $this->orc_transferfrom($sender_addr, $sender_pwd, $spender_addr, $receiver_addr, $amount);
 
-        //     if ($result->flag)
-        //     echo "successed : " . $result->message . "\n";
-        //     else
-        //         echo "failed : " . $result->message . "\n";                        
-        // }
-        // else
-        // {
-        //     echo "error : " . $result->message . "\n";
-        // }
+            if ($result->flag)
+            echo "successed : " . $result->message . "\n";
+            else
+                echo "failed : " . $result->message . "\n";                        
+        }
+        else
+        {
+            echo "error : " . $result->message . "\n";
+        }
+
+        exit;
+
+
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
 
 
@@ -346,10 +342,10 @@ class WalletController extends Controller
 
 
         // 토큰 조회
-        $result = $client->request('eth_call', [[ 
-            "to" => "0xa9101720da24b197589c8eaaf622e813dbf4f8c5", 
-            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cee3997b11e9a815c7307abc3") ]]);
-        echo "토큰 : ".hexdec($result->result)/pow(10,8);
+        // $result = $client->request('eth_call', [[ 
+        //     "to" => "0xa9101720da24b197589c8eaaf622e813dbf4f8c5", 
+        //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cee3997b11e9a815c7307abc3") ]]);
+        // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
         return "";
 
