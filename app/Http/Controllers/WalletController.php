@@ -160,15 +160,15 @@ class WalletController extends Controller
         $amount = "1000";
 
         // 보내는 사람 주소
-        $spender_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
-        $spender_pwd = "123456";
+        $spender_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
+        $spender_pwd = $currencyData->reg_password;
 
         // 보내줄 사람 주소
         $sender_addr = $currencyData->address;
         $sender_pwd = $currencyData->reg_password;
 
         // 받을 사람 주소
-        $receiver_addr = "0x4b873bc095dc0d4cee3997b11e9a815c7307abc3";
+        $receiver_addr = "0x1b4906b8140114af27c306280981d5e251f5d072";
 
         $result = $this->orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
