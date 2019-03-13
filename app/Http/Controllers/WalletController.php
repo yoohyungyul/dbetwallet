@@ -273,11 +273,20 @@ class WalletController extends Controller
 
 
 
+        // // 거래 등록
+        $real_to = str_pad(str_replace('0x','',"0x1b4906b8140114af27c306280981d5e251f5d072"), 64, '0', STR_PAD_LEFT);
+        $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
+        $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
+        $result = $client->request('eth_sendTransaction', [[
+            'from' => $currencyData->address,
+            'to' => $currencyData->contract,
+            'data' => $this->funcs.$real_to.$real_amount,
+        ]]);
+        print_R($result);
 
-        // from 거래 테스트
+        exit;
 
-        // print_R($client);
-        // exit;
+
 
 
         // 거래 조회
@@ -301,14 +310,14 @@ class WalletController extends Controller
 
         // 싱크 조회
 
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
-        $result = $client->request('eth_syncing');
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        // $result = $client->request('eth_syncing');
 
-        print_R($result);
+        // print_R($result);
 
-        echo hexdec($result->result->currentBlock)."<br>";
-        echo hexdec($result->result->highestBlock)."<br>";
-        echo hexdec($result->result->startingBlock)."<br>";
+        // echo hexdec($result->result->currentBlock)."<br>";
+        // echo hexdec($result->result->highestBlock)."<br>";
+        // echo hexdec($result->result->startingBlock)."<br>";
         
         
         
@@ -317,18 +326,6 @@ class WalletController extends Controller
 
 
 
-        // // 거래 등록
-        // $real_to = str_pad(str_replace('0x','',"0x4b873bc095dc0d4cee3997b11e9a815c7307abc3"), 64, '0', STR_PAD_LEFT);
-        // $real_amount = str_pad($client->dec2hex((1000)*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-        // $result = $client->request('personal_unlockAccount', [$currencyData->address, $currencyData->password, '0x0a']);
-        // $result = $client->request('eth_sendTransaction', [[
-        //     'from' => $currencyData->address,
-        //     'to' => $currencyData->contract,
-        //     'data' => $this->funcs.$real_to.$real_amount,
-        // ]]);
-        // print_R($result);
-
-        // exit;
 
         
 
