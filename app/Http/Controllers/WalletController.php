@@ -358,10 +358,10 @@ class WalletController extends Controller
         }
 
 
-        $ethBalance = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
 
         // 기본 이더 지갑이 없을 경우 생성
-        if(!$ethBalance) {
+        if(!$ethData) {
 
             // 기본으로 이더리움 생성
             $users_wallet = new Users_wallet;
@@ -377,8 +377,8 @@ class WalletController extends Controller
             $balance->push();
         }
 
-
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->value('balance');
 
         
         return view('wallet.wallet',[
