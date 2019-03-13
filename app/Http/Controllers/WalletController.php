@@ -20,13 +20,17 @@ use Google2FA;
 use Carbon\Carbon;
 
 
+
+// 0x095ea7b3000000000000000000000000d00caff16b310ef3ba4b23911d83763ad766584a00000000000000000000000000000000000000000000d3c21bcecceda0000000
+// 0x23b872dd4b873bc095dc0d4cee3997b11e9a815c7307abc30000000000000000000000001b4906b8140114af27c306280981d5e251f5d072000000000000000000000000000000000000000000000000000000174876e800
+
 class WalletController extends Controller
 {
 
     protected $orc_totalbalance           = 1000000000;
     protected $funcs                      = "0xa9059cbb";
     protected $hex_approved               = "0x095ea7b3000000000000000000000000";
-    protected $hex_transferFrom           = "0x23b872dd";
+    protected $hex_transferFrom           = "0x23b872dd000000000000000000000000";
     // $hex_transferFrom                  = '0x23b872dd000000000000000000000000';
 
 
@@ -152,7 +156,9 @@ class WalletController extends Controller
     public function test() {
 
         
-        
+        // from 문제점
+        // spender 주소에도 이더가 들어있어야 함
+        // sedner 주소에서 에러 발생 (Warning! Error encountered during contract execution)
 
         $currencyData = Currency::where('id', '=', 1)->first();
 
