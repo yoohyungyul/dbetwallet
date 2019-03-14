@@ -8,6 +8,7 @@ use Cache;
 
 use App\Currency;
 use App\jsonRPCClient;
+use App\Users_wallet;
 
 
 class Deposit extends Command {
@@ -47,6 +48,19 @@ class Deposit extends Command {
             $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
+
+
+            $memory = [];
+						
+            $wallets = Users_wallet::where('currency_id', $currency->id)->get();
+            foreach($wallets as $wallet) {
+                $memory[] = strtolower($wallet->address);
+            }
+
+            print_R($memory);
+            exit;
+                    
+
 
             try {
                 $result = $client->request('eth_blockNumber');
