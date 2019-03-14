@@ -73,7 +73,11 @@ class Deposit extends Command {
                 Cache::forever('eth_last_deposit_block_'.$currency->id, $height);
 
                 try {
-                    echo $height;
+                    $result = $client->request('eth_getBlockByNumber', ['0x'.$client->dec2hex($height), true]);
+                    echo "  Block #".$height."...\n";
+                            
+
+                    
                     $height++;
                     echo "  Done!\n";
                 } catch(\Exception $e) {
