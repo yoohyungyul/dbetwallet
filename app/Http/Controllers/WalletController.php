@@ -402,7 +402,7 @@ class WalletController extends Controller
 
 
         // 서버에서 실제 이더리움 가져와서 저장
-        $ethBalance->balance = $this->getEthBalance($ethData->address)
+        $ethBalance->balance = $this->getEthBalance($ethData->address);
         $ethBalance->save();
 
         
