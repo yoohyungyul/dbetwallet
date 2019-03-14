@@ -63,8 +63,27 @@ class Deposit extends Command {
             }
             $height = $height-3;
 
-            echo $height;
+            // echo $height;
 
+            while(true) {
+                if($height > $max) {
+                    break;
+                }
+
+                Cache::forever('eth_last_deposit_block_'.$currency->id, $height);
+
+                try {
+                    echo "1";
+                    $height++;
+                    echo "  Done!\n";
+                } catch(\Exception $e) {
+                    echo "  Retry...".$e->getMessage()."\n";
+                    
+                    sleep(10);
+                }
+                        
+                usleep(10000);
+			}
             
             echo "\n[" . date('Ymd h:i:s') . "] Work End\n";
 			
