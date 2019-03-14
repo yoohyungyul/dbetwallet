@@ -78,8 +78,65 @@ class Deposit extends Command {
 
                     foreach($result->result->transactions as $txid) {
                         
-                        echo $txid->input;
+                        $flag = false;
                         if($txid->input != '') {
+                            $hash = $txid->hash;
+                                        
+                            $func = '0x'.substr($txid->input, 2, 8);
+                            $funcs = explode(',',$token->address);
+                            
+                            if($func == $funcs[0]) {
+                                $from = $txid->from;
+                                $to = '0x'.substr(substr($txid->input, 10, 64), -40);
+                                $amount = hexdec(substr($txid->input, 74, 64));
+                                
+                                $flag = true;
+                            } else if($func == $funcs[2]) {
+                                $from = '0x'.substr(substr($txid->input, 10, 64), -40);
+                                $to = '0x'.substr(substr($txid->input, 74, 64), -40);
+                                $amount = hexdec(substr($txid->input, 138, 64));
+                                
+                                $flag = true;
+                            }
+
+                            if($flag == true && in_array(strtolower($to), $memory)) {
+                                echo $to;
+                                // $wallet = Wallet::where('address',$to)->first();
+                                // if($wallet) {
+                                //     $deposit = Deposit::where('currency_id',$token->id)->where('txid',$txid->hash)->first();
+                                //     if(!$deposit) {
+                                //         echo "\n  Incomming Transaction #".$txid->hash;
+                                        
+                                //         $first = Deposit::where('currency_id',$token->id)->where('user_id',$wallet->user_id)->where('txid','NOT LIKE','system%')->first();
+                                //         if(!$first) {
+                                //             echo " NEW!";
+                                //             $result = $client->request('personal_unlockAccount', [$currency->password, $hot_password, '0x0a']);
+                                //             $result = $client->request('eth_sendTransaction', [[
+                                //                 'from' => $currency->password,
+                                //                 'to' => $to,
+                                //                 'value' => '0x'.$client->dec2hex((0.02)*pow(10,18)),
+                                //             ]]);
+                                //             Log::info($result->result);
+                                //         }
+                                        
+                                //         $deposit = new Deposit;
+
+                                //         $deposit->user_id = $wallet->user_id;
+                                //         $deposit->currency_id = $token->id;
+                                //         $deposit->amount = number_format(($amount/pow(10,$token->fixed)), $token->fixed, '.', '');
+                                //         $deposit->fee = 0;
+                                //         $deposit->address = $to;
+                                //         $deposit->txid = $txid->hash;
+                                //         $deposit->confirm = 0;
+                                //         $deposit->state = 0;
+                                //         $deposit->message = 'a,'.$txid->from;
+
+                                //         $deposit->save();
+                                //     }
+                                // }
+                            }
+
+
 
                         }
                     }
