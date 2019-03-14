@@ -83,15 +83,16 @@ class Deposit extends Command {
                             $hash = $txid->hash;
                                         
                             $func = '0x'.substr($txid->input, 2, 8);
-                            $funcs = explode(',',$token->address);
+                            // $funcs = explode(',',$token->address);
+
                             
-                            if($func == $funcs[0]) {
+                            if($func == "0xa9059cbb") {
                                 $from = $txid->from;
                                 $to = '0x'.substr(substr($txid->input, 10, 64), -40);
                                 $amount = hexdec(substr($txid->input, 74, 64));
                                 
                                 $flag = true;
-                            } else if($func == $funcs[2]) {
+                            } else if($func == "0x23b872dd") {
                                 $from = '0x'.substr(substr($txid->input, 10, 64), -40);
                                 $to = '0x'.substr(substr($txid->input, 74, 64), -40);
                                 $amount = hexdec(substr($txid->input, 138, 64));
