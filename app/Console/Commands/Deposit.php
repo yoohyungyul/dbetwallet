@@ -66,9 +66,7 @@ class Deposit extends Command {
             }
             $height = $height-3;
 
-            echo $height;
-            exit;
-
+           
             while(true) {
                 if($height > $max) {
                     break;
@@ -157,6 +155,8 @@ class Deposit extends Command {
                     
                     sleep(10);
                 }
+
+                exit;
                         
                 usleep(10000);
 			}
