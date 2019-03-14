@@ -127,8 +127,8 @@ class Deposit extends Command {
                                 if($wallet) {
                                     $deposit = TransactionHistory::where('currency_id',$currency->id)->where('txid',$txid->hash)->first();
                                     if(!$deposit) {
-                                        echo "1";
-                                        // echo "\n  Incomming Transaction #".$txid->hash;
+                                      
+                                        echo "\n  Incomming Transaction #".$txid->hash;
                                         
                                         // $first = Deposit::where('currency_id',$token->id)->where('user_id',$wallet->user_id)->where('txid','NOT LIKE','system%')->first();
                                         // if(!$first) {
