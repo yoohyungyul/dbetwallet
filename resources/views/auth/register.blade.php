@@ -13,7 +13,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" >
                 <div class="panel-body mt70" >
-                    <form  role="form" method="POST" action="{{ url('/register') }}" >
+                    <form  role="form" method="POST" action="{{ url('/register') }}"  autocomplet="off">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
