@@ -75,7 +75,13 @@ class SendLoop extends Command
                 // 이더리움 잔액 검색
                 $result = $client->request('eth_getBalance', [$data->address_from, 'latest']);
                 $balance = hexdec($result->result)/pow(10,18);
-                echo $balance;
+
+                if($balance < 0.05) {
+                    echo "1";
+                } else {
+                    echo "2";
+                }
+                
                 exit;
 
 
