@@ -136,48 +136,22 @@ class Deposit extends Command {
                                         // echo "\n".$balance;
                                         // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
                                         // echo "\n".number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        echo "\n".$txid->from;
+                                        // echo "\n".$txid->from;
+
                                         // 히스트로 등록
-                                        // $transaction_history = new TransactionHistory;
-                                        // $transaction_history->type = 2;
-                                        // $transaction_history->user_id = $wallet->user_id;
-                                        // $transaction_history->currency_id = env('CURRENCY_ID', '1');
-                                        // $transaction_history->amount = number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        // $transaction_history->balance = number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        // $transaction_history->txid = $txid->hash;
-                                        // $transaction_history->address_from = "";
-                                        // $transaction_history->address_to = $to;
-                                        // $transaction_history->state = 0;
-                                        // $transaction_history->confirm = 0;
-                                        // $transaction_history->push();
+                                        $transaction_history = new TransactionHistory;
+                                        $transaction_history->type = 2;
+                                        $transaction_history->user_id = $wallet->user_id;
+                                        $transaction_history->currency_id = env('CURRENCY_ID', '1');
+                                        $transaction_history->amount = number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        $transaction_history->balance = number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        $transaction_history->txid = $txid->hash;
+                                        $transaction_history->address_from = $txid->from;
+                                        $transaction_history->address_to = $to;
+                                        $transaction_history->state = 0;
+                                        $transaction_history->confirm = 0;
+                                        $transaction_history->push();
 
-
-                                        
-                                        // $first = Deposit::where('currency_id',$token->id)->where('user_id',$wallet->user_id)->where('txid','NOT LIKE','system%')->first();
-                                        // if(!$first) {
-                                        //     echo " NEW!";
-                                        //     $result = $client->request('personal_unlockAccount', [$currency->password, $hot_password, '0x0a']);
-                                        //     $result = $client->request('eth_sendTransaction', [[
-                                        //         'from' => $currency->password,
-                                        //         'to' => $to,
-                                        //         'value' => '0x'.$client->dec2hex((0.02)*pow(10,18)),
-                                        //     ]]);
-                                        //     Log::info($result->result);
-                                        // }
-                                        
-                                        // $deposit = new Deposit;
-
-                                        // $deposit->user_id = $wallet->user_id;
-                                        // $deposit->currency_id = $token->id;
-                                        // $deposit->amount = number_format(($amount/pow(10,$token->fixed)), $token->fixed, '.', '');
-                                        // $deposit->fee = 0;
-                                        // $deposit->address = $to;
-                                        // $deposit->txid = $txid->hash;
-                                        // $deposit->confirm = 0;
-                                        // $deposit->state = 0;
-                                        // $deposit->message = 'a,'.$txid->from;
-
-                                        // $deposit->save();
                                     }
                                 }
                             }
