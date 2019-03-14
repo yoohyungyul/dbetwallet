@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
 
         \App\Console\Commands\SendLoop::class,
         \App\Console\Commands\WalletConfirm::class,
+        \App\Console\Commands\Deposit::class,
     ];
 
     /**
