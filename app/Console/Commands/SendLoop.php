@@ -77,53 +77,46 @@ class SendLoop extends Command
                 $balance = hexdec($result->result)/pow(10,18);
 
                 if($balance < 0.05) {
-                    echo "1";
+                    echo "There is not enough Etherium coin.";
                 } else {
-                    echo "2";
-                }
-                
-                exit;
+                    $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                    $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-
-                $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                    $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
 
 
-                $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
+                    
+                    $result = $client->request('eth_sendTransaction', [[
+                        'from' => $data->address_from,
+                        'to' => $currency->contract,
+                        'data' => $funcs.$real_to.$real_amount,
+                    ]]);
 
 
-                
-                $result = $client->request('eth_sendTransaction', [[
-                    'from' => $data->address_from,
-                    'to' => $currency->contract,
-                    'data' => $funcs.$real_to.$real_amount,
-                ]]);
+                    if(is_object($result)) {
 
-
-                if(is_object($result)) {
-
-                    if ($result->result != '') {
-                        try {
-                            DB::beginTransaction();
+                        if ($result->result != '') {
+                            try {
+                                DB::beginTransaction();
+                                
+                                $data->txid = $result->result;
+                                $data->push();
+                                
                             
-                            $data->txid = $result->result;
-                            $data->push();
-                            
-                        
-                            echo " Update Complete!";
-                        } catch (\Exception $e) {
-                            DB::rollback();
+                                echo " Update Complete!";
+                            } catch (\Exception $e) {
+                                DB::rollback();
 
-                            echo " Update Failed!";
-                        } finally {
-                            DB::commit();
-                        }
-                    } 
-                } else {
-                    echo " RPC Error!";
+                                echo " Update Failed!";
+                            } finally {
+                                DB::commit();
+                            }
+                        } 
+                    } else {
+                        echo " RPC Error!";
+                    }
                 }
-
                 echo "\n";
 
             }

@@ -27,136 +27,6 @@ use Carbon\Carbon;
 class WalletController extends Controller
 {
 
-    protected $orc_totalbalance           = 10000;
-    protected $funcs                      = "0xa9059cbb";
-    protected $hex_approved               = "0x095ea7b3000000000000000000000000";
-    protected $hex_transferFrom           = "0x23b872dd000000000000000000000000";
-    // $hex_transferFrom                  = '0x23b872dd000000000000000000000000';
-
-
-    function orc_approve($spender, $passwd, $sender)
-    {
-
-        $currencyData = Currency::where('id', '=', 1)->first();
-
-
-        $resultVal = (object) [
-            'message' => "",
-            'flag' => false
-        ];  
-
-        try 
-        {
-            $client = new jsonRPCClient($currencyData->ip, $currencyData->port); 
-
-
-            //$real_to = str_pad(str_replace('0x','',$master), 64, '0', STR_PAD_LEFT);
-            $real_to = str_replace('0x','',$sender);
-            // $real_to = str_replace('0x','',$spender);
-            // $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
-            
-
-            $real_amount = str_pad($client->dec2hex($this->orc_totalbalance * pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-            
-       
-            $result1 = $client->request('personal_unlockAccount', [$spender, $passwd, '0x0a']);
-     
-      
-            if (isset($result1->error)) 
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;
-                return $resultVal; 
-            }   
-
-
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $spender,
-                'to' => $sender,
-                'data' => $this->hex_approved . $real_to . $real_amount,
-            ]]);
-
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-                $resultVal->flag = false;
-            }           
-        }
-        catch(\Exception $e) 
-        {
-            $resultVal->message = "RPC Server Error";
-            $resultVal->flag = false;
-        }
-
-        return $resultVal;        
-    }
-
-
-
-
-    function orc_transferfrom($sender_addr, $sender_pwd, $from, $to, $amount)
-    {
-
-        $currencyData = Currency::where('id', '=', 1)->first();
-
-
-        $resultVal = (object) [
-            'message' => "",
-            'flag' => false
-        ];  
-
-        try 
-        {
-            $client = new jsonRPCClient($currencyData->ip, $currencyData->port);         
-
-            //$real_from = str_pad(str_replace('0x','',$from), 64, '0', STR_PAD_LEFT);
-            $real_from = str_replace('0x','',$from);
-            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad($client->dec2hex($amount*pow(10,$currencyData->fixed)), 64, '0', STR_PAD_LEFT);
-            
-
-            $result = $client->request('personal_unlockAccount', [$sender_addr, $currencyData->reg_password, '0x0a']);
-            if (isset($result1->error)) 
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;
-                return $resultVal; 
-            } 
-
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $sender_addr,
-                'to' => $currencyData->contract,
-                'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
-            ]]);
-
-           
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-                $resultVal->flag = false;
-            }           
-        }
-        catch(\Exception $e) 
-        {
-            $resultVal->message = "RPC Server Error";
-            $resultVal->flag = false;
-        }
-
-        return $resultVal;               
-    }
-
-    
-   
 
     public function test() {
 
@@ -165,7 +35,7 @@ class WalletController extends Controller
         // spender 주소에도 이더가 들어있어야 함
         // sedner 주소에서 에러 발생 (Warning! Error encountered during contract execution)
 
-        $currencyData = Currency::where('id', '=', 1)->first();
+        // $currencyData = Currency::where('id', '=', 1)->first();
 
         /*
     
