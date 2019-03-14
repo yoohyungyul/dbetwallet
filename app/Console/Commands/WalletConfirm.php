@@ -55,6 +55,10 @@ class WalletConfirm extends Command {
             // 보내기 루프 
             $history = TransactionHistory::where('txid','!=','')->where('currency_id',env('CURRENCY_ID', '1'))->where('state','0')->orderBy('id','asc')->get();
             foreach ($history as $history) {
+
+
+                echo $history->type;
+                exit;
             
             
                 try {
@@ -89,6 +93,7 @@ class WalletConfirm extends Command {
                                     $history->state = 1;
                                     $history->save();
 
+                                    // 보내기
                                     if($history->type == 1) {
                                         // 받는 사람 주소를 조회 후 있으면 등록 
                                         $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
@@ -117,9 +122,13 @@ class WalletConfirm extends Command {
                                         } else {
                                             echo "No User Address";
                                         }
+
+                                    // 받기
                                     } else {
 
-                                        // 여기서 발란스 등록
+                                        $balance = Balance::where('user_id',$history->user_id)->where('currency_id',env('CURRENCY_ID', '1'))->first();
+                                        $balance->balance += $history->amount;
+                                        $balance->save();
                                     }
 
                                 } catch (\Exception $e) {
