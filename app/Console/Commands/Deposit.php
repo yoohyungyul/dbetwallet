@@ -134,6 +134,7 @@ class Deposit extends Command {
                                         $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
                                   
                                         echo "\n".$balance;
+                                        echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
                                         echo "\n".number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
 
                                         // echo "\n".number_format((  ($balance + $amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
