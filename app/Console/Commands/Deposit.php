@@ -105,8 +105,8 @@ class Deposit extends Command {
 
                            
 
-                            if($flag == true && in_array(strtolower($to), $memory)) {
-                                echo $to;
+                            // if($flag == true && in_array(strtolower($to), $memory)) {
+                                // echo $to;
                                 // $wallet = Wallet::where('address',$to)->first();
                                 // if($wallet) {
                                 //     $deposit = Deposit::where('currency_id',$token->id)->where('txid',$txid->hash)->first();
@@ -140,7 +140,7 @@ class Deposit extends Command {
                                 //         $deposit->save();
                                 //     }
                                 // }
-                            }
+                            // }
                         }
                     }
                             
