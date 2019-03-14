@@ -72,6 +72,9 @@ class Deposit extends Command {
 
                 Cache::forever('eth_last_deposit_block_'.$currency->id, $height);
 
+
+                $height = "7358062";
+
                 try {
                     $result = $client->request('eth_getBlockByNumber', ['0x'.$client->dec2hex($height), true]);
                     echo "  Block #".$height."...\n";
@@ -100,45 +103,44 @@ class Deposit extends Command {
                                 $flag = true;
                             }
 
+                            echo $to;
+
                             // if($flag == true && in_array(strtolower($to), $memory)) {
-                                // echo $to;
-                                // $wallet = Wallet::where('address',$to)->first();
-                                // if($wallet) {
-                                //     $deposit = Deposit::where('currency_id',$token->id)->where('txid',$txid->hash)->first();
-                                //     if(!$deposit) {
-                                //         echo "\n  Incomming Transaction #".$txid->hash;
+                            //     echo $to;
+                            //     $wallet = Wallet::where('address',$to)->first();
+                            //     if($wallet) {
+                            //         $deposit = Deposit::where('currency_id',$token->id)->where('txid',$txid->hash)->first();
+                            //         if(!$deposit) {
+                            //             echo "\n  Incomming Transaction #".$txid->hash;
                                         
-                                //         $first = Deposit::where('currency_id',$token->id)->where('user_id',$wallet->user_id)->where('txid','NOT LIKE','system%')->first();
-                                //         if(!$first) {
-                                //             echo " NEW!";
-                                //             $result = $client->request('personal_unlockAccount', [$currency->password, $hot_password, '0x0a']);
-                                //             $result = $client->request('eth_sendTransaction', [[
-                                //                 'from' => $currency->password,
-                                //                 'to' => $to,
-                                //                 'value' => '0x'.$client->dec2hex((0.02)*pow(10,18)),
-                                //             ]]);
-                                //             Log::info($result->result);
-                                //         }
+                            //             $first = Deposit::where('currency_id',$token->id)->where('user_id',$wallet->user_id)->where('txid','NOT LIKE','system%')->first();
+                            //             if(!$first) {
+                            //                 echo " NEW!";
+                            //                 $result = $client->request('personal_unlockAccount', [$currency->password, $hot_password, '0x0a']);
+                            //                 $result = $client->request('eth_sendTransaction', [[
+                            //                     'from' => $currency->password,
+                            //                     'to' => $to,
+                            //                     'value' => '0x'.$client->dec2hex((0.02)*pow(10,18)),
+                            //                 ]]);
+                            //                 Log::info($result->result);
+                            //             }
                                         
-                                //         $deposit = new Deposit;
+                            //             $deposit = new Deposit;
 
-                                //         $deposit->user_id = $wallet->user_id;
-                                //         $deposit->currency_id = $token->id;
-                                //         $deposit->amount = number_format(($amount/pow(10,$token->fixed)), $token->fixed, '.', '');
-                                //         $deposit->fee = 0;
-                                //         $deposit->address = $to;
-                                //         $deposit->txid = $txid->hash;
-                                //         $deposit->confirm = 0;
-                                //         $deposit->state = 0;
-                                //         $deposit->message = 'a,'.$txid->from;
+                            //             $deposit->user_id = $wallet->user_id;
+                            //             $deposit->currency_id = $token->id;
+                            //             $deposit->amount = number_format(($amount/pow(10,$token->fixed)), $token->fixed, '.', '');
+                            //             $deposit->fee = 0;
+                            //             $deposit->address = $to;
+                            //             $deposit->txid = $txid->hash;
+                            //             $deposit->confirm = 0;
+                            //             $deposit->state = 0;
+                            //             $deposit->message = 'a,'.$txid->from;
 
-                                //         $deposit->save();
-                                //     }
-                                // }
+                            //             $deposit->save();
+                            //         }
+                            //     }
                             // }
-
-
-
                         }
                     }
                             
