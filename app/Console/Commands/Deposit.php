@@ -105,7 +105,7 @@ class Deposit extends Command {
                                 $flag = true;
                             }
 
-                            echo $flag;
+                            echo $to;
 
                            
 
