@@ -87,7 +87,7 @@ class Deposit extends Command {
                                         
                             $func = '0x'.substr($txid->input, 2, 8);
                             // $funcs = explode(',',$token->address);
-                            echo $txid->input;
+                            // echo $txid->input;
                             
                             if($func == "0xa9059cbb") {
                                 $from = $txid->from;
