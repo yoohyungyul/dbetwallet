@@ -4,6 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Cache;
+
+use App\Currency;
+use App\jsonRPCClient;
+
 
 class Deposit extends Command {
 
@@ -38,6 +43,12 @@ class Deposit extends Command {
     public function handle() {
         while (true) {
             echo "[" . date('Ymd h:i:s') . "] Work Start";
+
+            $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+
+            $client = new jsonRPCClient($currency->ip, $currency->port);
+            
+            
             echo "\n[" . date('Ymd h:i:s') . "] Work End\n";
 			
 			sleep(10);
