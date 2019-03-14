@@ -40,7 +40,7 @@
 
                 <form action="/send" name="sendForm" method="POST" onsubmit="return write_btn();">
                 {{ csrf_field() }}
-                <input type="text" name="eth_balance" value="{{$ethBalance->balance}}" />
+                <input type="hidden" id="eth_balance" name="eth_balance" value="{{$ethBalance->balance}}" />
                 @foreach ($errors->all() as $error)
                 <div class="text-center">error : {{ $error }}</div>
                 @endforeach
@@ -97,6 +97,14 @@
         setTimeout(function() {
         btn.removeAttr('disabled');
         }, 1000);
+
+        if($('#eth_balance').val() < 0.05) {
+            alert("이더리움 코인이 부족합니다. ");
+            return false;
+        }
+        
+
+
 
 
         if($('#address').val() == '') {
