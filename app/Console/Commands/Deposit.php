@@ -57,7 +57,13 @@ class Deposit extends Command {
 
             $max = hexdec($result->result);
 
-            echo $max;
+            $height = Cache::get('eth_last_deposit_block_'.$currency->id, 0);
+            if($height == 0) {
+                $height = $max-100;
+            }
+            $height = $height-3;
+
+            echo $height;
 
             
             echo "\n[" . date('Ymd h:i:s') . "] Work End\n";
