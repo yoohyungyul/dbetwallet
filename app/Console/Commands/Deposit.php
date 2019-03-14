@@ -57,10 +57,6 @@ class Deposit extends Command {
                 $memory[] = strtolower($wallet->address);
             }
 
-            print_R($memory);
-            exit;
-                    
-
 
             try {
                 $result = $client->request('eth_blockNumber');
@@ -104,6 +100,10 @@ class Deposit extends Command {
                             $func = '0x'.substr($txid->input, 2, 8);
                             // $funcs = explode(',',$token->address);
                             // echo $txid->input;
+
+                            $from = "";
+                            $to = "";
+                            $amount = "";
                             
                             if($func == "0xa9059cbb") {
                                 $from = $txid->from;
@@ -118,13 +118,10 @@ class Deposit extends Command {
                                 
                                 $flag = true;
                             }
-
-                            echo $to;
-
                            
 
-                            // if($flag == true && in_array(strtolower($to), $memory)) {
-                                // echo $to;
+                            if($flag == true && in_array(strtolower($to), $memory)) {
+                                echo $to;
                                 // $wallet = Wallet::where('address',$to)->first();
                                 // if($wallet) {
                                 //     $deposit = Deposit::where('currency_id',$token->id)->where('txid',$txid->hash)->first();
@@ -158,7 +155,7 @@ class Deposit extends Command {
                                 //         $deposit->save();
                                 //     }
                                 // }
-                            // }
+                            }
                         }
                     }
                             
