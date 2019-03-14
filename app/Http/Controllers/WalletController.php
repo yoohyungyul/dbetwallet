@@ -395,7 +395,7 @@ class WalletController extends Controller
             $balance->push();
         }
 
-        echo $this->getEthBalance($ethData->address);
+        echo $this->getEthBalance("0x4b873bc095dc0d4cee3997b11e9a815c7307abc3");
         exit;
 
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
