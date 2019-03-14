@@ -10,6 +10,7 @@ use App\Currency;
 use App\jsonRPCClient;
 use App\Users_wallet;
 use App\TransactionHistory;
+use App\Balance;
 
 
 class Deposit extends Command {
@@ -130,20 +131,23 @@ class Deposit extends Command {
                                       
                                         echo "\n  Incomming Transaction #".$txid->hash;
 
-                                        echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+
+                                        $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                        echo $balance;
 
                                         // 히스트로 등록
                                         // $transaction_history = new TransactionHistory;
                                         // $transaction_history->type = 2;
-                                        // $transaction_history->user_id = $to_userid;
+                                        // $transaction_history->user_id = $wallet->user_id;
                                         // $transaction_history->currency_id = env('CURRENCY_ID', '1');
-                                        // $transaction_history->amount = $history->amount;
-                                        // $transaction_history->balance = $to_user_balance->balance;
-                                        // $transaction_history->txid = $history->txid;
-                                        // $transaction_history->address_from = $history->address_from;
-                                        // $transaction_history->address_to = $history->address_to;
-                                        // $transaction_history->state = $history->state;
-                                        // $transaction_history->confirm = $history->confirm;
+                                        // $transaction_history->amount = number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        // $transaction_history->balance = "";
+                                        // $transaction_history->txid = $txid->hash;
+                                        // $transaction_history->address_from = "";
+                                        // $transaction_history->address_to = "";
+                                        // $transaction_history->state = 0;
+                                        // $transaction_history->confirm = 0;
                                         // $transaction_history->push();
 
 

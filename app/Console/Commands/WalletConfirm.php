@@ -53,7 +53,7 @@ class WalletConfirm extends Command {
             $client = new jsonRPCClient($currency->ip, $currency->port);
             
             // 보내기 루프 
-            $history = TransactionHistory::where('txid','!=','')->where('currency_id',env('CURRENCY_ID', '1'))->where('type','1')->where('state','0')->orderBy('id','asc')->get();
+            $history = TransactionHistory::where('txid','!=','')->where('currency_id',env('CURRENCY_ID', '1'))->where('state','0')->orderBy('id','asc')->get();
             foreach ($history as $history) {
             
             
@@ -89,32 +89,37 @@ class WalletConfirm extends Command {
                                     $history->state = 1;
                                     $history->save();
 
-                                    // 받는 사람 주소를 조회 후 있으면 등록 
-                                    $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
-                                    if($to_userid) {
-                                        // 받는 사람 발란스 가져오기
-                                        $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',env('CURRENCY_ID', '1'))->first();
+                                    if($history->type == 1) {
+                                        // 받는 사람 주소를 조회 후 있으면 등록 
+                                        $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
+                                        if($to_userid) {
+                                            // 받는 사람 발란스 가져오기
+                                            $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',env('CURRENCY_ID', '1'))->first();
 
-                                        // 발란스 업데이트
-                                        $to_user_balance->balance += $history->amount;
-                                        $to_user_balance->save();
-                                        
-                                        // 히스트로 등록
-                                        $transaction_history = new TransactionHistory;
-                                        $transaction_history->type = 2;
-                                        $transaction_history->user_id = $to_userid;
-                                        $transaction_history->currency_id = env('CURRENCY_ID', '1');
-                                        $transaction_history->amount = $history->amount;
-                                        $transaction_history->balance = $to_user_balance->balance;
-                                        $transaction_history->txid = $history->txid;
-                                        $transaction_history->address_from = $history->address_from;
-                                        $transaction_history->address_to = $history->address_to;
-                                        $transaction_history->state = $history->state;
-                                        $transaction_history->confirm = $history->confirm;
-                                        $transaction_history->push();
+                                            // 발란스 업데이트
+                                            $to_user_balance->balance += $history->amount;
+                                            $to_user_balance->save();
+                                            
+                                            // 히스트로 등록
+                                            $transaction_history = new TransactionHistory;
+                                            $transaction_history->type = 2;
+                                            $transaction_history->user_id = $to_userid;
+                                            $transaction_history->currency_id = env('CURRENCY_ID', '1');
+                                            $transaction_history->amount = $history->amount;
+                                            $transaction_history->balance = $to_user_balance->balance;
+                                            $transaction_history->txid = $history->txid;
+                                            $transaction_history->address_from = $history->address_from;
+                                            $transaction_history->address_to = $history->address_to;
+                                            $transaction_history->state = $history->state;
+                                            $transaction_history->confirm = $history->confirm;
+                                            $transaction_history->push();
 
+                                        } else {
+                                            echo "No User Address";
+                                        }
                                     } else {
-                                        echo "No User Address";
+
+                                        // 여기서 발란스 등록
                                     }
 
                                 } catch (\Exception $e) {
