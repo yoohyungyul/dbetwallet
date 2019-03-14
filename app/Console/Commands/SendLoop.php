@@ -63,7 +63,6 @@ class SendLoop extends Command
             $history = TransactionHistory::where('txid','')->where('currency_id',env('CURRENCY_ID', '1'))->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
             $funcs = "0xa9059cbb";
-            // $from  = '0x23b872dd000000000000000000000000';
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
@@ -72,43 +71,30 @@ class SendLoop extends Command
 
             foreach($history as $data) {
 
-                // 이걸 먼저 해서
-                // orc_approve($spender_addr, $spender_pwd, $sender_addr);
 
-                // $real_from = str_replace('0x','',$data->address_from);
-                // $real_from = str_pad(str_replace('0x','',$data->address_from), 64, '0', STR_PAD_LEFT);
+                // 이더리움 잔액 검색
+                $result = $client->request('eth_getBalance', [$data->address_from, 'latest']);
+                $balance = hexdec($result->result)/pow(10,18);
+                echo $balance;
+                exit;
+
+
+
                 $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
                 $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-                $result = $client->request('personal_unlockAccount', [$currency->address, $currency->password, '0x0a']);
-
-
-                // $result = $this->approve($data->address_from, $data->amount , $currency);
-
-                // print_R($result);
-
-                // exit;
+                $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
 
 
                 
                 $result = $client->request('eth_sendTransaction', [[
-                    'from' => $currency->address,
+                    'from' => $data->address_from,
                     'to' => $currency->contract,
                     'data' => $funcs.$real_to.$real_amount,
                 ]]);
 
 
-                // $result = $client->request('eth_sendTransaction', [[
-                //     'from' => $currency->address,
-                //     'to' => $currency->contract,
-                //     'data' => $from . $real_from . $real_to . $real_amount,
-                // ]]);
-
-
-
-
-                // print_R($result);
                 if(is_object($result)) {
 
                     if ($result->result != '') {

@@ -492,7 +492,7 @@ class WalletController extends Controller
             'address' => 'required',
             'totp' => 'required|digits:6',
         ]);
-        
+
 
         if ($validator->fails()) {
             return back()->withErrors($validator);
