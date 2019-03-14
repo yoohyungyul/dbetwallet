@@ -75,6 +75,14 @@ class Deposit extends Command {
                 try {
                     $result = $client->request('eth_getBlockByNumber', ['0x'.$client->dec2hex($height), true]);
                     echo "  Block #".$height."...\n";
+
+                    foreach($result->result->transactions as $txid) {
+                        
+                        echo $txid->input;
+                        if($txid->input != '') {
+
+                        }
+                    }
                             
 
                     
