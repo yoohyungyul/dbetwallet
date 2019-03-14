@@ -129,17 +129,13 @@ class Deposit extends Command {
                                     $deposit = TransactionHistory::where('currency_id',$currency->id)->where('txid',$txid->hash)->first();
                                     if(!$deposit) {
 
-                                        echo $to;
-                                      
                                         echo "\n  Incomming Transaction #".$txid->hash;
 
-                                        // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
-
                                         $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
-                                        echo "\n".$wallet->user_id;
-                                        echo "\n".$currency->id;
-                                        echo "\n".$balance;
+                                  
+                                        
 
+                                        echo "n/".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
                                         // 히스트로 등록
                                         // $transaction_history = new TransactionHistory;
                                         // $transaction_history->type = 2;
