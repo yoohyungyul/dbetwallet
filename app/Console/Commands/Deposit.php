@@ -133,21 +133,20 @@ class Deposit extends Command {
 
                                         $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
                                   
-                                        echo "\n".$balance;
-                                        echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        echo "\n".number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
-
-                                        // echo "\n".number_format((  ($balance + $amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        // echo "\n".$balance;
+                                        // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        // echo "\n".number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        echo "\n"/$txid->from;
                                         // 히스트로 등록
                                         // $transaction_history = new TransactionHistory;
                                         // $transaction_history->type = 2;
                                         // $transaction_history->user_id = $wallet->user_id;
                                         // $transaction_history->currency_id = env('CURRENCY_ID', '1');
                                         // $transaction_history->amount = number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        // $transaction_history->balance = "";
+                                        // $transaction_history->balance = number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
                                         // $transaction_history->txid = $txid->hash;
                                         // $transaction_history->address_from = "";
-                                        // $transaction_history->address_to = "";
+                                        // $transaction_history->address_to = $to;
                                         // $transaction_history->state = 0;
                                         // $transaction_history->confirm = 0;
                                         // $transaction_history->push();
