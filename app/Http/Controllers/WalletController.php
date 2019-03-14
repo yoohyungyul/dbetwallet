@@ -342,6 +342,20 @@ class WalletController extends Controller
         return "";
 
     }
+
+    public function getEthBalance($address) {
+
+        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+        $result = $client->request('eth_getBalance', [$address, 'latest']);
+       
+
+
+        $balance = hexdec($result->result)/pow(10,18);
+
+        return $balance;
+    }
     
     // 지갑 
     public function getWallet() {
@@ -360,6 +374,10 @@ class WalletController extends Controller
 
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
 
+
+        
+
+
         // 기본 이더 지갑이 없을 경우 생성
         if(!$ethData) {
 
@@ -376,6 +394,9 @@ class WalletController extends Controller
             $balance->currency_id = 3;
             $balance->push();
         }
+
+        echo $ethData->address;
+        exit;
 
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->value('balance');
