@@ -419,6 +419,8 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
+        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         // 서버에서 실제 이더리움 가져와서 저장
         $ethBalance->balance = $this->getEthBalance($ethData->address);
@@ -448,6 +450,8 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
+        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         // 서버에서 실제 이더리움 가져와서 저장
         $ethBalance->balance = $this->getEthBalance($ethData->address);
