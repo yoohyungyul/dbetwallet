@@ -47,7 +47,18 @@ class Deposit extends Command {
             $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
-            
+
+            try {
+                $result = $client->request('eth_blockNumber');
+            } catch (\Exception $e) {
+                echo " Failed!\n";
+                continue;
+            }
+
+            $max = hexdec($result->result);
+
+            echo $max;
+
             
             echo "\n[" . date('Ymd h:i:s') . "] Work End\n";
 			
