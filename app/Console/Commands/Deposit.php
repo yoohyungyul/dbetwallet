@@ -36,7 +36,12 @@ class Deposit extends Command {
      * @return mixed
      */
     public function handle() {
-        echo "1";
+        while (true) {
+            echo "[" . date('Ymd h:i:s') . "] Work Start";
+            echo "\n[" . date('Ymd h:i:s') . "] Work End\n";
+			
+			sleep(10);
+        }
     }
 
     public function base64pwd_encode($data) 
