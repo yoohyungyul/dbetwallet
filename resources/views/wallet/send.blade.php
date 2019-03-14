@@ -99,14 +99,10 @@
         }, 1000);
 
         if($('#eth_balance').val() < 0.05) {
-            alert("이더리움 코인이 부족합니다. ");
+            alert("There is not enough Etherium coin. ");
             return false;
         }
         
-
-
-
-
         if($('#address').val() == '') {
             $('#address').focus();
             alert("Please enter your address. ");

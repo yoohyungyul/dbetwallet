@@ -471,6 +471,11 @@ class WalletController extends Controller
 
         $balance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+
+        if($this->getEthBalance($ethData->address) < 0.05) {
+            return back()->withErrors('There is not enough Etherium coin. ');
+        }
         
 
         if ($balance->balance < $request->amount) {
