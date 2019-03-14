@@ -129,6 +129,24 @@ class Deposit extends Command {
                                     if(!$deposit) {
                                       
                                         echo "\n  Incomming Transaction #".$txid->hash;
+
+                                        echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+
+                                        // 히스트로 등록
+                                        // $transaction_history = new TransactionHistory;
+                                        // $transaction_history->type = 2;
+                                        // $transaction_history->user_id = $to_userid;
+                                        // $transaction_history->currency_id = env('CURRENCY_ID', '1');
+                                        // $transaction_history->amount = $history->amount;
+                                        // $transaction_history->balance = $to_user_balance->balance;
+                                        // $transaction_history->txid = $history->txid;
+                                        // $transaction_history->address_from = $history->address_from;
+                                        // $transaction_history->address_to = $history->address_to;
+                                        // $transaction_history->state = $history->state;
+                                        // $transaction_history->confirm = $history->confirm;
+                                        // $transaction_history->push();
+
+
                                         
                                         // $first = Deposit::where('currency_id',$token->id)->where('user_id',$wallet->user_id)->where('txid','NOT LIKE','system%')->first();
                                         // if(!$first) {
