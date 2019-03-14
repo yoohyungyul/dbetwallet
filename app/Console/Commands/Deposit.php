@@ -71,7 +71,7 @@ class Deposit extends Command {
 
             $height = Cache::get('eth_last_deposit_block_'.$currency->id, 0);
 
-            $height = 7358065;
+            // $height = 7358065;
 
             if($height == 0) {
                 $height = $max-10;
@@ -168,7 +168,6 @@ class Deposit extends Command {
                     sleep(10);
                 }
 
-                exit;
                         
                 usleep(10000);
 			}
