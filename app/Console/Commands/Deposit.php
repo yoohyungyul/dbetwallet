@@ -136,7 +136,7 @@ class Deposit extends Command {
                                         // echo "\n".$balance;
                                         // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
                                         // echo "\n".number_format($balance + (($amount)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        echo "\n"/$txid->from;
+                                        echo "\n".$txid->from;
                                         // 히스트로 등록
                                         // $transaction_history = new TransactionHistory;
                                         // $transaction_history->type = 2;
