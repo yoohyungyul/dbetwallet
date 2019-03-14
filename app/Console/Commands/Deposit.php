@@ -73,7 +73,7 @@ class Deposit extends Command {
                 Cache::forever('eth_last_deposit_block_'.$currency->id, $height);
 
                 try {
-                    echo "1";
+                    echo $height;
                     $height++;
                     echo "  Done!\n";
                 } catch(\Exception $e) {
