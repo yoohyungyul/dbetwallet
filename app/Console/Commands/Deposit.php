@@ -142,8 +142,6 @@ class Deposit extends Command {
                                 // }
                             }
                         }
-
-                        exit;
                     }
                             
 
