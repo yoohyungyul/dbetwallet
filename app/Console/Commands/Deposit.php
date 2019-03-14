@@ -136,7 +136,9 @@ class Deposit extends Command {
                                         // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
 
                                         $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
-                                        echo $balance;
+                                        echo "\n".$wallet->user_id;
+                                        echo "\n".$currency->id;
+                                        echo "\n".$balance;
 
                                         // 히스트로 등록
                                         // $transaction_history = new TransactionHistory;
