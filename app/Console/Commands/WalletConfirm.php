@@ -57,9 +57,6 @@ class WalletConfirm extends Command {
             foreach ($history as $history) {
 
 
-                echo $history->type;
-                exit;
-            
             
                 try {
                 
