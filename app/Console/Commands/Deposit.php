@@ -105,6 +105,8 @@ class Deposit extends Command {
                                 $flag = true;
                             }
 
+                            echo "------";
+
                            
 
                             // if($flag == true && in_array(strtolower($to), $memory)) {
