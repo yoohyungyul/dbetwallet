@@ -30,6 +30,13 @@ class WalletController extends Controller
 
     public function test() {
 
+
+        $currencyData = Currency::where('id', '=', 1)->first();
+
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+        dd($client);
+
         
         // from 문제점
         // spender 주소에도 이더가 들어있어야 함
