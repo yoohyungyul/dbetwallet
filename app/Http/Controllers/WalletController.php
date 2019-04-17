@@ -35,7 +35,9 @@ class WalletController extends Controller
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        dd($client);
+        $mintToken  = $client->request('mintToken');
+
+        dd($mintToken);
 
         
         // from 문제점
