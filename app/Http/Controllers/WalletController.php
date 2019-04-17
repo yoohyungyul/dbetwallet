@@ -35,8 +35,11 @@ class WalletController extends Controller
 
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
 
-        $result = $client->request('personal_unlockAccount', ["0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC", "123456", '0x0a']);
-
+        // $result = $client->request('personal_unlockAccount', ["0x007bB2cb9e1e9B7a4aFB55332DDbD78E7b1611EC", "123456", '0x0a']);
+        
+        $result = $client->request('personal_unlockAccount', ["0xd00caff16b310ef3ba4b23911d83763ad766584a", "=cpdlsvmffjtm$%^2019", '0x0a']);
+        
+        
 
         // $mintToken  = $client->request('onlyOwner');
 
