@@ -36,6 +36,7 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($
     Route::get('/history', 'WalletController@getHistory');
     Route::get('/send', 'WalletController@getSend');
     Route::post('/send', 'WalletController@postSend');
+    Route::get('/buy', 'WalletController@getBuy');
 });
 
 
