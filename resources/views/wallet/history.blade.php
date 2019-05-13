@@ -35,7 +35,7 @@
                 <tbody>
                     @foreach ($list as $item)
                     <tr>
-                        <td>{{ substr($item->created_at,0,10)  }}<br><small>{{ substr($item->created_at,11)  }}</small></td>
+                        <td style="line-height: 20px;">{{ substr($item->created_at,0,10)  }}<br><small>{{ substr($item->created_at,11)  }}</small></td>
                         <td>
                             @if($item->type == "1")
                                 Send to<br>
