@@ -75,20 +75,7 @@
             var eth_amount = $("input[name='eth_amount']").val();
 
             if(eth_amount) {
-                if(!isNumber(eth_amount) ) {
-                    bootbox.alert('숫자만 입력해 주세요. ');
-                    $("input[name='eth_amount']").val('');
-                    $('#total_eth_amount').html('0');
-                    $("input[name='eth_amount']").focus();
-                    return false;
-                }
-
-                var total_eth_amount = parseFloat(eth_amount) + 0.0001;
-                var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
-                
-
-                $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
-                $("input[name='dbet_amount']").val(  Number(dbet_amount.toFixed(8))   );
+                exchange();
             }
             
 
@@ -146,6 +133,26 @@
 
     function allBalance() {
         $('#amountFormControlInput').val('{{ $ethBalance->balance }}');
+        exchange();
+    }
+
+    function exchange() {
+
+        var eth_amount = $("input[name='eth_amount']").val();
+        if(!isNumber(eth_amount) ) {
+            bootbox.alert('숫자만 입력해 주세요. ');
+            $("input[name='eth_amount']").val('');
+            $('#total_eth_amount').html('0');
+            $("input[name='eth_amount']").focus();
+            return false;
+        }
+
+        var total_eth_amount = parseFloat(eth_amount) + 0.0001;
+        var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
+        
+
+        $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
+        $("input[name='dbet_amount']").val(  Number(dbet_amount.toFixed(8))   );
     }
 
     function isNumber(s) {
