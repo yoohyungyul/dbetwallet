@@ -69,6 +69,15 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+
+
+        if($data['recommender']) {
+            return redirect('/register' )->with('recommender', '없는 회원');
+        }
+
+        exit;
+
+
         
        
         // // 쿠키 생성 
@@ -79,6 +88,9 @@ class AuthController extends Controller
         Cookie::queue($name, $value, $minutes);
 
         $password = bcrypt("chainplus!QAZ");
+
+        // 추천 코드 생성
+        $recommender_code = uniqid('doublebet_');
         
 
 
@@ -86,6 +98,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'wallet_code' => $value,
+            'recommender_code' => $recommender_code,
             'password' => $password,
         ]);
     }
