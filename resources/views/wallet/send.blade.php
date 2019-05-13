@@ -39,7 +39,7 @@
                 <div class="text-center">error : {{ $error }}</div>
                 @endforeach
                 <div class="form-group">
-                    <label for="addressFormControlInput">Wallet Address</label>
+                    <label for="addressFormControlInput">DBET Wallet Address</label>
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
                     <!-- <div class="input-group">
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
@@ -50,7 +50,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="amountFormControlInput">Amount</label>
+                    <label for="amountFormControlInput">DBET Amount</label>
                     <!-- <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="0"> -->
 
                     <div class="input-group">
