@@ -48,7 +48,7 @@
 
                             <div class="col-md-6">
                                 <input id="recommender" type="text" class="form-control" name="recommender" value="">
-                                @if ($errors->has('captcha'))
+                                @if ($errors->has('recommender'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('recommender') }}</strong>
                                 </span>
