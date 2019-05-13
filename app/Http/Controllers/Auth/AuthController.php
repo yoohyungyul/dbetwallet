@@ -124,6 +124,11 @@ class AuthController extends Controller
 
         // 추천 코드 생성
         $recommender_code = uniqid('doublebet_');
+
+        $recommender_id = 0;
+        if($data['recommender']) {
+            $recommender_id = User::where('recommender_code',$data['recommender'])->value('id');
+        }
         
 
 
@@ -132,6 +137,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'wallet_code' => $value,
             'recommender_code' => $recommender_code,
+            'recommender' => $recommender_id,
             'password' => $password,
         ]);
     }
