@@ -69,9 +69,10 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        echo $data['recommender'];
+        // echo $data['recommender'];
 
-
+        $recommender_id = User::where('recommender_code',$data['recommender'])->value('id');
+        echo $recommender_id;
         exit;
 
 
