@@ -81,7 +81,7 @@ class AuthController extends Controller
 
         if($request->recommender) {
             $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
-            if(!$recommender_id) return back()->withErrors('Oops, database error is occurred!');
+            if(!$recommender_id) return Redirect::to("/register")->withInput()->with('recommender', '제휴 신청 완료');
         }
         // echo $recommender_id;
         exit;
