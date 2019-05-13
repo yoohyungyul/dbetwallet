@@ -31,10 +31,9 @@
               
 
 
-
-                <form action="/send" name="sendForm" method="POST" onsubmit="return write_btn();">
-                {{ csrf_field() }}
-                <input type="hidden" id="eth_balance" name="eth_balance" value="{{$ethBalance->balance}}" />
+                {!! Form::open(array('url' => URL::to('/send'), 'method' => 'post','name'=>'sendForm','id'=>'sendForm')) !!}
+                {!! Form::hidden('eth_balance',$ethBalance->balance) !!}
+                
                 @foreach ($errors->all() as $error)
                 <div class="text-center">error : {{ $error }}</div>
                 @endforeach
@@ -68,7 +67,7 @@
                     <input type="text" name="totp" id="totp" class="form-control input-lg" id="outFormControlInput" placeholder="OTP" maxlength="6">
                 </div>
                 <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">SEND</button>
-                </form>
+                {!! Form::close() !!}
             </div>
            
         </div>
