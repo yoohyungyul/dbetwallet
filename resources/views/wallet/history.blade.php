@@ -19,6 +19,19 @@
        </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-12">
+        <div class="custom-control custom-radio">
+            <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
+            <label class="custom-control-label" for="jb-radio-1">DBET</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
+            <label class="custom-control-label" for="jb-radio-2">ETH</label>
+        </div>
+    </div>
+</div>
+
 <div class="row mt20">
     <div class="col-12 ">
         <div style="width:100%; overflow:auto">
