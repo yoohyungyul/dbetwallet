@@ -26,9 +26,34 @@
 <div class="row mt20">
     <div class="col-12 ">
         <div class="panel panel-default">
-            <div class="panel-body">
-
-              
+        <div class="panel-body">
+            <form action="/buy" name="sendForm" method="POST" onsubmit="return write_btn();">
+            {{ csrf_field() }}
+            @foreach ($errors->all() as $error)
+            <div class="text-center">error : {{ $error }}</div>
+            @endforeach
+            
+            <div class="form-group">
+                <label for="amountFormControlInput">ETH Amount</label>
+             
+                <div class="input-group">
+                    <input type="text" class="form-control text-right" id="amountFormControlInput" name="amount" maxlength="26" placeholder="0" autocomplete="off">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="addressFormControlInput">DBET Amount</label>
+                <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="0" readonly>
+               
+            </div>
+            <div class="form-group">
+                <label for="outFormControlInput">OTP</label>
+                <input type="text" name="totp" id="totp" class="form-control input-lg" id="outFormControlInput" placeholder="OTP" maxlength="6">
+            </div>
+            <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">BUY</button>
+            </form>
             </div>
            
         </div>
@@ -43,6 +68,8 @@
 @section('script')
 
 <script>
-    
+    function allBalance() {
+        $('#amountFormControlInput').val('{{ $ethBalance->balance }}');
+    }
 </script>
 @endsection
