@@ -83,7 +83,7 @@
                 return false;
             }
 
-            $('#total_eth_amount').html(parseFloat(eth_amount));
+            $('#total_eth_amount').html(parseFloat(eth_amount) + 0.0001);
 
         });
     });
