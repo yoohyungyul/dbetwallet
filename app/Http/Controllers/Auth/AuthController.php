@@ -57,7 +57,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            // 'captcha' => 'required|captcha',
+            'captcha' => 'required|captcha',
             // 'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -87,8 +87,6 @@ class AuthController extends Controller
                 return Redirect::back();
             }
         }
-        // echo $recommender_id;
-        exit;
 
 
         if ($validator->fails()) {
