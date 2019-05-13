@@ -142,10 +142,15 @@
                 $("input[name='eth_amount']").focus();
                 return false;
             }
+
+            var total_eth_amount = parseFloat(eth_amount) + 0.0001;
+            var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
+        } else {
+            var total_eth_amount = 0;
+            var dbet_amount = 0;
         }
 
-        var total_eth_amount = parseFloat(eth_amount) + 0.0001;
-        var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
+        
         
 
         $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
