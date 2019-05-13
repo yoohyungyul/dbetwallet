@@ -37,7 +37,7 @@
                 <label for="amountFormControlInput">ETH Amount</label>
              
                 <div class="input-group">
-                    <input type="text" class="form-control text-right" id="amountFormControlInput" name="amount" maxlength="26" placeholder="0" autocomplete="off">
+                    <input type="text" class="form-control text-right" id="amountFormControlInput" name="eth_amount" maxlength="26" placeholder="0" autocomplete="off">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                     </span>
@@ -45,14 +45,14 @@
             </div>
             <div class="form-group">
                 <label for="addressFormControlInput">DBET Amount</label>
-                <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="0" readonly>
+                <input type="text" name="dbet_amount" class="form-control  text-right" id="addressFormControlInput" placeholder="0" readonly>
                
             </div>
             <div class="form-group">
                 <label for="outFormControlInput">OTP</label>
                 <input type="text" name="totp" id="totp" class="form-control input-lg" id="outFormControlInput" placeholder="OTP" maxlength="6">
             </div>
-            <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">BUY</button>
+            <button type="submit" id="buy_btn" class="btn btn-primary btn-block">BUY</button>
             </form>
             </div>
            
@@ -68,6 +68,50 @@
 @section('script')
 
 <script>
+
+    function write_btn() {
+        
+        var btn = $('#buy_btn');
+        btn.attr('disabled','disabled');
+        setTimeout(function() {
+        btn.removeAttr('disabled');
+        }, 1000);
+
+        if($('#eth_balance').val() < 0.05) {
+            alert("There is not enough Etherium coin. ");
+            return false;
+        }
+        
+        if($('#address').val() == '') {
+            $('#address').focus();
+            alert("Please enter your address. ");
+            return false;
+        }
+        
+
+        if($('#amount').val() == '') {
+            $('#amount').focus();
+            alert("Please enter your amount. ");
+            return false;
+        }
+
+        if($('#amount').val() == '0') {
+            $('#amount').focus();
+            alert("Please enter your amount. ");
+            return false;
+        }
+
+
+        if($('#totp').val() == '') {
+            $('#totp').focus();
+            alert("Please enter your otp. ");
+            return false;
+        }
+
+        return true;
+    }
+
+
     function allBalance() {
         $('#amountFormControlInput').val('{{ $ethBalance->balance }}');
     }
