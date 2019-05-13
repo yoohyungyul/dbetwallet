@@ -59,6 +59,14 @@ class AuthController extends Controller
         ]);
     }
 
+    public function postRegister(Request $request)
+    {
+
+        echo "dd";
+        exit;
+        // return $this->register($request);
+    }
+
 
 
     /**
