@@ -75,7 +75,7 @@
             var eth_amount = $("input[name='eth_amount']").val();
 
 
-            if(!isNumber(directly) ) {
+            if(!isNumber(eth_amount) ) {
                 alert("숫자만 입력해 주세요. ");
                 return false;
             }
