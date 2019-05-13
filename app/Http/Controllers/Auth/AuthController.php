@@ -130,9 +130,6 @@ class AuthController extends Controller
             $recommender_id = User::where('recommender_code',$data['recommender'])->value('id');
         }
 
-        echo $data['recommender'];
-        echo $recommender_id;
-        exit;
         
 
 
