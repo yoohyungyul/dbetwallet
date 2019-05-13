@@ -78,6 +78,15 @@ class AuthController extends Controller
 
         $validator = $this->validator($request->all());
 
+
+        if($request->recommender) {
+            $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
+            if(!$recommender_id) return back()->withErrors('Oops, database error is occurred!');
+        }
+        // echo $recommender_id;
+        exit;
+
+
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator
@@ -101,17 +110,6 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        // echo $data['recommender'];
-
-        if($data['recommender']) {
-            $recommender_id = User::where('recommender_code',$data['recommender'])->value('id');
-            if(!$recommender_id) return back()->withErrors('Oops, database error is occurred!');
-        }
-        // echo $recommender_id;
-        exit;
-
-
-        
        
         // // 쿠키 생성 
         $name = "chainplus";
