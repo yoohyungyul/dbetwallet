@@ -42,7 +42,7 @@
                         <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                     </span>
                 </div>
-                <p class="text-right"><small>예상 결제 수량: 0 ETH </small></p>
+                <p class="text-right"><small>예상 결제 수량: <span id="total_eth_amount">0</span> ETH </small></p>
             </div>
             <div class="form-group">
                 <label for="addressFormControlInput">DBET Amount</label>
@@ -78,9 +78,12 @@
             if(!isNumber(eth_amount) ) {
                 bootbox.alert('숫자만 입력해 주세요. ');
                 $("input[name='eth_amount']").val('');
+                $('#total_eth_amount').html('0');
                 $("input[name='eth_amount']").focus();
                 return false;
             }
+
+            $('#total_eth_amount').html(parseFloat(eth_amount));
 
         });
     });
