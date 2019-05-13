@@ -159,6 +159,7 @@ return [
         GrahamCampbell\Throttle\ThrottleServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -210,6 +211,8 @@ return [
         'Throttle' => GrahamCampbell\Throttle\Facades\Throttle::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];
