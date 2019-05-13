@@ -21,7 +21,7 @@
 </div>
 <div class="row mt20">
     <div class="col-12">
-        <div class="custom-control custom-radio" style="float:left">
+        <div class="custom-control custom-radio" style="float:left;width:110px">
             <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
             <label class="custom-control-label" for="jb-radio-1">DBET</label>
         </div>
