@@ -84,7 +84,7 @@
             }
 
             $('#total_eth_amount').html(parseFloat(eth_amount) + 0.0001);
-            $("input[name='dbet_amount']").val(  parseFloat(eth_amount)  / 50 );
+            $("input[name='dbet_amount']").val(  (parseFloat(eth_amount) * 200000) / 50 );
             
 
         });
