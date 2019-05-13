@@ -26,7 +26,7 @@
             <table class="table table-hover" style="word-wrap: break-word; width='100%'">
                 <thead>
                     <tr>
-                    <th scope="col" style="width:200px">DATE</th>
+                    <th scope="col" width="30%">DATE</th>
                     <th scope="col" width="30%">ADDRESS</th>
                     <th scope="col" width="20%">AMOUNT</th>
                     <th scope="col" width="20%">BALANCE</th>
@@ -35,7 +35,7 @@
                 <tbody>
                     @foreach ($list as $item)
                     <tr>
-                        <td>{{ substr($item->created_at,0,10)  }}</td>
+                        <td>{{ substr($item->created_at,0,10)  }}<br><small>{{ substr($item->created_at,11)  }}</small></td>
                         <td>
                             @if($item->type == "1")
                                 Send to<br>
