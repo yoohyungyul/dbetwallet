@@ -43,6 +43,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('recommender') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">Recommender</label>
+
+                            <div class="col-md-6">
+                                <input id="recommender" type="text" class="form-control" name="recommender" value="">
+                                @if ($errors->has('captcha'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('recommender') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Captcha</label>
 
@@ -59,14 +73,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Recommender</label>
-
-                            <div class="col-md-6">
-                                <input id="recommender" type="text" class="form-control" name="recommender" value="">
-                            </div>
-                        </div>
-
+                        
 
 
                         
