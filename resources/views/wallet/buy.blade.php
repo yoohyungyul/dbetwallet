@@ -142,15 +142,14 @@
                 $("input[name='eth_amount']").focus();
                 return false;
             }
+        }
 
-            var total_eth_amount = parseFloat(eth_amount) + 0.0001;
-            var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
-            
+        var total_eth_amount = parseFloat(eth_amount) + 0.0001;
+        var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
+        
 
-            $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
-            $("input[name='dbet_amount']").val(  Number(dbet_amount.toFixed(8))   );
-
-         }
+        $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
+        $("input[name='dbet_amount']").val(  Number(dbet_amount.toFixed(8))   );
     }
 
     function isNumber(s) {
