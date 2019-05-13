@@ -76,7 +76,8 @@
 
 
             if(!isNumber(eth_amount) ) {
-                alert("숫자만 입력해 주세요. ");
+                bootbox.alert('숫자만 입력해 주세요. ');
+                $("input[name='eth_amount']").focus();
                 return false;
             }
 
