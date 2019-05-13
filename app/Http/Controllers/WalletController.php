@@ -249,8 +249,8 @@ class WalletController extends Controller
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         
-        echo $recom_code  = uniqid('doublebet_',true);
-        exit;
+        // echo $recom_code  = uniqid('doublebet_',true);
+        // exit;
 
         if(!$walletData) {
             Auth::logout();
