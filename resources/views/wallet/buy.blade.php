@@ -42,6 +42,7 @@
                         <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                     </span>
                 </div>
+                <p class="text-right"><small>예상 결제 수량: 0 ETH </small></p>
             </div>
             <div class="form-group">
                 <label for="addressFormControlInput">DBET Amount</label>
