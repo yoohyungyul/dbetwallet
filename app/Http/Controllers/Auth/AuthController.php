@@ -71,8 +71,11 @@ class AuthController extends Controller
     {
         // echo $data['recommender'];
 
-        $recommender_id = User::where('recommender_code',$data['recommender'])->value('id');
-        echo $recommender_id;
+        if($data['recommender']) {
+            $recommender_id = User::where('recommender_code',$data['recommender'])->value('id');
+            if(!$recommender_id) return back()->withErrors('Oops, database error is occurred!');
+        }
+        // echo $recommender_id;
         exit;
 
 
