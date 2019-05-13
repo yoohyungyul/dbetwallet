@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Cookie;
-
+use Session;
 
 class AuthController extends Controller
 {
@@ -82,7 +82,10 @@ class AuthController extends Controller
 
         if($request->recommender) {
             $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
-            if(!$recommender_id) return Redirect::to("/register")->withInput()->with('recommender', '제휴 신청 완료');
+            if(!$recommender_id) {
+                Session::flash('sweet_alert', "회원을 찾을수 없습니다.");
+                return Redirect::back();
+            }
         }
         // echo $recommender_id;
         exit;

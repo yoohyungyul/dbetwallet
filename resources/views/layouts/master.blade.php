@@ -13,6 +13,7 @@
 
         <script src="/js/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="/js/popper.min.js"  crossorigin="anonymous"></script>
+        <script src="/js/bootbox.min.js" type="text/javascript"></script>
         <script src="/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
         @yield('style')
@@ -31,5 +32,37 @@
         </div>
 
         @yield('script')
+        <script>
+        $(document).ready(function(){
+            {{--
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+             --}}
+
+            @if (Session::has('sweet_alert'))
+                bootbox.alert("{{ Session::get('sweet_alert') }}");
+            @endif
+
+            @if (count($errors) > 0)
+                @foreach ($errors->all() as $error)
+                    var alert = '<div class="alert alert-danger">';
+                    alert += '<a class="close" data-dismiss="alert" href="#">×</a>';
+                    alert += '{{$error}}';
+                    alert += '</div>';;
+
+                    $("#errorMessage").append( alert );
+                @endforeach
+
+                $("#errorMessage").show();
+            @endif
+
+       });
+
+    </script>
     </body>
 </html>
