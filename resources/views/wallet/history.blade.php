@@ -25,11 +25,11 @@
 {!! Form::hidden('currency_id',$currency_id) !!}
     <div class="col-12">
         <div class="custom-control custom-radio" style="float:left;width:90px">
-            <input type="radio" name="currency" id="currency-1" value="2" class="custom-control-input currency" @if($currency_id == "2")checked="checked"@endif>
+            <input type="radio" name="currency_id" id="currency-1" value="2" class="custom-control-input currency" @if($currency_id == "2")checked="checked"@endif>
             <label class="custom-control-label" for="currency-1">DBET</label>
         </div>
         <div class="custom-control custom-radio" style="float:left;width:70px">
-            <input type="radio" name="currency" id="currency-2" value="3" class="custom-control-input currency" @if($currency_id == "3")checked="checked"@endif>
+            <input type="radio" name="currency_id" id="currency-2" value="3" class="custom-control-input currency" @if($currency_id == "3")checked="checked"@endif>
             <label class="custom-control-label" for="currency-2">ETH</label>
         </div>
     </div>
