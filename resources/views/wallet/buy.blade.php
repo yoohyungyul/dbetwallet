@@ -69,6 +69,19 @@
 @section('script')
 
 <script>
+    $( document ).ready( function() {
+        $("input[name='eth_amount']").keyup(function () {
+         
+            var eth_amount = $("input[name='eth_amount']").val();
+
+
+            if(!isNumber(directly) ) {
+                alert("숫자만 입력해 주세요. ");
+                return false;
+            }
+
+        });
+    }
 
     function write_btn() {
         
