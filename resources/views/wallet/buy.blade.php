@@ -74,17 +74,18 @@
          
             var eth_amount = $("input[name='eth_amount']").val();
 
+            if(eth_amount) {
+                if(!isNumber(eth_amount) ) {
+                    bootbox.alert('숫자만 입력해 주세요. ');
+                    $("input[name='eth_amount']").val('');
+                    $('#total_eth_amount').html('0');
+                    $("input[name='eth_amount']").focus();
+                    return false;
+                }
 
-            if(!isNumber(eth_amount) ) {
-                bootbox.alert('숫자만 입력해 주세요. ');
-                $("input[name='eth_amount']").val('');
-                $('#total_eth_amount').html('0');
-                $("input[name='eth_amount']").focus();
-                return false;
+                $('#total_eth_amount').html(parseFloat(eth_amount) + 0.0001);
+                $("input[name='dbet_amount']").val(  (parseFloat(eth_amount) * 200000) / 50 );
             }
-
-            $('#total_eth_amount').html(parseFloat(eth_amount) + 0.0001);
-            $("input[name='dbet_amount']").val(  (parseFloat(eth_amount) * 200000) / 50 );
             
 
         });
