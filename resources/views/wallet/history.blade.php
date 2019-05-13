@@ -26,7 +26,7 @@
             <table class="table table-hover" style="word-wrap: break-word; width='100%'">
                 <thead>
                     <tr>
-                    <th scope="col" width="30%">DATE</th>
+                    <th scope="col" style="width:200px">DATE</th>
                     <th scope="col" width="30%">ADDRESS</th>
                     <th scope="col" width="20%">AMOUNT</th>
                     <th scope="col" width="20%">BALANCE</th>
