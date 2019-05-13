@@ -25,11 +25,26 @@
                 <div id="deposit_qrcode"></div>
             </div>
             <div class="card-body text-left">
-                <span style="float: right;"  id="clipboard2"  data-clipboard-target="#wallet_address"><i class="far fa-copy" ></i></span>
+                <span style="float: right;"  id="clipboard1"  data-clipboard-target="#wallet_address"><i class="far fa-copy" ></i></span>
                 <h5 class="card-title">Address
                     
                 </h5>
                 <p class="card-text" id="wallet_address">{{ $wallet->address}}</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt20">
+    <div class="col-12 text-center">
+        <div class="card text-center" style="display: block">
+            
+            <div class="card-body text-left">
+                <span style="float: right;"  id="clipboard2"  data-clipboard-target="#recommender_code"><i class="far fa-copy" ></i></span>
+                <h5 class="card-title">Recommender Code
+                    
+                </h5>
+                <p class="card-text" id="recommender_code">{{ Auth::user()->recommender_code }}</p>
                 
             </div>
         </div>
@@ -45,10 +60,17 @@
 <script src="/clipboard/dist/clipboard.min.js"></script>
 <script>
     
-var clipboard = new Clipboard('#clipboard2');
+var clipboard1 = new Clipboard('#clipboard1');
 
-clipboard.on('success', function(e) {
+clipboard1.on('success', function(e) {
     $('#wallet_address').blur();
+    alert('cliped');
+});
+
+var clipboard2 = new Clipboard('#clipboard2');
+
+clipboard2.on('success', function(e) {
+    $('#recommender_code').blur();
     alert('cliped');
 });
 
