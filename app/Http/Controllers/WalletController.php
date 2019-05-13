@@ -312,6 +312,7 @@ class WalletController extends Controller
     public function getHistory(Request $request) {
 
         $currency_id  = $request->currency_id;
+        if(!$currency_id) $currency_id = env('CURRENCY_ID', '1');
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
