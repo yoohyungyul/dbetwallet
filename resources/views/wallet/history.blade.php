@@ -25,7 +25,7 @@
             <input type="radio" name="currency" id="currency-1" value="2" class="custom-control-input" checked="checked">
             <label class="custom-control-label" for="currency-1">DBET</label>
         </div>
-        <div class="custom-control custom-radio" >
+        <div class="custom-control custom-radio" style="float:left;width:110px">
             <input type="radio" name="currency" id="currency-2" value="3" class="custom-control-input">
             <label class="custom-control-label" for="currency-2">ETH</label>
         </div>
