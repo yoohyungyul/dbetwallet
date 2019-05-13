@@ -84,6 +84,12 @@
     });
 
     function write_btn() {
+
+        // if( !fee1 ){
+        //         bootbox.alert('수수료를 입력해 주세요. ');
+        //         $("input[name='level1_fee']").focus();
+        //         return false;
+        //     }
         
         var btn = $('#buy_btn');
         btn.attr('disabled','disabled');
@@ -128,6 +134,13 @@
 
     function allBalance() {
         $('#amountFormControlInput').val('{{ $ethBalance->balance }}');
+    }
+
+    function isNumber(s) {
+        s += ''; // 문자열로 변환
+        s = s.replace(/^\s*|\s*$/g, ''); // 좌우 공백 제거
+        if (s == '' || isNaN(s)) return false;
+        return true;
     }
 </script>
 @endsection
