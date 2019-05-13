@@ -69,11 +69,8 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        echo $data['recommender'];
 
-
-        if($data['recommender']) {
-            return redirect('/register' )->with('recommender', '없는 회원');
-        }
 
         exit;
 
