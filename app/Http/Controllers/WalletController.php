@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\jsonRPCClient;
 use App\Currency;
 use App\Balance;
+use App\User;
 use App\Users_wallet;
 use App\TransactionHistory;
 use Validator;
@@ -279,6 +280,13 @@ class WalletController extends Controller
             $balance->user_id = Auth::user()->id;
             $balance->currency_id = 3;
             $balance->push();
+        }
+
+        // 추천 코드가 없으면
+        if(!Auth::user()->recommender_code) {
+            $user = User::find(Auth::user()->id);
+            $user->recommender_code = uniqid('doublebet_');
+            $user->save();
         }
 
        
