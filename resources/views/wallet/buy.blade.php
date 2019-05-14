@@ -17,7 +17,7 @@
         <div class="tab-content " style="background:#fff;display: inline-block;width:100%;height:70px;padding-top:15px;padding-right:10px;">
             <span style="float: right;">{{ number_format(  $balance->balance, $currency->fixed, ".", ",") }} {{$currency->label}}</span>
             <br>
-            <span style="float: right;"><small>{{ number_format( $ethBalance->balance, $ethCurrency->fixed, ".", ",") }} {{$ethCurrency->label}}</small></span>
+            <span style="float: right;"><small>{{ number_format( $ethBalance, $ethCurrency->fixed, ".", ",") }} {{$ethCurrency->label}}</small></span>
        </div>
     </div>
 
@@ -92,7 +92,7 @@
 
         var total_eth_amount = $("input[name='total_eth_amount']").val();
         var limit_min = parseFloat("{{$ethCurrency->limit_min}}");
-        var ethBalance = parseFloat("{{$ethBalance->balance}}");
+        var ethBalance = parseFloat("{{$ethBalance}}");
 
         // alert(ethBalance);
 
@@ -117,7 +117,7 @@
 
 
     function allBalance() {
-        $('#amountFormControlInput').val('{{ $ethBalance->balance }}');
+        $('#amountFormControlInput').val('{{ $ethBalance }}');
         exchange();
     }
 

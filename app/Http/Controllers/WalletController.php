@@ -231,16 +231,20 @@ class WalletController extends Controller
 
     }
 
-    public function getEthBalance($address) {
+    public function getEthBalance($id) {
 
-        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
-        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        // 서버에서 직접 조회
+        // $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        // $result = $client->request('eth_getBalance', [$address, 'latest']);
 
-        $result = $client->request('eth_getBalance', [$address, 'latest']);
+        // 구매 건수 포함
+        $result = BuyHistory::where('user_id',$id)->where('state','0')->sum(DB::raw(" buy_amount + buy_fee"));
+
        
 
 
-        $balance = hexdec($result->result)/pow(10,18);
+        $balance = hexdec($result)/pow(10,18);
 
         return $balance;
     }
@@ -476,6 +480,8 @@ class WalletController extends Controller
         // 서버에서 실제 이더리움 가져와서 저장
         // $ethBalance->balance = $this->getEthBalance($ethData->address);
         // $ethBalance->save();
+
+        $ethBalance = $this->getEthBalance(Auth::user()->id);
 
 
         return view('wallet.buy',[
