@@ -500,12 +500,15 @@ class WalletController extends Controller
         $key = Auth::user()->id . ':' . $request->totp;
 
         if(Cache::has($key)) {
-           return back()->withErrors('이미 사용 된 OTP 코드입니다.');
+            Session::flash('sweet_alert', "이미 사용 된 OTP 코드입니다.");
+            return Redirect::back();
+                
         }
 
         if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
+            Session::flash('sweet_alert', "OTP 코드가 불일치합니다.");
+            return Redirect::back();
           
-            return back()->withErrors('OTP 코드가 불일치합니다.');
         }
 
     }
