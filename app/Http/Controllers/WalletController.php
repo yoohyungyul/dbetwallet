@@ -496,8 +496,6 @@ class WalletController extends Controller
             'totp' => 'required|digits:6',
         ]);
 
-
-
         $key = Auth::user()->id . ':' . $request->totp;
 
         if(Cache::has($key)) {
@@ -511,6 +509,37 @@ class WalletController extends Controller
             return Redirect::back();
           
         }
+
+        $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->first();
+        $ethCurrencyData = Currency::where('id', '3')->first();
+        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+
+        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        
+        // 서버에서 실제 이더리움 가져와서 저장
+        // $ethBalance->balance = $this->getEthBalance($ethData->address);
+        // $ethBalance->save();
+
+
+        $total_eth_amount = $request->total_eth_amount;
+        $limit_min = $ethCurrencyData->limit_min;
+        $ethBalance = $ethBalance->balance;
+
+    
+
+        if($total_eth_amount < $limit_min) {
+            Session::flash("최소 구매 수량은 "+$limit_min+"개입니다. ");
+            return Redirect::back();
+        }
+
+        if($total_eth_amount > $ethBalance) {
+            Session::flash("예상 결제 수량이 부족합니다. ");
+            return Redirect::back();
+        }
+
+
+
 
     }
 }

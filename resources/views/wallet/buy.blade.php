@@ -108,7 +108,7 @@
 
         if($('#totp').val() == '') {
             $('#totp').focus();
-            alert("otp를 입력해 주세요. ");
+            alert("OTP를 입력해 주세요. ");
             return false;
         }
 
