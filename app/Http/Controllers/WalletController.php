@@ -468,7 +468,7 @@ class WalletController extends Controller
         $ethBalance->save();
 
 
-    //    dd($ethCurrencyData);
+       
 
 
         return view('wallet.buy',[
