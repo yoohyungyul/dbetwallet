@@ -27,8 +27,9 @@
     <div class="col-12 ">
         <div class="panel panel-default">
         <div class="panel-body">
-            <form action="/buy" name="sendForm" method="POST" onsubmit="return write_btn();">
+            <form action="/buy" name="buyForm" method="POST" onsubmit="return write_btn();">
             {{ csrf_field() }}
+            <input type="text" name="total_eth_amount" value="0"/>
             @foreach ($errors->all() as $error)
             <div class="text-center">error : {{ $error }}</div>
             @endforeach
@@ -89,6 +90,16 @@
         btn.removeAttr('disabled');
         }, 1000);
 
+
+        var total_eth_amount = $("input[name='total_eth_amount']").val();
+
+        if(total_eth_amount > {{$ethBalance->balance}}) {
+            alert("예상 결제 수량이 부족합니다. ");
+            return false;
+        }
+
+
+
         if($('#eth_balance').val() < 0.05) {
             alert("There is not enough Etherium coin. ");
             return false;
@@ -139,7 +150,9 @@
                 bootbox.alert('숫자만 입력해 주세요. ');
                 $("input[name='eth_amount']").val('');
                 $('#total_eth_amount').html('0');
+                $("input[name='total_eth_amount']").val('0');
                 $("input[name='eth_amount']").focus();
+                
                 return false;
             }
 
@@ -149,11 +162,9 @@
             var total_eth_amount = 0;
             var dbet_amount = 0;
         }
-
         
-        
-
         $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
+        $("input[name='total_eth_amount']").val(total_eth_amount);
         $("input[name='dbet_amount']").val(  Number(dbet_amount.toFixed(8))   );
     }
 
