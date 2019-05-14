@@ -240,6 +240,10 @@ class WalletController extends Controller
 
         // $balance = hexdec($result)/pow(10,18);
 
+
+        // 남은 잔액
+        $ethBalance = Balance::where('user_id',id)->where('currency_id', '=', 3)->value('balance');
+
         // 구매 건수 포함
         $balance = BuyHistory::where('user_id',$id)->where('state','0')->sum(DB::raw(" buy_amount + buy_fee"));
 
@@ -247,7 +251,7 @@ class WalletController extends Controller
 
        
 
-        return $balance;
+        return $ethBalance - $balance;
     }
     
     // 지갑 
@@ -476,7 +480,7 @@ class WalletController extends Controller
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        // $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         
         // 서버에서 실제 이더리움 가져와서 저장
         // $ethBalance->balance = $this->getEthBalance($ethData->address);
