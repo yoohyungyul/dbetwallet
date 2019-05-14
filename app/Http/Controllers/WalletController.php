@@ -373,6 +373,27 @@ class WalletController extends Controller
     // 보내기 처리
     public function postSend(Request $request) {
 
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required',
+            'address' => 'required',
+            'totp' => 'required|digits:6',
+        ]);
+
+
+
+        $key = Auth::user()->id . ':' . $request->totp;
+
+        if(Cache::has($key)) {
+           return back()->withErrors('This is the OTP code already used.');
+        }
+
+        if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
+          
+            return back()->withErrors('OTP code mismatch.');
+        }
+
+
+
         $balance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
@@ -391,11 +412,7 @@ class WalletController extends Controller
 		}
 
 
-        $validator = Validator::make($request->all(), [
-            'amount' => 'required',
-            'address' => 'required',
-            'totp' => 'required|digits:6',
-        ]);
+        
 
 
         if ($validator->fails()) {
@@ -407,16 +424,7 @@ class WalletController extends Controller
         // if(!$isAddress) return back()->withErrors('Invalid address.');
 
      
-        $key = Auth::user()->id . ':' . $request->totp;
-
-        if(Cache::has($key)) {
-           return back()->withErrors('This is the OTP code already used.');
-        }
-
-        if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
-          
-            return back()->withErrors('OTP code mismatch.');
-        }
+        
 
         
       
@@ -479,6 +487,26 @@ class WalletController extends Controller
 
     // 구매 처리
     public function postBuy(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'eth_amount' => 'required',
+            'total_eth_amount' => 'required',
+            'dbet_amount' => 'required',
+            'totp' => 'required|digits:6',
+        ]);
+
+
+
+        $key = Auth::user()->id . ':' . $request->totp;
+
+        if(Cache::has($key)) {
+           return back()->withErrors('이미 사용 된 OTP 코드입니다.');
+        }
+
+        if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
+          
+            return back()->withErrors('OTP 코드가 불일치합니다.');
+        }
 
     }
 }
