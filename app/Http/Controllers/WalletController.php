@@ -242,7 +242,7 @@ class WalletController extends Controller
 
 
         // 남은 잔액
-        $ethBalance = Balance::where('user_id',id)->where('currency_id', '=', 3)->value('balance');
+        $ethBalance = Balance::where('user_id',$id)->where('currency_id', '=', 3)->value('balance');
 
         // 구매 건수 포함
         $balance = BuyHistory::where('user_id',$id)->where('state','0')->sum(DB::raw(" buy_amount + buy_fee"));
