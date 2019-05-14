@@ -97,7 +97,7 @@
         // alert(ethBalance);
 
         if(total_eth_amount < limit_min) {
-            alert("최소 구매 수량은 ".limit_min."개입니다. ");
+            alert("최소 구매 수량은 "+limit_min+"개입니다. ");
             return false;
         }
 
