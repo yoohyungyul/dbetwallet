@@ -297,8 +297,8 @@ class WalletController extends Controller
         
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         // 서버에서 실제 이더리움 가져와서 저장
-        $ethBalance->balance = $this->getEthBalance($ethData->address);
-        $ethBalance->save();
+        // $ethBalance->balance = $this->getEthBalance($ethData->address);
+        // $ethBalance->save();
 
         
         return view('wallet.wallet',[
@@ -323,8 +323,8 @@ class WalletController extends Controller
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         // 서버에서 실제 이더리움 가져와서 저장
-        $ethBalance->balance = $this->getEthBalance($ethData->address);
-        $ethBalance->save();
+        // $ethBalance->balance = $this->getEthBalance($ethData->address);
+        // $ethBalance->save();
 
 
         $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))
@@ -360,8 +360,8 @@ class WalletController extends Controller
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         // 서버에서 실제 이더리움 가져와서 저장
-        $ethBalance->balance = $this->getEthBalance($ethData->address);
-        $ethBalance->save();
+        // $ethBalance->balance = $this->getEthBalance($ethData->address);
+        // $ethBalance->save();
 
 
         return view('wallet.send',[
@@ -499,17 +499,17 @@ class WalletController extends Controller
 
         $key = Auth::user()->id . ':' . $request->totp;
 
-        // if(Cache::has($key)) {
-        //     Session::flash('sweet_alert', "이미 사용 된 OTP 코드입니다.");
-        //     return Redirect::back();
+        if(Cache::has($key)) {
+            Session::flash('sweet_alert', "이미 사용 된 OTP 코드입니다.");
+            return Redirect::back();
                 
-        // }
+        }
 
-        // if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
-        //     Session::flash('sweet_alert', "OTP 코드가 불일치합니다.");
-        //     return Redirect::back();
+        if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
+            Session::flash('sweet_alert', "OTP 코드가 불일치합니다.");
+            return Redirect::back();
           
-        // }
+        }
 
         $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->first();
         $ethCurrencyData = Currency::where('id', '3')->first();
