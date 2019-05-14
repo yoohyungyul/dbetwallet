@@ -43,7 +43,7 @@
                         <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                     </span>
                 </div>
-                <p class="text-right"><small>예상 결제 수량: <span id="total_eth_amount">0</span> ETH </small></p>
+                <p class="text-right"><small>예상 결제 수량(수수료 포함): <span id="total_eth_amount">0</span> ETH </small></p>
             </div>
             <div class="form-group">
                 <label for="addressFormControlInput">DBET Amount</label>
@@ -92,6 +92,9 @@
 
 
         var total_eth_amount = $("input[name='total_eth_amount']").val();
+        var limit_min = {{$ethBalance->limit_min}};
+
+        alert(limit_min);
 
         if(total_eth_amount > {{$ethBalance->balance}}) {
             alert("예상 결제 수량이 부족합니다. ");
