@@ -34,7 +34,7 @@
 
                 <form action="/send" name="sendForm" method="POST" onsubmit="return write_btn();">
                 {{ csrf_field() }}
-                <input type="hidden" id="eth_balance" name="eth_balance" value="{{$ethBalance->balance}}" />
+                <input type="hidden" id="eth_balance" name="eth_balance" value="{{$ethBalance}}" />
                 @foreach ($errors->all() as $error)
                 <div class="text-center">error : {{ $error }}</div>
                 @endforeach
