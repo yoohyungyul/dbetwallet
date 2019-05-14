@@ -28,7 +28,7 @@
         <div class="panel-body">
             <form action="/buy" name="buyForm" method="POST" onsubmit="return write_btn();">
             {{ csrf_field() }}
-            <input type="text" name="total_eth_amount" value="0"/>
+            <input type="hidden" name="total_eth_amount" value="0"/>
             @foreach ($errors->all() as $error)
             <div class="text-center">error : {{ $error }}</div>
             @endforeach
@@ -106,36 +106,9 @@
             return false;
         }
 
-
-
-        if($('#eth_balance').val() < 0.05) {
-            alert("There is not enough Etherium coin. ");
-            return false;
-        }
-        
-        if($('#address').val() == '') {
-            $('#address').focus();
-            alert("Please enter your address. ");
-            return false;
-        }
-        
-
-        if($('#amount').val() == '') {
-            $('#amount').focus();
-            alert("Please enter your amount. ");
-            return false;
-        }
-
-        if($('#amount').val() == '0') {
-            $('#amount').focus();
-            alert("Please enter your amount. ");
-            return false;
-        }
-
-
         if($('#totp').val() == '') {
             $('#totp').focus();
-            alert("Please enter your otp. ");
+            alert("otp를 입력해 주세요. ");
             return false;
         }
 
