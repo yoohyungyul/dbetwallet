@@ -92,10 +92,11 @@
 
         var total_eth_amount = $("input[name='total_eth_amount']").val();
         var limit_min = "{{$ethCurrency->limit_min}}";
+        var ethBalance = "{{$ethBalance->balance}}";
 
-        alert(limit_min);
+        alert(ethBalance);
 
-        if(total_eth_amount > {{$ethBalance->balance}}) {
+        if(total_eth_amount > ethBalance) {
             alert("예상 결제 수량이 부족합니다. ");
             return false;
         }
