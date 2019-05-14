@@ -456,7 +456,7 @@ class WalletController extends Controller
 
     // 구매
     public function getBuy() {
-        $currencyData = Currency::where('id', env('CURRENCY_ID', '1'))->get();
+        $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->get();
         $ethCurrencyData = Currency::where('id', '3')->get();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
