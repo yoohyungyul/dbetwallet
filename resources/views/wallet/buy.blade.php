@@ -92,7 +92,7 @@
 
 
         var total_eth_amount = $("input[name='total_eth_amount']").val();
-        var limit_min = {{$ethBalance->limit_min}};
+        var limit_min = "{{$ethBalance->limit_min}}";
 
         alert(limit_min);
 
