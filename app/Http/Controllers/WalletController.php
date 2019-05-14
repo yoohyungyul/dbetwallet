@@ -238,13 +238,14 @@ class WalletController extends Controller
         // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
         // $result = $client->request('eth_getBalance', [$address, 'latest']);
 
+        // $balance = hexdec($result)/pow(10,18);
+
         // 구매 건수 포함
-        $result = BuyHistory::where('user_id',$id)->where('state','0')->sum(DB::raw(" buy_amount + buy_fee"));
+        $balance = BuyHistory::where('user_id',$id)->where('state','0')->sum(DB::raw(" buy_amount + buy_fee"));
 
        
 
-
-        $balance = hexdec($result)/pow(10,18);
+       
 
         return $balance;
     }
