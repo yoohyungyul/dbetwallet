@@ -91,8 +91,8 @@
 
 
         var total_eth_amount = $("input[name='total_eth_amount']").val();
-        var limit_min = "{{$ethCurrency->limit_min}}";
-        var ethBalance = "{{$ethBalance->balance}}";
+        var limit_min = parseFloat("{{$ethCurrency->limit_min}}");
+        var ethBalance = parseFloat("{{$ethBalance->balance}}");
 
         // alert(ethBalance);
 
