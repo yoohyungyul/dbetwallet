@@ -303,11 +303,7 @@ class WalletController extends Controller
        
 
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
-        
-        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        // 서버에서 실제 이더리움 가져와서 저장
-        // $ethBalance->balance = $this->getEthBalance($ethData->address);
-        // $ethBalance->save();
+        $ethBalance = $this->getEthBalance(Auth::user()->id);
 
         
         return view('wallet.wallet',[
@@ -328,12 +324,7 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
-
-        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        // 서버에서 실제 이더리움 가져와서 저장
-        // $ethBalance->balance = $this->getEthBalance($ethData->address);
-        // $ethBalance->save();
+        $ethBalance = $this->getEthBalance(Auth::user()->id);
 
 
         $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))
@@ -365,12 +356,7 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
-
-        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        // 서버에서 실제 이더리움 가져와서 저장
-        // $ethBalance->balance = $this->getEthBalance($ethData->address);
-        // $ethBalance->save();
+        $ethBalance = $this->getEthBalance(Auth::user()->id);
 
 
         return view('wallet.send',[
@@ -409,7 +395,7 @@ class WalletController extends Controller
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
 
-        if($this->getEthBalance($ethData->address) < 0.05) {
+        if($this->getEthBalance(Auth::user()->id) < 0.05) {
             return back()->withErrors('There is not enough Etherium coin. ');
         }
         
@@ -478,14 +464,6 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->first();
         $ethCurrencyData = Currency::where('id', '3')->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
-
-        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        // $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        
-        // 서버에서 실제 이더리움 가져와서 저장
-        // $ethBalance->balance = $this->getEthBalance($ethData->address);
-        // $ethBalance->save();
-
         $ethBalance = $this->getEthBalance(Auth::user()->id);
 
 
