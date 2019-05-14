@@ -468,12 +468,6 @@ class WalletController extends Controller
         $ethBalance->save();
 
 
-        
-
-
-       
-
-
         return view('wallet.buy',[
             'currency' => $currencyData,
             'ethCurrency' => $ethCurrencyData,
@@ -481,6 +475,11 @@ class WalletController extends Controller
             'ethBalance' => $ethBalance
 
         ]);
+    }
+
+    // 구매 처리
+    public function postBuy(Request $request) {
+
     }
 }
 
