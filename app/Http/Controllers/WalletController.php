@@ -504,20 +504,14 @@ class WalletController extends Controller
         $ethCurrencyData = Currency::where('id', '3')->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
-        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
-        $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         
-        // 서버에서 실제 이더리움 가져와서 저장
-        // $ethBalance->balance = $this->getEthBalance($ethData->address);
-        // $ethBalance->save();
-
         $eth_amount = $request->eth_amount;
         $dbet_amount = $request->dbet_amount;
         $fee = $ethCurrencyData->fee;
 
         $total_eth_amount = $request->total_eth_amount;
         $limit_min = $ethCurrencyData->limit_min;
-        $ethBalance = $ethBalance->balance;
+        $ethBalance = $this->getEthBalance(Auth::user()->id);
 
     
 
