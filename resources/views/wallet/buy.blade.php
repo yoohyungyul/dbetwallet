@@ -94,7 +94,12 @@
         var limit_min = "{{$ethCurrency->limit_min}}";
         var ethBalance = "{{$ethBalance->balance}}";
 
-        alert(ethBalance);
+        // alert(ethBalance);
+
+        if(total_eth_amount < limit_min) {
+            alert("최소 구매 수량은 ".limit_min."개입니다. ");
+            return false;
+        }
 
         if(total_eth_amount > ethBalance) {
             alert("예상 결제 수량이 부족합니다. ");
