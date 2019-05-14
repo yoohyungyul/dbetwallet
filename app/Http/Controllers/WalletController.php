@@ -12,6 +12,7 @@ use App\Currency;
 use App\Balance;
 use App\User;
 use App\Users_wallet;
+use App\BuyHistory;
 use App\TransactionHistory;
 use Validator;
 use Cache;
@@ -498,17 +499,17 @@ class WalletController extends Controller
 
         $key = Auth::user()->id . ':' . $request->totp;
 
-        if(Cache::has($key)) {
-            Session::flash('sweet_alert', "이미 사용 된 OTP 코드입니다.");
-            return Redirect::back();
+        // if(Cache::has($key)) {
+        //     Session::flash('sweet_alert', "이미 사용 된 OTP 코드입니다.");
+        //     return Redirect::back();
                 
-        }
+        // }
 
-        if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
-            Session::flash('sweet_alert', "OTP 코드가 불일치합니다.");
-            return Redirect::back();
+        // if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
+        //     Session::flash('sweet_alert', "OTP 코드가 불일치합니다.");
+        //     return Redirect::back();
           
-        }
+        // }
 
         $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->first();
         $ethCurrencyData = Currency::where('id', '3')->first();
@@ -521,6 +522,9 @@ class WalletController extends Controller
         // $ethBalance->balance = $this->getEthBalance($ethData->address);
         // $ethBalance->save();
 
+        $eth_amount = $request->eth_amount;
+        $dbet_amount = $request->dbet_amount;
+        $fee = $ethCurrencyData->fee;
 
         $total_eth_amount = $request->total_eth_amount;
         $limit_min = $ethCurrencyData->limit_min;
@@ -538,9 +542,32 @@ class WalletController extends Controller
             return Redirect::back();
         }
 
+        try {
+            DB::beginTransaction();
 
+            // 구매 신청
+            $buy_history = new BuyHistory;
+            $buy_history->user_id = Auth::user()->id;
+            $buy_history->target = $currencyData->target;
+            $buy_history->amount = $dbet_amount;
+            $buy_history->buy_amount = $eth_amount;
+            $buy_history->buy_fee = $fee;
+            $buy_history->push();
+         
 
+        } catch (\Exception $e) {
+            DB::rollback();
 
+            Session::flash("데이터베이스 오류가 발생했습니다.");
+            return Redirect::back();
+
+           
+        } finally {
+            DB::commit();
+        }
+
+        Session::flash('sweet_alert', "구매 신청이 완료되었습니다.");
+		return redirect('/buy');
     }
 }
 
