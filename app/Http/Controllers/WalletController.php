@@ -464,8 +464,8 @@ class WalletController extends Controller
         $ethBalance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
         
         // 서버에서 실제 이더리움 가져와서 저장
-        $ethBalance->balance = $this->getEthBalance($ethData->address);
-        $ethBalance->save();
+        // $ethBalance->balance = $this->getEthBalance($ethData->address);
+        // $ethBalance->save();
 
 
         return view('wallet.buy',[
