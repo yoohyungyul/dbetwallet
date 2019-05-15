@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail 주소</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -59,7 +59,7 @@
                             <div class="col-md-12">
                                 <div class="captcha">
                                     <span>{!! captcha_img() !!}</span>
-                                    <button class="btn btn-success btn-refresh">Refresh</button>
+                                    <button class="btn btn-success btn-refresh">새로고침</button>
                                     <input type="text" id="captcha" name="captcha" class="form-control mt10" placeholder="Enter Captcha" maxlength="5"/>
                                     @if ($errors->has('captcha'))
                                     <span class="help-block">
@@ -104,7 +104,16 @@
             return false;
         }
 
-        return false;
+        if(f.email.value == "") {
+            alert("E-Mail을 입력하세요.");
+            return false;
+        }
+        if(f.captcha.value == "") {
+            alert("Captcha를 입력하세요.");
+            return false;
+        }
+
+        return true;
        
 
 
