@@ -29,7 +29,10 @@
         <div class="card text-center" style="display: block;margin-bottom:10px">
           
             <div class="card-body text-left">
-                {{$item->user->name}}
+                <p>{{$item->user->name}}</p>
+                @foreach($item->coin as $coin)
+                <p>11212</p>
+                @endforeach
             </div>
         </div>
         @endforeach
