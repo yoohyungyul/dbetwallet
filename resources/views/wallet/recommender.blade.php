@@ -31,7 +31,7 @@
             <div class="card-body text-left">
                 <p>{{$item->user->name}}</p>
                 @foreach($item->coin as $coin)
-                <p>11212</p>
+                <p>{{$coin->label}} : {{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</p>
                 @endforeach
             </div>
         </div>
