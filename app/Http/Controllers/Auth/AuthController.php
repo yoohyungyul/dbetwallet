@@ -79,6 +79,8 @@ class AuthController extends Controller
 
         $validator = $this->validator($request->all());
 
+        exit;
+
 
         if($request->recommender) {
             $recommender_id = User::where('recommender_code',$request->recommender)->value('id');

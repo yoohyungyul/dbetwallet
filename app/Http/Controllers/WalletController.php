@@ -227,7 +227,7 @@ class WalletController extends Controller
         //     "data" => "0x70a08231000000000000000000000000" . str_replace("0x","","0x4b873bc095dc0d4cee3997b11e9a815c7307abc3") ]]);
         // echo "토큰 : ".hexdec($result->result)/pow(10,8);
 
-        return "";
+        return "";   
 
     }
 
