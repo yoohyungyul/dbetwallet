@@ -109,7 +109,7 @@ ul.pagination li.disabled {
 
 
 a {
-    color: #a563f5;
+    /* color: #a563f5!important; */
 }
 
 
