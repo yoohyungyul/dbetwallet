@@ -26,9 +26,8 @@
 <div class="row mt20">
     <div class="col-12 ">
         <div class="text-right">
-            총 추천 수 : {{count(number_format($recoms))}}</span>
-        </div>
-        <div >
+            
+            총 추천 수 : {{count($recoms)}}</span>
         </div>
 
         @foreach($recoms as $item)
