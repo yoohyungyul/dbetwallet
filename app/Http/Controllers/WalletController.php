@@ -574,7 +574,7 @@ class WalletController extends Controller
                 
                 // echo $data->recommender."_".$_i."_".$data->id."<br>";
                 $coin  = Balance::where('user_id',$data->user_id)->get();
-                $recom_dict[] =  [
+                $recom_dict[] = (object) [
                     'user' => $data,
                     'coin' => $coin,
                 ];
