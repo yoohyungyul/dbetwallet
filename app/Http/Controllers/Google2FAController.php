@@ -46,10 +46,6 @@ class Google2FAController extends Controller
 
 
         $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
-
-
-
-        
         
 
         return view('2fa/enableTwoFactor', ['image' => $imageDataUri, 'secret' => $secret]);
