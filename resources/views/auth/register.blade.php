@@ -101,15 +101,18 @@
     function write_btn(f) {
         if(f.name.value == "") {
             alert("이름을 입력하세요.");
+            f.name.focus();
             return false;
         }
 
         if(f.email.value == "") {
             alert("E-Mail을 입력하세요.");
+            f.email.focus();
             return false;
         }
         if(f.captcha.value == "") {
             alert("Captcha를 입력하세요.");
+            f.captcha.focus();
             return false;
         }
 
