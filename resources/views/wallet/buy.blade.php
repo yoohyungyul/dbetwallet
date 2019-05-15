@@ -117,7 +117,14 @@
 
 
     function allBalance() {
-        $('#amountFormControlInput').val('{{ $ethBalance }}');
+
+        var ethBalance = parseFloat("{{ $ethBalance }}");
+        var fee = parseFloat("{{$ethCurrency->fee}}");
+        var all = ethBalance - fee;
+        
+
+
+        $('#amountFormControlInput').val(all.Number(total_eth_amount.toFixed(8))  ;
         exchange();
     }
 
@@ -137,7 +144,7 @@
                 return false;
             }
 
-            var total_eth_amount = parseFloat(eth_amount) + 0.0001;
+            var total_eth_amount = parseFloat(eth_amount) + parseFloat("{{$ethCurrency->fee}}") ;
             var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
         } else {
             var total_eth_amount = 0;
