@@ -52,8 +52,7 @@
                             <div class="h3"><span class="text-muted mr-3">Step 2.</span><span class="text-primary">QR code authentication</span></div>
                             <p>Launch the 2-step verification mobile app and scan the QR code below:</p>
                             <div class="text-center">
-                                <div id="qrcode"></div>
-                                <!-- <img alt="Image of QR barcode" src="{{ $image }}" id="image"/> -->
+                                <img alt="Image of QR barcode" src="{{ $image }}" />
                             </div>
                             <p>If your mobile app does not support QR code, please enter this code manually: <code>{{ $secret }}</code></p>
                             <hr/>
@@ -96,22 +95,4 @@
                 </div>
             </div>
         </div>
-@endsection
-
-@section('script')
-<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-<script>
-
-make_qrcode();
-
-function make_qrcode() {
-
-    $('#qrcode').html('');
-    $('#qrcode').qrcode({
-        'size' : 200,
-        'text' : "{{$image}}",
-        'render' : 'image',
-    });
-}
-</script>
 @endsection

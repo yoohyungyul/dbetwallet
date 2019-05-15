@@ -45,10 +45,13 @@ class Google2FAController extends Controller
         Session::put('2fa:store:key', $secret);
 
 
-        // $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
+        $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
 
 
-        $imageDataUri = env('APP_DOMAIN').Auth::user()->email.",".$secret;
+
+
+
+        // $imageDataUri = env('APP_DOMAIN').Auth::user()->email.",".$secret;
 
         
         
