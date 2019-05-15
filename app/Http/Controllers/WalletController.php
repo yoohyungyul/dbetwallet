@@ -574,7 +574,9 @@ class WalletController extends Controller
                 
                 // echo $data->recommender."_".$_i."_".$data->id."<br>";
 
-                $coin  = Balance::where('user_id',$data->id)->get();
+                $coin  = Balance::where('user_id',$data->id)
+                    ->leftJoin('currency', 'currency.id', '=', 'balance.currency_id')
+                    ->get();
                 $recom_dict[] = (object) [
                     'user' => $data,
                     'coin' => $coin,
