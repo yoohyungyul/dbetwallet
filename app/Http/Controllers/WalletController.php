@@ -561,17 +561,20 @@ class WalletController extends Controller
     // 추천인 리스트
     public function getRecommender() {
 
+        // 모든 추천인 가져오기
         $flag = true;
         $user_id[]  = Auth::user()->id;
-
+        $_i = 1;
         while ( $flag ) {  
             $userData = User::whereIn('recommender',$user_id)->get();
 
             $user_id = [];
             foreach($userData as $data ) {
-                echo $data->id."<br>";
+                echo $_i."_".$data->id."<br>";
                 $user_id[] = $data->id;
             }
+
+            $_i++;
 
             if(count($user_id) == 0) $flag =  false;
 
