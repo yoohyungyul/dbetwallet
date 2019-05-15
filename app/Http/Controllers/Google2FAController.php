@@ -179,8 +179,6 @@ class Google2FAController extends Controller
                 return back()->withErrors('OTP code mismatch.');
             }
 
-            echo "1";
-        exit;
 
 
             $name = "chainplus";
@@ -190,7 +188,7 @@ class Google2FAController extends Controller
             Cookie::queue($name, $value, $minutes);
 
 
-            return redirect('wallet');
+            return redirect('sdfsfsdfsdf');
 
 
 
