@@ -25,6 +25,10 @@
 </div>
 <div class="row mt20">
     <div class="col-12 ">
+        <div>
+            총 추천 수 : {{count($recoms)}}
+        </div>
+
         @foreach($recoms as $item)
         <div class="card text-center" style="display: block;margin-bottom:10px">
           

@@ -597,9 +597,6 @@ class WalletController extends Controller
         $ethBalance = $this->getEthBalance(Auth::user()->id);
         
 
-
-
-
         return view('wallet.recommender',[
             'currency' => $currencyData,
             'balance' => $balanceData,
