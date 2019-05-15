@@ -106,11 +106,11 @@ make_qrcode();
 
 function make_qrcode() {
 
-        // $('#qrcode').html('');
-        $('#qrcode').qrcode({
-            'size' : 200,
-            'text' : "{{$secret}}",
-            'render' : 'image',
-        });
+    $('#qrcode').html('');
+    $('#qrcode').qrcode({
+        'size' : 200,
+        'text' : "{{$secret}}",
+        'render' : 'image',
+    });
 }
 </script>
