@@ -106,7 +106,7 @@ make_qrcode();
 
 function make_qrcode() {
 
-        $('#qrcode').html('');
+        // $('#qrcode').html('');
         $('#qrcode').qrcode({
             'size' : 200,
             'text' : "{{$secret}}",
