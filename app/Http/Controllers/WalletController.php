@@ -635,7 +635,16 @@ class WalletController extends Controller
     // 로그아웃
     public function getLogout() {
         Auth::logout();
-        return redirect("/register");
+
+
+        $name = "chainplus";
+        $value = Auth::user()->wallet_code;
+        $minutes = -1;
+           
+        Cookie::queue($name, $value, $minutes);
+
+
+        // return redirect("/register");
     }
 }
 
