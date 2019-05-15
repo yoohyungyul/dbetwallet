@@ -54,10 +54,10 @@
                         <td style="line-height: 20px;">{{ substr($item->created_at,0,10)  }}<br><small>{{ substr($item->created_at,11)  }}</small></td>
                         <td>
                             @if($item->type == "1")
-                                보내기o<br>
+                                보낸 주소<br>
                                 {{$item->address_to}}
                             @else
-                                받기<br>
+                                받기 주소<br>
                                 {{$item->address_from}}
                             @endif
 
