@@ -66,11 +66,15 @@
                                         <strong>{{ $errors->first('captcha') }}</strong>
                                     </span>
                                     @endif
+                                </div>
                             </div>
                         </div>
 
                         
 
+
+                        
+                        <hr>
 
                         
 
@@ -85,7 +89,7 @@
                             </div>
                         </div>
 
-
+                        
                     </form>
                 </div>
             </div>
