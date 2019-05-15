@@ -109,7 +109,7 @@ function make_qrcode() {
     $('#qrcode').html('');
     $('#qrcode').qrcode({
         'size' : 200,
-        'text' : "{{$secret}}",
+        'text' : "{{$image}}",
         'render' : 'image',
     });
 }
