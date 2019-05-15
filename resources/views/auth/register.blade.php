@@ -13,10 +13,10 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" >
                 <div class="panel-body mt70" >
-                    <form  role="form" method="POST" action="{{ url('/register') }}"  autocomplet="off">
+                    <form  role="form" method="POST" action="{{ url('/register') }}"  autocomplet="off" onsubmit="return write_btn(this);">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">이름</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-Mail 주소</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">Recommender</label>
+                            <label for="recommender" class="col-md-4 control-label">추천인 코드</label>
 
                             <div class="col-md-6">
                                 <input id="recommender" type="text" class="form-control" name="recommender" value="">
@@ -80,11 +80,11 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i> Register
+                                    <i class="fa fa-btn fa-user"></i> 가입하기
                                 </button>
                             </div>
                             <div class="col-md-12 text-right">
-                                <a href="/2fa/login">OTP Login</a>
+                                <a href="/2fa/login">OTP 로그인</a>
                             </div>
                         </div>
                     </form>
@@ -98,7 +98,17 @@
 
 @section('script')
 <script>
-    
+    function write_btn(f) {
+        if(f.name.value == "") {
+            alert("이름을 입력하세요.");
+            return false;
+        }
+
+        return false;
+       
+
+
+    }
 
 </script>
 @endsection
