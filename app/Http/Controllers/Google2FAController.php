@@ -34,6 +34,8 @@ class Google2FAController extends Controller
 
     public function enableTwoFactor()
     {
+        echo "1";
+        exit;
         if (Auth::user()->google2fa_secret) {
             return redirect('wallet');
         }
