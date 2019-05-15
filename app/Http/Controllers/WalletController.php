@@ -586,23 +586,22 @@ class WalletController extends Controller
             $_i++;
 
             if(count($user_id) == 0) $flag =  false;
-
-
-  
-                foreach($recom_dict as $value) {
-                    if( isset($value->coin)) {
-                        foreach($value->coin as $coin) {
-                            echo "!";
-                        }
-                    }
-
-                   
-                }
-
-            exit;
-
-
         }
+
+
+
+        foreach($recom_dict as $value) {
+            if( isset($value->coin)) {
+                foreach($value->coin as $coin) {
+                    echo "!";
+                }
+            }
+
+           
+        }
+
+        exit;
+
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
@@ -620,7 +619,7 @@ class WalletController extends Controller
 }
 
 /*
-$currency = Currency::where('state', '=', 1)->where('id', '=', "1")->first();
+$currency = Currency::where('state', '=', 1)->where('i  d', '=', "1")->first();
 
         $resultVal = (object) [
             'message' => "",
