@@ -44,7 +44,7 @@ class Google2FAController extends Controller
         Session::put('2fa:store:id', Auth::user()->id);
         Session::put('2fa:store:key', $secret);
 
-        exit;
+
         $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
 
         
@@ -164,6 +164,9 @@ class Google2FAController extends Controller
     public function postLogin(Request $request) {
 
         $user = User::where('email',$request->email)->first();
+
+        echo "1";
+        exit;
 
         if($user) {
 
