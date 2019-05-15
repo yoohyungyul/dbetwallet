@@ -562,16 +562,15 @@ class WalletController extends Controller
     public function getRecommender() {
 
         $flag = true;
-        $_i = 0;
-        while ( $flag ) {  
+        $user_id[]  = Auth::user()->id;
+        // while ( $flag ) {  
+        //     $userData = User::whereIn('recommender',$user_id)->get();
 
-            echo $_i."<br>";
+        //     $user_id = [];
+        //     foreach($userData as $data ) {
 
-            if($_i == 10) $flag = false;
-            
-            $_i++;
-           
-        }
+        //     }
+        // }
         exit;
        
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
