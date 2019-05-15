@@ -79,16 +79,14 @@ class AuthController extends Controller
 
         $validator = $this->validator($request->all());
 
-        exit;
 
-
-        if($request->recommender) {
-            $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
-            if(!$recommender_id) {
-                Session::flash('sweet_alert', "회원을 찾을수 없습니다.");
-                return Redirect::back();
-            }
-        }
+        // if($request->recommender) {
+        //     $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
+        //     if(!$recommender_id) {
+        //         Session::flash('sweet_alert', "회원을 찾을수 없습니다.");
+        //         return Redirect::back();
+        //     }
+        // }
 
 
         if ($validator->fails()) {
@@ -140,7 +138,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'wallet_code' => $value,
             'recommender_code' => $recommender_code,
-            'recommender' => $recommender_id,
+            // 'recommender' => $recommender_id,
             'password' => $password,
         ]);
     }
