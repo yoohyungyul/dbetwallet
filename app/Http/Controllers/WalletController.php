@@ -588,10 +588,11 @@ class WalletController extends Controller
             if(count($user_id) == 0) $flag =  false;
 
 
+            dd($recom_dict);
             // if(isset($recom_dict->coin)) {
-                foreach($recom_dict->coin as $value) {
-                    echo "1";
-                }
+                // foreach($recom_dict->coin as $value) {
+                    // echo "1";
+                // }
             // }
             exit;
 
