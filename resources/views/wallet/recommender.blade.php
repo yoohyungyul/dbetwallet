@@ -26,18 +26,16 @@
 <div class="row mt20">
     <div class="col-12 ">
         @foreach($recoms as $item)
-        <div class="card text-center" style="display: block">
+        <div class="card text-center" style="display: block;margin-bottom:10px">
           
             <div class="card-body text-left">
-                sdfsdf
+                <?php
+                    print_R($item);
+                ?>
             </div>
         </div>
         @endforeach
 
-
-
-            
-           
     </div>
 </div>
 
