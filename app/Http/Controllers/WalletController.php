@@ -591,9 +591,7 @@ class WalletController extends Controller
 
 
         }
-        dd($recom_dict);
-        exit;
-       
+
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
@@ -605,7 +603,8 @@ class WalletController extends Controller
         return view('wallet.recommender',[
             'currency' => $currencyData,
             'balance' => $balanceData,
-            'ethBalance' => $ethBalance
+            'ethBalance' => $ethBalance,
+            'recom_dict' => $recom_dict,
 
         ]);
     }
