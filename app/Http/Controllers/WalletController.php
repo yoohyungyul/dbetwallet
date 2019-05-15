@@ -643,7 +643,7 @@ class WalletController extends Controller
            
         Cookie::queue($name, $value, $minutes);
 
-        return "1";
+        return cookie::get('chainplus');
 
 
         // return redirect("/register");
