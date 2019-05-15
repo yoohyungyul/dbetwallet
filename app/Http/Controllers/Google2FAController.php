@@ -48,7 +48,7 @@ class Google2FAController extends Controller
         // $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
 
 
-        $imageDataUri = env('APP_DOMAIN').Auth::user()->email.$secre;
+        $imageDataUri = env('APP_DOMAIN').Auth::user()->email.$secret;
 
         
         
