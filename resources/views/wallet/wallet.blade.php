@@ -26,7 +26,7 @@
             </div>
             <div class="card-body text-left">
                 <span style="float: right;"  id="clipboard1"  data-clipboard-target="#wallet_address"><i class="far fa-copy" ></i></span>
-                <h5 class="card-title">Address
+                <h5 class="card-title">지갑 주소
                     
                 </h5>
                 <p class="card-text" id="wallet_address">{{ $wallet->address}}</p>
@@ -41,7 +41,7 @@
             
             <div class="card-body text-left">
                 <span style="float: right;"  id="clipboard2"  data-clipboard-target="#recommender_code"><i class="far fa-copy" ></i></span>
-                <h5 class="card-title">Recommender Code
+                <h5 class="card-title">추천 코드
                     
                 </h5>
                 <p class="card-text" id="recommender_code">{{ Auth::user()->recommender_code }}</p>
@@ -64,14 +64,14 @@ var clipboard1 = new Clipboard('#clipboard1');
 
 clipboard1.on('success', function(e) {
     $('#wallet_address').blur();
-    alert('cliped');
+    alert('복사 되었습니다.');
 });
 
 var clipboard2 = new Clipboard('#clipboard2');
 
 clipboard2.on('success', function(e) {
     $('#recommender_code').blur();
-    alert('cliped');
+    alert('복사 되었습니다.');
 });
 
 make_qrcode();
