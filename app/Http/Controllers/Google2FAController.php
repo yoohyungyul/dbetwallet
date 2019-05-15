@@ -44,10 +44,12 @@ class Google2FAController extends Controller
         Session::put('2fa:store:id', Auth::user()->id);
         Session::put('2fa:store:key', $secret);
 
+        echo env('APP_DOMAIN');
+        exit;
+
         $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
 
-        echo "1";
-        exit;
+        
 
         return view('2fa/enableTwoFactor', ['image' => $imageDataUri, 'secret' => $secret]);
     }
