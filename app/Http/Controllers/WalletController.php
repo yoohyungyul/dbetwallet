@@ -624,6 +624,12 @@ class WalletController extends Controller
 
         ]);
     }
+
+    // 로그아웃
+    public function getLogout() {
+        Auth::logout();
+        return redirect("/");
+    }
 }
 
 /*
