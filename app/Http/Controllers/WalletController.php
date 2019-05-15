@@ -634,7 +634,7 @@ class WalletController extends Controller
 
     // 로그아웃
     public function getLogout() {
-        
+        Auth::logout();
 
 
         $name = "chainplus";
@@ -643,10 +643,7 @@ class WalletController extends Controller
            
         Cookie::queue($name, $value, $minutes);
 
-        return cookie::get('chainplus');
-
-
-        // return redirect("/register");
+        return redirect("/register");
     }
 }
 
