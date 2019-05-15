@@ -29,9 +29,7 @@
         <div class="card text-center" style="display: block;margin-bottom:10px">
           
             <div class="card-body text-left">
-                <?php
-                    print_R($item);
-                ?>
+                {{$item->user->name}}
             </div>
         </div>
         @endforeach
