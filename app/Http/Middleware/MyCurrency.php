@@ -69,7 +69,7 @@ class MyCurrency
                 } else {
                     // 쿠키 초기화 하고 회원등록 화면으로 이동
                     Auth::logout();
-                    return redirect("/2fa/login");
+                    return redirect("/register");
                 }
             }
 
@@ -79,7 +79,7 @@ class MyCurrency
         // 없으면 회원가입창으로 
         } else {
             Auth::logout();
-            return redirect("/2fa/login");
+            return redirect("/register");
 
         }
         
