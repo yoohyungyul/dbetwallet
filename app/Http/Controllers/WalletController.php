@@ -572,8 +572,6 @@ class WalletController extends Controller
             $user_id = [];
             foreach($userData as $data ) {
                 
-                // echo $data->recommender."_".$_i."_".$data->id."<br>";
-
                 $coin  = Balance::where('user_id',$data->id)->select('balance','label','unit','fixed')
                     ->leftJoin('currency', 'currency.id', '=', 'balance.currency_id')
                     ->get();
@@ -588,6 +586,14 @@ class WalletController extends Controller
             $_i++;
 
             if(count($user_id) == 0) $flag =  false;
+
+
+            if(isset($recom_dict->coin)) {
+                foreach($recom_dict->coin as $value) {
+                    echo "1";
+                }
+            }
+            exit;
 
 
         }
