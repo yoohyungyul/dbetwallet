@@ -86,7 +86,7 @@
                                 </button>
                             </div>
                             <div class="col-6 text-right">
-                                <a href="/2fa/login" class="btn btn-default">OTP 로그인</a>
+                                <a href="/2fa/login" class="btn btn-dark">OTP 로그인</a>
                             </div>
                         </div>
 
