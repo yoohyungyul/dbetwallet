@@ -30,8 +30,8 @@
             총 추천 수 : {{count($recoms)}}</span>
         </div>
         <div>
-            <p>ETH 총 :  {{$eth_total}}</p>
-            <p>DBET 총 :  {{$dbet_total}}</p>
+            <p>ETH 총 :  {{ number_format( $eth_total, 8, ".", ",") }} e</p>
+            <p>DBET 총 :  {{ number_format( $dbet_total, 8, ".", ",") }} d</p>
         </div>
 
         @foreach($recoms as $item)
