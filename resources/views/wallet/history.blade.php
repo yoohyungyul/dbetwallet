@@ -65,7 +65,7 @@
                                 <span class="btn btn-secondary btn-sm">진행중</span>
                                 
                             @else
-                                <span class="btn btn-success btn-sm">완료</span>
+                                <span class="btn btn-success btn-sm">거래완료</span>
                                 <br>
                                 <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a>
                             @endif
