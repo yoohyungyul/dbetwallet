@@ -574,6 +574,7 @@ class WalletController extends Controller
                 
                 $coin  = Balance::where('user_id',$data->id)->select('balance','label','unit','fixed')
                     ->leftJoin('currency', 'currency.id', '=', 'balance.currency_id')
+                    ->where('currency.state',"1")
                     ->get();
                 $recom_dict[] = (object) [
                     'user' => $data,
