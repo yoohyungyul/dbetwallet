@@ -73,9 +73,6 @@
 
 
                         
-                        <hr>
-
-                        
 
                         <div class="form-group">
                             <div class="col-md-6">
@@ -87,6 +84,8 @@
                                 <a href="/2fa/login">OTP 로그인</a>
                             </div>
                         </div>
+
+
                     </form>
                 </div>
             </div>
