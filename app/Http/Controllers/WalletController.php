@@ -574,9 +574,7 @@ class WalletController extends Controller
                 
                 // echo $data->recommender."_".$_i."_".$data->id."<br>";
                 $recom_dict[] = (object) [
-                    'recom' => $data->recommender,
-                    'depth' => $_i,
-                    'id' => $data->id,
+                    'data' => $data
                 ];
 
                 $user_id[] = $data->id;
