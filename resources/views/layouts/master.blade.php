@@ -27,7 +27,7 @@
         
         <nav class="navbar navbar-dark bg-primary"><a class="navbar-brand" href="/wallet">DBET Wallet</a>
 
-            <a href="/logout" style="float:right;color:#FFF">로그아웃</a>
+        @if(Auth::check())    <a href="/logout" style="float:right;color:#FFF">로그아웃</a> @endif
         </nav>
     
         <div class="container">
