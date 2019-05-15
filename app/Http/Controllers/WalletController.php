@@ -571,11 +571,13 @@ class WalletController extends Controller
 
             $user_id = [];
             foreach($userData as $data ) {
-                // echo $_i."_".$data->id."_".$data->recommender."<br>";
-                echo $data->recommender."_".$_i."_".$data->id."<br>";
-                // $recom_dict[$_i][$data->id] = [
-                //     'name' => $data->name
-                // ];
+                
+                // echo $data->recommender."_".$_i."_".$data->id."<br>";
+                $recom_dict[] = (object) [
+                    'recom' => $data->recommender,
+                    'depth' => $_i,
+                    'id' => $data->id,
+                ];
 
                 $user_id[] = $data->id;
             }
@@ -586,7 +588,7 @@ class WalletController extends Controller
 
 
         }
-        // dd($recom_dict);
+        dd($recom_dict);
         exit;
        
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
