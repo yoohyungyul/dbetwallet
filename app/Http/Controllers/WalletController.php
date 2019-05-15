@@ -272,7 +272,14 @@ class WalletController extends Controller
         // exit;
 
         if(!$walletData) {
+            $name = "chainplus";
+            $value = Auth::user()->wallet_code;
+            $minutes = -1;
+
             Auth::logout();
+                
+            Cookie::queue($name, $value, $minutes);
+
             return redirect("/register");
         }
 
@@ -431,13 +438,6 @@ class WalletController extends Controller
         // 외부로 가능하게 주석처리
         // $isAddress = Users_wallet::where('address',$request->address)->count();
         // if(!$isAddress) return back()->withErrors('Invalid address.');
-
-     
-        
-
-        
-      
-        
 
         try {
             DB::beginTransaction();
