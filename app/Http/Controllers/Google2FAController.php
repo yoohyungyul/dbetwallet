@@ -20,7 +20,8 @@ use App\Balance;
 use App\Users_wallet;
 use Cookie;
 
-
+use BaconQrCode\Renderer\Image\Png;
+use BaconQrCode\Writer;
 
 
 class Google2FAController extends Controller
@@ -31,6 +32,37 @@ class Google2FAController extends Controller
     {
         //
     }
+
+
+    public function getQRCodeInline($company, $holder, $secret, $size = 200, $encoding = 'utf-8')
+    {
+        $url = $this->getQRCodeUrl($company, $holder, $secret);
+
+        $renderer = new Png();
+        $renderer->setWidth($size);
+        $renderer->setHeight($size);
+
+        $writer = new Writer($renderer);
+        $data = $writer->writeString($url, $encoding);
+
+        return 'data:image/png;base64,'.base64_encode($data);
+    }
+
+    /**
+     * Creates a QR code url.
+     *
+     * @param $company
+     * @param $holder
+     * @param $secret
+     *
+     * @return string
+     */
+    public function getQRCodeUrl($company, $holder, $secret)
+    {
+        return 'otpauth://totp/'.rawurlencode($company).':'.rawurlencode($holder).'?secret='.$secret.'&issuer='.rawurlencode($company).'';
+    }
+
+
 
     public function enableTwoFactor()
     {
@@ -45,7 +77,7 @@ class Google2FAController extends Controller
         Session::put('2fa:store:key', $secret);
 
 
-        $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
+        $imageDataUri = $this->getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
 
 
 
