@@ -114,3 +114,4 @@ function make_qrcode() {
     });
 }
 </script>
+@endsection
