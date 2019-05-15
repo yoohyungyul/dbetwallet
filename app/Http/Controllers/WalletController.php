@@ -604,7 +604,7 @@ class WalletController extends Controller
             'currency' => $currencyData,
             'balance' => $balanceData,
             'ethBalance' => $ethBalance,
-            'recom_dict' => $recom_dict,
+            'recoms' => $recom_dict,
 
         ]);
     }

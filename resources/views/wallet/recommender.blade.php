@@ -25,10 +25,19 @@
 </div>
 <div class="row mt20">
     <div class="col-12 ">
-        <div class="panel panel-default">
-            <div class="panel-body">
+        @foreach($recoms as $item)
+        <div class="card text-center" style="display: block">
+          
+            <div class="card-body text-left">
+                sdfsdf
             </div>
         </div>
+        @endforeach
+
+
+
+            
+           
     </div>
 </div>
 
