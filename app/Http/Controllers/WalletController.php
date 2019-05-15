@@ -233,7 +233,7 @@ class WalletController extends Controller
 
     public function getHome() {
 
-        return redirect('/wallet');
+        // return redirect('/wallet');
 
     }
 

@@ -63,11 +63,10 @@ class AuthController extends Controller
     }
 
 
-    // public function postRegister(Request $request)
-    // {
-    //     echo "11";
-    //     // return $this->register($request);
-    // }
+    public function postRegister(Request $request)
+    {
+        return $this->register($request);
+    }
 
     /**
      * Handle a registration request for the application.
@@ -81,13 +80,13 @@ class AuthController extends Controller
         $validator = $this->validator($request->all());
 
 
-        // if($request->recommender) {
-        //     $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
-        //     if(!$recommender_id) {
-        //         Session::flash('sweet_alert', "회원을 찾을수 없습니다.");
-        //         return Redirect::back();
-        //     }
-        // }
+        if($request->recommender) {
+            $recommender_id = User::where('recommender_code',$request->recommender)->value('id');
+            if(!$recommender_id) {
+                Session::flash('sweet_alert', "회원을 찾을수 없습니다.");
+                return Redirect::back();
+            }
+        }
 
 
         if ($validator->fails()) {
