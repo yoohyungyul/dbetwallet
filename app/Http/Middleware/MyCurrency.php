@@ -46,6 +46,9 @@ class MyCurrency
         // echo Cookie::get('chainplus');
         // exit;
 
+        echo "11";
+        exit;
+
 
         // 쿠키 체크 있으면
         if(Cookie::get('chainplus')) {
