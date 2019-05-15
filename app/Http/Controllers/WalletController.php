@@ -567,14 +567,14 @@ class WalletController extends Controller
         $_i = 1;
         $recom_dict = [];
         while ( $flag ) {  
-            $userData = User::whereIn('recommender',$user_id)->get();
+            $userData = User::select('id','name','created_at','updated_at','recommender')->whereIn('recommender',$user_id)->get();
 
             $user_id = [];
             foreach($userData as $data ) {
                 
                 // echo $data->recommender."_".$_i."_".$data->id."<br>";
 
-                $coin  = Balance::where('user_id',$data->id)
+                $coin  = Balance::where('user_id',$data->id)->select('balance','label','unit','fixed')
                     ->leftJoin('currency', 'currency.id', '=', 'balance.currency_id')
                     ->get();
                 $recom_dict[] = (object) [
