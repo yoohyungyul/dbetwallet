@@ -34,8 +34,7 @@ class Google2FAController extends Controller
 
     public function enableTwoFactor()
     {
-        echo "1";
-        exit;
+        
         if (Auth::user()->google2fa_secret) {
             return redirect('wallet');
         }
@@ -46,6 +45,9 @@ class Google2FAController extends Controller
         Session::put('2fa:store:key', $secret);
 
         $imageDataUri = Google2FA::getQRCodeInline(env('APP_DOMAIN'), Auth::user()->email, $secret, 200);
+
+        echo "1";
+        exit;
 
         return view('2fa/enableTwoFactor', ['image' => $imageDataUri, 'secret' => $secret]);
     }
