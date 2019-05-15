@@ -601,7 +601,7 @@ class WalletController extends Controller
            
         }
 
-        exit;
+        // exit;
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
