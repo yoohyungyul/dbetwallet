@@ -57,7 +57,7 @@
                                 보낸 주소<br>
                                 {{$item->address_to}}
                             @else
-                                받기 주소<br>
+                                받은 주소<br>
                                 {{$item->address_from}}
                             @endif
 

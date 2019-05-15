@@ -34,7 +34,7 @@
             @endforeach
             
             <div class="form-group">
-                <label for="amountFormControlInput">ETH Amount</label>
+                <label for="amountFormControlInput">ETH 수량</label>
              
                 <div class="input-group">
                     <input type="text" class="form-control text-right" id="amountFormControlInput" name="eth_amount" maxlength="26" placeholder="0" autocomplete="off">
@@ -45,7 +45,7 @@
                 <p class="text-right"><small>예상 결제 수량(수수료 포함): <span id="total_eth_amount">0</span> ETH </small></p>
             </div>
             <div class="form-group">
-                <label for="addressFormControlInput">DBET Amount</label>
+                <label for="addressFormControlInput">DBET 수량</label>
                 <input type="text" name="dbet_amount" class="form-control  text-right" id="addressFormControlInput" placeholder="0" readonly>
                
             </div>

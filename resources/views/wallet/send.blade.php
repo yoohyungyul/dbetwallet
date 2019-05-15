@@ -39,7 +39,7 @@
                 <div class="text-center">error : {{ $error }}</div>
                 @endforeach
                 <div class="form-group">
-                    <label for="addressFormControlInput">DBET Wallet Address</label>
+                    <label for="addressFormControlInput">DBET 지갑주소</label>
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
                     <!-- <div class="input-group">
                     <input type="text" name="address" id="address" class="form-control input-lg" id="addressFormControlInput" placeholder="Wallet Address">
@@ -50,7 +50,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="amountFormControlInput">DBET Amount</label>
+                    <label for="amountFormControlInput">DBET 수량</label>
                     <!-- <input type="text" name="amount" id="amount" class="form-control input-lg" id="amountFormControlInput" placeholder="0"> -->
 
                     <div class="input-group">
@@ -67,7 +67,7 @@
                     <label for="outFormControlInput">OTP</label>
                     <input type="text" name="totp" id="totp" class="form-control input-lg" id="outFormControlInput" placeholder="OTP" maxlength="6">
                 </div>
-                <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">SEND</button>
+                <button type="submit" id="withdrawal_btn" class="btn btn-primary btn-block">보내기</button>
                 </form>
             </div>
            
@@ -93,33 +93,33 @@
         }, 1000);
 
         if($('#eth_balance').val() < 0.05) {
-            alert("There is not enough Etherium coin. ");
+            alert("이더리움이 부족합니다. ");
             return false;
         }
         
         if($('#address').val() == '') {
             $('#address').focus();
-            alert("Please enter your address. ");
+            alert("지갑주소를 입력해 주세요 ");
             return false;
         }
         
     
         if($('#amount').val() == '') {
             $('#amount').focus();
-            alert("Please enter your amount. ");
+            alert("수량을 입력해주세요. ");
             return false;
         }
 
         if($('#amount').val() == '0') {
             $('#amount').focus();
-            alert("Please enter your amount. ");
+            alert("수량을 입력해주세요. ");
             return false;
         }
 
 
         if($('#totp').val() == '') {
             $('#totp').focus();
-            alert("Please enter your otp. ");
+            alert("OTP를 입력해 주세요. ");
             return false;
         }
 

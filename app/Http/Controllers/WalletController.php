@@ -381,12 +381,14 @@ class WalletController extends Controller
         $key = Auth::user()->id . ':' . $request->totp;
 
         if(Cache::has($key)) {
-           return back()->withErrors('This is the OTP code already used.');
+            Session::flash('sweet_alert', "이미 사용 된 OTP 코드입니다.");
+            return Redirect::back();
         }
 
         if(!Google2FA::verifyKey(Auth::user()->google2fa_secret, $request->totp)) {
           
-            return back()->withErrors('OTP code mismatch.');
+            Session::flash('sweet_alert', "OTP 코드가 불일치합니다.");
+            return Redirect::back();
         }
 
 
@@ -396,16 +398,19 @@ class WalletController extends Controller
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
 
         if($this->getEthBalance(Auth::user()->id) < 0.05) {
-            return back()->withErrors('There is not enough Etherium coin. ');
+            Session::flash('sweet_alert', "이더리움 수량이 부족합니다.");
+            return Redirect::back();
         }
         
 
         if ($balance->balance < $request->amount) {
-            return back()->withErrors('Balance is not enough!');
+            Session::flash('sweet_alert', "남은수량이 부족합니다.");
+            return Redirect::back();
         }
 
         if(Auth::user()->withdraw_flag){
-			return back()->withErrors('You are subject to withdrawal restrictions.');
+            Session::flash('sweet_alert', "출금이 제한되었습니다.");
+            return Redirect::back();
 		}
 
 
@@ -447,16 +452,16 @@ class WalletController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
 
-            return back()->withErrors('Oops, database error is occurred!');
+            Session::flash("데이터베이스 오류가 발생했습니다.");
+            return Redirect::back();
 
            
         } finally {
             DB::commit();
         }
 
-        return redirect('/history' )->with('message', 'send has been completed');
-    
-
+        Session::flash('sweet_alert', "정상적으로 보냈습니다.");
+		return redirect('/history');
     }
 
     // 구매
