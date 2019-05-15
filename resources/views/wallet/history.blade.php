@@ -42,10 +42,10 @@
             <table class="table table-hover" style="word-wrap: break-word; width='100%'">
                 <thead>
                     <tr>
-                    <th scope="col" width="30%">DATE</th>
-                    <th scope="col" width="30%">ADDRESS</th>
-                    <th scope="col" width="20%">AMOUNT</th>
-                    <th scope="col" width="20%">BALANCE</th>
+                    <th scope="col" width="30%">거래일시</th>
+                    <th scope="col" width="30%">지갑주소</th>
+                    <th scope="col" width="20%">수량</th>
+                    <th scope="col" width="20%">남은수량</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,20 +54,20 @@
                         <td style="line-height: 20px;">{{ substr($item->created_at,0,10)  }}<br><small>{{ substr($item->created_at,11)  }}</small></td>
                         <td>
                             @if($item->type == "1")
-                                Send to<br>
+                                보내기o<br>
                                 {{$item->address_to}}
                             @else
-                                Received at<br>
+                                받기<br>
                                 {{$item->address_from}}
                             @endif
 
                             @if($item->state == "0")
-                                <span class="btn btn-secondary btn-sm">pending</span>
+                                <span class="btn btn-secondary btn-sm">진행중</span>
                                 
                             @else
-                                <span class="btn btn-success btn-sm">confirmed</span>
+                                <span class="btn btn-success btn-sm">완료</span>
                                 <br>
-                                <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">View transaction details</a>
+                                <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a>
                             @endif
                             
 
