@@ -78,12 +78,12 @@
                         
 
                         <div class="form-group">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> 가입하기
                                 </button>
                             </div>
-                            <div class="col-md-12 text-right">
+                            <div class="col-md-6 text-right">
                                 <a href="/2fa/login">OTP 로그인</a>
                             </div>
                         </div>
