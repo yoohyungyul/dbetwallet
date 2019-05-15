@@ -63,11 +63,11 @@ class AuthController extends Controller
     }
 
 
-    public function postRegister(Request $request)
-    {
-        echo "11";
-        // return $this->register($request);
-    }
+    // public function postRegister(Request $request)
+    // {
+    //     echo "11";
+    //     // return $this->register($request);
+    // }
 
     /**
      * Handle a registration request for the application.
