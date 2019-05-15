@@ -124,7 +124,7 @@
         
 
 
-        $('#amountFormControlInput').val(all);
+        $('#amountFormControlInput').val( Number(all.toFixed(8)) )    ;
         exchange();
     }
 
