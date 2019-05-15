@@ -563,13 +563,17 @@ class WalletController extends Controller
 
         $flag = true;
         $user_id[]  = Auth::user()->id;
+
+        echo count($user_id);
         // while ( $flag ) {  
         //     $userData = User::whereIn('recommender',$user_id)->get();
 
         //     $user_id = [];
         //     foreach($userData as $data ) {
-
+        //         $user_id[] = $data->id;
         //     }
+
+
         // }
         exit;
        
