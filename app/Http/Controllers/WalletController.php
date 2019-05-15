@@ -573,8 +573,8 @@ class WalletController extends Controller
             foreach($userData as $data ) {
                 echo $_i."_".$data->id."<br>";
 
-                $recom_dict[$_i] = (object) [
-                    'id' => $data->id
+                $recom_dict[$_i][$data->id] = (object) [
+                    'name' => $data->name
                 ];
 
                 $user_id[] = $data->id;
