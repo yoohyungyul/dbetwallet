@@ -30,8 +30,8 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($
     Route::get('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@enableTwoFactor']);
     Route::post('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@storeTwoFactor']);
 
-    Route::get('/', 'WalletController@getWallet');
-    Route::get('/home', 'WalletController@getWallet');
+    Route::get('/', 'WalletController@getHome');
+    Route::get('/home', 'WalletController@getHome');
     Route::get('/wallet', 'WalletController@getWallet');
     Route::get('/history', 'WalletController@getHistory');
     Route::get('/send', 'WalletController@getSend');

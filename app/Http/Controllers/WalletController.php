@@ -231,6 +231,12 @@ class WalletController extends Controller
 
     }
 
+    public function getHome() {
+
+        return redirect('/wallet');
+
+    }
+
     public function getEthBalance($id) {
 
         // 서버에서 직접 조회
