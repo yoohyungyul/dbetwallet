@@ -590,11 +590,16 @@ class WalletController extends Controller
         }
 
 
-
+        $eth_total = 0;
+        $dbet_total = 0;
         foreach($recom_dict as $value) {
             if( isset($value->coin)) {
                 foreach($value->coin as $coin) {
-                    echo "!";
+                    // dbet
+                    if($coin->id = 2) $dbet_total += $coin->balance;
+                    // eth
+                    if($coin->id = 3) $dbet_total += $coin->balance;
+                   
                 }
             }
 
@@ -614,6 +619,8 @@ class WalletController extends Controller
             'balance' => $balanceData,
             'ethBalance' => $ethBalance,
             'recoms' => $recom_dict,
+            'eth_total' => $eth_total,
+            'dbet_total' => $dbet_total,
 
         ]);
     }

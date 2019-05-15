@@ -29,6 +29,10 @@
             
             총 추천 수 : {{count($recoms)}}</span>
         </div>
+        <div>
+            <p>ETH 총 :  {{$eth_total}}</p>
+            <p>DBET 총 :  {{$dbet_total}}</p>
+        </div>
 
         @foreach($recoms as $item)
         <div class="card text-center" style="display: block;margin-bottom:10px">
