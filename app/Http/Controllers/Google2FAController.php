@@ -180,7 +180,6 @@ class Google2FAController extends Controller
             }
 
 
-
             $name = "chainplus";
             $value = $user->wallet_code;
             $minutes = time()+60*60*24*365;
@@ -188,7 +187,7 @@ class Google2FAController extends Controller
             Cookie::queue($name, $value, $minutes);
 
 
-            return redirect('sdfsfsdfsdf');
+            return redirect('wallet');
 
 
 
