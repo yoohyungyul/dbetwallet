@@ -557,6 +557,13 @@ class WalletController extends Controller
         Session::flash('sweet_alert', "구매 신청이 완료되었습니다.");
 		return redirect('/buy');
     }
+
+    // 추천인 리스트
+    public function getRecommender() {
+        return view('wallet.recommender',[
+            'currency' => $currencyData,
+        ]);
+    }
 }
 
 /*
