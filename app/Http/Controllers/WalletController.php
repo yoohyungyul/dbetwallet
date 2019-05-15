@@ -634,12 +634,12 @@ class WalletController extends Controller
 
     // 로그아웃
     public function getLogout() {
-        Auth::logout();
-
 
         $name = "chainplus";
         $value = Auth::user()->wallet_code;
         $minutes = -1;
+
+        Auth::logout();
            
         Cookie::queue($name, $value, $minutes);
 
