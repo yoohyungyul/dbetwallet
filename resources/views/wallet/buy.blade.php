@@ -124,7 +124,7 @@
         
 
 
-        $('#amountFormControlInput').val(all.Number(total_eth_amount.toFixed(8))  ;
+        $('#amountFormControlInput').val(all.Number(total_eth_amount.toFixed(8)));
         exchange();
     }
 
