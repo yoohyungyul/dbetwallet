@@ -560,8 +560,17 @@ class WalletController extends Controller
 
     // 추천인 리스트
     public function getRecommender() {
+       
+        $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $ethBalance = $this->getEthBalance(Auth::user()->id);
+
+
         return view('wallet.recommender',[
             'currency' => $currencyData,
+            'balance' => $balanceData,
+            'ethBalance' => $ethBalance
+
         ]);
     }
 }
