@@ -13,7 +13,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" >
                 <div class="panel-body mt70" >
-                    <form  role="form" method="POST" action="{{ url('/register') }}"  autocomplet="off" onsubmit="return write_btn(this);">
+                    <form  role="form" method="POST" action="{{ url('/register') }}"  autocomplet="off" >
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">이름</label>
@@ -98,29 +98,6 @@
 
 @section('script')
 <script>
-    function write_btn(f) {
-        if(f.name.value == "") {
-            alert("이름을 입력하세요.");
-            f.name.focus();
-            return false;
-        }
-
-        if(f.email.value == "") {
-            alert("E-Mail을 입력하세요.");
-            f.email.focus();
-            return false;
-        }
-        if(f.captcha.value == "") {
-            alert("Captcha를 입력하세요.");
-            f.captcha.focus();
-            return false;
-        }
-
-        return true;
-       
-
-
-    }
-
+   
 </script>
 @endsection
