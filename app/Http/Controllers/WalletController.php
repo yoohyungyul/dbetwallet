@@ -341,8 +341,7 @@ class WalletController extends Controller
         $ethBalance = $this->getEthBalance(Auth::user()->id);
 
 
-        $transactions = TransactionHistory::where('currency_id', '=', env('CURRENCY_ID', '1'))
-            ->where('currency_id',$currency_id)
+        $transactions = TransactionHistory::where('currency_id',$currency_id)
             ->where('user_id',Auth::user()->id)
             ->orderBy('state')->orderBy('created_at','desc')->paginate(10);
 
