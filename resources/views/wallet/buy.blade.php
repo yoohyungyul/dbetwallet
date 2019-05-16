@@ -53,7 +53,7 @@
                 <label for="outFormControlInput">OTP</label>
                 <input type="text" name="totp" id="totp" class="form-control input-lg" id="outFormControlInput" placeholder="OTP" maxlength="6">
             </div>
-            <button type="submit" id="buy_btn" class="btn btn-primary btn-block">BUY</button>
+            <button type="submit" id="buy_btn" class="btn btn-primary btn-block">구매하기</button>
             </form>
             </div>
            
