@@ -210,7 +210,7 @@ class Deposit extends Command {
 
             echo "\n[" . date('Ymd h:i:s') . "] Work End\n";
                 
-            sleep(10);
+            sleep(60);
         }
     }
 

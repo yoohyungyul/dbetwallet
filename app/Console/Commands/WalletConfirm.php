@@ -172,6 +172,8 @@ class WalletConfirm extends Command {
                 echo " Done!\n";
             }
             echo "[" . date('Ymd h:i:s') . "] Work End\n";
+
+            sleep(60);
         }
     }
 
