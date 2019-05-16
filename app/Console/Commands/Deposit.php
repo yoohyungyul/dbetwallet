@@ -111,8 +111,8 @@ class Deposit extends Command {
                                         $transaction_history->type = 2;
                                         $transaction_history->user_id = $wallet->user_id;
                                         $transaction_history->currency_id = $currency->id;
-                                        $transaction_history->amount = number_format(($txid->value/pow(10,$currency->fixed)), $currency->fixed, '.', '');
-                                        $transaction_history->balance = number_format($balance + (($txid->value)  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        $transaction_history->amount = number_format((hexdec($txid->value)/pow(10,$currency->fixed)), $currency->fixed, '.', '');
+                                        $transaction_history->balance = number_format($balance + ((hexdec($txid->value))  /pow(10,$currency->fixed)), $currency->fixed, '.', '');
                                         $transaction_history->txid = $txid->hash;
                                         $transaction_history->address_from = $txid->from;
                                         $transaction_history->address_to = $txid->to;
