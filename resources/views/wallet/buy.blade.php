@@ -153,10 +153,10 @@
         } else {
             var total_eth_amount = 0;
             var dbet_amount = 0;
-        }
-        
+        }   
+
+         $("input[name='total_eth_amount']").val(total_eth_amount);
         $('#total_eth_amount').html(  Number(total_eth_amount.toFixed(8))   );
-        $("input[name='total_eth_amount']").val(total_eth_amount);
         $("input[name='dbet_amount']").val(  Number(dbet_amount.toFixed(8))   );
     }
 
