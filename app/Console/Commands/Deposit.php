@@ -82,6 +82,9 @@ class Deposit extends Command {
                 }
                 $height = $height-3;
 
+                echo $height;
+                exit;
+
             
                 while(true) {
                     if($height > $max) {
