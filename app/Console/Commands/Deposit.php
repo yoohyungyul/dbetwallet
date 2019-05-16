@@ -81,7 +81,7 @@ class Deposit extends Command {
                     $height = $max-10;
                 }
                 // $height = $height-3;
-                $height = $height-40;
+                $height = $height-50;
 
              
 
