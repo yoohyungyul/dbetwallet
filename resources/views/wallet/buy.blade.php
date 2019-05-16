@@ -136,9 +136,10 @@
         if(eth_amount) {
             if(!isNumber(eth_amount) ) {
                 bootbox.alert('숫자만 입력해 주세요. ');
-                $("input[name='eth_amount']").val('');
                 $('#total_eth_amount').html('0');
+                $("input[name='eth_amount']").val('0');
                 $("input[name='total_eth_amount']").val('0');
+                $("input[name='dbet_amount']").val('0');
                 $("input[name='eth_amount']").focus();
                 
                 return false;
