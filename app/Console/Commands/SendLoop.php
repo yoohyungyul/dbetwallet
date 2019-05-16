@@ -62,7 +62,7 @@ class SendLoop extends Command
             // 보낸 목록
             $history = TransactionHistory::where('txid','')->where('currency_id',env('CURRENCY_ID', '1'))->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
-            $funcs = "0xa9059cbb";
+            $funcs = "0xa9059cbb"; 
 
             $client = new jsonRPCClient($currency->ip, $currency->port);
 
