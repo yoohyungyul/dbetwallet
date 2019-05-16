@@ -107,6 +107,9 @@ class Deposit extends Command {
 
                                         echo "\n  Incomming Transaction #".$txid->hash;
 
+                                        $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                
+
                                         $transaction_history = new TransactionHistory;
                                         $transaction_history->type = 2;
                                         $transaction_history->user_id = $wallet->user_id;
