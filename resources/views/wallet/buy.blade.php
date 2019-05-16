@@ -144,8 +144,11 @@
                 return false;
             }
 
+            var eth_target = parseFloat("{{$ethCurrency->target}}");
+            var dbet_target = parseFloat("{{$currency->target}}");
+
             var total_eth_amount = parseFloat(eth_amount) + parseFloat("{{$ethCurrency->fee}}") ;
-            var dbet_amount = (parseFloat(eth_amount) * 200000) / 50;
+            var dbet_amount = (parseFloat(eth_amount) * eth_target) / dbet_target;
         } else {
             var total_eth_amount = 0;
             var dbet_amount = 0;
