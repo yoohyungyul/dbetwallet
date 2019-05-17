@@ -608,7 +608,7 @@ class WalletController extends Controller
         $_i = 1;
         $recom_dict = [];
         while ( $flag ) {  
-            $userData = User::select('id','name','created_at','updated_at','recommender')->whereIn('recommender',$user_id)->get();
+            $userData = User::select('id','name','created_at','updated_at','recommender')->whereIn('recommender',$user_id)->orderBy('created_at','desc')->get();
 
             $user_id = [];
             foreach($userData as $data ) {
