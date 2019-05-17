@@ -21,7 +21,7 @@
             <span style="float: right;"><small>{{ number_format( $ethBalance, $currency->fixed, ".", ",") }} ETH</small></span>
        </div>
     </div>
-
+  
 </div>
 <div class="row mt20">
     <div class="col-12 ">
