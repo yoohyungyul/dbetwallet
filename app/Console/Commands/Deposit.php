@@ -130,7 +130,7 @@ class Deposit extends Command {
                             }
 
 
-                            $token = Currency::where('use_rpc', 3)->where('state','1')->where('contract', $txid->to)->first();
+                            $token = Currency::where('use_rpc', 1)->where('state','1')->where('contract', $txid->to)->first();
                                 
                             $flag = false;
                             if($token) {

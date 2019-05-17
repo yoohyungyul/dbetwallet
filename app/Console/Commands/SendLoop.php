@@ -57,68 +57,113 @@ class SendLoop extends Command
         while (true) {
 
             echo "[" . date('Ymd h:i:s') . "] Work Start\n";
-            $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
-            // 보낸 목록
-            $history = TransactionHistory::where('txid','')->where('currency_id',env('CURRENCY_ID', '1'))->where('type','1')->where('state','0')->orderBy('id','asc')->get();
+            $currencys = Currency::where('state','1')->get();
 
-            $funcs = "0xa9059cbb"; 
+            foreach ($currencys as $currency) {
 
-            $client = new jsonRPCClient($currency->ip, $currency->port);
+                // 보낸 목록
+                $history = TransactionHistory::where('txid','')->where('currency_id',$currency->id)->where('type','1')->where('state','0')->orderBy('id','asc')->get();
 
-            
-            
+                
 
-            foreach($history as $data) {
+                $client = new jsonRPCClient($currency->ip, $currency->port);
 
+                
+                
 
-                // 이더리움 잔액 검색
-                $result = $client->request('eth_getBalance', [$data->address_from, 'latest']);
-                $balance = hexdec($result->result)/pow(10,18);
+                foreach($history as $data) {
 
-                if($balance < 0.05) {
-                    echo "There is not enough Etherium coin.";
-                } else {
-                    $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
-                    $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
+                    // 토큰
+                    if ($currency->use_rpc == 1) {
 
+                        $funcs = "0xa9059cbb"; 
 
-                    $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
+                        // 이더리움 잔액 검색
+                        $result = $client->request('eth_getBalance', [$data->address_from, 'latest']);
+                        $balance = hexdec($result->result)/pow(10,18);
 
-
-                    
-                    $result = $client->request('eth_sendTransaction', [[
-                        'from' => $data->address_from,
-                        'to' => $currency->contract,
-                        'data' => $funcs.$real_to.$real_amount,
-                    ]]);
+                        if($balance < 0.05) {
+                            echo "There is not enough Etherium coin.";
+                        } else {
+                            $real_to = str_pad(str_replace('0x','',$data->address_to), 64, '0', STR_PAD_LEFT);
+                            $real_amount = str_pad($client->dec2hex(($data->amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
 
 
-                    if(is_object($result)) {
+                            $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
 
-                        if ($result->result != '') {
-                            try {
-                                DB::beginTransaction();
-                                
-                                $data->txid = $result->result;
-                                $data->push();
-                                
+
                             
-                                echo " Update Complete!";
-                            } catch (\Exception $e) {
-                                DB::rollback();
+                            $result = $client->request('eth_sendTransaction', [[
+                                'from' => $data->address_from,
+                                'to' => $currency->contract,
+                                'data' => $funcs.$real_to.$real_amount,
+                            ]]);
 
-                                echo " Update Failed!";
-                            } finally {
-                                DB::commit();
+
+                            if(is_object($result)) {
+
+                                if ($result->result != '') {
+                                    try {
+                                        DB::beginTransaction();
+                                        
+                                        $data->txid = $result->result;
+                                        $data->push();
+                                        
+                                    
+                                        echo " Update Complete!";
+                                    } catch (\Exception $e) {
+                                        DB::rollback();
+
+                                        echo " Update Failed!";
+                                    } finally {
+                                        DB::commit();
+                                    }
+                                } 
+                            } else {
+                                echo " RPC Error!";
                             }
-                        } 
-                    } else {
-                        echo " RPC Error!";
-                    }
-                }
-                echo "\n";
+                        }
+                    // 이더
+                    } else if($currency->use_rpc == 2) {
+                        echo $data->id;
+                        exit;
+                        $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
+                        $result = $client->request('eth_sendTransaction', [[
+                            'from' => $data->address_from,
+                            'to' => $data->address_to,
+                            'value' => '0x'.$client->dec2hex(number_format($data->amount , $currency->fixed, '.', '')*pow(10,18)),
+                        ]]);
 
+                        if(is_object($result)) {
+
+                            if ($result->result != '') {
+                                try {
+                                    DB::beginTransaction();
+                                    
+                                    $data->txid = $result->result;
+                                    $data->push();
+                                    
+                                
+                                    echo " Update Complete!";
+                                } catch (\Exception $e) {
+                                    DB::rollback();
+
+                                    echo " Update Failed!";
+                                } finally {
+                                    DB::commit();
+                                }
+                            } 
+                        } else {
+                            echo " RPC Error!";
+                        }
+
+                       
+
+                    }
+                    echo "\n";
+
+                }
             }
 
             echo "[" . date('Ymd h:i:s') . "] Work End\n";
@@ -126,110 +171,6 @@ class SendLoop extends Command
         }
 
     }
-
-    function transferfrom($sender_addr, $sender_pwd, $from, $to, $amount)
-    {
-        $resultVal = (object) [
-            'message' => "",
-            'flag' => false
-        ];  
-
-        try 
-        {
-            $client = new jsonORCRPCClient($this->rpcserver_ip, $this->rpcserver_port);         
-
-            //$real_from = str_pad(str_replace('0x','',$from), 64, '0', STR_PAD_LEFT);
-            $real_from = str_replace('0x','',$from);
-            $real_to = str_pad(str_replace('0x','',$to), 64, '0', STR_PAD_LEFT);
-            $real_amount = str_pad($this->dec2hex($amount*pow(10,$this->orc_digit)), 64, '0', STR_PAD_LEFT);
-            
-            $result = $client->request('personal_unlockAccount', [$sender_addr, $sender_pwd, '0x0a']);
-            if (isset($result1->error)) 
-            {
-                $resultVal->message = $result1->error->message;
-                $resultVal->flag = false;
-                return $resultVal; 
-            } 
-
-            $result = $client->request('eth_sendTransaction', [[
-                'from' => $sender_addr,
-                'to' => $this->orc_contractaddress,
-                'data' => $this->hex_transferFrom . $real_from . $real_to . $real_amount,
-            ]]);
-
-            //print_r($result);
-            if (isset($result->result)) 
-            {
-                $resultVal->message = $result->result;
-                $resultVal->flag = true;
-            } 
-            else if (isset($result->error)) 
-            {
-                $resultVal->message = $result->error->message;
-                $resultVal->flag = false;
-            }           
-        }
-        catch(\Exception $e) 
-        {
-            $resultVal->message = "RPC Server Error";
-            $resultVal->flag = false;
-        }
-
-        return $resultVal;               
-    }
-
-
-
-    function approve($spender, $amount ,$currency)
-    {
-
-        $resultVal = (object) [
-            'message' => "",
-            'flag' => false
-        ];  
-
-        $client = new jsonRPCClient($currency->ip, $currency->port); 
-
-
-        $real_to = str_replace('0x','',$currency->address);
-        $real_amount = str_pad($client->dec2hex(($amount)*pow(10,$currency->fixed)), 64, '0', STR_PAD_LEFT);
-        // $real_amount2 = str_pad($client->dec2hex($amount * pow(10,$currency->fixed) * 10000000), 64, '0', STR_PAD_LEFT);
-
-        
-
-            
-        
-        $result1 = $client->request('personal_unlockAccount', [$spender, $currency->reg_password, '0x0a']);
-
-        if (isset($result1->error)) 
-        {
-            $resultVal->message = $result1->error->message;
-            $resultVal->flag = false;
-            return $resultVal; 
-        }   
-
-        $result = $client->request('eth_sendTransaction', [[
-            'from' => $spender,
-            'to' => $currency->address,
-            'data' => $this->hex_approved . $real_to . $real_amount,
-        ]]);
-
-        print_r($result);
-
-
-        // if (isset($result->result)) 
-        // {
-        //     $resultVal->message = $result->result;
-        //     $resultVal->flag = true;
-        // } 
-        // else if (isset($result->error)) 
-        // {
-        //     $resultVal->message = $result->error->message;
-        //     $resultVal->flag = false;
-        // }         
-    }  
-       
-
 }
 
 
