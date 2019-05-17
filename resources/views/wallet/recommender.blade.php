@@ -25,7 +25,7 @@
     <div class="col-12 ">
         <div class="text-right">
             
-            총 추천 수 : {{count($recoms)}}</span>
+            총 추천 수 : {{number_format(count($recoms))}}</span>
         </div>
        
         <div class="row">
