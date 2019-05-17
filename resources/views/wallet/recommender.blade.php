@@ -29,11 +29,11 @@
         </div>
        
         
-        <div class="row" style="margin-bottom:10px">
+        <div class="row" >
             <div class="col-3">DBET</div>
             <div class="col-9 text-right">{{ number_format( $dbet_total, 8, ".", ",") }} d</div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-bottom:10px">
             <div class="col-3">ETH</div>
             <div class="col-9 text-right">{{ number_format( $eth_total, 8, ".", ",") }} e</div>
         </div>
