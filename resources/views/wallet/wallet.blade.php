@@ -45,7 +45,7 @@
                     
                 </h5>
                 <p class="card-text" id="recommender_code">{{ Auth::user()->recommender_code }}</p>
-                <p><a class="btn" href="/recommender" >추천인보기</a></p>
+                <p><a class="btn btn-primary btn-block" href="/recommender" >추천인보기</a></p>
                 
             </div>
         </div>
