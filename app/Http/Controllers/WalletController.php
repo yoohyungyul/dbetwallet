@@ -256,14 +256,16 @@ class WalletController extends Controller
         // 남은 잔액
         $ethBalance = $balanceData->balance;
 
+        return $ethBalance;
+
         // 구매 건수 포함
-        $balance = BuyHistory::where('user_id',$id)->whereIn('state',[0,1])->sum(DB::raw(" buy_amount + buy_fee"));
+        // $balance = BuyHistory::where('user_id',$id)->whereIn('state',[0,1])->sum(DB::raw(" buy_amount + buy_fee"));
 
        
 
        
 
-        return $ethBalance - $balance;
+        // return $ethBalance - $balance;
     }
     
     // 지갑 
