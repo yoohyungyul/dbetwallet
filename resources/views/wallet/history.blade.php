@@ -34,7 +34,7 @@
                 <p>{{$item->address_to}}</p>
                 @else
                 <p>받은 주소</p>
-                <p>{{$item->address_from}}</p>
+                <p><small>{{$item->address_from}}</small></p>
                 @endif
 
             </li>
