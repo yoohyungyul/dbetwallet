@@ -27,7 +27,7 @@
             @foreach ($list as $item)
             <li class="list-group-item">
                 
-                <div class="row">
+                <div class="row" style="margin-bottom:10px;">
                     <div class="col-7">
                         <small>{{ $item->created_at  }}</small>
                     </div>
@@ -45,9 +45,9 @@
                 <div class="row">
                     <div class="col-4">
                     @if($item->type == "1")
-                        보낸 주소
+                        보낸 코인
                     @else
-                        받은 주소
+                        받은 코인
                     @endif
                     </div>
                     <div class="col-8 text-right">
