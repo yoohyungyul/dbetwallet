@@ -42,7 +42,7 @@
                         <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                     </span>
                 </div>
-                <p class="text-right"><small>예상 결제 수량(수수료 포함): <span id="total_eth_amount">0</span> ETH </small></p>
+                <p class="text-right"><small>예상 결제 수량(수수료,대기수량 포함): <span id="total_eth_amount">0</span> ETH </small></p>
             </div>
             <div class="form-group">
                 <label for="addressFormControlInput">DBET 수량</label>
@@ -93,6 +93,7 @@
         var total_eth_amount = $("input[name='total_eth_amount']").val();
         var limit_min = parseFloat("{{$ethCurrency->limit_min}}");
         var ethBalance = parseFloat("{{$ethBalance}}");
+        var waitBalance = parseFloat("{{$waitBalance}}");
 
         // alert(ethBalance);
 
@@ -101,8 +102,8 @@
             return false;
         }
 
-        if(total_eth_amount > ethBalance) {
-            alert("예상 결제 수량이 부족합니다. ");
+        if(total_eth_amount > (ethBalance - waitBalance) ) {
+            alert("결제 수량이 부족합니다. ");
             return false;
         }
 
@@ -148,8 +149,9 @@
 
             var eth_target = parseFloat("{{$ethCurrency->target}}");
             var dbet_target = parseFloat("{{$currency->target}}");
+            var fee = parseFloat("{{$ethCurrency->fee}}");
 
-            var total_eth_amount = parseFloat(eth_amount) + parseFloat("{{$ethCurrency->fee}}") ;
+            var total_eth_amount = parseFloat(eth_amount) + fee ;
             var dbet_amount = (parseFloat(eth_amount) * eth_target) / dbet_target;
         } else {
             var total_eth_amount = 0;
