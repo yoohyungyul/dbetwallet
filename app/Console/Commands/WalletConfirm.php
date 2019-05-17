@@ -11,6 +11,7 @@ use App\Currency;
 use App\jsonRPCClient;
 use App\Users_wallet;
 use App\Balance;
+use App\BuyHistory;
 
 class WalletConfirm extends Command {
 
@@ -114,6 +115,7 @@ class WalletConfirm extends Command {
                                                 $transaction_history->type = 2;
                                                 $transaction_history->user_id = $to_userid;
                                                 $transaction_history->currency_id = $currency->id;
+                                                $transaction_history->buy_id = $history->buy_id;
                                                 $transaction_history->amount = $history->amount;
                                                 $transaction_history->balance = $to_user_balance->balance;
                                                 $transaction_history->txid = $history->txid;
@@ -125,6 +127,16 @@ class WalletConfirm extends Command {
 
                                             } else {
                                                 echo "No User Address";
+                                            }
+                                            
+                                            // 구매이면
+                                            if($history->buy_id) {
+                                                $buyData = BuyHistory::where('id',$history->buy_id)->first();
+                                                if($buyData) {
+                                                    $buyData->state = 2;
+                                                    $buyData->push();
+                                                }
+
                                             }
 
                                         // 받기
