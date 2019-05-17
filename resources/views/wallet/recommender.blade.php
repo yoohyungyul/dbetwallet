@@ -36,15 +36,15 @@
         <div class="card text-center" style="display: block;margin-bottom:10px">
           
             <div class="card-body text-left">
-                <div class="row">
+                <div class="row" style="margin-bottom:10px">
                     <div class="col-7">{{$item->user->name}}</div>
                     <div class="col-5 text-right"><small>{{substr($item->user->created_at,0,10)}}</small></div>
                 </div>
                 
                 @foreach($item->coin as $coin)
                 <div class="row">
-                    <div class="col-4">{{$coin->label}}</div>
-                    <div class="col-8 text-right">{{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</div>
+                    <div class="col-3">{{$coin->label}}</div>
+                    <div class="col-9 text-right">{{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</div>
                 </div>
                 @endforeach
             </div>
