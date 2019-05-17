@@ -36,9 +36,9 @@
         <div class="card text-center" style="display: block;margin-bottom:10px">
           
             <div class="card-body text-left">
-                <p>{{$item->user->name}}</p>
+                <p style="margin:0px">{{$item->user->name}}</p>
                 @foreach($item->coin as $coin)
-                <p>{{$coin->label}} : {{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</p>
+                <p style="margin:0px">{{$coin->label}} : {{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</p>
                 @endforeach
             </div>
         </div>
