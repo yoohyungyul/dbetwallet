@@ -250,7 +250,7 @@ class WalletController extends Controller
 
 
         $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 3)->first();
-        $balanceData->balance = 1;
+        $balanceData->balance = $balance;
         $balanceData->push();
 
         
