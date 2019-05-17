@@ -138,7 +138,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'wallet_code' => $value,
             'recommender_code' => $recommender_code,
-            // 'recommender' => $recommender_id,
+            'recommender' => $recommender_id,
             'password' => $password,
         ]);
     }
