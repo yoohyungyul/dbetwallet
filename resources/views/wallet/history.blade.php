@@ -23,22 +23,24 @@
 
 <div class="row mt20">
     <div class="col-12 ">
-        <ul class="list-group">
-        @foreach ($list as $item)
-        <li class="list-group-item">
-            <small>{{ $item->created_at  }}</small>
+        <div style="width:100%; overflow:auto">
+            <ul class="list-group">
+            @foreach ($list as $item)
+            <li class="list-group-item">
+                <small>{{ $item->created_at  }}</small>
 
-            @if($item->type == "1")
-            <p>보낸 주소</p>
-            <p>{{$item->address_to}}</p>
-            @else
-            <p>받은 주소</p>
-            <p>{{$item->address_from}}</p>
-            @endif
+                @if($item->type == "1")
+                <p>보낸 주소</p>
+                <p>{{$item->address_to}}</p>
+                @else
+                <p>받은 주소</p>
+                <p>{{$item->address_from}}</p>
+                @endif
 
-        </li>
-        @endforeach
-        </ul>
+            </li>
+            @endforeach
+            </ul>
+        </div>
 
         <div style="width:100%; overflow:auto">
             
