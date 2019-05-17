@@ -27,9 +27,14 @@
             
             총 추천 수 : {{count($recoms)}}</span>
         </div>
-        <div>
-            <p>ETH 총 :  {{ number_format( $eth_total, 8, ".", ",") }} e</p>
-            <p>DBET 총 :  {{ number_format( $dbet_total, 8, ".", ",") }} d</p>
+       
+        <div class="row">
+            <div class="col-3">ETH 총</div>
+            <div class="col-9 text-right">{{ number_format( $eth_total, 8, ".", ",") }} e</div>
+        </div>
+        <div class="row">
+            <div class="col-3">DBET 총</div>
+            <div class="col-9 text-right">{{ number_format( $dbet_total, 8, ".", ",") }} e</div>
         </div>
 
         @foreach($recoms as $item)
