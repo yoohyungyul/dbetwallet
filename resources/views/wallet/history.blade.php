@@ -23,7 +23,14 @@
 
 <div class="row mt20">
     <div class="col-12 ">
+        <ul class="list-group">
+        @foreach ($list as $item)
+        <li class="list-group-item">{{ $item->created_at  }}</li>
+        @endforeach
+        </ul>
+
         <div style="width:100%; overflow:auto">
+            
 
             <table class="table table-hover" style="word-wrap: break-word; width='100%'">
                 <thead>
