@@ -43,14 +43,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                     @if($item->type == "1")
                         보낸 주소
                     @else
                         받은 주소
                     @endif
                     </div>
-                    <div class="col-9"></div>
+                    <div class="col-8"></div>
                 </div>
 
                 @if($item->type == "1")
