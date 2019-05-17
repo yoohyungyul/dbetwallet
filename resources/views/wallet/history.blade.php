@@ -34,10 +34,10 @@
                         </div>
                         <div class="col-5 text-right">
                             @if($item->state == "0")
-                                <span class="btn btn-secondary btn-xs">진행중</span>
+                                <span class="btn btn-secondary" style="font-size: 12px;padding: 1px 5px;">진행중</span>
                                 
                             @else
-                                <span class="btn btn-success btn-xs">거래완료</span>
+                                <span class="btn btn-success" style="font-size: 12px;padding: 1px 5px;">거래완료</span>
                                 <!-- <br>
                                 <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a> -->
                             @endif
@@ -57,49 +57,7 @@
             </ul>
         </div>
 
-        <div style="width:100%; overflow:auto">
-            
-
-            <table class="table table-hover" style="word-wrap: break-word; width='100%'">
-                <thead>
-                    <tr>
-                    <th scope="col" width="30%">거래일시</th>
-                    <th scope="col" width="30%">지갑주소</th>
-                    <th scope="col" width="20%">수량</th>
-                    <th scope="col" width="20%">남은수량</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($list as $item)
-                    <tr>
-                        <td style="line-height: 20px;">{{ substr($item->created_at,0,10)  }}<br><small>{{ substr($item->created_at,11)  }}</small></td>
-                        <td>
-                            @if($item->type == "1")
-                                보낸 주소<br>
-                                {{$item->address_to}}
-                            @else
-                                받은 주소<br>
-                                {{$item->address_from}}
-                            @endif
-
-                            @if($item->state == "0")
-                                <span class="btn btn-secondary btn-sm">진행중</span>
-                                
-                            @else
-                                <span class="btn btn-success btn-sm">거래완료</span>
-                                <br>
-                                <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a>
-                            @endif
-                            
-
-                        </td>
-                        <td>{{ number_format(  $item->amount, $currency->fixed, ".", ",") }}</td>
-                        <td>{{ number_format(  $item->balance, $currency->fixed, ".", ",") }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+        
        
     </div>
     
