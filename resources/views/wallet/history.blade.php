@@ -46,7 +46,7 @@
 
                 @if($item->type == "1")
                 <p style="margin:0px;">보낸 주소</p>
-                <p style="margin:0px;">{{$item->address_to}}</p>
+                <p style="margin:0px;"><small>{{$item->address_to}}</small></p>
                 @else
                 <p style="margin:0px;">받은 주소</p>
                 <p style="margin:0px;"><small>{{$item->address_from}}</small></p>
