@@ -246,14 +246,22 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', 3)->first();
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
         $result = $client->request('eth_getBalance', [$walletData->address, 'latest']);
-        // dd($result);
         $balance = hexdec($result->result)/pow(10,18);
-        echo $balance;
-        exit;
+
+
+        $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 3)->first();
+        $balanceData->balance = $balance;
+        $balanceData->push();
+
+        
+
 
 
         // 남은 잔액
-        $ethBalance = Balance::where('user_id',$id)->where('currency_id', '=', 3)->value('balance');
+        $ethBalance = $balanceData->balance;
+
+        echo $ethBalance;
+        exit;
 
         // 구매 건수 포함
         $balance = BuyHistory::where('user_id',$id)->where('state','0')->sum(DB::raw(" buy_amount + buy_fee"));
