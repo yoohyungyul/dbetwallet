@@ -36,8 +36,6 @@
             <p>{{$item->address_from}}</p>
             @endif
 
-
-            <p></p>
         </li>
         @endforeach
         </ul>
