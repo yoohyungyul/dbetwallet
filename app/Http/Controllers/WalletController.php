@@ -434,7 +434,7 @@ class WalletController extends Controller
 
 
 
-        $balance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        // $balance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
 
@@ -444,7 +444,7 @@ class WalletController extends Controller
         }
         
 
-        if ($balance->balance < $request->amount) {
+        if ($this->getDbetBalance(Auth::user()->id) < $request->amount) {
             Session::flash('sweet_alert', "남은수량이 부족합니다.");
             return Redirect::back();
         }
@@ -554,6 +554,12 @@ class WalletController extends Controller
         $limit_min = $ethCurrencyData->limit_min;
         $ethBalance = $this->getEthBalance(Auth::user()->id);
 
+
+        $waitBalance = BuyHistory::where('user_id',Auth::user()->id)->where('state','<','4')->sum(DB::raw(" buy_amount + buy_fee"));
+        if(!$waitBalance) $waitBalance = 0;
+
+
+
     
 
         if($total_eth_amount < $limit_min) {
@@ -561,7 +567,7 @@ class WalletController extends Controller
             return Redirect::back();
         }
 
-        if($total_eth_amount > $ethBalance) {
+        if($total_eth_amount > ($ethBalance + $waitBalance)) {
             Session::flash("예상 결제 수량이 부족합니다. ");
             return Redirect::back();
         }
