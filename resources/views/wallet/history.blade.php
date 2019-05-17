@@ -27,14 +27,14 @@
             <ul class="list-group">
             @foreach ($list as $item)
             <li class="list-group-item">
-                <small>{{ $item->created_at  }}</small>
+                <p style="margin:0px;"><small>{{ $item->created_at  }}</small></p>
 
                 @if($item->type == "1")
-                <p>보낸 주소</p>
-                <p>{{$item->address_to}}</p>
+                <p style="margin:0px;">보낸 주소</p>
+                <p style="margin:0px;">{{$item->address_to}}</p>
                 @else
-                <p>받은 주소</p>
-                <p><small>{{$item->address_from}}</small></p>
+                <p style="margin:0px;">받은 주소</p>
+                <p style="margin:0px;"><small>{{$item->address_from}}</small></p>
                 @endif
 
             </li>
