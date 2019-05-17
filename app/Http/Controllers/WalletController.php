@@ -246,9 +246,9 @@ class WalletController extends Controller
         $currencyData = Currency::where('id', '=', 3)->first();
         $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
         $result = $client->request('eth_getBalance', [$walletData->address, 'latest']);
-        dd($result);
-        // $balance = hexdec($result)/pow(10,18);
-        // echo $balance;
+        // dd($result);
+        $balance = hexdec($result->result)/pow(10,18);
+        echo $balance;
         exit;
 
 
