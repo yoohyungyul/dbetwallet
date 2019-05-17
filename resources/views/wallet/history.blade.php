@@ -27,27 +27,36 @@
             @foreach ($list as $item)
             <li class="list-group-item">
                 
-                    <div class="row">
-                        <div class="col-7">
-                            <small>{{ $item->created_at  }}</small>
-                        </div>
-                        <div class="col-5 text-right">
-                            @if($item->state == "0")
-                                <span class="btn btn-secondary" style="font-size: 12px;padding: 1px 5px;">진행중</span>
-                                
-                            @else
-                                <span class="btn btn-success" style="font-size: 12px;padding: 1px 5px;">거래완료</span>
-                                <!-- <br>
-                                <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a> -->
-                            @endif
-                        </div>
+                <div class="row">
+                    <div class="col-7">
+                        <small>{{ $item->created_at  }}</small>
                     </div>
+                    <div class="col-5 text-right">
+                        @if($item->state == "0")
+                            <span class="btn btn-secondary" style="font-size: 12px;padding: 1px 5px;">진행중</span>
+                            
+                        @else
+                            <span class="btn btn-success" style="font-size: 12px;padding: 1px 5px;">거래완료</span>
+                            <!-- <br>
+                            <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a> -->
+                        @endif
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                    @if($item->type == "1")
+                        보낸 주소
+                    @else
+                        받은 주소
+                    @endif
+                    </div>
+                    <div class="col-9"></div>
+                </div>
 
                 @if($item->type == "1")
-                <p style="margin:0px;">보낸 주소</p>
+               
                 <p style="margin:0px;"><small>{{$item->address_to}}</small></p>
                 @else
-                <p style="margin:0px;">받은 주소</p>
                 <p style="margin:0px;"><small>{{$item->address_from}}</small></p>
                 @endif
 
