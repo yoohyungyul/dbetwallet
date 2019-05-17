@@ -37,8 +37,8 @@
           
             <div class="card-body text-left">
                 <div class="row">
-                    <div class="col-7">{$item->user->name}}</div>
-                    <div class="col-7"><small>{$item->user->created_at}}</small></div>
+                    <div class="col-7">{{$item->user->name}}</div>
+                    <div class="col-7"><small>{{$item->user->created_at}}</small></div>
                 </div>
                 
                 @foreach($item->coin as $coin)
