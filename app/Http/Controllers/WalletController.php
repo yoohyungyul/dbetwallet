@@ -372,9 +372,9 @@ class WalletController extends Controller
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
-        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $ethCurrencyData = Currency::where('id', '3')->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
-
+        $dbetBalance = $this->getDbetBalance(Auth::user()->id);
 
         $transactions = TransactionHistory::where('currency_id',env('CURRENCY_ID', '1'))
             ->where('user_id',Auth::user()->id)
@@ -384,8 +384,9 @@ class WalletController extends Controller
         
         return view('wallet.history', [
             'currency' => $currencyData,
-            'balance' => $balanceData,
+            'ethCurrency' => $ethCurrencyData,
             'list' => $transactions,
+            'dbetBalance' => $dbetBalance,
             'ethBalance' => $ethBalance
         ]);
 
