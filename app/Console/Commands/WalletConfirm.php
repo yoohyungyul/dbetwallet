@@ -133,7 +133,7 @@ class WalletConfirm extends Command {
                                             if($history->buy_id) {
                                                 $buyData = BuyHistory::where('id',$history->buy_id)->first();
                                                 if($buyData) {
-                                                    $buyData->state = 2;
+                                                    $buyData->state = $buyData->state + 1;
                                                     $buyData->push();
                                                 }
 
