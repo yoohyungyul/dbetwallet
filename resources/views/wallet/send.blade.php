@@ -112,7 +112,7 @@
     }
     
     function allBalance() {
-        $('#amountFormControlInput').val('{{ $balance->balance }}');
+        $('#amountFormControlInput').val('{{ $dbetBalance }}');
     }
 
     function fnQrCode() {
