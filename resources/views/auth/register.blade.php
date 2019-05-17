@@ -16,7 +16,7 @@
                     <form  role="form" method="POST" action="{{ url('/register') }}"  autocomplet="off" >
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-4 control-label">이름</label>
+                            <label for="name" class="col-12 control-label">이름</label>
 
                             <div class="col-12">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-4 control-label">E-Mail</label>
+                            <label for="email" class="col-12 control-label">E-Mail</label>
 
                             <div class="col-12">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="recommender" class="col-4 control-label">추천인 코드</label>
+                            <label for="recommender" class="col-12 control-label">추천인 코드</label>
 
                             <div class="col-12">
                                 <input id="recommender" type="text" class="form-control" name="recommender" value="">
@@ -54,7 +54,7 @@
 
 
                         <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
-                            <label for="email" class="col-4 control-label">Captcha</label>
+                            <label for="email" class="col-12 control-label">Captcha</label>
 
                             <div class="col-12">
                                 <div class="captcha">

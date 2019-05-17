@@ -21,7 +21,7 @@
                         @endforeach
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-4 control-label">E-Mail</label>
+                            <label for="email" class="col-12 control-label">E-Mail</label>
 
                             <div class="col-12">
                                 <input id="email" type="email" class="form-control" name="email">
@@ -32,7 +32,7 @@
 
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-4 control-label">OTP CODE</label>
+                            <label for="name" class="col-12 control-label">OTP CODE</label>
 
                             <div class="col-12">
                                 <input id="totp" type="text" class="form-control" name="totp" value="" maxlength="6">
