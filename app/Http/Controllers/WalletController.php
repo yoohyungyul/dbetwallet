@@ -249,9 +249,16 @@ class WalletController extends Controller
         $result = $client->request('eth_call', [[ 
             "to" => $currencyData->contract, 
             "data" => "0x70a08231000000000000000000000000" . str_replace("0x","",$walletData->address) ]]);
-        $balance  = hexdec($result->result)/pow(12,8);
+        $balance  = hexdec($result->result)/pow(10,8);
 
-        return $balance;
+        $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 2)->first();
+        $balanceData->balance = $balance;
+        $balanceData->push();
+
+        // 남은 잔액
+        $dbetBalance = $balanceData->balance;
+
+        return $dbetBalance;
 
     }
 
@@ -291,6 +298,7 @@ class WalletController extends Controller
 
         
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
+        $ethCurrencyData = Currency::where('id', '3')->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         
@@ -342,18 +350,15 @@ class WalletController extends Controller
 
        
 
-        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
-
-
-        echo $this->getDbetBalance(Auth::user()->id);
-        exit;
+        $dbetBalance = $this->getDbetBalance(Auth::user()->id);
 
         
         return view('wallet.wallet',[
             'currency' => $currencyData,
+            'ethCurrency' => $ethCurrencyData,
             'wallet' => $walletData,
-            'balance' => $balanceData,
+            'dbetBalance' => $dbetBalance,
             'ethBalance' => $ethBalance
 
         ]);
