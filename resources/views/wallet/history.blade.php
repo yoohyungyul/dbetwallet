@@ -26,7 +26,7 @@
         <ul class="list-group">
         @foreach ($list as $item)
         <li class="list-group-item">
-            <small>{{ $item->created_at  }}</samll>
+            <small>{{ $item->created_at  }}</small>
 
             @if($item->type == "1")
             <p>보낸 주소</p>
