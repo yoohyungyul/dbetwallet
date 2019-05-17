@@ -27,7 +27,22 @@
             <ul class="list-group">
             @foreach ($list as $item)
             <li class="list-group-item">
-                <p style="margin:0px;"><small>{{ $item->created_at  }}</small></p>
+                
+                    <div class="row">
+                        <div class="col-8">
+                            <small>{{ $item->created_at  }}</small>
+                        </div>
+                        <div class="col-8">
+                            @if($item->state == "0")
+                                <span class="btn btn-secondary btn-sm">진행중</span>
+                                
+                            @else
+                                <span class="btn btn-success btn-sm">거래완료</span>
+                                <!-- <br>
+                                <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a> -->
+                            @endif
+                        </div>
+                    </div>
 
                 @if($item->type == "1")
                 <p style="margin:0px;">보낸 주소</p>
