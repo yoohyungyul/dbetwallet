@@ -50,7 +50,9 @@
                         받은 주소
                     @endif
                     </div>
-                    <div class="col-8"></div>
+                    <div class="col-8 text-right">
+                    {{ number_format( $item->amount, $currency->fixed, ".", ",") }} {{$currency->unit}}
+                    </div>
                 </div>
 
                 @if($item->type == "1")
