@@ -502,14 +502,14 @@ class WalletController extends Controller
     public function getBuy() {
         $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->first();
         $ethCurrencyData = Currency::where('id', '3')->first();
-        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
+        $dbetBalance = $this->getDbetBalance(Auth::user()->id);
 
 
         return view('wallet.buy',[
             'currency' => $currencyData,
             'ethCurrency' => $ethCurrencyData,
-            'balance' => $balanceData,
+            'dbetBalance' => $dbetBalance,
             'ethBalance' => $ethBalance
 
         ]);
