@@ -35,7 +35,7 @@
         </div>
     </div>
 </div>
-<div class="row mt20">
+<div class="row mt20 mb10">
     <div class="col-12 text-center">
         <div class="card text-center" style="display: block">
             
