@@ -29,15 +29,15 @@
             <li class="list-group-item">
                 
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-7">
                             <small>{{ $item->created_at  }}</small>
                         </div>
-                        <div class="col-8">
+                        <div class="col-5 text-right">
                             @if($item->state == "0")
-                                <span class="btn btn-secondary btn-sm">진행중</span>
+                                <span class="btn btn-secondary btn-xs">진행중</span>
                                 
                             @else
-                                <span class="btn btn-success btn-sm">거래완료</span>
+                                <span class="btn btn-success btn-xs">거래완료</span>
                                 <!-- <br>
                                 <a href="https://etherscan.io/tx/{{$item->txid}}" target="_blank">상세보기</a> -->
                             @endif
