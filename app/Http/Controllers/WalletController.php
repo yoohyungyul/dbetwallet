@@ -338,8 +338,8 @@ class WalletController extends Controller
     // 거래 내역
     public function getHistory(Request $request) {
 
-        $currency_id  = $request->currency_id;
-        if(!$currency_id) $currency_id = env('CURRENCY_ID', '1');
+        // $currency_id  = $request->currency_id;
+        // if(!$currency_id) $currency_id = env('CURRENCY_ID', '1');
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
@@ -347,21 +347,15 @@ class WalletController extends Controller
         $ethBalance = $this->getEthBalance(Auth::user()->id);
 
 
-        $transactions = TransactionHistory::where('currency_id',$currency_id)
+        $transactions = TransactionHistory::where('currency_id',env('CURRENCY_ID', '1'))
             ->where('user_id',Auth::user()->id)
             ->orderBy('state')->orderBy('created_at','desc')->paginate(10);
 
         
-        $transactions->appends(
-            [
-                'currency_id' => $currency_id,
-            ]
-        );
         
         return view('wallet.history', [
             'currency' => $currencyData,
             'balance' => $balanceData,
-            'currency_id' => $currency_id,
             'list' => $transactions,
             'ethBalance' => $ethBalance
         ]);

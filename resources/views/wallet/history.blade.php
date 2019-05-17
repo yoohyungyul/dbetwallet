@@ -19,23 +19,9 @@
        </div>
     </div>
 </div>
+
+
 <div class="row mt20">
-{!! Form::open(array('url' => URL::to('/history'), 'method' => 'get','name'=>'searchForm','id'=>'searchForm')) !!}
-
-    <div class="col-12">
-        <div class="custom-control custom-radio" style="float:left;width:90px">
-            <input type="radio" name="currency_id" id="currency-1" value="2" class="custom-control-input currency" @if($currency_id == "2")checked="checked"@endif>
-            <label class="custom-control-label" for="currency-1">DBET</label>
-        </div>
-        <div class="custom-control custom-radio" style="float:left;width:70px">
-            <input type="radio" name="currency_id" id="currency-2" value="3" class="custom-control-input currency" @if($currency_id == "3")checked="checked"@endif>
-            <label class="custom-control-label" for="currency-2">ETH</label>
-        </div>
-    </div>
-</div>
-{!! Form::close() !!}
-
-<div class="row mt10">
     <div class="col-12 ">
         <div style="width:100%; overflow:auto">
 
