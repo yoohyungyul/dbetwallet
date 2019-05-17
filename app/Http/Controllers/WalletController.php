@@ -240,11 +240,16 @@ class WalletController extends Controller
     public function getEthBalance($id) {
 
         // 서버에서 직접 조회
-        // $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
-        // $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
-        // $result = $client->request('eth_getBalance', [$address, 'latest']);
+        $walletData = Users_wallet::where('user_id',$id)->where('currency_id', '=', 3)->first();
 
-        // $balance = hexdec($result)/pow(10,18);
+
+        $currencyData = Currency::where('id', '=', 3)->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        $result = $client->request('eth_getBalance', [$walletData->address, 'latest']);
+
+        $balance = hexdec($result)/pow(10,18);
+        echo $balance;
+        exit;
 
 
         // 남은 잔액
