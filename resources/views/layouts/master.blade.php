@@ -26,8 +26,9 @@
     <body>
         
         <nav class="navbar navbar-dark bg-primary"><a class="navbar-brand" href="/wallet">DBET Wallet</a>
-
+        @if(!Request::is("2fa/*") )
         @if(Auth::check())    <a href="/logout" style="float:right;color:#FFF">로그아웃</a> @endif
+        @endif
         </nav>
     
         <div class="container">
