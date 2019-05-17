@@ -543,7 +543,6 @@ class WalletController extends Controller
 
         $currencyData = Currency::where('id', "=" ,env('CURRENCY_ID', '1'))->first();
         $ethCurrencyData = Currency::where('id', '3')->first();
-        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
 
         
         $eth_amount = $request->eth_amount;
@@ -652,13 +651,14 @@ class WalletController extends Controller
 
 
         $currencyData = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
-        $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
+        $ethCurrencyData = Currency::where('id', '3')->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
-        
+        $dbetBalance = $this->getDbetBalance(Auth::user()->id);
 
         return view('wallet.recommender',[
             'currency' => $currencyData,
-            'balance' => $balanceData,
+            'ethCurrency' => $ethCurrencyData,
+            'dbetBalance' => $dbetBalance,
             'ethBalance' => $ethBalance,
             'recoms' => $recom_dict,
             'eth_total' => $eth_total,
