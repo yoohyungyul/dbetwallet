@@ -505,7 +505,7 @@ class WalletController extends Controller
         $ethBalance = $this->getEthBalance(Auth::user()->id);
         $dbetBalance = $this->getDbetBalance(Auth::user()->id);
         $waitBalance = BuyHistory::where('user_id',Auth::user()->id)->where('state','<','4')->sum(DB::raw(" buy_amount + buy_fee"));
-
+        if(!$waitBalance) $waitBalance = 0;
 
         return view('wallet.buy',[
             'currency' => $currencyData,
