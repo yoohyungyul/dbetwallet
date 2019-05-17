@@ -38,7 +38,7 @@
             <div class="card-body text-left">
                 <div class="row">
                     <div class="col-7">{{$item->user->name}}</div>
-                    <div class="col-5 text-right"><small>{{substr({$item->user->created_at,0,10)}}</small></div>
+                    <div class="col-5 text-right"><small>{{substr($item->user->created_at,0,10)}}</small></div>
                 </div>
                 
                 @foreach($item->coin as $coin)
