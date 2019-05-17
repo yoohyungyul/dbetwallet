@@ -504,13 +504,15 @@ class WalletController extends Controller
         $ethCurrencyData = Currency::where('id', '3')->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
         $dbetBalance = $this->getDbetBalance(Auth::user()->id);
+        $waitBalance = BuyHistory::where('user_id',Auth::user()->id)->where('state','<','4')->sum(DB::raw(" buy_amount + buy_fee"));
 
 
         return view('wallet.buy',[
             'currency' => $currencyData,
             'ethCurrency' => $ethCurrencyData,
             'dbetBalance' => $dbetBalance,
-            'ethBalance' => $ethBalance
+            'ethBalance' => $ethBalance,
+            'waitBalance' => $waitBalance,
 
         ]);
     }
