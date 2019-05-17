@@ -25,7 +25,20 @@
     <div class="col-12 ">
         <ul class="list-group">
         @foreach ($list as $item)
-        <li class="list-group-item">{{ $item->created_at  }}</li>
+        <li class="list-group-item">
+            <small>{{ $item->created_at  }}</samll>
+
+            @if($item->type == "1")
+            <p>보낸 주소</p>
+            <p>{{$item->address_to}}</p>
+            @else
+            <p>받은 주소</p>
+            <p>{{$item->address_from}}</p>
+            @endif
+
+
+            <p></p>
+        </li>
         @endforeach
         </ul>
 
