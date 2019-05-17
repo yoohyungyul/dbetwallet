@@ -42,7 +42,10 @@
                 </div>
                 
                 @foreach($item->coin as $coin)
-                <p style="margin:0px">{{$coin->label}} : {{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</p>
+                <div class="row">
+                    <div class="col-4">{{$coin->label}}</div>
+                    <div class="col-8 text-right">{{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</div>
+                </div>
                 @endforeach
             </div>
         </div>
