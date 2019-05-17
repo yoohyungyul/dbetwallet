@@ -36,7 +36,11 @@
         <div class="card text-center" style="display: block;margin-bottom:10px">
           
             <div class="card-body text-left">
-                <p style="margin:0px">{{$item->user->name}}</p>
+                <div class="row">
+                    <div class="col-7">{$item->user->name}}</div>
+                    <div class="col-7"><small>{$item->user->created_at}}</small></div>
+                </div>
+                
                 @foreach($item->coin as $coin)
                 <p style="margin:0px">{{$coin->label}} : {{ number_format( $coin->balance, $coin->fixed, ".", ",") }} {{$coin->unit}}</p>
                 @endforeach
