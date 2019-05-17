@@ -126,8 +126,7 @@ class SendLoop extends Command
                         }
                     // 이더
                     } else if($currency->use_rpc == 2) {
-                        echo $data->id;
-                        exit;
+                        
                         $result = $client->request('personal_unlockAccount', [$data->address_from, $currency->reg_password, '0x0a']);
                         $result = $client->request('eth_sendTransaction', [[
                             'from' => $data->address_from,
