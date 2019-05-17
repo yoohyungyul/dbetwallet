@@ -249,7 +249,7 @@ class WalletController extends Controller
         $result = $client->request('eth_call', [[ 
             "to" => $currencyData->contract, 
             "data" => "0x70a08231000000000000000000000000" . str_replace("0x","",$walletData->address) ]]);
-        $balance  = hexdec($result->result)/pow(10,8);
+        $balance  = hexdec($result->result)/pow(10,10);
 
         return $balance;
 
