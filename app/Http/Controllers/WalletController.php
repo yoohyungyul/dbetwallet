@@ -237,6 +237,24 @@ class WalletController extends Controller
 
     }
 
+    public function getDbetBalance($id) {
+
+
+        $walletData = Users_wallet::where('user_id',$id)->where('currency_id', '=', 2)->first();
+
+        $currencyData = Currency::where('id', '=', 2)->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+         // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => $currencyData->contract, 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","",$walletData->address) ]]);
+        $balance  = hexdec($result->result)/pow(10,8);
+
+        return $balance;
+
+    }
+
     public function getEthBalance($id) {
 
         // 서버에서 직접 조회
@@ -327,6 +345,10 @@ class WalletController extends Controller
         $balanceData = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $ethBalance = $this->getEthBalance(Auth::user()->id);
 
+
+        echo $this->getDbetBalance(Auth::user()->id);
+        exit;
+
         
         return view('wallet.wallet',[
             'currency' => $currencyData,
@@ -351,7 +373,7 @@ class WalletController extends Controller
 
         $transactions = TransactionHistory::where('currency_id',env('CURRENCY_ID', '1'))
             ->where('user_id',Auth::user()->id)
-            ->orderBy('state')->orderBy('created_at','desc')->paginate(4);
+            ->orderBy('state')->orderBy('created_at','desc')->paginate(10);
 
         
         
