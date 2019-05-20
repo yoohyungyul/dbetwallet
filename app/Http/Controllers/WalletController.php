@@ -436,9 +436,10 @@ class WalletController extends Controller
 
         // $balance = Balance::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
         $walletData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', env('CURRENCY_ID', '1'))->first();
-        $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        // $ethData = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id', '=', 3)->first();
+        $ethCurrencyData = Currency::where('id', '3')->first();
 
-        if($this->getEthBalance(Auth::user()->id) < 0.05) {
+        if($this->getEthBalance(Auth::user()->id) < $ethCurrencyData->fee) {
             Session::flash('sweet_alert', "이더리움 수량이 부족합니다.");
             return Redirect::back();
         }
