@@ -29,7 +29,7 @@
             {{ csrf_field() }}
             <input type="hidden" name="total_eth_amount" value="0"/>
 
-            <div class="text-center" style="margin-bottom:10px;"><small>구매 대기중 수량 : {{ number_format( $waitBalance, $ethCurrency->fixed, ".", ",") }} {{$ethCurrency->label}}</small></div>
+            <div class="text-center" style="margin-bottom:20px;"><small>구매 대기중 수량 : {{ number_format( $waitBalance, $ethCurrency->fixed, ".", ",") }} {{$ethCurrency->label}}</small></div>
  
             
             @foreach ($errors->all() as $error)
