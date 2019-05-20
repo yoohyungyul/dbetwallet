@@ -46,7 +46,7 @@
                         <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                     </span>
                 </div>
-                <p class="text-right"><small>예상 결제 수량(수수료 포함): <span id="total_eth_amount">0</span> ETH </small></p>
+                <p class="text-right"><small>예상 결제 수량(수수료 {{ number_format( $ethCurrency->fee, 4, ".", ",") }} 포함): <span id="total_eth_amount">0</span> ETH </small></p>
             </div>
             <div class="form-group">
                 <label for="addressFormControlInput">DBET 수량</label>
