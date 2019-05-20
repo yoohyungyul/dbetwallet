@@ -133,6 +133,8 @@
 
             $('#amountFormControlInput').val( Number(all.toFixed(8)) )    ;
             exchange();
+        } else {
+            alert("수량이 부족합니다. ");
         }
     }
 
