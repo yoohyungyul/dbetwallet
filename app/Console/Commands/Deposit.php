@@ -110,7 +110,10 @@ class Deposit extends Command {
 
                                         echo "\n  Incomming Transaction #".$txid->hash;
 
-                                        $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+
+
+                                        // $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                        $balance = $this->getEthBalance($wallet->user_id);
                                 
 
                                         $transaction_history = new TransactionHistory;
@@ -171,7 +174,8 @@ class Deposit extends Command {
 
                                         echo "\n  Incomming Transaction #".$txid->hash;
 
-                                        $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                        // $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                        $balance = $this->getDbetBalance($wallet->user_id);
                                 
                                         // echo "\n".$balance;
                                         // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
@@ -229,5 +233,55 @@ class Deposit extends Command {
     { 
         return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
     }
+
+    public function getDbetBalance($id) {
+
+
+        $walletData = Users_wallet::where('user_id',$id)->where('currency_id', '=', 2)->first();
+
+        $currencyData = Currency::where('id', '=', 2)->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+         // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => $currencyData->contract, 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","",$walletData->address) ]]);
+        $balance  = hexdec($result->result)/pow(10,8);
+
+        $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 2)->first();
+        $balanceData->balance = $balance;
+        $balanceData->push();
+
+        // 남은 잔액
+        $dbetBalance = $balanceData->balance;
+
+        return $dbetBalance;
+
+    }
+
+    public function getEthBalance($id) {
+
+        // 서버에서 직접 조회
+        $walletData = Users_wallet::where('user_id',$id)->where('currency_id', '=', 3)->first();
+
+
+        $currencyData = Currency::where('id', '=', 3)->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        $result = $client->request('eth_getBalance', [$walletData->address, 'latest']);
+        $balance = hexdec($result->result)/pow(10,18);
+
+
+        $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 3)->first();
+        $balanceData->balance = $balance;
+        $balanceData->push();
+
+        // 남은 잔액
+        $ethBalance = $balanceData->balance;
+
+        return $ethBalance;
+
+       
+    }
+
 
 }

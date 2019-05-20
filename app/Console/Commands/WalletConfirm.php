@@ -104,11 +104,19 @@ class WalletConfirm extends Command {
                                             $to_userid = Users_wallet::where('address',$history->address_to)->value('user_id');
                                             if($to_userid) {
                                                 // 받는 사람 발란스 가져오기
-                                                $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',$currency->id)->first();
+                                                // $to_user_balance = Balance::where('user_id',$to_userid)->where('currency_id',$currency->id)->first();
 
-                                                // 발란스 업데이트
-                                                $to_user_balance->balance += $history->amount;
-                                                $to_user_balance->save();
+                                                // // 발란스 업데이트
+                                                // $to_user_balance->balance += $history->amount;
+                                                // $to_user_balance->save();
+
+                                                // DBET
+                                                if($currency->id == "2") {
+                                                    $balance = $this->getDbetBalance($to_userid);
+                                                // ETH
+                                                } else if($currency->id == "3") {
+                                                    $balance = $this->getEthBalance($to_userid);
+                                                }
                                                 
                                                 // 히스트로 등록
                                                 $transaction_history = new TransactionHistory;
@@ -141,10 +149,17 @@ class WalletConfirm extends Command {
 
                                         // 받기
                                         } else {
+                                            // DBET
+                                            if($currency->id == "2") {
+                                                $balance = $this->getDbetBalance($history->user_id);
+                                            // ETH
+                                            } else if($currency->id == "3") {
+                                                $balance = $this->getEthBalance($history->user_id);
+                                            }
 
-                                            $balance = Balance::where('user_id',$history->user_id)->where('currency_id',$currency->id)->first();
-                                            $balance->balance += $history->amount;
-                                            $balance->save();
+                                            // $balance = Balance::where('user_id',$history->user_id)->where('currency_id',$currency->id)->first();
+                                            // $balance->balance += $history->amount;
+                                            // $balance->save();
                                         }
 
                                     } catch (\Exception $e) {
@@ -197,6 +212,56 @@ class WalletConfirm extends Command {
     public function base64pwd_decode($data) 
     { 
         return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
+    }
+
+
+    public function getDbetBalance($id) {
+
+
+        $walletData = Users_wallet::where('user_id',$id)->where('currency_id', '=', 2)->first();
+
+        $currencyData = Currency::where('id', '=', 2)->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+
+         // 토큰 조회
+        $result = $client->request('eth_call', [[ 
+            "to" => $currencyData->contract, 
+            "data" => "0x70a08231000000000000000000000000" . str_replace("0x","",$walletData->address) ]]);
+        $balance  = hexdec($result->result)/pow(10,8);
+
+        $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 2)->first();
+        $balanceData->balance = $balance;
+        $balanceData->push();
+
+        // 남은 잔액
+        $dbetBalance = $balanceData->balance;
+
+        return $dbetBalance;
+
+    }
+
+    public function getEthBalance($id) {
+
+        // 서버에서 직접 조회
+        $walletData = Users_wallet::where('user_id',$id)->where('currency_id', '=', 3)->first();
+
+
+        $currencyData = Currency::where('id', '=', 3)->first();
+        $client = new jsonRPCClient($currencyData->ip, $currencyData->port);
+        $result = $client->request('eth_getBalance', [$walletData->address, 'latest']);
+        $balance = hexdec($result->result)/pow(10,18);
+
+
+        $balanceData = Balance::where('user_id',$id)->where('currency_id', '=', 3)->first();
+        $balanceData->balance = $balance;
+        $balanceData->push();
+
+        // 남은 잔액
+        $ethBalance = $balanceData->balance;
+
+        return $ethBalance;
+
+       
     }
 
 }
