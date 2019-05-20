@@ -125,7 +125,7 @@ class WalletConfirm extends Command {
                                                 $transaction_history->currency_id = $currency->id;
                                                 $transaction_history->buy_id = $history->buy_id;
                                                 $transaction_history->amount = $history->amount;
-                                                $transaction_history->balance = $to_user_balance->balance;
+                                                $transaction_history->balance = $balance;
                                                 $transaction_history->txid = $history->txid;
                                                 $transaction_history->address_from = $history->address_from;
                                                 $transaction_history->address_to = $history->address_to;
