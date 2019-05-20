@@ -98,6 +98,15 @@ class WalletConfirm extends Command {
                                         $history->state = 1;
                                         $history->save();
 
+
+                                        // DBET
+                                        if($currency->id == "2") {
+                                            $balance = $this->getDbetBalance($history->user_id);
+                                        // ETH
+                                        } else if($currency->id == "3") {
+                                            $balance = $this->getEthBalance($history->user_id);
+                                        }
+
                                         // 보내기
                                         if($history->type == 1) {
                                             // 받는 사람 주소를 조회 후 있으면 등록 
@@ -146,20 +155,6 @@ class WalletConfirm extends Command {
                                                 }
 
                                             }
-
-                                        // 받기
-                                        } else {
-                                            // DBET
-                                            if($currency->id == "2") {
-                                                $balance = $this->getDbetBalance($history->user_id);
-                                            // ETH
-                                            } else if($currency->id == "3") {
-                                                $balance = $this->getEthBalance($history->user_id);
-                                            }
-
-                                            // $balance = Balance::where('user_id',$history->user_id)->where('currency_id',$currency->id)->first();
-                                            // $balance->balance += $history->amount;
-                                            // $balance->save();
                                         }
 
                                     } catch (\Exception $e) {
