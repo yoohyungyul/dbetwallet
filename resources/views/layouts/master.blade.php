@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <title>@yield('title')</title>
-
+        <link rel="shortcut icon" href="/img/favicon.ico">
         <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"  crossorigin="anonymous">
         <link rel="stylesheet" href="/css/dbetwallet.css?{{date('Ymdis')}}" media="screen">
