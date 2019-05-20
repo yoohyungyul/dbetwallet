@@ -29,8 +29,9 @@
             {{ csrf_field() }}
             <input type="hidden" name="total_eth_amount" value="0"/>
 
+            @if($waitBalance > 0 )
             <div class="text-center" style="margin-bottom:20px;"><small>구매 대기중 수량 : {{ number_format( $waitBalance, $ethCurrency->fixed, ".", ",") }} {{$ethCurrency->label}}</small></div>
- 
+            @endif
             
             @foreach ($errors->all() as $error)
             <div class="text-center">error : {{ $error }}</div>
