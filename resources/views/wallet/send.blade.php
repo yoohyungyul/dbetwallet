@@ -44,9 +44,7 @@
                             <button class="btn btn-primary" type="button" onclick="allBalance();">Total</button>
                         </span>
                     </div>
-
-
-
+                    <p ><small>최소 ETH 수량 : {{ number_format( $ethCurrency->fee, $ethCurrency->fixed, ".", ",") }} (거래 수수료)</small></p>
                 </div>
                 <div class="form-group">
                     <label for="outFormControlInput">OTP</label>
