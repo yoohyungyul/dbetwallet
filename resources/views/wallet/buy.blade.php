@@ -126,12 +126,14 @@
         var ethBalance = parseFloat("{{ $ethBalance }}");
         var fee = parseFloat("{{$ethCurrency->fee}}");
         var waitBalance = parseFloat("{{$waitBalance}}");
+        var limit_min = parseFloat("{{$ethCurrency->limit_min}}");
         var all = ethBalance - waitBalance - fee;
         
+        if(all > limit_min ) {
 
-
-        $('#amountFormControlInput').val( Number(all.toFixed(8)) )    ;
-        exchange();
+            $('#amountFormControlInput').val( Number(all.toFixed(8)) )    ;
+            exchange();
+        }
     }
 
     function exchange() {
