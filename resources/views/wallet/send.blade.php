@@ -75,7 +75,10 @@
         btn.removeAttr('disabled');
         }, 1000);
 
-        if($('#eth_balance').val() < 0.05) {
+
+        var fee = parseFloat("{{$ethCurrency->fee}}");
+
+        if($('#eth_balance').val() < fee) {
             alert("이더리움이 부족합니다. ");
             return false;
         }
