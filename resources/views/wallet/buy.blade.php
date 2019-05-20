@@ -28,6 +28,9 @@
             <form action="/buy" name="buyForm" method="POST" onsubmit="return write_btn();">
             {{ csrf_field() }}
             <input type="hidden" name="total_eth_amount" value="0"/>
+
+            <div class="text-center">구매 대기중 수량 : {{ number_format( $waitBalance, $ethCurrency->fixed, ".", ",") }} {{$ethCurrency->label}}</div>
+ 
             
             @foreach ($errors->all() as $error)
             <div class="text-center">error : {{ $error }}</div>
