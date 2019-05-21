@@ -112,8 +112,8 @@ class Deposit extends Command {
 
 
 
-                                        // $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
-                                        $balance = $this->getEthBalance($wallet->user_id);
+                                        $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                        // $balance = $this->getEthBalance($wallet->user_id);
                                 
 
                                         $transaction_history = new TransactionHistory;
@@ -174,8 +174,8 @@ class Deposit extends Command {
 
                                         echo "\n  Incomming Transaction #".$txid->hash;
 
-                                        // $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
-                                        $balance = $this->getDbetBalance($wallet->user_id);
+                                        $balance = Balance::where('user_id',$wallet->user_id)->where('currency_id',$currency->id)->value('balance');
+                                        // $balance = $this->getDbetBalance($wallet->user_id);
                                 
                                         // echo "\n".$balance;
                                         // echo "\n".number_format(($amount/pow(10,$currency->fixed)), $currency->fixed, '.', '');
