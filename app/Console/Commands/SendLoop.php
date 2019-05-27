@@ -134,6 +134,8 @@ class SendLoop extends Command
                             'value' => '0x'.$client->dec2hex(number_format($data->amount , $currency->fixed, '.', '')*pow(10,18)),
                         ]]);
 
+                        exit;
+
                         if(is_object($result)) {
 
                             if ($result->result != '') {
