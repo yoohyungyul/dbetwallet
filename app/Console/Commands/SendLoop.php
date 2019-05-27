@@ -6,6 +6,7 @@ use Cache;
 use DB;
 
 use App\TransactionHistory;
+use App\BuyHistory;
 use App\Currency;
 use App\jsonRPCClient;
 
@@ -157,8 +158,17 @@ class SendLoop extends Command
                         } else {
                             echo " RPC Error!";
 
+                            $historyData = TransactionHistory::where('id',$data->id)->first();
+                            if($historyData) {
+                                $historyData->state = 2;
+                                $historyData->push();
+                            }
+
                             if($data->buy_id) {
-                                echo "buy";
+
+                                $buyData = BuyHistory::where('id',$data->buy_id)->first();
+                                $buyData->state = 6;
+                                $buyData->push();
                             }
                         }
 
