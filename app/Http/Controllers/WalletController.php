@@ -375,7 +375,7 @@ class WalletController extends Controller
 
         $transactions = TransactionHistory::where('currency_id',env('CURRENCY_ID', '1'))
             ->where('user_id',Auth::user()->id)
-            ->orderBy('state')->orderBy('created_at','desc')->paginate(10);
+            ->orderBy('state')->orderBy('created_at','desc')->paginate(5);
 
         
         
