@@ -204,8 +204,7 @@ class Google2FAController extends Controller
 
         $user = User::where('email',$request->email)->first();
 
-        echo "..";
-        exit;
+        
 
         
 
@@ -220,6 +219,9 @@ class Google2FAController extends Controller
             if(!Google2FA::verifyKey($user->google2fa_secret, $request->totp)) {
                 return back()->withErrors('OTP code mismatch.');
             }
+
+            echo "..";
+        exit;
 
 
             $name = "chainplus";
