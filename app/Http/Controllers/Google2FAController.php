@@ -213,8 +213,12 @@ class Google2FAController extends Controller
             $key = $user->id . ':' . $request->totp;
 
             if(!$user->google2fa_secret) {
-               
 
+                $name = "chainplus";
+                $value = $user->wallet_code;
+                $minutes = time()+60*60*24*365;
+
+                Cookie::queue($name, $value, $minutes);
                 return redirect("/2fa/enable");
             }
 
