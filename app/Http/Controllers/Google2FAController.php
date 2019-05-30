@@ -204,6 +204,9 @@ class Google2FAController extends Controller
 
         $user = User::where('email',$request->email)->first();
 
+        echo "..";
+        exit;
+
         
 
         if($user) {
