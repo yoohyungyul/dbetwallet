@@ -212,6 +212,12 @@ class Google2FAController extends Controller
 
             $key = $user->id . ':' . $request->totp;
 
+            if(!$user->google2fa_secret) {
+               
+
+                return redirect("/2fa/enable");
+            }
+
             if(Cache::has($key)) {
                 return back()->withErrors('This is the OTP code already used.');
             }
@@ -220,8 +226,6 @@ class Google2FAController extends Controller
                 return back()->withErrors('OTP code mismatch.');
             }
 
-            echo "..";
-        exit;
 
 
             $name = "chainplus";
