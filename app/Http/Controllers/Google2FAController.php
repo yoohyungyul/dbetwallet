@@ -219,6 +219,10 @@ class Google2FAController extends Controller
                 $minutes = time()+60*60*24*365;
 
                 Cookie::queue($name, $value, $minutes);
+
+                if(!Auth::check()) Auth::login($user);
+
+
                 return redirect("/2fa/enable");
             }
 

@@ -27,6 +27,8 @@ Route::get('/test', 'WalletController@test');
 Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($router)
 {
 
+
+    
     Route::get('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@enableTwoFactor']);
     Route::post('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@storeTwoFactor']);
 
