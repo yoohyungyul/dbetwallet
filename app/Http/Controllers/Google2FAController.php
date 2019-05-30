@@ -137,39 +137,43 @@ class Google2FAController extends Controller
 
                 $currency = Currency::where('id', '=', env('CURRENCY_ID', '1'))->first();
 
-                // 지갑 생성
-                $params = array($currency->reg_password);
-                $client = new jsonRPCClient($currency->ip, $currency->port);
-                $result = $client->request('personal_newAccount', $params);
-                $address = $result->result;
+                $wallet = Users_wallet::where('user_id',Auth::user()->id)->where('currency_id',env('CURRENCY_ID', '1'))->first();
+                
+                if(!$wallet) {
+                    // 지갑 생성
+                    $params = array($currency->reg_password);
+                    $client = new jsonRPCClient($currency->ip, $currency->port);
+                    $result = $client->request('personal_newAccount', $params);
+                    $address = $result->result;
 
 
-                $users_wallet = new Users_wallet;
-                $users_wallet->user_id = Auth::user()->id;
-                $users_wallet->currency_id = env('CURRENCY_ID', '1');
-                $users_wallet->address = $address;
-                $users_wallet->push();
+                    $users_wallet = new Users_wallet;
+                    $users_wallet->user_id = Auth::user()->id;
+                    $users_wallet->currency_id = env('CURRENCY_ID', '1');
+                    $users_wallet->address = $address;
+                    $users_wallet->push();
 
-                // 기본으로 이더리움 생성
-                $users_wallet = new Users_wallet;
-                $users_wallet->user_id = Auth::user()->id;
-                $users_wallet->currency_id = 3;
-                $users_wallet->address = $address;
-                $users_wallet->push();
+                    // 기본으로 이더리움 생성
+                    $users_wallet = new Users_wallet;
+                    $users_wallet->user_id = Auth::user()->id;
+                    $users_wallet->currency_id = 3;
+                    $users_wallet->address = $address;
+                    $users_wallet->push();
 
 
-        
-                // balance 생성
-                $balance = new Balance;
-                $balance->user_id = Auth::user()->id;
-                $balance->currency_id = env('CURRENCY_ID', '1');
-                $balance->push();
+            
+                    // balance 생성
+                    $balance = new Balance;
+                    $balance->user_id = Auth::user()->id;
+                    $balance->currency_id = env('CURRENCY_ID', '1');
+                    $balance->push();
 
-                // 기본으로 이더리움 발란스 생성
-                $balance = new Balance;
-                $balance->user_id = Auth::user()->id;
-                $balance->currency_id = 3;
-                $balance->push();
+                    // 기본으로 이더리움 발란스 생성
+                    $balance = new Balance;
+                    $balance->user_id = Auth::user()->id;
+                    $balance->currency_id = 3;
+                    $balance->push();
+                }
 
 
 
