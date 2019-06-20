@@ -20,13 +20,15 @@ Route::post('/2fa/login', 'Google2FAController@postLogin');
 Route::get('/instascan', 'HomeController@instascan');
 Route::get('/test', 'WalletController@test');
 
+Route::get('/register', 'AuthController@getRegister');
+
 
 Route::group(
     [
     "domain" => "www.doublebet.net",
     // "middleware" => "csrf",
     "middleware" => "my_currency"],
-     function(){
+    function(){
 
     Route::get('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@enableTwoFactor']);
     Route::post('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@storeTwoFactor']);
