@@ -13,14 +13,14 @@
 
 
 
-// Route::auth();
+Route::auth();
 
 Route::get('/2fa/login', 'Google2FAController@getLogin');
 Route::post('/2fa/login', 'Google2FAController@postLogin');
 Route::get('/instascan', 'HomeController@instascan');
 Route::get('/test', 'WalletController@test');
 
-Route::get('/register', 'AuthController@getRegister');
+// Route::get('/register', 'AuthController@getRegister');
 
 
 Route::group(
