@@ -24,7 +24,7 @@ Route::get('/instascan', 'HomeController@instascan');
 Route::get('/test', 'WalletController@test');
 
 
-Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function($router)
+Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function()
 {
 
 
