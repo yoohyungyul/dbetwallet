@@ -13,6 +13,19 @@
 
 
 
+Route::group(
+    [
+        'domain' => 'app.doublebet.net',
+        'namespace' => 'App',
+        'middleware' => 'App'
+    ],
+    function(){
+
+        Route::any( '/' , 'AjaxController@Main' );
+    }
+);
+
+
 // Route::auth();
 
 Route::get('/2fa/login', 'Google2FAController@getLogin');
