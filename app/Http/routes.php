@@ -24,6 +24,11 @@ Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
 
+Route::get('/login', function () {
+    return redirect('/2fa/login');
+});
+
+
 Route::group(
     [
     "domain" => "www.doublebet.net",
