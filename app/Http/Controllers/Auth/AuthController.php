@@ -47,7 +47,7 @@ class AuthController extends Controller
     }
 
     public function getRegister() {
-        return "1";
+        return view('auth.register');
     }
 
     /**
