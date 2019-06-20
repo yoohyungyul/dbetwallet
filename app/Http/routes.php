@@ -26,9 +26,8 @@ Route::get('/test', 'WalletController@test');
 
 Route::group(
     [
-    "domain" => "doublebet.net",
     "domain" => "www.doublebet.net",
-    "middleware" => "csrf",
+    // "middleware" => "csrf",
     "middleware" => "my_currency"],
      function(){
 
