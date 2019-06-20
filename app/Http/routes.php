@@ -24,11 +24,14 @@ Route::get('/instascan', 'HomeController@instascan');
 Route::get('/test', 'WalletController@test');
 
 
-Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function()
-{
+Route::group(
+    [
+    "domain" => "doublebet.net",
+    "domain" => "www.doublebet.net",
+    "middleware" => "csrf",
+    "middleware" => "my_currency"],
+     function(){
 
-
-    
     Route::get('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@enableTwoFactor']);
     Route::post('/2fa/enable', ['middleware' => 'auth', 'uses' => 'Google2FAController@storeTwoFactor']);
 
@@ -42,9 +45,8 @@ Route::group(['middleware' => 'csrf', "middleware" => "my_currency"], function()
     Route::post('/buy', 'WalletController@postBuy');
     Route::get('/recommender', 'WalletController@getRecommender');
     Route::get('/logout', 'WalletController@getLogout');
-    
-    
-});
+    }
+);
 
 
 
