@@ -21,6 +21,7 @@ Route::get('/instascan', 'HomeController@instascan');
 Route::get('/test', 'WalletController@test');
 
 Route::get('/register', 'Auth\AuthController@getRegister');
+Route::post('/register', 'Auth\AuthController@postRegister');
 
 
 Route::group(
