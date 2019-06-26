@@ -44,7 +44,7 @@ Route::get('/login', function () {
 
 Route::group(
     [
-    "domain" => "www.doublebet.net",
+   
     // "middleware" => "csrf",
     "middleware" => "my_currency"],
     function(){
